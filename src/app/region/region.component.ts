@@ -11,7 +11,7 @@ export class RegionComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit() {
-    this.router.navigate(['/region']);
+    //this.router.navigate(['/region']);
   }
 
 }

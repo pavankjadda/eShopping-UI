@@ -3,7 +3,7 @@ import {CountryService} from './services/country.service';
 
 @Component({
   selector: 'app-country',
-  templateUrl: './country.component.html',
+  templateUrl: 'Countries.html',
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit
