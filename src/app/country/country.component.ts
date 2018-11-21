@@ -13,23 +13,24 @@ export class CountryComponent implements OnInit
 {
   countriesObservable: Observable<Country[]>;
 
-  constructor(private countryService: CountryService) {}
-
+  //constructor(private countryService: CountryService) {}
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit()
   {
-    this.countryService.getCountries().subscribe(
-      data => {
-        this.countriesObservable=data;
-        },
-      err => console.log('Error from Component'),
-      ()=> {console.log('Completed');}
-      );
+    const url='http://localhost:8080/api/v2/country/list';
+    const httpOptions = {
+      headers: new HttpHeaders( {'Content-Type':  'application/json'})
+    };
+    this.httpClient.get<Observable<Country[]>>(url,httpOptions).subscribe(
+      data=> {this.countriesObservable=data;},
+      err => console.error(err),
+      () => console.log('Countries retrived from backend'));
+    return this.countriesObservable;
   }
 
   isDataReady(): boolean
   {
     return this.countriesObservable!==undefined;
-
   }
 }

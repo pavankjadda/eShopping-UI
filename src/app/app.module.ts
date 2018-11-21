@@ -9,6 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CountryResolve} from './country/services/country.resolve';
+import { StateComponent } from './state/state.component';
+import { CityComponent } from './city/city.component';
 
 @NgModule( {
   declarations: [
@@ -16,7 +18,9 @@ import {CountryResolve} from './country/services/country.resolve';
     CountryComponent,
     RegionComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    StateComponent,
+    CityComponent
   ],
   imports: [
     BrowserModule,
