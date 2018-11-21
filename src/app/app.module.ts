@@ -1,15 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CountryComponent } from './country/country.component';
-import { RegionComponent } from './region/region.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {CountryComponent} from './country/country.component';
+import {RegionComponent} from './region/region.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HomeComponent} from './home/home.component';
+import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
+import {CountryResolve} from './country/services/country.resolve';
 
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
     CountryComponent,
@@ -22,7 +23,9 @@ import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CountryResolve],
   bootstrap: [AppComponent]
-})
-export class AppModule { }
+} )
+export class AppModule
+{
+}

@@ -9,13 +9,15 @@
         <th>code</th>
         <th>ISO Code</th>
       </tr>
-      <tr *ngFor="let country of countriesObservable">
+      <tr *ngFor="let country of (countriesObservable)">
         <td>{{country.id}}</td>
         <td>{{country.name}}</td>
         <td>{{country.code}}</td>
         <td>{{country.isoCode}}</td>
       </tr>
+
     </table>
   </div>
   <a routerLink="/home">Click here to Home</a>
 </div>
+

@@ -9,24 +9,22 @@ import {Observable} from 'rxjs';
 export class CountryService
 {
   countriesObservable: Observable<Country[]>;
-  countriesList: Country[];
   constructor(private httpClient:HttpClient) { }
 
   getCountries()
   {
     const url='http://localhost:8080/api/v2/country/list';
     const httpOptions = {
-      headers: new HttpHeaders({
+      headers: new HttpHeaders(
+        {
         'Content-Type':  'application/json'
       })
     };
-    this.httpClient.get(url,httpOptions).subscribe((result)=>
+    this.httpClient.get(url,httpOptions).subscribe((response)=>
     {
       // @ts-ignore
-      this.countriesObservable=result;
-      //this.countriesList=result;
+      this.countriesObservable=response;
     });
-    //return this.countriesList;
     return this.countriesObservable;
   }
 }
