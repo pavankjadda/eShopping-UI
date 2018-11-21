@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Country} from '../model/country';
 import {Observable} from 'rxjs';
 
@@ -9,11 +9,21 @@ import {Observable} from 'rxjs';
 export class CountryService
 {
   customersObservable: Observable<Country[]>;
-  constructor(private http:HttpClient) { }
+
+  constructor(private httpClient:HttpClient) { }
 
   getCountries()
   {
-    //return this.http.get<Country[]>('localhost:8080/api/v2/country/list',{responseType:'json'});
-    this.customersObservable=this.http.get<Country[]>('localhost:8080/api/v2/country/list',{responseType:'json'});
+    const url='http://localhost:8080/api/v2/country/list';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    this.httpClient.get(url,httpOptions).subscribe((result)=>
+    {
+      // @ts-ignore
+      this.customersObservable=result;
+    });
   }
 }
