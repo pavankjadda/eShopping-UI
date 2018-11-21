@@ -5,29 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
 import { RegionComponent } from './region/region.component';
-import {RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryComponent,
-    RegionComponent
+    RegionComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    RouterModule.forRoot([
-      {
-        path: 'country',
-        component: CountryComponent
-      },
-      {
-        path: 'country/countries.html',
-        component: CountryComponent
-      }
-    ])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

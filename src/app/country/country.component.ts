@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from './services/country.service';
+import {Observable} from 'rxjs';
+import {Country} from './model/country';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-country',
@@ -8,15 +11,14 @@ import {CountryService} from './services/country.service';
 })
 export class CountryComponent implements OnInit
 {
-  countriesList;
-  constructor(private countryService:CountryService)
-  {
-  }
+  countriesList: Country[];
+  countriesObservable: Observable<Country[]>;
+  constructor(private countryService:CountryService) { }
 
   ngOnInit()
   {
-    this.countriesList=this.countryService.getCountries();
-    console.log(this.countriesList);
+    //this.countriesList=this.countryService.getCountries();
+    this.countriesObservable=this.countryService.getCountries();
   }
 
 }
