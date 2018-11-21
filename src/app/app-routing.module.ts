@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'region',        component: RegionComponent },
   { path: 'countries.html',   redirectTo: 'country'},
   { path: '',   component:HomeComponent},
+  { path: 'home',   component:HomeComponent},
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

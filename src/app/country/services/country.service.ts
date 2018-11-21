@@ -8,8 +8,8 @@ import {Observable} from 'rxjs';
 })
 export class CountryService
 {
-  customersObservable: Observable<Country[]>;
-
+  countriesObservable: Observable<Country[]>;
+  countriesList: Country[];
   constructor(private httpClient:HttpClient) { }
 
   getCountries()
@@ -23,7 +23,9 @@ export class CountryService
     this.httpClient.get(url,httpOptions).subscribe((result)=>
     {
       // @ts-ignore
-      this.customersObservable=result;
+      //this.countriesObservable=result;
+      this.countriesList=result;
     });
+    return this.countriesList;
   }
 }
