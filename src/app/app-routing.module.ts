@@ -7,13 +7,7 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CountryResolve} from './country/services/country.resolve';
 
 const routes: Routes = [
-  {
-    path: 'country',
-    component: CountryComponent,
-    resolve:{
-      country:CountryResolve
-    }
-    },
+  { path: 'country', component: CountryComponent},
   { path: 'region',        component: RegionComponent },
   //{ path: 'countries.html',   redirectTo: 'countries.html'},
   { path: '',   component:HomeComponent},

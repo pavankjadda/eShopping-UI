@@ -23,7 +23,7 @@ import {CountryResolve} from './country/services/country.resolve';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [CountryResolve],
+  providers: [],
   bootstrap: [AppComponent]
 } )
 export class AppModule
