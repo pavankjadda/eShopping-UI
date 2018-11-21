@@ -9,24 +9,18 @@ import {Observable} from 'rxjs';
 export class CountryService
 {
   countriesObservable: Observable<Country[]>;
-  countriesList: Country[];
   constructor(private httpClient:HttpClient) { }
 
-  getCountries()
+  getCountries(): Observable<Country[]>
   {
     const url='http://localhost:8080/api/v2/country/list';
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
+      headers: new HttpHeaders( {'Content-Type':  'application/json'})
     };
-    this.httpClient.get(url,httpOptions).subscribe((result)=>
-    {
-      // @ts-ignore
-      this.countriesObservable=result;
-      //this.countriesList=result;
-    });
-    //return this.countriesList;
+    this.httpClient.get<Observable<Country[]>>(url,httpOptions).subscribe(
+      data=> {this.countriesObservable=data;},
+      err => console.error(err),
+      () => console.log('Countries retrived from backend'));
     return this.countriesObservable;
   }
 }
