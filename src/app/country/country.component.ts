@@ -12,11 +12,13 @@ import {forEach} from '@angular/router/src/utils/collection';
 export class CountryComponent implements OnInit
 {
   countriesList: Country[];
+  countriesObservable: Observable<Country[]>;
   constructor(private countryService:CountryService) { }
 
   ngOnInit()
   {
-    this.countriesList=this.countryService.getCountries();
+    //this.countriesList=this.countryService.getCountries();
+    this.countriesObservable=this.countryService.getCountries();
   }
 
 }

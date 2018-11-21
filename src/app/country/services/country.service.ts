@@ -23,9 +23,10 @@ export class CountryService
     this.httpClient.get(url,httpOptions).subscribe((result)=>
     {
       // @ts-ignore
-      //this.countriesObservable=result;
-      this.countriesList=result;
+      this.countriesObservable=result;
+      //this.countriesList=result;
     });
-    return this.countriesList;
+    //return this.countriesList;
+    return this.countriesObservable;
   }
 }
