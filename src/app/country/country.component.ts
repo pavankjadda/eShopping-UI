@@ -13,8 +13,7 @@ export class CountryComponent implements OnInit
 {
   countriesObservable: Observable<Country[]>;
 
-  //constructor(private countryService: CountryService) {}
-  constructor(private httpClient: HttpClient) {}
+  constructor(private countryService: CountryService) {}
 
   ngOnInit()
   {
@@ -22,7 +21,8 @@ export class CountryComponent implements OnInit
     const httpOptions = {
       headers: new HttpHeaders( {'Content-Type':  'application/json'})
     };
-    this.httpClient.get<Observable<Country[]>>(url,httpOptions).subscribe(
+
+    this.countryService.getCountries().subscribe(
       data=> {this.countriesObservable=data;},
       err => console.error(err),
       () => console.log('Countries retrived from backend'));
