@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {City} from './model/city';
-import {State} from '../state/model/state';
+import {CityService} from './services/city.service';
 
 @Component( {
   selector: 'app-city',
@@ -14,23 +14,21 @@ export class CityComponent implements OnInit
 
   citiesObservable: Observable<City[]>;
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private cityService:CityService) {
   }
-  ngOnInit(): Observable<City[]>
+  ngOnInit()
   {
-    const url='http://localhost:8080/api/v2/city/list';
-    const httpOptions={
-      headers: new HttpHeaders( {'Content-Type': 'application/json'} )
-    };
-    this.httpClient.get<Observable<City[]>>( url, httpOptions ).subscribe(
-      data => {
-        this.citiesObservable=data;
-      },
+    this.getCities();
+  }
+
+  getCities()
+  {
+    this.cityService.getCities( ).subscribe(
+      data => {this.citiesObservable=data;},
       err => console.error( err ),
       () => console.log( 'Cities retrived from backend' ) );
     return this.citiesObservable;
   }
-
   cityDataAvailable(): boolean
   {
     return this.citiesObservable !== undefined;

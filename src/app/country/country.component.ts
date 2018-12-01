@@ -17,6 +17,11 @@ export class CountryComponent implements OnInit
 
   ngOnInit()
   {
+    this.getCountries();
+  }
+
+  getCountries()
+  {
     const url='http://localhost:8080/api/v2/country/list';
     const httpOptions = {
       headers: new HttpHeaders( {'Content-Type':  'application/json'})
