@@ -11,8 +11,12 @@ export class StateService
 {
   constructor(private httpClient:HttpClient) { }
 
-  getStates(url,httpOptions)
+  getStates()
   {
+    const url='http://localhost:8080/api/v2/state/list';
+    const httpOptions={
+      headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+    };
     return this.httpClient.get<Observable<State[]>>(url,httpOptions);
   }
 }

@@ -22,12 +22,7 @@ export class StateComponent implements OnInit
 
   getStates()
   {
-    const url='http://localhost:8080/api/v2/state/list';
-    const httpOptions={
-      headers: new HttpHeaders( {'Content-Type': 'application/json'} )
-    };
-
-    this.stateService.getStates(url,httpOptions).subscribe(
+    this.stateService.getStates().subscribe(
       data => { this.statesObservable=data; },
       err => console.error( err ),
       () => console.log( 'States retrieved from backend' ) );
