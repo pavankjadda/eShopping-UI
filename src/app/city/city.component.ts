@@ -23,7 +23,12 @@ export class CityComponent implements OnInit
 
   getCities()
   {
-    this.cityService.getCities( ).subscribe(
+    const url='http://localhost:8080/api/v2/city/list';
+    const httpOptions={
+      headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+    };
+
+    this.cityService.getCities(url,httpOptions).subscribe(
       data => {this.citiesObservable=data;},
       err => console.error( err ),
       () => console.log( 'Cities retrived from backend' ) );
