@@ -1,13 +1,13 @@
 
 <div style="text-align: center" >
-  <h3> Countries List</h3>
+  <h3> States List</h3>
   <div  *ngIf="statesDataAvailable()" style="text-align: center">
     <table style="text-align: center">
       <tr>
         <th>Id</th>
         <th>name</th>
         <th>code</th>
-        <th>ISO Code</th>
+        <th>country</th>
       </tr>
       <tr *ngFor="let state of (statesObservable)">
         <td>{{state.id}}</td>
