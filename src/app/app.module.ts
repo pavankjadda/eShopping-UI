@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import { StateComponent } from './state/state.component';
 import { CityComponent } from './city/city.component';
+import {UiModule} from './ui/ui.module';
 
 @NgModule( {
   declarations: [
@@ -24,7 +25,8 @@ import { CityComponent } from './city/city.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

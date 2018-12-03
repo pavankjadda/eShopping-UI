@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CountryService} from './services/country.service';
 import {Observable} from 'rxjs';
 import {Country} from './model/country';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component( {
   selector: 'app-country',
