@@ -10,10 +10,8 @@ export class CountryService
 {
   constructor(private httpClient:HttpClient) { }
 
-  getCountries()
+  getCountries(url,httpOptions)
   {
-    const url='http://localhost:8080/api/v2/country/list';
-    const httpOptions = {headers: new HttpHeaders( {'Content-Type':  'application/json'})};
-    return this.httpClient.get<Observable<Country[]>>(url,httpOptions);
+    return this.httpClient.get<Country[]>(url,httpOptions);
   }
 }

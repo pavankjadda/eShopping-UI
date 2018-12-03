@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 import {State} from '../model/state';
 
@@ -13,6 +12,6 @@ export class StateService
 
   getStates(url,httpOptions)
   {
-    return this.httpClient.get<Observable<State[]>>(url,httpOptions);
+    return this.httpClient.get<State[]>(url,httpOptions);
   }
 }
