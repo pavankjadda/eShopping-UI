@@ -8,9 +8,12 @@ import {RegionComponent} from './region/region.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
-import { StateComponent } from './state/state.component';
-import { CityComponent } from './city/city.component';
+import {StateComponent} from './state/state.component';
+import {CityComponent} from './city/city.component';
 import {UiModule} from './ui/ui.module';
+import {LoginModule} from './login/login.module';
+import {LoginComponent} from './login/login/login.component';
+
 
 @NgModule( {
   declarations: [
@@ -26,7 +29,8 @@ import {UiModule} from './ui/ui.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    UiModule
+    UiModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
