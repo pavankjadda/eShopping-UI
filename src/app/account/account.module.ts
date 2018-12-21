@@ -1,13 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {ActivateComponent} from './activate/activate.component';
+import {RegisterComponent} from './register/register.component';
+import {PasswordComponent} from './password/password.component';
+import {SettingsComponent} from './settings/settings.component';
 
-
-import {
-  RegisterComponent,
-  ActivateComponent,
-  PasswordComponent,
-  SettingsComponent
-} from './';
 
 @NgModule({
   imports: [ RouterModule],
@@ -19,3 +16,4 @@ import {
   ]
 })
 export class AccountModule { }
+
