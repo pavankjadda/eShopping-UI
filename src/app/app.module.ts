@@ -1,40 +1,42 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {CountryComponent} from './api/country/country.component';
-import {RegionComponent} from './api/region/region.component';
+import {LayoutModule} from './layouts/layout.module';
+import {AccountModule} from './account/account.module';
+import {ApiModule} from './api/api.module';
+import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
+
+
+import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
-import {StateComponent} from './api/state/state.component';
-import {CityComponent} from './api/city/city.component';
-import {UiModule} from './layouts/ui.module';
-import {LoginModule} from './core/login/login.module';
-import {LoginComponent} from './core/login/login/login.component';
+import {CommonModule} from '@angular/common';
+
+
 
 
 @NgModule( {
-  declarations: [
-    AppComponent,
-    CountryComponent,
-    RegionComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    StateComponent,
-    CityComponent
-  ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     AppRoutingModule,
-    UiModule,
-    LoginModule
+    LayoutModule,
+    CoreModule,
+    ApiModule,
+    AccountModule
   ],
+
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 } )
-export class AppModule
-{
+
+export class AppModule {
 }
