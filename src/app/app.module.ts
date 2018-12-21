@@ -13,6 +13,12 @@ import {CityComponent} from './api/city/city.component';
 import {UiModule} from './layouts/ui.module';
 import {LoginModule} from './core/login/login.module';
 import {LoginComponent} from './core/login/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
+import { ActivateComponent } from './account/activate/activate.component';
+import { PasswordComponent } from './account/password/password.component';
+import { PasswordResetComponent } from './account/password-reset/password-reset.component';
+import { SettingsComponent } from './account/settings/settings.component';
+import {AccountModule} from './account/account.module';
 
 
 @NgModule( {
@@ -23,14 +29,20 @@ import {LoginComponent} from './core/login/login/login.component';
     HomeComponent,
     PageNotFoundComponent,
     StateComponent,
-    CityComponent
+    CityComponent,
+    RegisterComponent,
+    ActivateComponent,
+    PasswordComponent,
+    PasswordResetComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     UiModule,
-    LoginModule
+    LoginModule,
+    AccountModule
   ],
   providers: [],
   bootstrap: [AppComponent]
