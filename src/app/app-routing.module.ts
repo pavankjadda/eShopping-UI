@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CountryComponent} from './country/country.component';
-import {RegionComponent} from './region/region.component';
+import {CountryComponent} from './api/country/country.component';
+import {RegionComponent} from './api/region/region.component';
 import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
-import {StateComponent} from './state/state.component';
-import {CityComponent} from './city/city.component';
-import {LoginComponent} from './login/login/login.component';
+import {StateComponent} from './api/state/state.component';
+import {CityComponent} from './api/city/city.component';
+import {LoginComponent} from './core/login/login/login.component';
 
 const routes: Routes=[
   {path: 'city', component: CityComponent},
