@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CountryService} from './services/country.service';
 import {Observable} from 'rxjs';
 import {Country} from './model/country';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component( {
   selector: 'app-country',
@@ -27,8 +27,11 @@ export class CountryComponent implements OnInit
       headers: new HttpHeaders( {'Content-Type':  'application/json'})
     };
 
-    this.countryService.getCountries().subscribe(
-      data=> {this.countriesObservable=data;},
+    this.countryService.getCountries(url,httpOptions).subscribe(
+      data=> {
+        // @ts-ignore
+        this.countriesObservable=data;
+        },
       err => console.error(err),
       () => console.log('Countries retrived from backend'));
     return this.countriesObservable;

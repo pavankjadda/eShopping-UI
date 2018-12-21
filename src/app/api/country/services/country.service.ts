@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-import {State} from '../model/state';
+import {Country} from '../model/country';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StateService
+export class CountryService
 {
   constructor(private httpClient:HttpClient) { }
 
-  getStates(url,httpOptions)
+  getCountries(url,httpOptions)
   {
-    return this.httpClient.get<Observable<State[]>>(url,httpOptions);
+    return this.httpClient.get<Country[]>(url,httpOptions);
   }
 }
