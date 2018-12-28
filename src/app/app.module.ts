@@ -13,8 +13,7 @@ import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
-
-
+import {OrderRoutingModule} from './order/order-routing.module';
 
 
 @NgModule( {
@@ -22,12 +21,13 @@ import {OrderModule} from './order/order.module';
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    AppRoutingModule,
     LayoutModule,
     CoreModule,
     ApiModule,
     AccountModule,
-    OrderModule
+    OrderModule,
+    //OrderRoutingModule,
+    AppRoutingModule
   ],
 
   declarations: [
