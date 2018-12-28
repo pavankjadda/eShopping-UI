@@ -33,7 +33,7 @@ export class CityComponent implements OnInit
         this.citiesObservable=data;
         },
       err => console.error( err ),
-      () => console.log( 'Cities retrived from backend' ) );
+      () => console.log( 'Cities retrieved from backend' ) );
     return this.citiesObservable;
   }
   cityDataAvailable(): boolean

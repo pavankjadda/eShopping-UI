@@ -7,12 +7,14 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {StateComponent} from './api/state/state.component';
 import {CityComponent} from './api/city/city.component';
 import {LoginComponent} from './core/login/login/login.component';
+import {CategoryComponent} from './order/category/category.component';
 
 const routes: Routes=[
   {path: 'city', component: CityComponent},
   {path: 'state', component: StateComponent},
   {path: 'country', component: CountryComponent},
   {path: 'region', component: RegionComponent},
+  {path: 'category', component: CategoryComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
