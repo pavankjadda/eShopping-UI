@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../service/category.service';
 import {Observable} from 'rxjs';
 import {Category} from '../model/category';
-import {SERVER_API_URL} from '../../../app.constants';
+import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -20,11 +20,13 @@ export class CategoryListComponent implements OnInit
     this.getCategories();
   }
 
-  private getCategories()
+  getCategories()
   {
     const url=SERVER_API_URL+'api/v2/category/list';
     const httpOptions={
-      headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+      headers: new HttpHeaders( {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + BASIC_AUTH} )
     };
 
     this.categoryService.getCategories(url,httpOptions).subscribe(

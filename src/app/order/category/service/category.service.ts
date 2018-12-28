@@ -14,4 +14,10 @@ export class CategoryService
   {
     return this.httpClient.get<Category[]>(url,httpOptions);
   }
+
+  createCategory(url, httpOptions, category)
+  {
+      return this.httpClient.post(url,category,httpOptions);
+    //return this.httpClient.put(url,httpOptions,category);
+  }
 }

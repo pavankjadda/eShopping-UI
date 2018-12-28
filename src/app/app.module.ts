@@ -14,6 +14,7 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
 import {OrderRoutingModule} from './order/order-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule( {
@@ -26,7 +27,6 @@ import {OrderRoutingModule} from './order/order-routing.module';
     ApiModule,
     AccountModule,
     OrderModule,
-    //OrderRoutingModule,
     AppRoutingModule
   ],
 

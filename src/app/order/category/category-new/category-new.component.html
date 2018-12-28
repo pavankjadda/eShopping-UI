@@ -1,0 +1,15 @@
+<form [formGroup]="categoryForm">
+  <label>
+    Category Id: <input type="text" formControlName="id" required>
+  </label>
+
+  <label>
+    Category Name: <input type="text" formControlName="name">
+  </label>
+
+  <button type="button" (click)="createCategory()">Submit</button>
+</form>
+
+
+
+
