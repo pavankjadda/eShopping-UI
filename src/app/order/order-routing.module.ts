@@ -1,13 +1,21 @@
-import {RouterModule, Routes} from '@angular/router';
-import {categoryManagementRoute} from './category/category.route';
+import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-@NgModule({
+import {categoryManagementRoute} from './category/category.route';
+import {orderDetailManagementRoute} from './order-detail/order-detail.route';
+
+
+
+@NgModule(
+  {
   imports: [
-    RouterModule.forChild(categoryManagementRoute)
+    RouterModule.forChild(categoryManagementRoute),
+    RouterModule.forChild(orderDetailManagementRoute),
   ],
   exports: [
     RouterModule
   ]
-})
-export class OrderRoutingModule { }
+} )
+export class OrderRoutingModule
+{
+}
