@@ -4,6 +4,7 @@ import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
+import {Router} from '@angular/router';
 
 @Component( {
   selector: 'app-category-new',
@@ -17,7 +18,7 @@ export class CategoryNewComponent implements OnInit
     name: new FormControl(''),
   });
 
-  constructor(private categoryService:CategoryService) {}
+  constructor(private categoryService:CategoryService, private router:Router) {}
 
   ngOnInit()
   {
@@ -41,7 +42,9 @@ export class CategoryNewComponent implements OnInit
         'Authorization': 'Basic ' + BASIC_AUTH} )
     };
     this.categoryService.createCategory(url,httpOptions,category).subscribe(
-      value => {},error1 => {},()=>{});
+      value => {},error1 => {},()=>{
+        this.router.navigate(['/category/list']);
+      });
   }
 
 }

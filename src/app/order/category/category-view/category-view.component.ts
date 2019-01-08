@@ -4,6 +4,7 @@ import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
 import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-view',
@@ -13,7 +14,10 @@ import {HttpHeaders} from '@angular/common/http';
 export class CategoryViewComponent implements OnInit
 {
   categoryObservable:  Observable<Category>;
-  constructor(private categoryService:CategoryService) { }
+  constructor(private categoryService:CategoryService,
+              private route: ActivatedRoute,
+              private router: Router
+  ) { }
 
   ngOnInit()
   {
@@ -22,7 +26,8 @@ export class CategoryViewComponent implements OnInit
 
   private getCategory()
   {
-    const url=SERVER_API_URL+'api/v2/category/'+1;
+    const id = this.route.snapshot.paramMap.get('id');
+    const url=SERVER_API_URL+'api/v2/category/'+id;
     const httpOptions={
       headers: new HttpHeaders( {
         'Content-Type': 'application/json',
