@@ -1,4 +1,4 @@
-<div >
+<div class="container container-fluid">
   <h3 style="text-align: center" > Categories List</h3>
   <div  *ngIf="categoriesDataAvailable()">
     <table class="table table-bordered">
@@ -12,9 +12,11 @@
         <td><a [routerLink]="['/category', category.id]">{{category.name}}</a></td>
       </tr>
     </table>
+
+    <div style="text-align: center">
+      <a [routerLink]="['/category']" style="margin-right: 30px">Category</a>
+      <a [routerLink]="['/home']" style="margin-right: 30px">Home </a>
+    </div>
   </div>
 
-  <br/><br/><br/><br/><br/>
-
-  <a routerLink="/home">Click here to Home</a>
 </div>

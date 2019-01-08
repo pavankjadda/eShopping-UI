@@ -13,6 +13,7 @@ import {categoryManagementRoute} from './category/category.route';
 import {orderDetailManagementRoute} from './order-detail/order-detail.route';
 import {OrderRoutingModule} from './order-routing.module';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
+import { CategoryDeleteComponent } from './category/category-delete/category-delete.component';
 
 @NgModule( {
   declarations: [
@@ -23,7 +24,8 @@ import { CategoryEditComponent } from './category/category-edit/category-edit.co
     CategoryNewComponent,
     CategoryHomeComponent,
     OrderDetailComponent,
-    CategoryEditComponent],
+    CategoryEditComponent,
+    CategoryDeleteComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 export class CategoryNewComponent implements OnInit
 {
   categoryForm = new FormGroup({
-    id: new FormControl('', Validators.minLength(2)),
+    id: new FormControl({value:'',disabled:true}, Validators.minLength(2)),
     name: new FormControl(''),
   });
 

@@ -25,4 +25,15 @@ export class CategoryService
   {
     return this.httpClient.get<Category>(url,httpOptions);
   }
+
+  updateCategory(url: string, httpOptions: { headers: HttpHeaders }, category: Category)
+  {
+    return this.httpClient.put(url,category,httpOptions);
+  }
+
+
+  deleteCategory(url: string, httpOptions: { headers: HttpHeaders })
+  {
+    return this.httpClient.delete(url,httpOptions);
+  }
 }
