@@ -47,4 +47,7 @@ export class CategoryNewComponent implements OnInit
       });
   }
 
+  goBack() {
+    this.router.navigate(['/category']);
+  }
 }
