@@ -8,12 +8,16 @@ import {CategoryNewComponent} from './category/category-new/category-new.compone
 import {CategoryHomeComponent} from './category/category-home/category-home.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {OrderDetailComponent} from './order-detail/order-detail.component';
-import {RouterModule} from '@angular/router';
-import {categoryManagementRoute} from './category/category.route';
-import {orderDetailManagementRoute} from './order-detail/order-detail.route';
 import {OrderRoutingModule} from './order-routing.module';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './category/category-delete/category-delete.component';
+import { OrderDetailHomeComponent } from './order-detail/order-detail-home/order-detail-home.component';
+import { OrderDetailListComponent } from './order-detail/order-detail-list/order-detail-list.component';
+import { OrderDetailNewComponent } from './order-detail/order-detail-new/order-detail-new.component';
+import { OrderDetailDeleteComponent } from './order-detail/order-detail-delete/order-detail-delete.component';
+import { OrderDetailUpdateComponent } from './order-detail/order-detail-update/order-detail-update.component';
+import { OrderDetailViewComponent } from './order-detail/order-detail-view/order-detail-view.component';
+import { OrderDetailEditComponent } from './order-detail/order-detail-edit/order-detail-edit.component';
 
 @NgModule( {
   declarations: [
@@ -25,7 +29,14 @@ import { CategoryDeleteComponent } from './category/category-delete/category-del
     CategoryHomeComponent,
     OrderDetailComponent,
     CategoryEditComponent,
-    CategoryDeleteComponent],
+    CategoryDeleteComponent,
+    OrderDetailHomeComponent,
+    OrderDetailListComponent,
+    OrderDetailNewComponent,
+    OrderDetailDeleteComponent,
+    OrderDetailUpdateComponent,
+    OrderDetailViewComponent,
+    OrderDetailEditComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
