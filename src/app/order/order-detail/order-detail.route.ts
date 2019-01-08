@@ -1,4 +1,4 @@
-import {Route, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {OrderDetailComponent} from './order-detail.component';
 import {OrderDetailHomeComponent} from './order-detail-home/order-detail-home.component';
 import {OrderDetailListComponent} from './order-detail-list/order-detail-list.component';
