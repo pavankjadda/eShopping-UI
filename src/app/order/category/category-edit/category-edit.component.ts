@@ -25,7 +25,7 @@ export class CategoryEditComponent implements OnInit
 
   ngOnInit()
   {
-    const id = this.route.parent.snapshot.params.id
+    const id = this.route.parent.snapshot.params.id;
     this.categoryForm.controls['id'].patchValue(id,{emitEvent: false});
     //this.route.params.pipe( switchMap((params: ParamMap) => id=params.get('id')));
     //this.route.paramMap.pipe( switchMap((params: ParamMap) => id=params.get('id')));
