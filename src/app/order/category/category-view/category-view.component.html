@@ -1,15 +1,19 @@
 
-<div   *ngIf="categoryDataAvailable()">
-      Id: <a [routerLink]="['./edit']">{{categoryObservable.id}}</a> <br/>
-      Name: <a [routerLink]="['./edit']">{{categoryObservable.name}}</a>
 
-</div>
+  <div   *ngIf="categoryDataAvailable()" >
+    <div class="form-group">
+      Id: <a [routerLink]="['./edit']">{{categoryObservable.id}}</a> <br/>
+    </div>
+    <div class="form-group">
+      Name: <a [routerLink]="['./edit']">{{categoryObservable.name}}</a>
+    </div>
+  </div>
+
 
 <p>
   <a [routerLink]="['./edit']">Edit </a>
   <a [routerLink]="['./delete']">Delete </a>
 </p>
-
 
 
 <router-outlet></router-outlet>
