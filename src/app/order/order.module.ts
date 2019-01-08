@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import {categoryManagementRoute} from './category/category.route';
 import {orderDetailManagementRoute} from './order-detail/order-detail.route';
 import {OrderRoutingModule} from './order-routing.module';
+import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 
 @NgModule( {
   declarations: [
@@ -21,7 +22,8 @@ import {OrderRoutingModule} from './order-routing.module';
     CategoryViewComponent,
     CategoryNewComponent,
     CategoryHomeComponent,
-    OrderDetailComponent],
+    OrderDetailComponent,
+    CategoryEditComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

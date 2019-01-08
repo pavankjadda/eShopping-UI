@@ -1,3 +1,15 @@
+
+<div   *ngIf="categoryDataAvailable()">
+      Id: <a [routerLink]="['./edit']">{{categoryObservable.id}}</a> <br/>
+      Name: <a [routerLink]="['./edit']">{{categoryObservable.name}}</a>
+
+</div>
+
 <p>
-  category-view works!
+  <a [routerLink]="['./edit']">Edit </a>
+  <a [routerLink]="['./delete']">Delete </a>
 </p>
+
+
+
+<router-outlet></router-outlet>

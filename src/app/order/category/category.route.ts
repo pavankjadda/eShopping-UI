@@ -1,10 +1,46 @@
-import {Route, Routes} from '@angular/router';
+import {Route, Routes, ActivatedRoute, ParamMap} from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import {CategoryComponent} from './category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {CategoryViewComponent} from './category-view/category-view.component';
 import {CategoryNewComponent} from './category-new/category-new.component';
 import {CategoryHomeComponent} from './category-home/category-home.component';
+import {CategoryEditComponent} from './category-edit/category-edit.component';
 
+
+export const categoryManagementRoute: Routes=[
+  {
+    path: 'category',
+    component: CategoryComponent,
+    children: [
+      {
+        path: 'list',
+        component: CategoryListComponent
+      },
+      {
+        path: 'new',
+        component: CategoryNewComponent
+      },
+      {
+        path: ':id',
+        component: CategoryViewComponent,
+        children: [
+          {
+            path: 'edit',
+            component: CategoryEditComponent
+          }
+        ]
+      },
+      {
+        path: '',
+        component: CategoryHomeComponent
+      }
+    ]
+  }];
+
+
+
+/*
 export const categoryManagementRoute: Routes=[
   {
       path: 'category',
@@ -46,4 +82,4 @@ export const categoryManagementRoute: Routes=[
         }
       ]
     }];
-
+*/

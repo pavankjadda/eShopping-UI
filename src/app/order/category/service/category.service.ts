@@ -20,4 +20,9 @@ export class CategoryService
       return this.httpClient.post(url,category,httpOptions);
     //return this.httpClient.put(url,httpOptions,category);
   }
+
+  getCategoryDetails(url, httpOptions)
+  {
+    return this.httpClient.get<Category>(url,httpOptions);
+  }
 }

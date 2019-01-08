@@ -1,14 +1,15 @@
 <div style="text-align: center" >
   <h3> Categories List</h3>
-  <div  *ngIf="categoriesDataAvailable()" style="text-align: center">
-    <table style="text-align: center">
+  <div  *ngIf="categoriesDataAvailable()">
+    <table>
       <tr>
         <th>Id</th>
         <th>name</th>
       </tr>
+
       <tr *ngFor="let category of (categoryObservable)">
-        <td>{{category.id}}</td>
-        <td>{{category.name}}</td>
+        <td><a [routerLink]="['/category', category.id]">{{category.id}}</a></td>
+        <td><a [routerLink]="['/category', category.id]">{{category.name}}</a></td>
       </tr>
     </table>
   </div>
