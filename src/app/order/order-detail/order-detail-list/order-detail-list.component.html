@@ -5,13 +5,15 @@
       <tr style="text-align: center">
         <th>Order Id</th>
         <th>Order Status</th>
-        <th>Purchased User</th>
+        <th>Products</th>
+        <th>Purchased By</th>
         <th>Shipping Address</th>
         <th>Created Time</th>
       </tr>
       <tr *ngFor="let order of (orderdetailObservable)" style="text-align: center">
         <td><a [routerLink]="['/order', order.id]">{{order.id}}</a></td>
         <td>{{order.orderStatus.status}}</td>
+        <td>{{order.productList[0].name}}</td>
         <td>{{order.purchasedBy.firstName}}</td>
         <td>{{order.shippingAddress.streetName}},
           {{order.shippingAddress.apartment}} <br/>
