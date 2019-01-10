@@ -9,7 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
