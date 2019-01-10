@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
 import {UserManagementComponent} from './user-management.component';
 import {UserManagementHomeComponent} from './user-management-home/user-management-home.component';
-import {AuthGuard} from '../../auth/auth.guard';
+import {AuthGuard} from '../../core/auth/auth.guard';
 
 export const UserManagementRoutes: Routes = [
     {

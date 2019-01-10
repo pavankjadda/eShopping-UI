@@ -15,7 +15,6 @@ import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminModule} from './admin/admin.module';
-import {AuthModule} from './auth/auth.module';
 
 
 @NgModule( {
@@ -25,7 +24,6 @@ import {AuthModule} from './auth/auth.module';
     CommonModule,
     HttpClientModule,
     AdminModule,
-    AuthModule,
     LayoutModule,
     CoreModule,
     ApiModule,

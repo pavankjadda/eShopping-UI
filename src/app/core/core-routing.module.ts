@@ -11,6 +11,6 @@ import {LoginManagementRoutes} from './login/login-management.route';
       RouterModule
     ]
   })
-export class AuthRoutingModule {
+export class CoreRoutingModule {
 
 }
