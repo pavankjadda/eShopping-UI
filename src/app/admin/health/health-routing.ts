@@ -1,10 +1,12 @@
 import {HealthComponent} from './health.component';
 import {Routes} from '@angular/router';
+import {AuthGuard} from '../../auth/auth.guard';
 
 export const HealthManagementRoutes: Routes = [
   {
     path: 'admin/health',
     component: HealthComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'list',
