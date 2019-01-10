@@ -14,8 +14,8 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { UserManagementComponent } from './admin/user-management/user-management.component';
 import {AdminModule} from './admin/admin.module';
+import {AuthModule} from './auth/auth.module';
 
 
 @NgModule( {
@@ -25,6 +25,7 @@ import {AdminModule} from './admin/admin.module';
     CommonModule,
     HttpClientModule,
     AdminModule,
+    AuthModule,
     LayoutModule,
     CoreModule,
     ApiModule,

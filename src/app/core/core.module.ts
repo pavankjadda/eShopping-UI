@@ -5,7 +5,9 @@ import {CommonModule} from '@angular/common';
 
 @NgModule(
   {
-    imports:[RouterModule,CommonModule],
+    imports: [
+      RouterModule,
+      CommonModule],
     declarations:[
       LoginComponent
     ]
