@@ -13,14 +13,18 @@ import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import {AdminModule} from './admin/admin.module';
 
 
 @NgModule( {
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
+    AdminModule,
     LayoutModule,
     CoreModule,
     ApiModule,
