@@ -10,7 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './layouts/home/home.component';
-import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
+import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
 import {CommonModule} from '@angular/common';
 import {OrderModule} from './order/order.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
