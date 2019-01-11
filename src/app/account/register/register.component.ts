@@ -39,6 +39,10 @@ export class RegisterComponent implements OnInit
 
   register()
   {
+    let username=this.f.username.value;
+    let email=this.f.email.value;
+    let password=this.f.password.value;
+    let confirmPassword=this.f.confirmPassword.value;
 
   }
 

@@ -66,7 +66,7 @@ export class AuthService
   {
     let url=SERVER_API_URL+'isvalidsession';
 
-    this.getSessionDataUsingAsync(url);
+    //this.getSessionDataUsingAsync(url);
     return this.isLoggedIn;
   }
 
