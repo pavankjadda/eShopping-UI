@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BehaviorSubject} from 'rxjs';
-import {User} from '../user/model/user';
 
 @Component({
   selector: 'app-login',
@@ -56,20 +54,14 @@ export class LoginComponent implements OnInit
     this.authService.login( this.f.username.value, this.f.password.value ).subscribe(
  response=>
       {
-        if(response['token'])
+        if(response['token'] && this.authService.isLoggedIn)
         {
-          let user=response;
-          /*
-          this.authService.isLoggedIn=true;
-          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          this.authService.currentUserSubject=new BehaviorSubject<User>( JSON.parse( localStorage.getItem( 'currentUser' ) ) );
-          this.authService.currentUser=this.authService.currentUserSubject.asObservable();
-          */
           this.router.navigate(['/home']);
         }
         else
         {
           localStorage.removeItem( 'currentUser' );
+          this.router.navigate(['/login']);
         }
       },
         error => console.log(error),

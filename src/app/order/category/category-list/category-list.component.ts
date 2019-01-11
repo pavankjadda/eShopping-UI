@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../service/category.service';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Category} from '../model/category';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
+import {SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
-import {User} from '../../../core/user/model/user';
 import {AuthService} from '../../../core/auth/auth.service';
 import {Router} from '@angular/router';
 
@@ -27,7 +26,7 @@ export class CategoryListComponent implements OnInit
 
   getCategories()
   {
-    const url=SERVER_API_URL+'api/v2/category/list';
+    let url=SERVER_API_URL+'api/v2/category/list';
     let httpOptions;
     if(this.authService.currentUserValue.token!== '')
     {

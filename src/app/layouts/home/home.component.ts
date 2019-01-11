@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
 
@@ -14,20 +13,17 @@ export class HomeComponent implements OnInit
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-  )
-  {
-    if(this.authService.currentUserValue)
-    {
-      this.router.navigate( ['/home'] );
-    }
-    else
-      {
-      this.authService.logout();
-      this.router.navigate(['/login'])
-    }
+  ) {
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+    //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())
+    if(! this.authService.isLoggedIn)
+    {
+      this.authService.logout();
+      this.router.navigate(['/login']);
+    }
   }
 
 }

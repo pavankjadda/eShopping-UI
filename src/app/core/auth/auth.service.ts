@@ -62,4 +62,43 @@ export class AuthService
     this.currentUserSubject.next( null );
     this.isLoggedIn = false;
   }
+
+  isValidSession(): boolean
+  {
+    let url=SERVER_API_URL+'isvalidsession';
+    let httpOptions;
+    if(this.currentUserValue.token!== '')
+    {
+      httpOptions={
+        headers: new HttpHeaders( {
+          'Content-Type': 'application/json',
+          'X-Auth-Token': this.currentUserValue.token} )
+      };
+    }
+
+    this.httpClient.get<User>( url, httpOptions).subscribe(user=>
+    {
+      // @ts-ignore
+      if(user && user.token)
+        {
+          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
+          this.isLoggedIn=true;
+        }
+        return true;
+      });
+
+    /*this.httpClient.get<User>( url, httpOptions).pipe( map(user =>
+      {
+          // @ts-ignore
+          if(user && user.token)
+        {
+          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
+          this.isLoggedIn=true;
+          }
+      return true;
+    })
+   );*/
+
+    return false;
+  }
 }
