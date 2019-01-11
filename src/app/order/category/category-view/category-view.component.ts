@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
-import {HttpHeaders} from '@angular/common/http';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {SERVER_API_URL} from '../../../app.constants';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-view',
@@ -28,12 +27,7 @@ export class CategoryViewComponent implements OnInit
   {
     const id = this.route.snapshot.paramMap.get('id');
     const url=SERVER_API_URL+'api/v2/category/'+id;
-    const httpOptions={
-      headers: new HttpHeaders( {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + BASIC_AUTH} )
-    };
-    this.categoryService.getCategoryDetails(url,httpOptions).subscribe(
+    this.categoryService.getCategoryDetails(url).subscribe(
       data=>{
         // @ts-ignore
         this.categoryObservable=data;

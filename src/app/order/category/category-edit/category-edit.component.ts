@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../service/category.service';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../model/category';
 import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
@@ -25,7 +25,7 @@ export class CategoryEditComponent implements OnInit
 
   ngOnInit()
   {
-    const id = this.route.parent.snapshot.params.id
+    const id = this.route.parent.snapshot.params.id;
     this.categoryForm.controls['id'].patchValue(id,{emitEvent: false});
     //this.route.params.pipe( switchMap((params: ParamMap) => id=params.get('id')));
     //this.route.paramMap.pipe( switchMap((params: ParamMap) => id=params.get('id')));
@@ -44,7 +44,7 @@ export class CategoryEditComponent implements OnInit
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + BASIC_AUTH} )
     };
-    this.categoryService.updateCategory(url,httpOptions,category).subscribe(
+    this.categoryService.updateCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);
       });

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Category} from '../model/category';
 
 @Injectable({
@@ -10,30 +10,30 @@ export class CategoryService
 
   constructor(private httpClient:HttpClient) { }
 
-  getCategories(url, httpOptions)
+  getCategories(url)
   {
-    return this.httpClient.get<Category[]>(url,httpOptions);
+    return this.httpClient.get<Category[]>(url);
   }
 
-  createCategory(url, httpOptions, category)
+  createCategory(url, category)
   {
-      return this.httpClient.post(url,category,httpOptions);
+      return this.httpClient.post(url,category);
     //return this.httpClient.put(url,httpOptions,category);
   }
 
-  getCategoryDetails(url, httpOptions)
+  getCategoryDetails(url)
   {
-    return this.httpClient.get<Category>(url,httpOptions);
+    return this.httpClient.get<Category>(url);
   }
 
-  updateCategory(url: string, httpOptions: { headers: HttpHeaders }, category: Category)
+  updateCategory(url: string, category: Category)
   {
-    return this.httpClient.put(url,category,httpOptions);
+    return this.httpClient.put(url,category);
   }
 
 
-  deleteCategory(url: string, httpOptions: { headers: HttpHeaders })
+  deleteCategory(url: string)
   {
-    return this.httpClient.delete(url,httpOptions);
+    return this.httpClient.delete(url);
   }
 }

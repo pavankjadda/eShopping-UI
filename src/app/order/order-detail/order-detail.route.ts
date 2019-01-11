@@ -1,5 +1,11 @@
-import {Route, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {OrderDetailComponent} from './order-detail.component';
+import {OrderDetailHomeComponent} from './order-detail-home/order-detail-home.component';
+import {OrderDetailListComponent} from './order-detail-list/order-detail-list.component';
+import {OrderDetailNewComponent} from './order-detail-new/order-detail-new.component';
+import {OrderDetailDeleteComponent} from './order-detail-delete/order-detail-delete.component';
+import {OrderDetailViewComponent} from './order-detail-view/order-detail-view.component';
+import {OrderDetailEditComponent} from './order-detail-edit/order-detail-edit.component';
 
 export const orderDetailManagementRoute: Routes=[
   {
@@ -8,37 +14,29 @@ export const orderDetailManagementRoute: Routes=[
     children: [
       {
         path: 'list',
-        component: OrderDetailComponent,
+        component: OrderDetailListComponent
+      },
+      {
+        path: 'new',
+        component: OrderDetailNewComponent
+      },
+      {
+        path: ':id',
+        component: OrderDetailViewComponent,
         children: [
           {
-            path: ':id',
-            component: OrderDetailComponent
+            path: 'edit',
+            component: OrderDetailEditComponent
+          },
+          {
+            path: 'delete',
+            component: OrderDetailDeleteComponent
           }
         ]
       },
       {
-        path: 'create',
-        component: OrderDetailComponent
-      },
-      {
-        path: 'new',
-        component: OrderDetailComponent
-      },
-      {
-        path: 'update',
-        component: OrderDetailComponent
-      },
-      {
-        path: ':id/edit',
-        component: OrderDetailComponent
-      },
-      {
-        path: ':id',
-        component: OrderDetailComponent
-      },
-      {
         path: '',
-        component: OrderDetailComponent
+        component: OrderDetailHomeComponent
       }
     ]
   }];
