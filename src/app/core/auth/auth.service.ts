@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {User} from '../user/model/user';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SERVER_API_URL} from '../../app.constants';
 
 @Injectable({
@@ -27,10 +26,34 @@ export class AuthService
     return this.currentUserSubject.value;
   }
 
-
   login(username: string, password: string): Observable<boolean>
   {
-    return this.httpClient.post<any>( SERVER_API_URL+'/login', {username, password} )
+    const httpOptions={
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          authorization: 'Basic '+btoa( username+':'+password )
+        } )
+    };
+
+    this.httpClient.get( SERVER_API_URL+'login', httpOptions ).subscribe( response =>
+    {
+      if(response['JSESSIONID'])
+      {
+        this.isLoggedIn=true;
+        //localStorage.setItem( 'currentUser', JSON.stringify( user ) );
+        //this.currentUserSubject.next( user );
+        return new Observable<true>();
+      } else
+      {
+        this.isLoggedIn=false;
+      }
+
+    } );
+
+    return new Observable<false>();
+
+    /*return this.httpClient.get( SERVER_API_URL+'login', httpOptions)
       .pipe( map( user => {
         // login successful if there's a jwt token in the response
         if(user&&user.token)
@@ -41,11 +64,12 @@ export class AuthService
           this.isLoggedIn=true;
         }
         return user;
-      } ) );
+      } ) );*/
 
     /*   return of(true).pipe(
          delay(1000),
          tap(val => this.isLoggedIn = true));*/
+
   }
 
   logout()
