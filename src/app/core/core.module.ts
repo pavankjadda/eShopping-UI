@@ -1,16 +1,28 @@
 import {NgModule} from '@angular/core';
-import {LoginComponent} from './login/login/login.component';
-import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {CoreRoutingModule} from './core-routing.module';
+import {UserComponent} from './user/user.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {LoginComponent} from './login/login.component';
+import { RoleComponent } from './role/role.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { LogoutComponent } from './logout/logout.component';
 
-@NgModule(
-  {
-    imports:[RouterModule,CommonModule],
-    declarations:[
-      LoginComponent
-    ]
-  }
-)
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreRoutingModule
+  ],
+  declarations: [
+    LoginComponent,
+    UserComponent,
+    RoleComponent,
+    PrivilegeComponent,
+    LogoutComponent]
+})
 
 
 export class CoreModule {}

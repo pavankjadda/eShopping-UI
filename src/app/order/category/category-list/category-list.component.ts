@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../service/category.service';
 import {Observable} from 'rxjs';
 import {Category} from '../model/category';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
-import {HttpHeaders} from '@angular/common/http';
+import {SERVER_API_URL} from '../../../app.constants';
+import {AuthService} from '../../../core/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-list',
@@ -13,7 +14,9 @@ import {HttpHeaders} from '@angular/common/http';
 export class CategoryListComponent implements OnInit
 {
   categoryObservable: Observable<Category[]>;
-  constructor(private categoryService:CategoryService) { }
+  constructor(private categoryService:CategoryService, private authService:AuthService, private router: Router)
+  {
+  }
 
   ngOnInit()
   {
@@ -22,14 +25,9 @@ export class CategoryListComponent implements OnInit
 
   getCategories()
   {
-    const url=SERVER_API_URL+'api/v2/category/list';
-    const httpOptions={
-      headers: new HttpHeaders( {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + BASIC_AUTH} )
-    };
+    let url=SERVER_API_URL+'api/v2/category/list';
 
-    this.categoryService.getCategories(url,httpOptions).subscribe(
+    this.categoryService.getCategories(url).subscribe(
       data => {
         // @ts-ignore
         this.categoryObservable=data;

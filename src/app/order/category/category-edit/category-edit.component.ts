@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../service/category.service';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../model/category';
 import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
@@ -44,7 +44,7 @@ export class CategoryEditComponent implements OnInit
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + BASIC_AUTH} )
     };
-    this.categoryService.updateCategory(url,httpOptions,category).subscribe(
+    this.categoryService.updateCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);
       });

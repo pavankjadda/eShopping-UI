@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, Validators, FormControl} from '@angular/forms';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
-import {HttpHeaders} from '@angular/common/http';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {SERVER_API_URL} from '../../../app.constants';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
 import {Router} from '@angular/router';
@@ -36,12 +35,8 @@ export class CategoryNewComponent implements OnInit
 
 
     const url=SERVER_API_URL+'api/v2/category/create';
-    const httpOptions={
-      headers: new HttpHeaders( {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + BASIC_AUTH} )
-    };
-    this.categoryService.createCategory(url,httpOptions,category).subscribe(
+
+    this.categoryService.createCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);
       });
