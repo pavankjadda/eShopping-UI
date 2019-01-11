@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit
 {
   message: string;
   loginForm: FormGroup;
-  loading=false;
   submitted=false;
   returnUrl: string;
 

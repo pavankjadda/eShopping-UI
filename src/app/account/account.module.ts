@@ -8,11 +8,13 @@ import {PasswordComponent} from './password/password.component';
 import {SettingsComponent} from './settings/settings.component';
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import {AccountRoutingModule} from './account-routing.module';
 
 
 @NgModule({
   imports: [ RouterModule,CommonModule],
   declarations: [
+    AccountRoutingModule,
     ActivateComponent,
     RegisterComponent,
     PasswordComponent,
