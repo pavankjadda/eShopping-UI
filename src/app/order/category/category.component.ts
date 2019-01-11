@@ -19,11 +19,9 @@ export class CategoryComponent implements OnInit
 
   ngOnInit()
   {
-    //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())
-    if(! this.authService.isLoggedIn)
+    if(!this.authService.validateSession())
     {
-      this.authService.logout();
-      this.router.navigate(['/login']);
+
     }
   }
 

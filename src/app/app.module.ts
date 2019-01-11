@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
+import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
 
 
 @NgModule( {
@@ -39,7 +40,7 @@ import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.compone
     HomeComponent,
     PageNotFoundComponent
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 } )
 

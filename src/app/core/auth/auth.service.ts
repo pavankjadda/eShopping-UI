@@ -11,7 +11,6 @@ import {map} from 'rxjs/operators';
 export class AuthService
 {
   isLoggedIn = false;
-
   redirectUrl: string;
   public currentUser: Observable<User>;
   public currentUserSubject: BehaviorSubject<User>;
@@ -63,42 +62,33 @@ export class AuthService
     this.isLoggedIn = false;
   }
 
-  isValidSession(): boolean
+  validateSession(): boolean
   {
     let url=SERVER_API_URL+'isvalidsession';
-    let httpOptions;
-    if(this.currentUserValue.token!== '')
-    {
-      httpOptions={
-        headers: new HttpHeaders( {
-          'Content-Type': 'application/json',
-          'X-Auth-Token': this.currentUserValue.token} )
-      };
-    }
 
-    this.httpClient.get<User>( url, httpOptions).subscribe(user=>
+    this.getSessionDataUsingAsync(url);
+    return this.isLoggedIn;
+  }
+
+
+  async getSessionDataUsingAsync(url)
+  {
+    this.httpClient.get<any>( url).toPromise().then(user=>
     {
       // @ts-ignore
       if(user && user.token)
-        {
-          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          this.isLoggedIn=true;
-        }
-        return true;
-      });
-
-    /*this.httpClient.get<User>( url, httpOptions).pipe( map(user =>
       {
-          // @ts-ignore
-          if(user && user.token)
-        {
-          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          this.isLoggedIn=true;
-          }
-      return true;
-    })
-   );*/
-
-    return false;
+        localStorage.setItem( 'currentUser', JSON.stringify( user ) );
+        this.isLoggedIn=true;
+        return true;
+      }
+    },
+      reason =>
+      {
+        localStorage.removeItem( 'currentUser');
+        this.isLoggedIn=false;
+        return false;
+      });
   }
+
 }
