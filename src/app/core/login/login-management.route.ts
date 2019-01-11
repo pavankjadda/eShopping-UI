@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './login.component';
+import {LogoutComponent} from '../logout/logout.component';
 
 export const LoginManagementRoutes: Routes = [
   {
@@ -8,6 +9,6 @@ export const LoginManagementRoutes: Routes = [
   },
   {
     path: 'logout',
-    component: LoginComponent
+    component: LogoutComponent
   }
 ];

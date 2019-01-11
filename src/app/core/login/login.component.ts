@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BehaviorSubject} from 'rxjs';
+import {User} from '../user/model/user';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,10 @@ export class LoginComponent implements OnInit
     private authService: AuthService,
   )
   {
-    this.setMessage();
     // redirect to home if already logged in
     if(this.authService.currentUserValue)
     {
-      this.router.navigate( ['/'] );
+      this.router.navigate( ['/home'] );
     }
   }
 
@@ -46,24 +47,33 @@ export class LoginComponent implements OnInit
 
     // get return url from route parameters or default to '/'
     this.returnUrl=this.route.snapshot.queryParams['returnUrl']||'/';
+    //Logout user if already logged in
+    this.logout();
   }
 
   login()
   {
-    this.message = 'Trying to Login';
-
-    this.authService.login( this.f.username.value, this.f.password.value ).subscribe( () => {
-      this.setMessage();
-      if(this.authService.isLoggedIn)
+    this.authService.login( this.f.username.value, this.f.password.value ).subscribe(
+ response=>
       {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'admin';
-
-        //Redirect User
-        this.router.navigate([redirect]);
-      }
-    });
+        if(response['token'])
+        {
+          let user=response;
+          /*
+          this.authService.isLoggedIn=true;
+          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
+          this.authService.currentUserSubject=new BehaviorSubject<User>( JSON.parse( localStorage.getItem( 'currentUser' ) ) );
+          this.authService.currentUser=this.authService.currentUserSubject.asObservable();
+          */
+          this.router.navigate(['/home']);
+        }
+        else
+        {
+          localStorage.removeItem( 'currentUser' );
+        }
+      },
+        error => console.log(error),
+      () => {});
   }
 
   logout()
@@ -72,6 +82,10 @@ export class LoginComponent implements OnInit
     this.setMessage();
   }
 
+  isUserLoggedIn()
+  {
+
+  }
   private setMessage()
   {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');

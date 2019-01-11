@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../user/model/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SERVER_API_URL} from '../../app.constants';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService
 
   redirectUrl: string;
   public currentUser: Observable<User>;
-  private currentUserSubject: BehaviorSubject<User>;
+  public currentUserSubject: BehaviorSubject<User>;
 
   constructor(private httpClient: HttpClient)
   {
@@ -26,7 +27,8 @@ export class AuthService
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string): Observable<boolean>
+  // @ts-ignore
+  login(username: string, password: string): Observable<any>
   {
     const httpOptions={
       headers: new HttpHeaders(
@@ -36,40 +38,22 @@ export class AuthService
         } )
     };
 
-    this.httpClient.get( SERVER_API_URL+'login', httpOptions ).subscribe( response =>
-    {
-      if(response['JSESSIONID'])
+    //return this.httpClient.get<any>( SERVER_API_URL+'login', httpOptions );
+
+
+    return this.httpClient.get<any>( SERVER_API_URL+'login', httpOptions)
+      .pipe( map( user =>
       {
-        this.isLoggedIn=true;
-        //localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-        //this.currentUserSubject.next( user );
-        return new Observable<true>();
-      } else
-      {
-        this.isLoggedIn=false;
-      }
-
-    } );
-
-    return new Observable<false>();
-
-    /*return this.httpClient.get( SERVER_API_URL+'login', httpOptions)
-      .pipe( map( user => {
-        // login successful if there's a jwt token in the response
-        if(user&&user.token)
+        // login successful if there's a Spring Session token in the response
+        if(user && user.token)
         {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          // store user details and Spring Session token in local storage to keep user logged in between page refreshes
           localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          this.currentUserSubject.next( user );
           this.isLoggedIn=true;
+          this.currentUserSubject.next( user );
         }
         return user;
-      } ) );*/
-
-    /*   return of(true).pipe(
-         delay(1000),
-         tap(val => this.isLoggedIn = true));*/
-
+      }));
   }
 
   logout()

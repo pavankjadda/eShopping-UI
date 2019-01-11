@@ -1,8 +1,10 @@
+import {Role} from '../../role/model/role';
+
 export class User
 {
   id: number;
   username: string;
-  password: string;
+  roles: Role;
   firstName: string;
   lastName: string;
   token: string;
