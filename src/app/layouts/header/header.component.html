@@ -1,19 +1,19 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" href="/">Home</a>
+  <a class="navbar-brand" routerLink="/">Home</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">Orders</a>
-      <a class="nav-item nav-link" href="#">Account</a>
-      <a class="nav-item nav-link" href="#">Admin</a>
-      <a class="nav-item nav-link" href="#">API</a>
-      <a class="nav-item nav-link" href="#">Settings</a>
+      <a class="nav-item nav-link" routerLink="/order">Orders</a>
+      <a class="nav-item nav-link" routerLink="/category">Categories</a>
+      <a class="nav-item nav-link" routerLink="/product">Products</a>
     </div>
   </div>
 
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">About</a>
-      <a class="nav-item nav-link" href="#">Contact</a>
+      <a class="nav-item nav-link" routerLink="/settings">Settings</a>
+      <a class="nav-item nav-link" routerLink="/profile">Profile</a>
+      <a class="nav-item nav-link" routerLink="/admin">Admin</a>
+      <a class="nav-item nav-link" routerLink="/logout">Logout</a>
     </div>
   </div>
 </nav>

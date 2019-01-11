@@ -1,0 +1,29 @@
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
+
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor
+{
+  constructor(private authService: AuthService, private router: Router)
+  {
+  }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+  {
+    let currentUser=this.authService.currentUserValue;
+    if(currentUser&&currentUser.token)
+    {
+      request=request.clone(
+        {
+          setHeaders: {
+            'X-Auth-Token': currentUser.token
+          }
+        } );
+    }
+
+    return next.handle( request );
+  }
+}
