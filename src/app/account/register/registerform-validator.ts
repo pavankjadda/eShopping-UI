@@ -1,4 +1,4 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 export function usernameValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
@@ -37,17 +37,10 @@ export function confirmPasswordValidator(): ValidatorFn {
 }
 
 
+export const matchPasswordValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
+  return password && confirmPassword && password.value === confirmPassword.value ? { passwordsMatched: true } : null;
+};
 
 
-
-
-
-/*
-export function customValidator(control: AbstractControl)
-{
-  if (control.value !== undefined && (isNaN(control.value) || control.value.length <6))
-  {
-    return { insufficientLength: true };
-  }
-  return null;
-}*/
