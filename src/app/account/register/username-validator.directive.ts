@@ -1,6 +1,6 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
 
-export function customValidator(): ValidatorFn {
+export function usernameValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
     if (control.value !== undefined && (isNaN(control.value) || control.value.length <6))
     {
@@ -9,6 +9,18 @@ export function customValidator(): ValidatorFn {
     return null;
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

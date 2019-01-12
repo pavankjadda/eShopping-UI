@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
-import {customValidator} from './username-validator.directive';
+import {usernameValidator} from './username-validator.directive';
 
 @Component( {
   selector: 'app-register',
@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit
   {
     this.registerForm=this.formBuilder.group(
       {
-        username: ['',[Validators.required,Validators.maxLength(15),customValidator()]],
-        email: ['',Validators.required],
+        username: ['',[Validators.required,Validators.maxLength(15),usernameValidator()]],
+        email: ['',[Validators.required,Validators.required,Validators.required,Validators.required]],
         password: ['',Validators.required],
         confirmPassword: ['',Validators.required],
       });
