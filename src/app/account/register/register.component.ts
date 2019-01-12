@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
 import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
+import {RegisterService} from './register.service';
+import {SERVER_API_URL} from '../../app.constants';
+import {HttpHeaders} from '@angular/common/http';
+import {RegisterUser} from './register-user';
 
 @Component( {
   selector: 'app-register',
@@ -15,7 +19,7 @@ export class RegisterComponent implements OnInit
   returnUrl: string;
   submitted: boolean;
 
-  constructor(private formBuilder:FormBuilder,private route:ActivatedRoute,private router:Router, private authService:AuthService)
+  constructor(private formBuilder:FormBuilder,private route:ActivatedRoute,private router:Router, private authService:AuthService, private registerService:RegisterService)
   {
     this.authService.logout();
     this.authService.isLoggedIn=false;
@@ -32,7 +36,7 @@ export class RegisterComponent implements OnInit
   {
     this.registerForm=this.formBuilder.group(
       {
-        username: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16),Validators.nullValidator,usernameValidator()]],
+        username: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,usernameValidator()]],
         email: ['',[Validators.required,Validators.email,Validators.nullValidator]],
         password: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,passwordValidator()]],
         confirmPassword: ['',[Validators.required,Validators.minLength(6),
@@ -41,13 +45,33 @@ export class RegisterComponent implements OnInit
     this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  register()
+
+  onSubmit()
   {
+    //console.warn(this.registerForm.value);
     this.submitted=true;
-    let username=this.formControls.username.value;
-    let email=this.formControls.email.value;
-    let password=this.formControls.password.value;
-    let confirmPassword=this.formControls.confirmPassword.value;
+    let registerUser=new RegisterUser();
+    registerUser.username=this.formControls.username.value;
+    registerUser.email=this.formControls.email.value;
+    registerUser.password=this.formControls.password.value;
+
+    let url=SERVER_API_URL+'register';
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          'Content-Type':  'application/json'
+        })};
+
+    this.registerService.registerUser(url,registerUser,httpOptions).subscribe(
+      response =>
+      {
+          console.log('User Registration Completed  '+response);
+          this.router.navigate(['/home']);
+      },
+      error => console.log('error: '+error),
+      ()=>console.log('User Registration Completed ')
+    );
+
   }
 
   private checkIfMatchingPasswords(password: string, confirmPassword: string)

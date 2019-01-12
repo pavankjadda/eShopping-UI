@@ -1,6 +1,6 @@
 <div>
   <h2>Register</h2>
-  <form [formGroup]="registerForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
     <div class="form-group">
       <label for="username">Username</label>
       <input [ngClass]="{ 'is-invalid': submitted && formControls.username.errors }" class="form-control"
@@ -49,9 +49,9 @@
       </div>
     </div>
 
-
     <div class="form-group">
-      <button (click)="register()" class="btn btn-primary">Register</button>
+      <button  [disabled]="!registerForm.valid" class="btn btn-primary" type="submit">Submit</button>
+      <!--<button (click)="register()" class="btn btn-primary">Register</button>-->
     </div>
   </form>
 
