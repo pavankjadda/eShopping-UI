@@ -7,6 +7,11 @@ export function usernameValidator(): ValidatorFn {
     {
       return {usernameInvalidCharacters: true};
     }
+
+    if (control.value !== undefined && (isNaN(control.value)) &&  control.value.length <= 6)
+    {
+      return {minLength: true};
+    }
     return null;
   };
 }
@@ -18,6 +23,10 @@ export function passwordValidator(): ValidatorFn {
     if (control.value !== undefined && (isNaN(control.value))&&   !passwordPattern.test(control.value))
     {
       return {passwordInvalidCharacters: true};
+    }
+    if (control.value !== undefined && (isNaN(control.value)) &&  control.value.length <= 6)
+    {
+      return {minLength: true};
     }
     return null;
   };
@@ -34,9 +43,14 @@ export function confirmPasswordValidator(): ValidatorFn
     {
       return {passwordConfirmInvalidCharacters: true};
     }
+    if (control.value !== undefined && (isNaN(control.value)) &&  control.value.length <= 6)
+    {
+      return {minLength: true};
+    }
     return null;
   };
 }
+
 
 export function matchPasswordValidator(formGroup: FormGroup): ValidatorFn
 {
