@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
-import {usernameValidator} from './username-validator.directive';
+import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
 
 @Component( {
   selector: 'app-register',
@@ -31,10 +31,12 @@ export class RegisterComponent implements OnInit
   {
     this.registerForm=this.formBuilder.group(
       {
-        username: ['',[Validators.required,Validators.maxLength(15),usernameValidator()]],
-        email: ['',[Validators.required,Validators.required,Validators.required,Validators.required]],
-        password: ['',Validators.required],
-        confirmPassword: ['',Validators.required],
+        username: ['',[Validators.required,Validators.minLength(6),Validators.maxLength(16),Validators.nullValidator,usernameValidator()]],
+        email: ['',[Validators.required,Validators.email,Validators.nullValidator]],
+        password: ['',[Validators.required,Validators.minLength(6),
+          Validators.maxLength(16),Validators.nullValidator,passwordValidator()]],
+        confirmPassword: ['',[Validators.required,Validators.minLength(6),
+          Validators.maxLength(16),Validators.nullValidator,confirmPasswordValidator()]],
       });
     this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/';
   }

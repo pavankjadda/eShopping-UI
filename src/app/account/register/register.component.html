@@ -8,7 +8,9 @@
              type="text"/>
       <div *ngIf="submitted && formControls.username.errors" class="invalid-feedback">
         <div *ngIf="formControls.username.errors.required">Username is required</div>
-        <div *ngIf="formControls.username.errors.insufficientLength">Username Should be at least 6 characters</div>
+        <div *ngIf="formControls.username.errors.minLength">Username minimum length should be 6 characters</div>
+        <div *ngIf="formControls.username.errors.maxlength">Username maximum length should be 16 characters</div>
+        <div *ngIf="formControls.username.errors.usernameInvalidCharacters">Invalid Username. No Special characters are allowed on Username</div>
       </div>
     </div>
 
@@ -27,6 +29,10 @@
       <input [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }" class="form-control" formControlName="password" id="password" type="password"/>
       <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
         <div *ngIf="formControls.password.errors.required">Password is required</div>
+        <div *ngIf="formControls.password.errors.minLength">Password minimum length should be 6 characters</div>
+        <div *ngIf="formControls.password.errors.maxlength">Username maximum length should be 16 characters</div>
+        <div *ngIf="formControls.password.errors.nullValidator">Password should not be null</div>
+        <div *ngIf="formControls.password.errors.passwordInvalidCharacters">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
       </div>
     </div>
 
@@ -34,7 +40,11 @@
       <label for="confirmPassword">Confirm Password</label>
       <input [ngClass]="{ 'is-invalid': submitted && formControls.confirmPassword.errors }" class="form-control" formControlName="confirmPassword" id="confirmPassword" type="password"/>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="invalid-feedback">
-        <div *ngIf="formControls.confirmPassword.errors.required">Confirm Password is required</div>
+        <div *ngIf="formControls.confirmPassword.errors.required">Confirmation Password is required</div>
+        <div *ngIf="formControls.confirmPassword.errors.minLength">Confirmation Password minimum length should be 6 characters</div>
+        <div *ngIf="formControls.confirmPassword.errors.maxlength">Confirmation Username maximum length should be 16 characters</div>
+        <div *ngIf="formControls.confirmPassword.errors.nullValidator">Confirmation Password should not be null</div>
+        <div *ngIf="formControls.confirmPassword.errors.passwordConfirmInvalidCharacters">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
       </div>
     </div>
 
