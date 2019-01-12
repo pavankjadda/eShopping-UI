@@ -45,8 +45,7 @@
         <div *ngIf="formControls.confirmPassword.errors.maxlength">Confirmation Username maximum length should be 16 characters</div>
         <div *ngIf="formControls.confirmPassword.errors.nullValidator">Confirmation Password should not be null</div>
         <div *ngIf="formControls.confirmPassword.errors.passwordConfirmInvalidCharacters">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
-        <div *ngIf="!formControls.errors?.passwordsMatched && (formControls.password.dirty || formControls.password.touched)
-         || (formControls.confirmPassword.dirty || formControls.confirmPassword.touched)">Confirmation password should match original Password </div>
+        <div *ngIf="!formControls.confirmPassword.errors.passwordsMatched && formControls.confirmPassword.touched || formControls.confirmPassword.dirty ">Confirmation password should match original Password </div>
       </div>
     </div>
 

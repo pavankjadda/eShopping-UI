@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
-import {confirmPasswordValidator, matchPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
+import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
 
 @Component( {
   selector: 'app-register',
@@ -35,8 +35,9 @@ export class RegisterComponent implements OnInit
         username: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16),Validators.nullValidator,usernameValidator()]],
         email: ['',[Validators.required,Validators.email,Validators.nullValidator]],
         password: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,passwordValidator()]],
-        confirmPassword: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,confirmPasswordValidator()]],
-      }, { validators: matchPasswordValidator});
+        confirmPassword: ['',[Validators.required,Validators.minLength(6),
+          Validators.maxLength(16),Validators.nullValidator,confirmPasswordValidator()]],
+      },{validator: this.checkIfMatchingPasswords('password', 'confirmPassword')});
     this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -47,7 +48,22 @@ export class RegisterComponent implements OnInit
     let email=this.formControls.email.value;
     let password=this.formControls.password.value;
     let confirmPassword=this.formControls.confirmPassword.value;
-
   }
 
+  private checkIfMatchingPasswords(password: string, confirmPassword: string)
+  {
+    return (group: FormGroup) =>
+    {
+      let passwordInput = group.controls[password],
+        passwordConfirmationInput = group.controls[confirmPassword];
+      if (passwordInput.value !== passwordConfirmationInput.value)
+      {
+        return passwordConfirmationInput.setErrors({passwordsMatched: false});
+      }
+      else
+        {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
+  }
 }
