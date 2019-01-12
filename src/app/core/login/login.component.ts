@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit
   loginForm: FormGroup;
   submitted=false;
   returnUrl: string;
+  loginFailed: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,11 +30,6 @@ export class LoginComponent implements OnInit
     }
   }
 
-  // convenience getter for easy access to form fields
-  get f()
-  {
-    return this.loginForm.controls;
-  }
 
   ngOnInit()
   {
@@ -47,6 +43,13 @@ export class LoginComponent implements OnInit
     //Logout user if already logged in
     this.logout();
   }
+
+  // convenience getter for easy access to form fields
+  get f()
+  {
+    return this.loginForm.controls;
+  }
+
 
   login()
   {
@@ -63,7 +66,11 @@ export class LoginComponent implements OnInit
           this.router.navigate(['/login']);
         }
       },
-        error => console.log(error),
+        error =>
+        {
+            console.log(error);
+            this.loginFailed=true;
+        },
       () => {});
   }
 

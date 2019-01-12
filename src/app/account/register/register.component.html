@@ -1,6 +1,6 @@
 <div>
   <h2>Register</h2>
-  <form [formGroup]="registerForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
     <div class="form-group">
       <label for="username">Username</label>
       <input [ngClass]="{ 'is-invalid': submitted && formControls.username.errors }" class="form-control"
@@ -32,7 +32,7 @@
         <div *ngIf="formControls.password.errors.minLength">Password minimum length should be 6 characters</div>
         <div *ngIf="formControls.password.errors.maxlength">Username maximum length should be 16 characters</div>
         <div *ngIf="formControls.password.errors.nullValidator">Password should not be null</div>
-        <div *ngIf="formControls.password.errors.passwordInvalidCharacters">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
+        <div *ngIf="formControls.password.errors.passwordInvalidCharacters"  class="cross-validation-error-message alert alert-danger">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
       </div>
     </div>
 
@@ -45,12 +45,13 @@
         <div *ngIf="formControls.confirmPassword.errors.maxlength">Confirmation Username maximum length should be 16 characters</div>
         <div *ngIf="formControls.confirmPassword.errors.nullValidator">Confirmation Password should not be null</div>
         <div *ngIf="formControls.confirmPassword.errors.passwordConfirmInvalidCharacters">Invalid special characters on Username. Valid characters are @, #, &, %, !,$ </div>
+        <div *ngIf="!formControls.confirmPassword.errors.passwordsMatched && formControls.confirmPassword.touched || formControls.confirmPassword.dirty ">Confirmation password should match original Password </div>
       </div>
     </div>
 
-
     <div class="form-group">
-      <button (click)="register()" class="btn btn-primary">Register</button>
+      <button  [disabled]="!registerForm.valid" class="btn btn-primary" type="submit">Submit</button>
+      <!--<button (click)="register()" class="btn btn-primary">Register</button>-->
     </div>
   </form>
 
