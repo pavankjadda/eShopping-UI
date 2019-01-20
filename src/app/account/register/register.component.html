@@ -6,7 +6,7 @@
       <input [ngClass]="{ 'is-invalid': submitted && formControls.username.errors }" class="form-control"
              formControlName="username" id="username"
              type="text"/>
-      <div *ngIf="submitted && formControls.username.errors" class="invalid-feedback">
+      <div *ngIf="submitted && this.registerForm.username.errors" class="invalid-feedback">
         <div *ngIf="formControls.username.errors.required">Username is required</div>
         <div *ngIf="formControls.username.errors.minLength">Username minimum length should be 6 characters</div>
         <div *ngIf="formControls.username.errors.maxlength">Username maximum length should be 16 characters</div>

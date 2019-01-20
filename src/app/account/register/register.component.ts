@@ -36,10 +36,10 @@ export class RegisterComponent implements OnInit
   {
     this.registerForm=this.formBuilder.group(
       {
-        username: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,usernameValidator()]],
+        username: ['', [Validators.required, Validators.minLength( 4 ), Validators.maxLength( 16 ), Validators.nullValidator, usernameValidator()]],
         email: ['',[Validators.required,Validators.email,Validators.nullValidator]],
-        password: ['',[Validators.required,Validators.minLength(6), Validators.maxLength(16),Validators.nullValidator,passwordValidator()]],
-        confirmPassword: ['',[Validators.required,Validators.minLength(6),
+        password: ['', [Validators.required, Validators.minLength( 4 ), Validators.maxLength( 16 ), Validators.nullValidator, passwordValidator()]],
+        confirmPassword: ['', [Validators.required, Validators.minLength( 4 ),
           Validators.maxLength(16),Validators.nullValidator,confirmPasswordValidator()]],
       },{validator: this.checkIfMatchingPasswords('password', 'confirmPassword')});
     this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/';
