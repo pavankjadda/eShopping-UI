@@ -1,4 +1,4 @@
-# SpringTestingUI
+# Angular 7 UI for SpringSecurity Project
 
 [Spring Security](https://github.com/pavankjadda/SpringSecurity-SpringData) project User Interface developed with Angular(7.2.0)
 
