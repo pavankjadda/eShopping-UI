@@ -8,10 +8,17 @@ import {PasswordComponent} from './password/password.component';
 import {SettingsComponent} from './settings/settings.component';
 import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import {AccountRoutingModule} from './account-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  imports: [ RouterModule,CommonModule],
+  imports: [
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    AccountRoutingModule],
   declarations: [
     ActivateComponent,
     RegisterComponent,
