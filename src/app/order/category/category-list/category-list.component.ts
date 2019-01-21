@@ -3,8 +3,7 @@ import {CategoryService} from '../service/category.service';
 import {Observable} from 'rxjs';
 import {Category} from '../model/category';
 import {SERVER_API_URL} from '../../../app.constants';
-import {AuthService} from '../../../core/auth/auth.service';
-import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-category-list',
@@ -14,7 +13,8 @@ import {Router} from '@angular/router';
 export class CategoryListComponent implements OnInit
 {
   categoryObservable: Observable<Category[]>;
-  constructor(private categoryService:CategoryService, private authService:AuthService, private router: Router)
+
+  constructor(private categoryService: CategoryService, private spinner: NgxSpinnerService)
   {
   }
 
@@ -25,15 +25,26 @@ export class CategoryListComponent implements OnInit
 
   getCategories()
   {
-    let url=SERVER_API_URL+'api/v2/category/list';
 
+    let url=SERVER_API_URL+'api/v2/category/list';
+    this.spinner.show();
     this.categoryService.getCategories(url).subscribe(
-      data => {
+      data =>
+      {
         // @ts-ignore
         this.categoryObservable=data;
+        this.spinner.hide();
       },
-      err => console.error( err ),
-      () => console.log( 'Categories retrieved from backend' ) );
+      err =>
+      {
+        this.spinner.hide();
+        console.error( err );
+      },
+      () =>
+      {
+        this.spinner.hide();
+      } );
+
     return this.categoryObservable;
   }
 
