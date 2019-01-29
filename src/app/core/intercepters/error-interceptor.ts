@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor
       {
         console.log('Inside ErrorInterceptor, Http Status: 403');
         this.authService.logout();
-        this.router.navigate( ['/login'] );
+        this.router.navigate( ['/403'] );
       }
 
       if(err.status===404)

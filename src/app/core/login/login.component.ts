@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit
     this.authService.login( this.f.username.value, this.f.password.value ).subscribe(
  response=>
       {
-        if(response['token'] && this.authService.isLoggedIn)
+        if(response['token']&&AuthService.isUserLoggedIn())
         {
           this.router.navigate(['/home']);
         }
@@ -93,6 +93,6 @@ export class LoginComponent implements OnInit
   }
   private setMessage()
   {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this.message='Logged '+(AuthService.isUserLoggedIn() ? 'in' : 'out');
   }
 }

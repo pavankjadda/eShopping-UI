@@ -5,23 +5,29 @@ import {AuthService} from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate
+{
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router)
+  {
   }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
+  {
     const url: string = state.url;
     console.log('AuthGuard#canActivate called');
     return this.checkLogin(url);
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
+  {
     return this.canActivate(route, state);
   }
 
-  private checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) {
+  private checkLogin(url: string): boolean
+  {
+    if(AuthService.isUserLoggedIn())
+    {
       return true;
     }
 

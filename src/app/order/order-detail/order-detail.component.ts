@@ -19,7 +19,7 @@ export class OrderDetailComponent implements OnInit
 
   ngOnInit()
   {
-    if(!this.authService.validateSession())
+    if(!AuthService.isUserLoggedIn())
     {
 
     }

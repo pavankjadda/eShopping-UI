@@ -22,8 +22,6 @@ export class RegisterComponent implements OnInit
   constructor(private formBuilder:FormBuilder,private route:ActivatedRoute,private router:Router, private authService:AuthService, private registerService:RegisterService)
   {
     this.authService.logout();
-    this.authService.isLoggedIn=false;
-
   }
 
   // convenience getter for easy access to form fields
