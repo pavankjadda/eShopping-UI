@@ -6,11 +6,13 @@ import {OrderDetailNewComponent} from './order-detail-new/order-detail-new.compo
 import {OrderDetailDeleteComponent} from './order-detail-delete/order-detail-delete.component';
 import {OrderDetailViewComponent} from './order-detail-view/order-detail-view.component';
 import {OrderDetailEditComponent} from './order-detail-edit/order-detail-edit.component';
+import {UserAuthGuard} from '../../guards/user-auth.guard';
 
 export const orderDetailManagementRoute: Routes=[
   {
     path: 'order',
     component: OrderDetailComponent,
+    canActivate: [UserAuthGuard],
     children: [
       {
         path: 'list',

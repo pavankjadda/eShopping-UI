@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit
 
   ngOnInit()
   {
-    if(!this.authService.validateSession())
+    if(!AuthService.isUserLoggedIn())
     {
 
     }

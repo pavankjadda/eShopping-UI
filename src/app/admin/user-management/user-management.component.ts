@@ -20,7 +20,7 @@ export class UserManagementComponent implements OnInit
   ngOnInit()
   {
     //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())
-    if(! this.authService.isLoggedIn)
+    if(!AuthService.isUserLoggedIn())
     {
       this.authService.logout();
       this.router.navigate(['/login']);

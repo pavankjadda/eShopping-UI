@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "ngx-bootstrap": "^3.1.4",
+    "ngx-spinner": "^6.1.2",
     "popper.js": "^1.14.6",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

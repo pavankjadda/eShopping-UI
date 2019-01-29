@@ -10,10 +10,6 @@ import {map} from 'rxjs/operators';
 })
 export class AuthService
 {
-  isLoggedIn = false;
-  redirectUrl: string;
-  public currentUser: Observable<User>;
-  public currentUserSubject: BehaviorSubject<User>;
 
   constructor(private httpClient: HttpClient)
   {
@@ -25,6 +21,16 @@ export class AuthService
   {
     return this.currentUserSubject.value;
   }
+
+  redirectUrl: string;
+  public currentUser: Observable<User>;
+  public currentUserSubject: BehaviorSubject<User>;
+
+  static isUserLoggedIn(): boolean
+  {
+    return localStorage.getItem( 'isLoggedIn' )==='true';
+  }
+
 
   // @ts-ignore
   login(username: string, password: string): Observable<any>
@@ -48,7 +54,7 @@ export class AuthService
         {
           // store user details and Spring Session token in local storage to keep user logged in between page refreshes
           localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          this.isLoggedIn=true;
+          localStorage.setItem( 'isLoggedIn', 'true' );
           this.currentUserSubject.next( user );
         }
         return user;
@@ -59,36 +65,7 @@ export class AuthService
   {
     localStorage.removeItem( 'currentUser' );
     this.currentUserSubject.next( null );
-    this.isLoggedIn = false;
-  }
-
-  validateSession(): boolean
-  {
-    let url=SERVER_API_URL+'isvalidsession';
-
-    //this.getSessionDataUsingAsync(url);
-    return this.isLoggedIn;
-  }
-
-
-  async getSessionDataUsingAsync(url)
-  {
-    this.httpClient.get<any>( url).toPromise().then(user=>
-    {
-      // @ts-ignore
-      if(user && user.token)
-      {
-        localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-        this.isLoggedIn=true;
-        return true;
-      }
-    },
-      reason =>
-      {
-        localStorage.removeItem( 'currentUser');
-        this.isLoggedIn=false;
-        return false;
-      });
+    localStorage.setItem( 'isLoggedIn', 'false' );
   }
 
 }

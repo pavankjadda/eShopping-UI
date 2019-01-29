@@ -16,6 +16,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
 import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
+import {HelpersModule} from './helpers/helpers.module';
 
 
 @NgModule( {
@@ -32,6 +33,7 @@ import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProvi
     ApiModule,
     AccountModule,
     OrderModule,
+    HelpersModule,
     AppRoutingModule
   ],
 

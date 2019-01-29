@@ -8,7 +8,7 @@ import {AuthService} from '../../core/auth/auth.service';
 } )
 export class HeaderComponent implements OnInit
 {
-  constructor(private authService:AuthService)
+  constructor()
   {
   }
 
@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit
 
   isLoggedIn()
   {
-    return this.authService.isLoggedIn;
+    return AuthService.isUserLoggedIn();
   }
 }
