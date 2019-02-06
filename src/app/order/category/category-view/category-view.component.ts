@@ -27,13 +27,16 @@ export class CategoryViewComponent implements OnInit
   {
     const id = this.route.snapshot.paramMap.get('id');
     const url=SERVER_API_URL+'api/v2/category/'+id;
-    this.categoryService.getCategoryDetails(url).subscribe(
+    this.categoryService.getCategoryDetails(url).pipe()
+        .subscribe(
       data=>{
         // @ts-ignore
         this.categoryObservable=data;
         console.log(this.categoryObservable);
       },
-      error1 => console.log(error1),
+      error => {
+        console.log(error);
+      },
       ()=> console.log('getCategoryDetails() success'));
     return this.categoryObservable;
   }

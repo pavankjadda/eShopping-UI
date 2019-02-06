@@ -34,8 +34,8 @@ export class ErrorInterceptor implements HttpInterceptor
       if(err.status===404)
       {
         console.log('Inside ErrorInterceptor, Http Status: 404');
-        this.authService.logout();
-        this.router.navigate( ['/login'] );
+        //this.authService.logout();
+        //this.router.navigate( ['/login'] );
       }
       if(err.status===500)
       {
@@ -45,9 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor
       }
 
 
-
-
-      let error=err.error.message||err.statusText;
+      let error=err.error.message||err.error;
       return throwError( error );
     })
     );
