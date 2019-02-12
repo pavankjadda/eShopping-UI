@@ -46,5 +46,6 @@ import {HelpersModule} from './helpers/helpers.module';
   bootstrap: [AppComponent]
 } )
 
-export class AppModule {
+export class AppModule
+{
 }
