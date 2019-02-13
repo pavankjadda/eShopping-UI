@@ -25,16 +25,18 @@ export class LoginComponent implements OnInit
     private spinner: NgxSpinnerService
   )
   {
-    // redirect to home if already logged in
-    if(this.authService.currentUserValue)
-    {
-      this.router.navigate( ['/home'] );
-    }
+
   }
 
 
   ngOnInit()
   {
+    // redirect to home if already logged in
+    if(this.authService.currentUserValue)
+    {
+      this.router.navigate( ['/home'] );
+    }
+
     this.loginForm=this.formBuilder.group( {
       username: ['', Validators.required],
       password: ['', Validators.required]
