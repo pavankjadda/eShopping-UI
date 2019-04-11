@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
-import {SERVER_API_URL} from '../../../app.constants';
+import {SERVER_URL} from '../../../app.constants';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -26,7 +26,7 @@ export class CategoryViewComponent implements OnInit
   private getCategory()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url=SERVER_API_URL+'api/v1/category/'+id;
+    const url=SERVER_URL+'api/v1/category/'+id;
     this.categoryService.getCategoryDetails(url).pipe()
         .subscribe(
       data=>{

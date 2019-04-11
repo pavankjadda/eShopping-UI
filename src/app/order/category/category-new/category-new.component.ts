@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SERVER_API_URL} from '../../../app.constants';
+import {SERVER_URL} from '../../../app.constants';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
 import {Router} from '@angular/router';
@@ -34,7 +34,7 @@ export class CategoryNewComponent implements OnInit
     category.lastModifiedDate='Pavan';
 
 
-    const url=SERVER_API_URL+'api/v1/category/create';
+    const url=SERVER_URL+'api/v1/category/create';
 
     this.categoryService.createCategory(url,category).subscribe(
       value => {},error1 => {},()=>{

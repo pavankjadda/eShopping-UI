@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
 import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
 import {RegisterService} from './register.service';
-import {SERVER_API_URL} from '../../app.constants';
+import {SERVER_URL} from '../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 import {RegisterUser} from './register-user';
 
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit
     registerUser.email=this.formControls.email.value;
     registerUser.password=this.formControls.password.value;
 
-    let url=SERVER_API_URL+'register';
+    let url=SERVER_URL+'register';
     const httpOptions = {
       headers: new HttpHeaders(
         {

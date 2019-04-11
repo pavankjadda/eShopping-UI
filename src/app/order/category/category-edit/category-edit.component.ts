@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../service/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../model/category';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
+import {BASIC_AUTH, SERVER_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -38,7 +38,7 @@ export class CategoryEditComponent implements OnInit
     const category=new Category();
     category.id=this.categoryForm.get('id').value;
     category.name=this.categoryForm.get('name').value;
-    const url=SERVER_API_URL+'api/v1/category/update';
+    const url=SERVER_URL+'api/v1/category/update';
     const httpOptions={
       headers: new HttpHeaders( {
         'Content-Type': 'application/json',

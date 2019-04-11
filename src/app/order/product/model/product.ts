@@ -10,4 +10,8 @@ export class Product
   category: Category;
   photos: Array<Photo>;
   price: Price;
+  createdBy:string;
+  createdDate:string;
+  lastModifiedBy:string;
+  lastModifiedDate:string;
 }

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderDetail} from '../model/order-detail';
 import {Observable, Subscription} from 'rxjs';
 import {OrderDetailService} from '../service/order-detail.service';
-import {BASIC_AUTH, SERVER_API_URL} from '../../../app.constants';
+import {BASIC_AUTH, SERVER_URL} from '../../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 
 @Component( {
@@ -36,7 +36,7 @@ export class OrderDetailListComponent implements OnInit, OnDestroy
 
   private getOrderDetails()
   {
-    const url=SERVER_API_URL+'orders/list';
+    const url=SERVER_URL+'orders/list';
     const httpOptions={
       headers: new HttpHeaders( {
         'Content-Type': 'application/json',
