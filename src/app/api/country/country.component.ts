@@ -22,7 +22,7 @@ export class CountryComponent implements OnInit
 
   getCountries()
   {
-    const url='http://localhost:8080/api/v2/country/list';
+    const url='http://localhost:8080/api/v1/country/list';
     const httpOptions = {
       headers: new HttpHeaders( {'Content-Type':  'application/json'})
     };

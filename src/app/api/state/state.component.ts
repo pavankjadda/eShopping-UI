@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {State} from './model/state';
-import {HttpEvent, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {StateService} from './services/state.service';
 
 @Component( {
@@ -22,7 +22,7 @@ export class StateComponent implements OnInit
 
   getStates()
   {
-    const url='http://localhost:8080/api/v2/state/list';
+    const url='http://localhost:8080/api/v1/state/list';
     const httpOptions={headers: new HttpHeaders( {'Content-Type': 'application/json'} )};
     this.stateService.getStates(url,httpOptions).subscribe(
       data => {

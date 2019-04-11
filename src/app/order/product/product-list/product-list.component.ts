@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit
   private getProducts()
   {
 
-    let url=SERVER_API_URL+'api/v2/product/list';
+    let url=SERVER_API_URL+'api/v1/product/list';
     this.spinner.show();
     this.productService.getProducts(url).subscribe(
       data =>

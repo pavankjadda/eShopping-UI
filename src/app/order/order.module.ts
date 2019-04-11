@@ -21,6 +21,10 @@ import {OrderDetailEditComponent} from './order-detail/order-detail-edit/order-d
 import {ProductHomeComponent} from './product/product-home/product-home.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ProductListComponent} from './product/product-list/product-list.component';
+import {ProductNewComponent} from './product/product-new/product-new.component';
+import {ProductUpdateComponent} from './product/product-update/product-update.component';
+import {ProductDeleteComponent} from './product/product-delete/product-delete.component';
+import {ProductViewComponent} from './product/product-view/product-view.component';
 
 @NgModule( {
   declarations: [
@@ -41,7 +45,11 @@ import {ProductListComponent} from './product/product-list/product-list.componen
     OrderDetailViewComponent,
     OrderDetailEditComponent,
     ProductHomeComponent,
-    ProductListComponent],
+    ProductListComponent,
+    ProductNewComponent,
+    ProductUpdateComponent,
+    ProductDeleteComponent,
+    ProductViewComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {City} from './model/city';
 import {CityService} from './services/city.service';
@@ -24,7 +24,7 @@ export class CityComponent implements OnInit
 
   getCities()
   {
-    const url=SERVER_API_URL+'api/v2/city/list';
+    const url=SERVER_API_URL+'api/v1/city/list';
     const httpOptions={
       headers: new HttpHeaders( {'Content-Type': 'application/json'} )
     };
