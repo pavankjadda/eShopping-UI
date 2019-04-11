@@ -6,12 +6,16 @@
     <table class="table table-bordered">
       <tr style="text-align: center" >
         <th> Product Id</th>
-        <th>Product Name</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
       </tr>
 
       <tr *ngFor="let product of (productObservable)" style="text-align: center" >
-        <td><a [routerLink]="['/product', product.id]">{{product.id}}</a></td>
+        <td>{{product.id}}</td>
         <td><a [routerLink]="['/product', product.id]">{{product.name}}</a></td>
+        <td>{{product.description}}</td>
+        <td>{{product.price.currency}}+{{product.price.amount}}</td>
       </tr>
     </table>
 
