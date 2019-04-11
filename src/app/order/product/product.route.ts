@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {ProductHomeComponent} from './product-home/product-home.component';
 import {UserAuthGuard} from '../../guards/user-auth.guard';
+import {ProductListComponent} from './product-list/product-list.component';
 
 export const productManagementRoute: Routes=[
   {
@@ -10,7 +11,7 @@ export const productManagementRoute: Routes=[
     children: [
       {
         path: 'list',
-        component: ProductHomeComponent
+        component: ProductListComponent
       },
       {
         path: 'new',
