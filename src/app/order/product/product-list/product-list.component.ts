@@ -51,4 +51,5 @@ export class ProductListComponent implements OnInit
   {
     return this.productObservable!==undefined;
   }
+
 }

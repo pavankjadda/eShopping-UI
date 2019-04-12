@@ -33,9 +33,7 @@ export class CategoryNewComponent implements OnInit
     category.lastModifiedBy='Pavan';
     category.lastModifiedDate='Pavan';
 
-
     const url=SERVER_URL+'api/v1/category/create';
-
     this.categoryService.createCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);
