@@ -1,3 +1,49 @@
+<div *ngIf="productDataAvailable()">
+  <form [formGroup]="">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="id">Product Id</label>
+      <div class="col-sm-10">
+        <input class="form-control-plaintext" id="id" readonly type="text" value="{{product.id}}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="name">Name</label>
+      <div class="col-sm-10">
+        <input class="form-control-plaintext" id="name" readonly type="text" value="{{product.name}}">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="category">Category</label>
+      <div class="col-sm-10">
+        <input class="form-control-plaintext" id="category" readonly type="text" value="{{product.category.name}}">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="price">Price</label>
+      <div class="col-sm-10">
+        <input class="form-control-plaintext" id="price" readonly type="text"
+               value="{{product.price.currency.symbol}}{{product.price.amount}}">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="description">Description</label>
+      <div class="col-sm-10">
+        <input class="form-control-plaintext" id="description" readonly type="text" value="{{product.description}}">
+      </div>
+    </div>
+  </form>
+</div>
+
+
 <p>
-  product-view works!
+  <a [routerLink]="['/product/list']" style="margin-right: 30px">Back </a>
+  <a [routerLink]="['./edit']" style="margin-right: 30px">Edit </a>
+  <a [routerLink]="['./delete']">Delete </a>
 </p>
+
+
+<router-outlet></router-outlet>

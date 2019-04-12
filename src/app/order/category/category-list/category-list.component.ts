@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../service/category.service';
-import {Observable} from 'rxjs';
 import {Category} from '../model/category';
-import {SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
@@ -12,7 +11,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class CategoryListComponent implements OnInit
 {
-  categoryObservable: Observable<Category[]>;
+  categories: Category[];
 
   constructor(private categoryService: CategoryService, private spinner: NgxSpinnerService)
   {
@@ -26,13 +25,12 @@ export class CategoryListComponent implements OnInit
   getCategories()
   {
 
-    let url=SERVER_URL+'api/v1/category/list';
+    let url=SERVER_URL+CATEGORY_API_URL+'list';
     this.spinner.show();
     this.categoryService.getCategories(url).subscribe(
       data =>
       {
-        // @ts-ignore
-        this.categoryObservable=data;
+        this.categories=data;
         this.spinner.hide();
       },
       err =>
@@ -45,11 +43,11 @@ export class CategoryListComponent implements OnInit
         this.spinner.hide();
       } );
 
-    return this.categoryObservable;
+    return this.categories;
   }
 
   categoriesDataAvailable():boolean
   {
-    return this.categoryObservable!==undefined;
+    return this.categories!==undefined;
   }
 }

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
@@ -12,14 +11,18 @@ import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 })
 export class ProductListComponent implements OnInit
 {
-
-  productObservable: Observable<Product[]>;
+  products: Array<Product>;
 
   constructor(private productService: ProductService, private spinner: NgxSpinnerService)
   {
   }
   ngOnInit() {
     this.getProducts();
+  }
+
+  productsDataAvailable(): boolean
+  {
+    return this.products!==undefined;
   }
 
   private getProducts()
@@ -30,8 +33,7 @@ export class ProductListComponent implements OnInit
     this.productService.getProducts(url).subscribe(
       data =>
       {
-        // @ts-ignore
-        this.productObservable=data;
+        this.products=data;
         this.spinner.hide();
       },
       err =>
@@ -44,12 +46,7 @@ export class ProductListComponent implements OnInit
         this.spinner.hide();
       } );
 
-    return this.productObservable;
-  }
-
-  productsDataAvailable():boolean
-  {
-    return this.productObservable!==undefined;
+    return this.products;
   }
 
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProductService} from '../service/product.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CATEGORY_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL, CURRENCY_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 import {Product} from '../model/product';
 import {Price} from '../model/price';
 import {CategoryService} from '../../category/service/category.service';
@@ -18,6 +18,7 @@ import {Currency} from '../model/currency';
 export class ProductNewComponent implements OnInit {
 
   categoryObservable: Observable<Category[]>;
+  currencyObservable: Observable<Currency[]>;
 
   productForm = new FormGroup({
     id: new FormControl({value:'',disabled:true}, Validators.minLength(2)),
@@ -25,11 +26,14 @@ export class ProductNewComponent implements OnInit {
     description: new FormControl(''),
     price: new FormControl(''),
     category: new FormControl(''),
+                                currency: new FormControl( '' ),
   });
   constructor(private productService:ProductService, private categoryService:CategoryService,private router:Router) {}
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.loadCategories();
+    this.loadCurrencies();
   }
 
 
@@ -39,7 +43,8 @@ export class ProductNewComponent implements OnInit {
     product.id=this.productForm.get('id').value;
     product.name=this.productForm.get('name').value;
     product.description=this.productForm.get('description').value;
-    product.price=new Price(new Currency("USD","$"),this.productForm.get('description').value);
+    product.price=new Price( new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' ), this.productForm.get( 'price' ).value );
+    product.category=new Category( this.productForm.get( 'category' ).value );
     product.createdBy='Pavan';
     product.createdDate='';
     product.lastModifiedBy='Pavan';
@@ -83,6 +88,25 @@ export class ProductNewComponent implements OnInit {
       });
   }
 
+  private loadCurrencies()
+  {
+    const url=SERVER_URL+CURRENCY_API_URL+'list';
+
+    this.productService.getCurrencies( url ).subscribe(
+      currencies =>
+      {
+        // @ts-ignore
+        this.currencyObservable=currencies;
+        console.log( 'Successfully loaded currencies' );
+      },
+      error1 =>
+      {
+        console.log( 'Failed to load currencies' );
+      },
+      () =>
+      {
+      } );
+  }
   categoriesDataAvailable():boolean
   {
     return this.categoryObservable!==undefined;

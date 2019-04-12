@@ -18,7 +18,15 @@
   </div>
   <div class="form-group">
     <label for="price">Price</label>
-    <input type="text" width="200" height="100" class="form-control"  id="price" formControlName="price" required placeholder="Enter Product Price (in USD)">
+    <label>
+      <select (change)="loadCurrencies()" class="form-control" formControlName="currency" name="currency">
+        <option *ngFor="let currency of currencyObservable" value={{currency.id}}>
+          {{currency.name}}
+        </option>
+      </select>
+    </label>
+    <input formControlName="price" id="price" placeholder="Enter Product Price (in USD)" required
+           style="margin: 10px; padding: 5px" type="text">
   </div>
 
   <div class="form-group">

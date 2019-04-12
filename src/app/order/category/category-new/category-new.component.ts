@@ -25,8 +25,7 @@ export class CategoryNewComponent implements OnInit
 
   createCategory()
   {
-    const category=new Category();
-    category.id=this.categoryForm.get('id').value;
+    const category=new Category( this.categoryForm.get( 'id' ).value );
     category.name=this.categoryForm.get('name').value;
     category.createdBy='Pavan';
     category.createdDate='';

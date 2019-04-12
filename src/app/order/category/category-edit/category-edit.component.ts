@@ -35,8 +35,7 @@ export class CategoryEditComponent implements OnInit
 
   updateCategory()
   {
-    const category=new Category();
-    category.id=this.categoryForm.get('id').value;
+    const category=new Category( this.categoryForm.get( 'id' ).value );
     category.name=this.categoryForm.get('name').value;
     const url=SERVER_URL+'api/v1/category/update';
     const httpOptions={
