@@ -17,10 +17,10 @@
     <input type="text" width="200" height="100" class="form-control"  id="description" formControlName="description" required placeholder="Enter Product Description">
   </div>
   <div class="form-group">
-    <label for="price">Price</label>
+    <label for="currency">Price</label> <br/>
     <label>
-      <select (change)="loadCurrencies()" class="form-control" formControlName="currency" name="currency">
-        <option *ngFor="let currency of currencyObservable" value={{currency.id}}>
+      <select (load)="loadCurrencies()" class="form-control" formControlName="currency" name="currency" id="currency">
+        <option *ngFor="let currency of currencies" value={{currency.id}}>
           {{currency.name}}
         </option>
       </select>
@@ -31,8 +31,8 @@
 
   <div class="form-group">
     <label>Category:
-      <select class="form-control" name="category" formControlName="category" (change)="categoriesDataAvailable()">
-        <option *ngFor="let category of categoryObservable" value={{category.id}}>
+      <select class="form-control" name="category" formControlName="category" (load)="loadCategories()">
+        <option *ngFor="let category of categories" value={{category.id}}>
           {{category.name}}
         </option>
       </select>

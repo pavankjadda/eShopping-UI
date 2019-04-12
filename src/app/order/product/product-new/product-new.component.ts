@@ -6,7 +6,6 @@ import {CATEGORY_API_URL, CURRENCY_API_URL, PRODUCT_API_URL, SERVER_URL} from '.
 import {Product} from '../model/product';
 import {Price} from '../model/price';
 import {CategoryService} from '../../category/service/category.service';
-import {Observable} from 'rxjs';
 import {Category} from '../../category/model/category';
 import {Currency} from '../model/currency';
 
@@ -15,10 +14,11 @@ import {Currency} from '../model/currency';
   templateUrl: './product-new.component.html',
   styleUrls: ['./product-new.component.css']
 })
-export class ProductNewComponent implements OnInit {
+export class ProductNewComponent implements OnInit
+{
 
-  categoryObservable: Observable<Category[]>;
-  currencyObservable: Observable<Currency[]>;
+  categories: Array<Category>;
+  currencies: Array<Currency>;
 
   productForm = new FormGroup({
     id: new FormControl({value:'',disabled:true}, Validators.minLength(2)),
@@ -77,7 +77,7 @@ export class ProductNewComponent implements OnInit {
       categories =>
       {
         // @ts-ignore
-        this.categoryObservable=categories;
+        this.categories=categories;
         console.log('Successfully loaded categories');
       },
         error1 =>
@@ -96,7 +96,7 @@ export class ProductNewComponent implements OnInit {
       currencies =>
       {
         // @ts-ignore
-        this.currencyObservable=currencies;
+        this.currencies=currencies;
         console.log( 'Successfully loaded currencies' );
       },
       error1 =>
@@ -109,6 +109,11 @@ export class ProductNewComponent implements OnInit {
   }
   categoriesDataAvailable():boolean
   {
-    return this.categoryObservable!==undefined;
+    return this.categories!==undefined;
+  }
+
+  currenciesDataAvailable():boolean
+  {
+    return this.currencies!==undefined;
   }
 }

@@ -8,6 +8,7 @@
         <th> Product Id</th>
         <th>Name</th>
         <th>Category</th>
+        <th>Manufacturer</th>
         <th>Price</th>
         <th>Description</th>
       </tr>
@@ -16,6 +17,7 @@
         <td>{{product.id}}</td>
         <td><a [routerLink]="['/product', product.id]">{{product.name}}</a></td>
         <td>{{product.category.name}}</td>
+        <td>{{product.manufacturer.name}}</td>
         <td>{{product.price.currency.symbol}}{{product.price.amount}}</td>
         <td>{{product.description}}</td>
       </tr>

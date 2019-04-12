@@ -1,6 +1,7 @@
 import {Category} from '../../category/model/category';
 import {Photo} from './photo';
 import {Price} from './price';
+import {Manufacturer} from './manufacturer';
 
 export class Product
 {
@@ -10,6 +11,7 @@ export class Product
   category: Category;
   photos: Array<Photo>;
   price: Price;
+  manufacturer:Manufacturer;
   createdBy:string;
   createdDate:string;
   lastModifiedBy:string;
