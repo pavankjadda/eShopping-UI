@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
 import {Currency} from '../model/currency';
+import {Manufacturer} from '../model/manufacturer';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class ProductService
   getProductDetails(url: string)
   {
     return this.httpClient.get<Product>( url );
+  }
+
+  getManufacturers(url: string)
+  {
+    return this.httpClient.get<Manufacturer[]>( url );
   }
 }

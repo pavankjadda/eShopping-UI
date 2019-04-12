@@ -39,6 +39,16 @@
     </label>
   </div>
 
+  <div class="form-group">
+    <label>Manufacturer:
+      <select (load)="loadManufacturers()" class="form-control" formControlName="manufacturer" name="manufacturer">
+        <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.id}}>
+          {{manufacturer.name}}
+        </option>
+      </select>
+    </label>
+  </div>
+
   <button type="submit" class="btn btn-primary"  (click)="createProduct()">Submit</button>
   <button type="button" class="btn btn-primary"  style="margin-left: 30px" (click)="goBack()">Cancel</button>
 
