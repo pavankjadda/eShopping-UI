@@ -19,20 +19,20 @@
   <div class="form-group">
     <label for="currency">Price</label> <br/>
     <label>
-      <select (load)="loadCurrencies()" class="form-control" formControlName="currency" name="currency" id="currency">
-        <option *ngFor="let currency of currencies" value={{currency.id}}>
+      <select class="form-control" formControlName="currency" name="currency" id="currency">
+        <option *ngFor="let currency of currencies">
           {{currency.name}}
         </option>
       </select>
     </label>
-    <input formControlName="price" id="price" placeholder="Enter Product Price (in USD)" required
+    <input formControlName="amount" id="amount" placeholder="Enter Product Price (in USD)" required
            style="margin: 10px; padding: 5px" type="text">
   </div>
 
   <div class="form-group">
     <label>Category:
-      <select class="form-control" name="category" formControlName="category" (load)="loadCategories()">
-        <option *ngFor="let category of categories" value={{category.id}}>
+      <select class="form-control" name="category" formControlName="category">
+        <option *ngFor="let category of categories">
           {{category.name}}
         </option>
       </select>
@@ -41,8 +41,8 @@
 
   <div class="form-group">
     <label>Manufacturer:
-      <select (load)="loadManufacturers()" class="form-control" formControlName="manufacturer" name="manufacturer">
-        <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.id}}>
+      <select class="form-control" formControlName="manufacturer" name="manufacturer">
+        <option *ngFor="let manufacturer of manufacturers">
           {{manufacturer.name}}
         </option>
       </select>

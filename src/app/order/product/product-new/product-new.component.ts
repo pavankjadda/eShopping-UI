@@ -26,9 +26,10 @@ export class ProductNewComponent implements OnInit
     name: new FormControl(''),
     description: new FormControl(''),
     price: new FormControl(''),
+    amount: new FormControl(''),
     category: new FormControl(''),
-                                currency: new FormControl( '' ),
-                                manufacturer: new FormControl( '' )
+    currency: new FormControl( '' ),
+    manufacturer: new FormControl( '' ),
   });
   constructor(private productService:ProductService, private categoryService:CategoryService,private router:Router) {}
 
@@ -43,16 +44,16 @@ export class ProductNewComponent implements OnInit
   createProduct()
   {
     const product=new Product();
-    product.id=this.productForm.get('id').value;
-    product.name=this.productForm.get('name').value;
-    product.description=this.productForm.get('description').value;
-    product.price=new Price( new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' ), this.productForm.get( 'price' ).value );
-    product.category=new Category( this.productForm.get( 'category' ).value );
-    product.manufacturer=new Manufacturer( this.productForm.get( 'manufacturer' ).value );
-    product.createdBy='Pavan';
+    product.name=this.productForm.value.name;
+    product.description=this.productForm.value.description;
+    product.price=new Price(this.productForm.value.currency, this.productForm.value.price);
+    product.category=this.productForm.value.category;
+    product.manufacturer=this.productForm.value.manufacturer;
+
+    product.createdBy='Admin';
     product.createdDate='';
-    product.lastModifiedBy='Pavan';
-    product.lastModifiedDate='Pavan';
+    product.lastModifiedBy='Admin';
+    product.lastModifiedDate='Admin';
 
 
     const url=SERVER_URL+PRODUCT_API_URL+'create';
@@ -69,9 +70,7 @@ export class ProductNewComponent implements OnInit
         this.router.navigate(['/product/list']);
       });
   }
-  goBack() {
-    this.router.navigate(['/product']);
-  }
+
 
   private loadCategories()
   {
@@ -80,7 +79,6 @@ export class ProductNewComponent implements OnInit
     this.categoryService.getCategories(url).subscribe(
       categories =>
       {
-        // @ts-ignore
         this.categories=categories;
         console.log('Successfully loaded categories');
       },
@@ -99,7 +97,6 @@ export class ProductNewComponent implements OnInit
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
       {
-        // @ts-ignore
         this.currencies=currencies;
         console.log( 'Successfully loaded currencies' );
       },
@@ -147,5 +144,7 @@ export class ProductNewComponent implements OnInit
     return this.currencies!==undefined;
   }
 
-
+  goBack() {
+    this.router.navigate(['/product']);
+  }
 }
