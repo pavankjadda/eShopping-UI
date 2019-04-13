@@ -1,0 +1,24 @@
+@media (min-height: 480px) {
+  #main_div {
+    min-height: 480px;
+  }
+
+}
+
+@media (min-height: 768px) {
+  #main_div {
+    min-height: 768px;
+  }
+}
+
+@media (min-height: 992px) {
+  #main_div {
+    min-height: 992px;
+  }
+}
+
+@media (min-height: 1200px) {
+  #main_div {
+    min-height: 1200px;
+  }
+}
