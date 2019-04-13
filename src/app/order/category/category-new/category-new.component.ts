@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
 import {Router} from '@angular/router';
@@ -15,6 +15,7 @@ export class CategoryNewComponent implements OnInit
   categoryForm = new FormGroup({
     id: new FormControl({value:'',disabled:true}, Validators.minLength(2)),
     name: new FormControl(''),
+                                 description: new FormControl( '' )
   });
 
   constructor(private categoryService:CategoryService, private router:Router) {}
@@ -27,12 +28,13 @@ export class CategoryNewComponent implements OnInit
   {
     const category=new Category( this.categoryForm.get( 'id' ).value );
     category.name=this.categoryForm.get('name').value;
+    category.description=this.categoryForm.get( 'description' ).value;
     category.createdBy='Pavan';
     category.createdDate='';
     category.lastModifiedBy='Pavan';
     category.lastModifiedDate='Pavan';
 
-    const url=SERVER_URL+'api/v1/category/create';
+    const url=SERVER_URL+CATEGORY_API_URL+'create';
     this.categoryService.createCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);

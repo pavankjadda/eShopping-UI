@@ -12,7 +12,11 @@
     <label for="name">Category Name</label>
     <input type="text" class="form-control"  id="name" formControlName="name" required placeholder="Enter Category Name">
   </div>
-
+  <div class="form-group">
+    <label for="description">Category Description</label>
+    <input class="form-control" formControlName="description" id="description" placeholder="Enter Category Description"
+           required type="text">
+  </div>
   <button type="submit" class="btn btn-primary"  (click)="createCategory()">Submit</button>
   <button type="button" class="btn btn-primary"  style="margin-left: 30px" (click)="goBack()">Cancel</button>
 

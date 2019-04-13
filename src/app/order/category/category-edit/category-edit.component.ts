@@ -3,8 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../service/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../model/category';
-import {BASIC_AUTH, SERVER_URL} from '../../../app.constants';
-import {HttpHeaders} from '@angular/common/http';
+import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
 
 @Component({
   selector: 'app-category-edit',
@@ -17,6 +16,7 @@ export class CategoryEditComponent implements OnInit
   categoryForm = new FormGroup({
     id: new FormControl({value:'',disabled: true}, Validators.minLength(2)),
     name: new FormControl(''),
+                                 description: new FormControl( '' ),
   });
 
   constructor(private categoryService:CategoryService,
@@ -37,12 +37,9 @@ export class CategoryEditComponent implements OnInit
   {
     const category=new Category( this.categoryForm.get( 'id' ).value );
     category.name=this.categoryForm.get('name').value;
-    const url=SERVER_URL+'api/v1/category/update';
-    const httpOptions={
-      headers: new HttpHeaders( {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + BASIC_AUTH} )
-    };
+    category.description=this.categoryForm.get( 'description' ).value;
+    const url=SERVER_URL+CATEGORY_API_URL+'update';
+
     this.categoryService.updateCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);
