@@ -80,11 +80,9 @@ export class ProductNewComponent implements OnInit
       categories =>
       {
         this.categories=categories;
-        console.log('Successfully loaded categories');
       },
         error1 =>
       {
-        console.log('Failed to load categories');
       },
       ()=>{
       });
@@ -98,11 +96,9 @@ export class ProductNewComponent implements OnInit
       currencies =>
       {
         this.currencies=currencies;
-        console.log( 'Successfully loaded currencies' );
       },
       error1 =>
       {
-        console.log( 'Failed to load currencies' );
       },
       () =>
       {
@@ -118,11 +114,9 @@ export class ProductNewComponent implements OnInit
       manufacturers =>
       {
         this.manufacturers=manufacturers;
-        console.log( 'Successfully loaded manufacturers' );
       },
       error1 =>
       {
-        console.log( 'Failed to load manufacturers' );
       },
       () =>
       {
