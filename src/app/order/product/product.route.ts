@@ -5,8 +5,8 @@ import {ProductListComponent} from './product-list/product-list.component';
 import {ProductComponent} from './product.component';
 import {ProductNewComponent} from './product-new/product-new.component';
 import {ProductViewComponent} from './product-view/product-view.component';
-import {ProductUpdateComponent} from './product-update/product-update.component';
 import {ProductDeleteComponent} from './product-delete/product-delete.component';
+import {ProductEditComponent} from './product-edit/product-edit.component';
 
 export const productManagementRoute: Routes=[
   {
@@ -28,7 +28,7 @@ export const productManagementRoute: Routes=[
         children: [
           {
             path: 'edit',
-            component: ProductUpdateComponent
+            component: ProductEditComponent
           },
           {
             path: 'delete',

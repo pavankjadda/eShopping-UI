@@ -48,6 +48,7 @@ export class ProductNewComponent implements OnInit
     product.description=this.productForm.get('description').value;
     product.price=new Price( new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' ), this.productForm.get( 'price' ).value );
     product.category=new Category( this.productForm.get( 'category' ).value );
+    product.manufacturer=new Manufacturer( this.productForm.get( 'manufacturer' ).value );
     product.createdBy='Pavan';
     product.createdDate='';
     product.lastModifiedBy='Pavan';
@@ -111,20 +112,6 @@ export class ProductNewComponent implements OnInit
       } );
   }
 
-  manufacturersDataAvailable(): boolean
-  {
-    return this.manufacturers!==undefined;
-  }
-
-  categoriesDataAvailable():boolean
-  {
-    return this.categories!==undefined;
-  }
-
-  currenciesDataAvailable():boolean
-  {
-    return this.currencies!==undefined;
-  }
 
   private loadManufacturers()
   {
@@ -144,5 +131,21 @@ export class ProductNewComponent implements OnInit
       {
       } );
   }
+
+  manufacturersDataAvailable(): boolean
+  {
+    return this.manufacturers!==undefined;
+  }
+
+  categoriesDataAvailable(): boolean
+  {
+    return this.categories!==undefined;
+  }
+
+  currenciesDataAvailable(): boolean
+  {
+    return this.currencies!==undefined;
+  }
+
 
 }

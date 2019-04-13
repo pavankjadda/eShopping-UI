@@ -22,9 +22,9 @@ import {ProductHomeComponent} from './product/product-home/product-home.componen
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {ProductNewComponent} from './product/product-new/product-new.component';
-import {ProductUpdateComponent} from './product/product-update/product-update.component';
 import {ProductDeleteComponent} from './product/product-delete/product-delete.component';
 import {ProductViewComponent} from './product/product-view/product-view.component';
+import {ProductEditComponent} from './product/product-edit/product-edit.component';
 
 @NgModule( {
   declarations: [
@@ -47,9 +47,9 @@ import {ProductViewComponent} from './product/product-view/product-view.componen
     ProductHomeComponent,
     ProductListComponent,
     ProductNewComponent,
-    ProductUpdateComponent,
     ProductDeleteComponent,
-    ProductViewComponent],
+    ProductViewComponent,
+    ProductEditComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

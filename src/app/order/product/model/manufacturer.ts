@@ -11,4 +11,9 @@ export class Manufacturer
   fax:string;
   lastModifiedDate:string;
   products: Array<Product>;
+
+  constructor(id: number)
+  {
+    this.id=id;
+  }
 }

@@ -36,4 +36,9 @@ export class ProductService
   {
     return this.httpClient.get<Manufacturer[]>( url );
   }
+
+  updateProduct(url: string, product: Product)
+  {
+    return this.httpClient.put<Product>( url, product );
+  }
 }
