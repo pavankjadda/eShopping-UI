@@ -41,6 +41,7 @@ export class ProductEditComponent implements OnInit
 
   ngOnInit()
   {
+
     this.getProduct();
     this.loadCategories();
     this.loadCurrencies();
@@ -59,14 +60,13 @@ export class ProductEditComponent implements OnInit
 
   private getProduct()
   {
-    const id=this.route.parent.snapshot.params.id;
+    const id=this.route.snapshot.paramMap.get( 'id' );
     const url=SERVER_URL+PRODUCT_API_URL+'find/'+id;
     this.productService.getProductDetails( url ).pipe()
         .subscribe(
           data =>
           {
             this.product=data;
-            console.log( this.product );
           },
           error =>
           {
@@ -81,10 +81,11 @@ export class ProductEditComponent implements OnInit
     const url=SERVER_URL+PRODUCT_API_URL+'update';
 
     const product=new Product();
-    product.id=this.productForm.get( 'id' ).value;
+    product.id=Number( id );
     product.name=this.productForm.get( 'name' ).value;
     product.description=this.productForm.get( 'description' ).value;
-    product.price=new Price( new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' ), this.productForm.get( 'price' ).value );
+    const currency=new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' );
+    product.price=new Price(currency , this.productForm.get( 'price' ).value );
     product.category=new Category( this.productForm.get( 'category' ).value );
     product.manufacturer=new Manufacturer( this.productForm.get( 'manufacturer' ).value );
     product.lastModifiedBy='Pavan';
@@ -131,9 +132,7 @@ export class ProductEditComponent implements OnInit
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
       {
-        // @ts-ignore
         this.currencies=currencies;
-        console.log( 'Successfully loaded currencies' );
       },
       error1 =>
       {

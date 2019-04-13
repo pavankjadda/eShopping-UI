@@ -15,25 +15,24 @@
     <div class="form-group">
       <label for="description">Description</label>
       <input class="form-control" formControlName="description" height="100" id="description" required type="text"
-             value="{{product.description}}" width="200">
+             [value]="product.description" width="200">
     </div>
     <div class="form-group">
       <label for="currency">Price</label> <br/>
       <label>
-        <select (load)="loadCurrencies()" class="form-control" formControlName="currency" id="currency" name="currency">
+        <select (load)="loadCurrencies()" class="form-control"  [value]="product.price.currency.symbol" formControlName="currency" id="currency" name="currency">
           <option *ngFor="let currency of currencies" value={{currency.id}}>
             {{currency.name}}
           </option>
         </select>
       </label>
-      <input formControlName="price" id="price" required style="margin: 10px; padding: 5px"
-             type="text" value="{{product.price.amount}}">
+      <input formControlName="price" id="price" required style="margin: 10px; padding: 5px" type="text" [value]="product.price.amount">
     </div>
 
     <div class="form-group">
       <label>Category:
         <select (load)="loadCategories()" class="form-control" formControlName="category" name="category">
-          <option *ngFor="let category of categories" value={{category.id}}>
+          <option  [value]="category.id" *ngFor="let category of categories">
             {{category.name}}
           </option>
         </select>
@@ -42,8 +41,8 @@
 
     <div class="form-group">
       <label>Manufacturer:
-        <select (load)="loadManufacturers()" class="form-control" formControlName="manufacturer" name="manufacturer">
-          <option *ngFor="let manufacturer of manufacturers" value={{manufacturer.id}}>
+        <select (load)="loadManufacturers()" class="form-control" [value]="product.manufacturer.name" formControlName="manufacturer" name="manufacturer">
+          <option [value]="manufacturer.id" *ngFor="let manufacturer of manufacturers" >
             {{manufacturer.name}}
           </option>
         </select>

@@ -23,18 +23,16 @@ export const productManagementRoute: Routes=[
         component: ProductNewComponent
       },
       {
+        path: ':id/edit',
+        component: ProductEditComponent
+      },
+      {
+        path: ':id/delete',
+        component: ProductDeleteComponent
+      },
+      {
         path: ':id',
-        component: ProductViewComponent,
-        children: [
-          {
-            path: 'edit',
-            component: ProductEditComponent
-          },
-          {
-            path: 'delete',
-            component: ProductDeleteComponent
-          }
-        ]
+        component: ProductViewComponent
       },
       {
         path: '',
