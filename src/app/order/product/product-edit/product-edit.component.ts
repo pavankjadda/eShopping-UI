@@ -3,8 +3,7 @@ import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Price} from '../model/price';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Currency} from '../model/currency';
 import {Category} from '../../category/model/category';
 import {Manufacturer} from '../model/manufacturer';
@@ -23,10 +22,11 @@ export class ProductEditComponent implements OnInit
   manufacturers: Array<Manufacturer>;
 
   productForm=new FormGroup( {
-                               id: new FormControl( {value: '', disabled: true}, Validators.minLength( 2 ) ),
+                               id: new FormControl( {value: '', disabled: true} ),
                                name: new FormControl( '' ),
                                description: new FormControl( '' ),
                                price: new FormControl( '' ),
+                               amount: new FormControl( '' ),
                                category: new FormControl( '' ),
                                currency: new FormControl( '' ),
                                manufacturer: new FormControl( '' )
@@ -48,15 +48,7 @@ export class ProductEditComponent implements OnInit
     this.loadManufacturers();
   }
 
-  productDataAvailable(): boolean
-  {
-    return this.product!==undefined;
-  }
 
-  goBack()
-  {
-    this.router.navigate( ['/product'] );
-  }
 
   private getProduct()
   {
@@ -67,6 +59,18 @@ export class ProductEditComponent implements OnInit
           data =>
           {
             this.product=data;
+            this.productForm.patchValue(
+              {
+                      id: data.id,
+                      name: data.name,
+                      description: data.description,
+                      price: data.price,
+                      amount: data.price.amount,
+                      currency: data.price.currency,
+                      category: data.category,
+                      manufacturer: data.manufacturer,
+                      // other form fields
+                    });
           },
           error =>
           {
@@ -80,16 +84,18 @@ export class ProductEditComponent implements OnInit
     const id=this.route.snapshot.paramMap.get( 'id' );
     const url=SERVER_URL+PRODUCT_API_URL+'update';
 
-    const product=new Product();
+    const product = new Product();
     product.id=Number( id );
-    product.name=this.productForm.get( 'name' ).value;
-    product.description=this.productForm.get( 'description' ).value;
-    const currency=new Currency( this.productForm.get( 'currency' ).value, 'USD', '$' );
-    product.price=new Price(currency , this.productForm.get( 'price' ).value );
-    product.category=new Category( this.productForm.get( 'category' ).value );
-    product.manufacturer=new Manufacturer( this.productForm.get( 'manufacturer' ).value );
-    product.lastModifiedBy='Pavan';
-    product.lastModifiedDate='Pavan';
+    product.name=this.productForm.value.name;
+    product.description=this.productForm.value.description;
+    product.category=this.productForm.value.category;
+    product.manufacturer=this.productForm.value.manufacturer;
+    product.price=this.productForm.value.price;
+    product.price.amount=this.productForm.value.amount;
+
+    product.lastModifiedBy='Admin';
+    product.lastModifiedDate='Admin';
+
 
     this.productService.updateProduct( url, product ).subscribe(
       value =>
@@ -160,5 +166,15 @@ export class ProductEditComponent implements OnInit
       () =>
       {
       } );
+  }
+
+  productDataAvailable(): boolean
+  {
+    return this.product!==undefined;
+  }
+
+  goBack()
+  {
+    this.router.navigate( ['/product'] );
   }
 }

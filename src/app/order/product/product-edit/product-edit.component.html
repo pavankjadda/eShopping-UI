@@ -4,35 +4,33 @@
   <form [formGroup]="productForm">
     <div class="form-group">
       <label for="id">Product Id</label>
-      <input class="form-control" formControlName="id" id="id" type="text" value="{{product.id}}">
-
+      <input class="form-control" formControlName="id" id="id" name="id"type="text">
       <small class="form-text text-muted" id="emailHelp"></small>
     </div>
     <div class="form-group">
       <label for="name">Name</label>
-      <input class="form-control" formControlName="name" id="name" type="text" value="{{product.name}}">
+      <input class="form-control" formControlName="name" id="name" type="text">
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <input class="form-control" formControlName="description" height="100" id="description" required type="text"
-             [value]="product.description" width="200">
+      <input  type="text" class="form-control" formControlName="description" id="description" required>
     </div>
     <div class="form-group">
       <label for="currency">Price</label> <br/>
       <label>
-        <select (load)="loadCurrencies()" class="form-control"  [value]="product.price.currency.symbol" formControlName="currency" id="currency" name="currency">
-          <option *ngFor="let currency of currencies" value={{currency.id}}>
+        <select class="form-control" formControlName="currency" id="currency" name="currency">
+          <option *ngFor="let currency of currencies">
             {{currency.name}}
           </option>
         </select>
       </label>
-      <input formControlName="price" id="price" required style="margin: 10px; padding: 5px" type="text" [value]="product.price.amount">
+      <input formControlName="amount" id="amount" required style="margin: 10px; padding: 5px" type="text">
     </div>
 
     <div class="form-group">
       <label>Category:
-        <select (load)="loadCategories()" class="form-control" formControlName="category" name="category">
-          <option  [value]="category.id" *ngFor="let category of categories">
+        <select class="form-control" formControlName="category" name="category">
+          <option *ngFor="let category of categories">
             {{category.name}}
           </option>
         </select>
@@ -41,8 +39,8 @@
 
     <div class="form-group">
       <label>Manufacturer:
-        <select (load)="loadManufacturers()" class="form-control" [value]="product.manufacturer.name" formControlName="manufacturer" name="manufacturer">
-          <option [value]="manufacturer.id" *ngFor="let manufacturer of manufacturers" >
+        <select class="form-control" formControlName="manufacturer" name="manufacturer">
+          <option *ngFor="let manufacturer of manufacturers" >
             {{manufacturer.name}}
           </option>
         </select>

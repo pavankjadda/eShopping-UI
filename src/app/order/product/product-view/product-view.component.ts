@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {Product} from '../model/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../service/product.service';
 import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-product-view',
@@ -12,8 +12,17 @@ import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 })
 export class ProductViewComponent implements OnInit
 {
-  productObservable: Observable<Product>;
   product: Product;
+  productForm=new FormGroup( {
+                               id: new FormControl( {value: '', disabled: true} ),
+                               name: new FormControl( '' ),
+                               description: new FormControl( '' ),
+                               price: new FormControl( '' ),
+                               amount: new FormControl( '' ),
+                               category: new FormControl( '' ),
+                               currency: new FormControl( '' ),
+                               manufacturer: new FormControl( '' )
+                             } );
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
@@ -28,7 +37,7 @@ export class ProductViewComponent implements OnInit
 
   productDataAvailable(): boolean
   {
-    return this.productObservable!==undefined;
+    return this.product!==undefined;
   }
 
   private getProduct()
@@ -39,16 +48,22 @@ export class ProductViewComponent implements OnInit
         .subscribe(
           data =>
           {
-            // @ts-ignore
-            this.productObservable=data;
             this.product=data;
-            console.log( this.product );
+            this.productForm.patchValue(
+              {
+                id: data.id,
+                name: data.name,
+                description: data.description,
+                price: data.price.currency.symbol+data.price.amount,
+                amount: data.price.amount,
+                currency: data.price.currency.symbol,
+                category: data.category.name,
+                manufacturer: data.manufacturer.name,
+              });
           },
           error =>
           {
             console.log( error );
-          },
-          () => console.log( 'getProduct() success' ) );
-    return this.productObservable;
+          });
   }
 }

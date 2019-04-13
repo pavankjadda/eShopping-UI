@@ -40,8 +40,6 @@ export class ErrorInterceptor implements HttpInterceptor
       if(err.status===500)
       {
         console.log('Inside ErrorInterceptor, Http Status: 500');
-        this.authService.logout();
-        this.router.navigate( ['/login'] );
       }
 
 
