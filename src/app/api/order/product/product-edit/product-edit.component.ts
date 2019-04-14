@@ -21,16 +21,17 @@ export class ProductEditComponent implements OnInit
   currencies: Array<Currency>;
   manufacturers: Array<Manufacturer>;
 
-  productForm=new FormGroup( {
-                               id: new FormControl( {value: '', disabled: true} ),
-                               name: new FormControl( '' ),
-                               description: new FormControl( '' ),
-                               price: new FormControl( '' ),
-                               amount: new FormControl( '' ),
-                               category: new FormControl( '' ),
-                               currency: new FormControl( '' ),
-                               manufacturer: new FormControl( '' )
-                             } );
+  productForm=new FormGroup(
+    {
+               id: new FormControl( {value: '', disabled: true} ),
+               name: new FormControl( '' ),
+               description: new FormControl( '' ),
+               price: new FormControl( '' ),
+               amount: new FormControl( '' ),
+               category: new FormControl( '' ),
+               currency: new FormControl( '' ),
+               manufacturer: new FormControl( '' )
+             } );
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -88,8 +89,8 @@ export class ProductEditComponent implements OnInit
     product.name=this.productForm.value.name;
     product.description=this.productForm.value.description;
 
-    product.category=new Category(this.productForm.value.category);
-    product.manufacturer=new Manufacturer(this.productForm.value.manufacturer);
+    product.category=this.productForm.value.category;
+    product.manufacturer=this.productForm.value.manufacturer;
     product.price=this.productForm.value.price;
     product.price.amount=this.productForm.value.amount;
 

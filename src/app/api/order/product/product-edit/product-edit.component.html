@@ -23,7 +23,7 @@
     <div class="form-group">
       <label>Category:
         <select class="form-control" formControlName="category" name="category">
-          <option *ngFor="let category of categories" [value]="category.id">
+          <option *ngFor="let category of categories" [ngValue]="category" [defaultSelected]="true" >
             {{category.name}}
           </option>
         </select>
@@ -33,7 +33,7 @@
     <div class="form-group">
       <label>Manufacturer:
         <select class="form-control" formControlName="manufacturer" name="manufacturer">
-          <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">
+          <option *ngFor="let manufacturer of manufacturers" [ngValue]="manufacturer" [defaultSelected]="true">
             {{manufacturer.name}}
           </option>
         </select>
