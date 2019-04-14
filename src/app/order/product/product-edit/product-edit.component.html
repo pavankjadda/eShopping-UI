@@ -16,15 +16,8 @@
       <input  type="text" class="form-control" formControlName="description" id="description" required>
     </div>
     <div class="form-group">
-      <label for="currency">Price</label> <br/>
-      <label>
-        <select class="form-control" formControlName="currency" id="currency" name="currency">
-          <option *ngFor="let currency of currencies">
-            {{currency.name}}
-          </option>
-        </select>
-      </label>
-      <input formControlName="amount" id="amount" required style="margin: 10px; padding: 5px" type="text">
+      <label for="amount">Price (In $)</label> <br/>
+      <input type="text" formControlName="amount" id="amount"  required >
     </div>
 
     <div class="form-group">
@@ -47,7 +40,7 @@
       </label>
     </div>
 
-    <button (click)="updateProduct()" class="btn btn-primary" type="submit">Submit</button>
+    <button (click)="updateProduct()" class="btn btn-primary" type="submit">Update</button>
     <button (click)="goBack()" class="btn btn-primary" style="margin-left: 30px" type="button">Cancel</button>
 
   </form>

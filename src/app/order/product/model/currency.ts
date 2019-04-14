@@ -5,10 +5,8 @@ export class Currency
   symbol: string;
   isoCode: string;
 
-  constructor(id: number, name: string, symbol: string)
+  constructor(id: number)
   {
-    this.name=name;
-    this.symbol=symbol;
     this.id=id;
   }
 }

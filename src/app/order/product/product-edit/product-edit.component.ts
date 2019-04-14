@@ -69,7 +69,6 @@ export class ProductEditComponent implements OnInit
                       currency: data.price.currency,
                       category: data.category,
                       manufacturer: data.manufacturer,
-                      // other form fields
                     });
           },
           error =>

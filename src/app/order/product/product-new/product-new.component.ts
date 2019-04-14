@@ -28,7 +28,7 @@ export class ProductNewComponent implements OnInit
     price: new FormControl(''),
     amount: new FormControl(''),
     categoryControl: new FormControl('',Validators.required),
-    currencyControl: new FormControl( '',Validators.required ),
+    currency: new FormControl( '',Validators.required ),
     manufacturerControl: new FormControl( '',Validators.required ),
   });
   constructor(private productService:ProductService, private categoryService:CategoryService,private router:Router) {}
@@ -46,7 +46,7 @@ export class ProductNewComponent implements OnInit
     const product=new Product();
     product.name=this.productForm.value.name;
     product.description=this.productForm.value.description;
-    product.price=new Price(this.productForm.value.currencyControl, this.productForm.value.price);
+    product.price=new Price( this.getCurrency(), this.productForm.value.amount);
     product.category=this.productForm.value.categoryControl;
     product.manufacturer=this.productForm.value.manufacturerControl;
 
@@ -69,6 +69,18 @@ export class ProductNewComponent implements OnInit
       ()=>{
         this.router.navigate(['/product/list']);
       });
+  }
+
+  private getCurrency()
+  {
+    for(let currency of this.currencies)
+    {
+      if(currency.symbol === '$')
+      {
+        return new Currency(currency.id);
+      }
+    }
+    return undefined;
   }
 
 

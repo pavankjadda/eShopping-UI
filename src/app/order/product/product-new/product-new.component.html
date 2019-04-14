@@ -14,19 +14,11 @@
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input type="text" width="200" height="100" class="form-control"  id="description" formControlName="description" required placeholder="Enter Product Description">
+    <input type="text" class="form-control"  id="description" formControlName="description" required placeholder="Enter Product Description">
   </div>
   <div class="form-group">
-    <label for="currencyControl">Price</label> <br/>
-    <label>
-      <select class="form-control" formControlName="currencyControl" name="currencyControl" id="currencyControl">
-        <option  [ngValue]="currency" *ngFor="let currency of currencies">
-          {{currency.name}}
-        </option>
-      </select>
-    </label>
-    <input formControlName="amount" id="amount" placeholder="Enter Product Price (in USD)" required
-           style="margin: 10px; padding: 5px" type="text">
+    <label for="amount">Price ($)</label>
+    <input type="text" class="form-control" formControlName="amount" id="amount" placeholder="Enter Product Price (in USD)" required>
   </div>
 
   <div class="form-group">
