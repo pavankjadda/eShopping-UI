@@ -42,6 +42,11 @@ export class ErrorInterceptor implements HttpInterceptor
         console.log('Inside ErrorInterceptor, Http Status: 500');
       }
 
+      if(err.status===0 || err.statusText=== 'Unknown Error')
+      {
+        console.log('Inside ErrorInterceptor, Http Status: Unknown Error');
+        alert('Unknown Error occurred, failed to reach backend server, Please try again');
+      }
 
       let error=err.error.message||err.error;
       return throwError( error );

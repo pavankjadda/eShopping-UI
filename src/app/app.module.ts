@@ -7,7 +7,7 @@ import {ApiModule} from './api/api.module';
 import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
-import {OrderModule} from './order/order.module';
+import {OrderModule} from './api/order/order.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminModule} from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
