@@ -33,6 +33,13 @@ import {ProductEditComponent} from './product/product-edit/product-edit.componen
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ApiRoutingModule} from './api-routing.module';
+import {ManufacturerComponent} from './manufacturer/manufacturer.component';
+import {ManufacturerListComponent} from './manufacturer/manufacturer-list/manufacturer-list.component';
+import {ManufacturerEditComponent} from './manufacturer/manufacturer-edit/manufacturer-edit.component';
+import {ManufacturerHomeComponent} from './manufacturer/manufacturer-home/manufacturer-home.component';
+import {ManufacturerNewComponent} from './manufacturer/manufacturer-new/manufacturer-new.component';
+import {ManufacturerViewComponent} from './manufacturer/manufacturer-view/manufacturer-view.component';
+import {ManufacturerDeleteComponent} from './manufacturer/manufacturer-delete/manufacturer-delete.component';
 
 
 @NgModule({
@@ -64,7 +71,14 @@ import {ApiRoutingModule} from './api-routing.module';
     ProductNewComponent,
     ProductDeleteComponent,
     ProductViewComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ManufacturerComponent,
+    ManufacturerListComponent,
+    ManufacturerEditComponent,
+    ManufacturerHomeComponent,
+    ManufacturerNewComponent,
+    ManufacturerViewComponent,
+    ManufacturerDeleteComponent
   ],
   imports: [
     CommonModule,

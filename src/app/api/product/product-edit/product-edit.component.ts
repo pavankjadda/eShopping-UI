@@ -6,7 +6,7 @@ import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_UR
 import {FormControl, FormGroup} from '@angular/forms';
 import {Currency} from '../model/currency';
 import {Category} from '../../category/model/category';
-import {Manufacturer} from '../model/manufacturer';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
 import {CategoryService} from '../../category/service/category.service';
 
 @Component( {

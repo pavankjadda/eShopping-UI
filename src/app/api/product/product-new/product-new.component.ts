@@ -8,7 +8,7 @@ import {Price} from '../model/price';
 import {CategoryService} from '../../category/service/category.service';
 import {Category} from '../../category/model/category';
 import {Currency} from '../model/currency';
-import {Manufacturer} from '../model/manufacturer';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
 
 @Component({
   selector: 'app-product-new',

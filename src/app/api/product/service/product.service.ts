@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
 import {Currency} from '../model/currency';
-import {Manufacturer} from '../model/manufacturer';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import {Category} from '../../category/model/category';
 import {Photo} from './photo';
 import {Price} from './price';
-import {Manufacturer} from './manufacturer';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
 
 export class Product
 {
