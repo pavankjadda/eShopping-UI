@@ -17,10 +17,10 @@
     <input type="text" width="200" height="100" class="form-control"  id="description" formControlName="description" required placeholder="Enter Product Description">
   </div>
   <div class="form-group">
-    <label for="currency">Price</label> <br/>
+    <label for="currencyControl">Price</label> <br/>
     <label>
-      <select class="form-control" formControlName="currency" name="currency" id="currency">
-        <option *ngFor="let currency of currencies">
+      <select class="form-control" formControlName="currencyControl" name="currencyControl" id="currencyControl">
+        <option  [ngValue]="currency" *ngFor="let currency of currencies">
           {{currency.name}}
         </option>
       </select>
@@ -31,8 +31,8 @@
 
   <div class="form-group">
     <label>Category:
-      <select class="form-control" name="category" formControlName="category">
-        <option *ngFor="let category of categories">
+      <select class="form-control" name="categoryControl" formControlName="categoryControl">
+        <option  [ngValue]="category" *ngFor="let category of categories">
           {{category.name}}
         </option>
       </select>
@@ -41,8 +41,8 @@
 
   <div class="form-group">
     <label>Manufacturer:
-      <select class="form-control" formControlName="manufacturer" name="manufacturer">
-        <option *ngFor="let manufacturer of manufacturers">
+      <select class="form-control" formControlName="manufacturerControl" name="manufacturerControl">
+        <option   [ngValue]="manufacturer" *ngFor="let manufacturer of manufacturers">
           {{manufacturer.name}}
         </option>
       </select>
