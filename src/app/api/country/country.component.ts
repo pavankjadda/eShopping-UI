@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from './services/country.service';
-import {Observable} from 'rxjs';
 import {Country} from './model/country';
-import {HttpHeaders} from '@angular/common/http';
+import {COUNTRY_API_URL, SERVER_URL} from '../../app.constants';
 
 @Component( {
   selector: 'app-country',
@@ -11,7 +10,7 @@ import {HttpHeaders} from '@angular/common/http';
 } )
 export class CountryComponent implements OnInit
 {
-  countriesObservable: Observable<Country[]>;
+  countries: Array<Country>;
 
   constructor(private countryService: CountryService) {}
 
@@ -22,23 +21,18 @@ export class CountryComponent implements OnInit
 
   getCountries()
   {
-    const url='http://localhost:8080/api/v1/country/list';
-    const httpOptions = {
-      headers: new HttpHeaders( {'Content-Type':  'application/json'})
-    };
-
-    this.countryService.getCountries(url,httpOptions).subscribe(
+    const url=SERVER_URL+COUNTRY_API_URL+'list';
+    this.countryService.getCountries(url).subscribe(
       data=> {
-        // @ts-ignore
-        this.countriesObservable=data;
+        this.countries=data;
         },
       err => console.error(err),
-      () => console.log('Countries retrived from backend'));
-    return this.countriesObservable;
+      () => console.log('Countries retrieved from backend'));
+    return this.countries;
   }
 
   isDataReady(): boolean
   {
-    return this.countriesObservable!==undefined;
+    return this.countries!==undefined;
   }
 }

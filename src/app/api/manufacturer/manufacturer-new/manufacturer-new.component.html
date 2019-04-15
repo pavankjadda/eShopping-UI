@@ -10,26 +10,32 @@
     </div>
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control"  id="name" formControlName="name" required placeholder="Enter Manufacturer Name">
+      <input type="text" class="form-control"  id="name" formControlName="name" required placeholder="Enter manufacturer name">
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <input type="text" class="form-control"  id="description" formControlName="description" required placeholder="Enter Manufacturer Description">
+      <input type="text" class="form-control"  id="description" formControlName="description" required placeholder="Enter description">
     </div>
     <div class="form-group">
       <label for="contactEmail">Contact Email</label>
-      <input type="text" class="form-control" formControlName="contactEmail" id="contactEmail" placeholder="Enter Manufacturer Price (in USD)" required>
+      <input type="text" class="form-control" formControlName="contactEmail" id="contactEmail" placeholder="Enter contact email" required>
     </div>
     <div class="form-group">
       <label for="fax">Fax</label>
-      <input type="text" class="form-control" formControlName="fax" id="fax" placeholder="Enter Manufacturer Price (in USD)" required>
+      <input type="text" class="form-control" formControlName="fax" id="fax" placeholder="Enter fax details" required>
     </div>
 
     <h3>Address</h3>
     <div class="form-group">
-      <label for="addressType">Address Type</label>
-      <input type="text" class="form-control" formControlName="addressType" id="addressType" placeholder="Enter Street Name" required>
+      <label>Address Type
+        <select class="form-control" name="addressType" formControlName="addressType">
+          <option  [ngValue]="addressType" *ngFor="let addressType of addressTypes" [defaultSelected]="true">
+            {{addressType.type}}
+          </option>
+        </select>
+      </label>
     </div>
+
     <div class="form-group">
       <label for="streetName">Street Name</label>
       <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
