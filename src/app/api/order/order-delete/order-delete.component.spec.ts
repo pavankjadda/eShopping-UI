@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {RegionComponent} from './region.component';
+import {OrderDeleteComponent} from './order-delete.component';
 
-describe('RegionComponent', () => {
-  let component: RegionComponent;
-  let fixture: ComponentFixture<RegionComponent>;
+describe('OrderDeleteComponent', () => {
+  let component: OrderDeleteComponent;
+  let fixture: ComponentFixture<OrderDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegionComponent ]
+      declarations: [ OrderDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegionComponent);
+    fixture = TestBed.createComponent(OrderDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

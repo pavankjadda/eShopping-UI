@@ -17,13 +17,6 @@ import {CategoryHomeComponent} from './category/category-home/category-home.comp
 import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {CategoryEditComponent} from './category/category-edit/category-edit.component';
 import {CategoryDeleteComponent} from './category/category-delete/category-delete.component';
-import {OrderDetailHomeComponent} from './order-detail/order-detail-home/order-detail-home.component';
-import {OrderDetailListComponent} from './order-detail/order-detail-list/order-detail-list.component';
-import {OrderDetailNewComponent} from './order-detail/order-detail-new/order-detail-new.component';
-import {OrderDetailDeleteComponent} from './order-detail/order-detail-delete/order-detail-delete.component';
-import {OrderDetailUpdateComponent} from './order-detail/order-detail-update/order-detail-update.component';
-import {OrderDetailViewComponent} from './order-detail/order-detail-view/order-detail-view.component';
-import {OrderDetailEditComponent} from './order-detail/order-detail-edit/order-detail-edit.component';
 import {ProductHomeComponent} from './product/product-home/product-home.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {ProductNewComponent} from './product/product-new/product-new.component';
@@ -40,6 +33,13 @@ import {ManufacturerHomeComponent} from './manufacturer/manufacturer-home/manufa
 import {ManufacturerNewComponent} from './manufacturer/manufacturer-new/manufacturer-new.component';
 import {ManufacturerViewComponent} from './manufacturer/manufacturer-view/manufacturer-view.component';
 import {ManufacturerDeleteComponent} from './manufacturer/manufacturer-delete/manufacturer-delete.component';
+import {OrderComponent} from './order/order.component';
+import {OrderHomeComponent} from './order/order-home/order-home.component';
+import {OrderListComponent} from './order/order-list/order-list.component';
+import {OrderEditComponent} from './order/order-edit/order-edit.component';
+import {OrderViewComponent} from './order/order-view/order-view.component';
+import {OrderDeleteComponent} from './order/order-delete/order-delete.component';
+import {OrderNewComponent} from './order/order-new/order-new.component';
 
 
 @NgModule({
@@ -59,13 +59,6 @@ import {ManufacturerDeleteComponent} from './manufacturer/manufacturer-delete/ma
     OrderDetailComponent,
     CategoryEditComponent,
     CategoryDeleteComponent,
-    OrderDetailHomeComponent,
-    OrderDetailListComponent,
-    OrderDetailNewComponent,
-    OrderDetailDeleteComponent,
-    OrderDetailUpdateComponent,
-    OrderDetailViewComponent,
-    OrderDetailEditComponent,
     ProductHomeComponent,
     ProductListComponent,
     ProductNewComponent,
@@ -78,7 +71,14 @@ import {ManufacturerDeleteComponent} from './manufacturer/manufacturer-delete/ma
     ManufacturerHomeComponent,
     ManufacturerNewComponent,
     ManufacturerViewComponent,
-    ManufacturerDeleteComponent
+    ManufacturerDeleteComponent,
+    OrderComponent,
+    OrderHomeComponent,
+    OrderListComponent,
+    OrderEditComponent,
+    OrderViewComponent,
+    OrderDeleteComponent,
+    OrderNewComponent
   ],
   imports: [
     CommonModule,
