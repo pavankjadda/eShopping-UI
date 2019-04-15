@@ -138,8 +138,10 @@ export class ManufacturerEditComponent implements OnInit
   private updateManufacturerObject(address: Address)
   {
     const manufacturerUrl=SERVER_URL+MANUFACTURER_API_URL+'update';
+    const id=this.route.snapshot.paramMap.get( 'id' );
 
     let manufacturer=new Manufacturer();
+    manufacturer.id=Number( id );
     manufacturer.name=this.manufacturerForm.value.name;
     manufacturer.displayName=this.manufacturerForm.value.displayName;
     manufacturer.description=this.manufacturerForm.value.description;

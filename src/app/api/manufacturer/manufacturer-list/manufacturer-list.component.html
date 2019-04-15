@@ -19,7 +19,8 @@
         <td>{{manufacturer.contactEmail}}</td>
         <td>{{manufacturer.phone}}</td>
         <td>{{manufacturer.fax}}</td>
-        <td>{{manufacturer.address}}</td>
+        <td> {{manufacturer.address.streetName}}{{manufacturer.address.apartment}} <br/>{{manufacturer.address.city.name}},{{manufacturer.address.state.name}},{{manufacturer.address.country.name}},{{manufacturer.address.zipCode}},
+        </td>
 
       </tr>
     </table>
