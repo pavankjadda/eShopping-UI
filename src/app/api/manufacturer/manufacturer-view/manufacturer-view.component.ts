@@ -17,12 +17,14 @@ export class ManufacturerViewComponent implements OnInit
 
   manufacturerForm=new FormGroup(
     {
-               id: new FormControl( {value: '', disabled: true} ),
-               name: new FormControl( '' ),
-               description: new FormControl( '' ),
-                address: new FormControl( '' ),
+                id: new FormControl( {value: '', disabled: true} ),
+                name: new FormControl( '' ),
+                displayName: new FormControl( '' ),
+                description: new FormControl( '' ),
+                address: new FormControl(''),
                 contactEmail: new FormControl( '' ),
-               fax: new FormControl( '' ),
+                phone: new FormControl( '' ),
+                fax: new FormControl( '' ),
                 products: new FormControl( '' ),
              } );
 
@@ -50,10 +52,12 @@ export class ManufacturerViewComponent implements OnInit
               {
                 id: data.id,
                 name: data.name,
+                displayName: data.displayName,
                 description: data.description,
-                address: data.address,
+                address: data.address.streetName+' '+data.address.apartment+', '+data.address.city.name+', '+data.address.state.name+', '+data.address.country.name+', '+data.address.zipCode,
                 contactEmail: data.contactEmail,
                 fax: data.fax,
+                phone: data.phone,
                 products: data.products
               });
             this.spinner.hide();
