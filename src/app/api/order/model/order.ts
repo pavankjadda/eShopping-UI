@@ -1,6 +1,7 @@
 import {Address} from '../../address/model/address';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
 import {OrderStatus} from './order-status';
+import {OrderProductDetail} from './order-product-detail';
 
 export class Order
 {
@@ -8,5 +9,8 @@ export class Order
   orderStatus: OrderStatus;
   purchasedBy: UserProfile;
   shippingAddress: Address;
-  orderCreatedDateTime: string;
+  tax: number;
+  shippingCharge: number;
+  totalCost: number;
+  orderProducts: Array<OrderProductDetail>;
 }

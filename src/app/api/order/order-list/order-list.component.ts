@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ORDER_API_URL, SERVER_URL} from '../../../app.constants';
 import {Order} from '../model/order';
-import {OrderService} from '../order.service';
+import {OrderService} from '../service/order.service';
 
 @Component({
   selector: 'app-order-list',
@@ -33,10 +33,11 @@ export class OrderListComponent implements OnInit
       },
       error =>
       {
-        console.log( 'Error Occured while fetching Order list' );
+        console.log( 'Error Occurred while fetching Order list' );
       },
-      () => {
-        console.log( 'getOrderDetails success' );
+      () =>
+      {
+        console.log( 'getOrders success' );
       }
     );
   }
