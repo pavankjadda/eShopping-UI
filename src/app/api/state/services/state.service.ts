@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {State} from '../model/state';
@@ -10,8 +10,13 @@ export class StateService
 {
   constructor(private httpClient:HttpClient) { }
 
-  getStates(url,httpOptions)
+  getStates(url)
   {
-    return this.httpClient.get<State[]>(url,httpOptions);
+    return this.httpClient.get<State[]>(url);
+  }
+
+  getStatesByCountryId(url)
+  {
+    return this.httpClient.get<State[]>(url);
   }
 }

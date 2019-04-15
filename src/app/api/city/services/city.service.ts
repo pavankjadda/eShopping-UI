@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { City } from '../model/city';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {City} from '../model/city';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +12,10 @@ export class CityService
   getCities(url,httpOptions)
   {
     return this.httpClient.get<City[]>(url,httpOptions);
+  }
+
+  getCitiesByStateId(url: string)
+  {
+    return this.httpClient.get<City[]>(url);
   }
 }

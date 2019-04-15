@@ -7,6 +7,9 @@ export const MANUFACTURER_API_URL='api/v1/manufacturer/';
 
 
 export const ADDRESS_TYPE_API_URL='api/v1/address_type/';
+export const ADDRESS_API_URL='api/v1/address/';
+export const CITY_API_URL='api/v1/city/';
+export const STATE_API_URL='api/v1/state/';
 export const COUNTRY_API_URL='api/v1/country/';
 
 

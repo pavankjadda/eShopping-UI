@@ -28,9 +28,9 @@ export class ProductEditComponent implements OnInit
                description: new FormControl( '' ),
                price: new FormControl( '' ),
                amount: new FormControl( '' ),
-               category: new FormControl( '' ),
+               categoryControl: new FormControl( ),
                currency: new FormControl( '' ),
-               manufacturer: new FormControl( '' )
+               manufacturerControl: new FormControl( '' )
              } );
 
   constructor(private productService: ProductService,
@@ -42,11 +42,10 @@ export class ProductEditComponent implements OnInit
 
   ngOnInit()
   {
-
-    this.getProduct();
     this.loadCategories();
     this.loadCurrencies();
     this.loadManufacturers();
+    this.getProduct();
   }
 
 
@@ -68,8 +67,8 @@ export class ProductEditComponent implements OnInit
                       price: data.price,
                       amount: data.price.amount,
                       currency: data.price.currency,
-                      category: data.category,
-                      manufacturer: data.manufacturer,
+                      categoryControl: data.category,
+                      manufacturerControl: data.manufacturer,
                     });
           },
           error =>
@@ -89,8 +88,8 @@ export class ProductEditComponent implements OnInit
     product.name=this.productForm.value.name;
     product.description=this.productForm.value.description;
 
-    product.category=this.productForm.value.category;
-    product.manufacturer=this.productForm.value.manufacturer;
+    product.category=this.productForm.value.categoryControl;
+    product.manufacturer=this.productForm.value.manufacturerControl;
     product.price=this.productForm.value.price;
     product.price.amount=this.productForm.value.amount;
 
@@ -119,7 +118,6 @@ export class ProductEditComponent implements OnInit
     this.categoryService.getCategories( url ).subscribe(
       categories =>
       {
-        // @ts-ignore
         this.categories=categories;
         console.log( 'Successfully loaded categories' );
       },
@@ -176,6 +174,6 @@ export class ProductEditComponent implements OnInit
 
   goBack()
   {
-    this.router.navigate( ['/product'] );
+    this.router.navigate( ['/product/list'] );
   }
 }

@@ -12,8 +12,4 @@ export class Manufacturer
   lastModifiedDate:string;
   products: Array<Product>;
 
-  constructor(id: number)
-  {
-    this.id=id;
-  }
 }

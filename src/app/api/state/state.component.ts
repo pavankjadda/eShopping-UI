@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {State} from './model/state';
-import {HttpHeaders} from '@angular/common/http';
 import {StateService} from './services/state.service';
+import {SERVER_URL, STATE_API_URL} from '../../app.constants';
 
 @Component( {
   selector: 'app-state',
@@ -11,7 +10,7 @@ import {StateService} from './services/state.service';
 } )
 export class StateComponent implements OnInit
 {
-  statesObservable: Observable<State[]>;
+  states: Array<State>;
 
   constructor(private stateService: StateService) {}
 
@@ -22,19 +21,17 @@ export class StateComponent implements OnInit
 
   getStates()
   {
-    const url='http://localhost:8080/api/v1/state/list';
-    const httpOptions={headers: new HttpHeaders( {'Content-Type': 'application/json'} )};
-    this.stateService.getStates(url,httpOptions).subscribe(
+    const url=SERVER_URL+STATE_API_URL+'list';
+    this.stateService.getStates(url).subscribe(
       data => {
-        // @ts-ignore
-        this.statesObservable=data;
+        this.states=data;
         },
       err => console.error( err ),
       () => console.log( 'States retrieved from backend' ) );
-    return this.statesObservable;
+    return this.states;
   }
   statesDataAvailable(): boolean
   {
-    return this.statesObservable!==undefined;
+    return this.states!==undefined;
   }
 }

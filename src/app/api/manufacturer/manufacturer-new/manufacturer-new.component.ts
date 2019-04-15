@@ -1,12 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, COUNTRY_API_URL, MANUFACTURER_API_URL, SERVER_URL} from '../../../app.constants';
+import {
+  ADDRESS_API_URL,
+  ADDRESS_TYPE_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  MANUFACTURER_API_URL,
+  SERVER_URL,
+  STATE_API_URL
+} from '../../../app.constants';
 import {Router} from '@angular/router';
 import {CountryService} from '../../country/services/country.service';
 import {AddressTypeService} from '../../address-type/service/address-type.service';
 import {AddressType} from '../../address-type/model/address-type';
 import {Country} from '../../country/model/country';
+import {StateService} from '../../state/services/state.service';
+import {State} from '../../state/model/state';
+import {CityService} from '../../city/services/city.service';
+import {City} from '../../city/model/city';
+import {Manufacturer} from '../model/manufacturer';
+import {Address} from '../../address/model/address';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {AddressService} from '../../address/service/address.service';
 
 @Component({
   selector: 'app-manufacturer-new',
@@ -17,6 +33,8 @@ export class ManufacturerNewComponent implements OnInit
 {
   addressTypes: Array<AddressType>;
   countries: Array<Country>;
+  states: Array<State>;
+  cities: Array<City>;
 
   manufacturerForm=new FormGroup(
     {
@@ -39,8 +57,12 @@ export class ManufacturerNewComponent implements OnInit
     } );
 
   constructor(private manufacturerService:ManufacturerService,
+              private cityService:CityService,
+              private stateService:StateService,
               private countryService:CountryService,
               private addressTypeService:AddressTypeService,
+              private addressService:AddressService,
+              private spinnerService:NgxSpinnerService,
               private router: Router)
   {
 
@@ -54,10 +76,61 @@ export class ManufacturerNewComponent implements OnInit
 
   createManufacturer()
   {
-    const url=SERVER_URL+MANUFACTURER_API_URL+'create';
+    this.spinnerService.show();
+    const addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
+
+    let address=new Address();
+    address.addressType=this.manufacturerForm.value.address.addressType;
+    address.streetName=this.manufacturerForm.value.address.streetName;
+    address.apartment=this.manufacturerForm.value.address.apartment;
+    address.city=this.manufacturerForm.value.address.city;
+    address.state=this.manufacturerForm.value.address.state;
+    address.country=this.manufacturerForm.value.address.country;
+    address.zipCode=this.manufacturerForm.value.address.zipCode;
+
+    this.addressService.createAddress(addressUrl,address).subscribe(
+      data=>
+      {
+        console.log('Address created');
+        address=data;
+        this.createManufacturerObject(address);
+        this.spinnerService.hide();
+      },
+      error1 => {
+        console.log('Address creation failed');
+        this.spinnerService.hide();
+      }
+    );
 
   }
 
+  private createManufacturerObject(address: Address)
+  {
+    if(address.id !==undefined)
+    {
+      const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
+      let manufacturer=new Manufacturer();
+      manufacturer.name=this.manufacturerForm.value.name;
+      manufacturer.description=this.manufacturerForm.value.description;
+      manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
+      manufacturer.fax=this.manufacturerForm.value.fax;
+      manufacturer.address=address;
+
+
+      this.manufacturerService.createManufacturer(manufactureUrl,manufacturer).subscribe(
+        data=>
+        {
+          manufacturer=data;
+          console.log('Manufacturer created');
+          this.router.navigate(['/manufacture/list']);
+        },
+        error1 => {
+          console.log('Manufacturer creation failed');
+          this.spinnerService.hide();
+        }
+      );
+    }
+  }
 
 
   private loadAddressTypes()
@@ -94,10 +167,44 @@ export class ManufacturerNewComponent implements OnInit
     );
   }
 
+  loadStates()
+  {
+    const country=this.manufacturerForm.value.address.country;
+    const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
+
+    this.stateService.getStatesByCountryId(url).subscribe(
+      data=>
+      {
+        this.states=data;
+      },
+      error1 => {
+        console.log('Failed to load states');
+      }
+    );
+
+  }
+
+  loadCities()
+  {
+    const state=this.manufacturerForm.value.address.state;
+    const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
+
+    this.cityService.getCitiesByStateId(url).subscribe(
+      data=>
+      {
+        this.cities=data;
+      },
+      error1 => {
+        console.log('Failed to load cities');
+      }
+    );
+  }
 
   goBack()
   {
     this.router.navigate(['/manufacturer']);
   }
+
+
 
 }
