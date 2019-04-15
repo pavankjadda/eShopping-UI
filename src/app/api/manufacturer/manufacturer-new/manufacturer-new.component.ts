@@ -40,6 +40,7 @@ export class ManufacturerNewComponent implements OnInit
     {
       id: new FormControl( {value: '', disabled: true} ),
       name: new FormControl( '' ),
+      displayName: new FormControl( '' ),
       description: new FormControl( '' ),
       address: new FormGroup(
         {
@@ -51,6 +52,7 @@ export class ManufacturerNewComponent implements OnInit
                   country: new FormControl( '' ),
                   zipCode: new FormControl( '' ),
                  }),
+      phone: new FormControl( '' ),
       contactEmail: new FormControl( '' ),
       fax: new FormControl( '' ),
       products: new FormControl( '' ),
@@ -111,7 +113,9 @@ export class ManufacturerNewComponent implements OnInit
       const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
       let manufacturer=new Manufacturer();
       manufacturer.name=this.manufacturerForm.value.name;
+      manufacturer.displayName=this.manufacturerForm.value.displayName;
       manufacturer.description=this.manufacturerForm.value.description;
+      manufacturer.phone=this.manufacturerForm.value.phone;
       manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
       manufacturer.fax=this.manufacturerForm.value.fax;
       manufacturer.address=address;
@@ -122,7 +126,7 @@ export class ManufacturerNewComponent implements OnInit
         {
           manufacturer=data;
           console.log('Manufacturer created');
-          this.router.navigate(['/manufacture/list']);
+          this.router.navigate(['/manufacturer/list']);
         },
         error1 => {
           console.log('Manufacturer creation failed');
