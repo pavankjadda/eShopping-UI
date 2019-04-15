@@ -19,4 +19,9 @@ export class AddressService
   {
     return this.httpClient.post<Address>(url,address);
   }
+
+  updateAddress(url: string, address: Address)
+  {
+    return this.httpClient.put<Address>(url,address);
+  }
 }

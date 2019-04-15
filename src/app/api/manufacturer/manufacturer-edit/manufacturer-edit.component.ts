@@ -21,8 +21,8 @@ import {
   SERVER_URL,
   STATE_API_URL
 } from '../../../app.constants';
-import {Address} from '../../address/model/address';
 import {Manufacturer} from '../model/manufacturer';
+import {Address} from '../../address/model/address';
 
 @Component({
   selector: 'app-manufacturer-edit',
@@ -101,6 +101,8 @@ export class ManufacturerEditComponent implements OnInit
                 address: data.address,
                 products: data.products,
               });
+            this.loadStates();
+            this.loadCities();
           },
           error =>
           {
@@ -113,64 +115,52 @@ export class ManufacturerEditComponent implements OnInit
 
   }
 
-  createManufacturer()
+  updateManufacturer()
   {
     this.spinnerService.show();
-    const addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
-
-    let address=new Address();
-    address.addressType=this.manufacturerForm.value.address.addressType;
-    address.streetName=this.manufacturerForm.value.address.streetName;
-    address.apartment=this.manufacturerForm.value.address.apartment;
-    address.city=this.manufacturerForm.value.address.city;
-    address.state=this.manufacturerForm.value.address.state;
-    address.country=this.manufacturerForm.value.address.country;
-    address.zipCode=this.manufacturerForm.value.address.zipCode;
-
-    this.addressService.createAddress(addressUrl,address).subscribe(
+    const addressUrl=SERVER_URL+ADDRESS_API_URL+'update';
+    let address=this.manufacturerForm.value.address;
+    this.addressService.updateAddress(addressUrl,address).subscribe(
       data=>
       {
-        console.log('Address created');
         address=data;
-        this.createManufacturerObject(address);
-        this.spinnerService.hide();
+        console.log('Address updated');
+        this.updateManufacturerObject(address);
       },
-      error1 => {
-        console.log('Address creation failed');
-        this.spinnerService.hide();
+      error1 =>
+      {
+        console.log('Address update failed');
       }
     );
 
+
   }
-
-  private createManufacturerObject(address: Address)
+  private updateManufacturerObject(address: Address)
   {
-    if(address.id !==undefined)
-    {
-      const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
-      let manufacturer=new Manufacturer();
-      manufacturer.name=this.manufacturerForm.value.name;
-      manufacturer.displayName=this.manufacturerForm.value.displayName;
-      manufacturer.description=this.manufacturerForm.value.description;
-      manufacturer.phone=this.manufacturerForm.value.phone;
-      manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
-      manufacturer.fax=this.manufacturerForm.value.fax;
-      manufacturer.address=address;
+    const manufacturerUrl=SERVER_URL+MANUFACTURER_API_URL+'update';
 
+    let manufacturer=new Manufacturer();
+    manufacturer.name=this.manufacturerForm.value.name;
+    manufacturer.displayName=this.manufacturerForm.value.displayName;
+    manufacturer.description=this.manufacturerForm.value.description;
+    manufacturer.phone=this.manufacturerForm.value.phone;
+    manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
+    manufacturer.fax=this.manufacturerForm.value.fax;
+    manufacturer.address=address;
 
-      this.manufacturerService.createManufacturer(manufactureUrl,manufacturer).subscribe(
-        data=>
-        {
-          manufacturer=data;
-          console.log('Manufacturer created');
-          this.router.navigate(['/manufacturer/list']);
-        },
-        error1 => {
-          console.log('Manufacturer creation failed');
-          this.spinnerService.hide();
-        }
-      );
-    }
+    this.manufacturerService.updateManufacturer( manufacturerUrl, manufacturer ).subscribe(
+      data =>
+      {
+        manufacturer=data;
+        console.log( 'Manufacturer updated' );
+        this.router.navigate( ['/manufacturer/list'] );
+      },
+      error1 =>
+      {
+        console.log( 'Manufacturer update failed' );
+        this.spinnerService.hide();
+      }
+    );
   }
 
 

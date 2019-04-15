@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Manufacturer} from '../model/manufacturer';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MANUFACTURER_API_URL, SERVER_URL} from '../../../app.constants';
@@ -30,7 +30,8 @@ export class ManufacturerViewComponent implements OnInit
 
   constructor(private manufacturerService:ManufacturerService,
               private spinner:NgxSpinnerService,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private router:Router) { }
 
   ngOnInit()
   {
@@ -72,5 +73,25 @@ export class ManufacturerViewComponent implements OnInit
   manufacturerDataAvailable(): boolean
   {
     return this.manufacturer!==undefined;
+  }
+
+  deleteManufacturer()
+  {
+    if(confirm('Are you sure you wanna delete Manufacturer?'))
+    {
+      const id=this.route.snapshot.paramMap.get( 'id' );
+      const url=SERVER_URL+MANUFACTURER_API_URL+'delete/'+id;
+
+      this.manufacturerService.deleteManufacturer(url).subscribe(
+        data=>{
+          console.log('Manufacturer with id: '+id+' deleted');
+          this.router.navigate(['manufacturer/list']);
+        },
+        error1 => {
+          console.log('Failed to delete Manufacturer with id: '+id);
+        }
+      );
+
+    }
   }
 }

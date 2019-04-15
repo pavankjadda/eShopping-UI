@@ -63,7 +63,7 @@
 <p>
   <a [routerLink]="['/manufacturer/list']" style="margin-right: 30px">Back </a>
   <a [routerLink]="['./edit']" style="margin-right: 30px">Edit </a>
-  <a [routerLink]="['./delete']">Delete </a>
+  <a (click)="deleteManufacturer()" href="">Delete </a>
 </p>
 
 
