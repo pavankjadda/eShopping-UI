@@ -28,10 +28,11 @@ export class ProductEditComponent implements OnInit
                description: new FormControl( '' ),
                price: new FormControl( '' ),
                amount: new FormControl( '' ),
-               categoryControl: new FormControl( ),
+               categoryControl: new FormControl(null ),
                currency: new FormControl( '' ),
-               manufacturerControl: new FormControl( '' )
+               manufacturerControl: new FormControl( null )
              } );
+
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -168,6 +169,17 @@ export class ProductEditComponent implements OnInit
   productDataAvailable(): boolean
   {
     return this.product!==undefined;
+  }
+
+
+  compareCategoryFn(c1: Category, c2: Category): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  compareManufacturerFn(c1: Manufacturer, c2: Manufacturer): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   goBack()
