@@ -30,4 +30,5 @@ export class ManufacturerService
   {
     return this.httpClient.put<Manufacturer>( url, manufacturer );
   }
+
 }
