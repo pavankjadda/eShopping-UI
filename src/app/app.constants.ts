@@ -4,7 +4,7 @@ export const PRODUCT_API_URL = 'api/v1/product/';
 export const CATEGORY_API_URL = 'api/v1/category/';
 export const CURRENCY_API_URL='api/v1/currency/';
 export const MANUFACTURER_API_URL='api/v1/manufacturer/';
-export const ORDER_API_URL='api/v1/order_detail/';
+export const ORDER_API_URL='api/v1/order/';
 
 
 export const ADDRESS_TYPE_API_URL='api/v1/address_type/';

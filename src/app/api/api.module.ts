@@ -14,7 +14,6 @@ import {CategoryListComponent} from './category/category-list/category-list.comp
 import {CategoryViewComponent} from './category/category-view/category-view.component';
 import {CategoryNewComponent} from './category/category-new/category-new.component';
 import {CategoryHomeComponent} from './category/category-home/category-home.component';
-import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {CategoryEditComponent} from './category/category-edit/category-edit.component';
 import {CategoryDeleteComponent} from './category/category-delete/category-delete.component';
 import {ProductHomeComponent} from './product/product-home/product-home.component';
@@ -56,7 +55,6 @@ import {OrderNewComponent} from './order/order-new/order-new.component';
     CategoryViewComponent,
     CategoryNewComponent,
     CategoryHomeComponent,
-    OrderDetailComponent,
     CategoryEditComponent,
     CategoryDeleteComponent,
     ProductHomeComponent,
