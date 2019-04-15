@@ -48,8 +48,6 @@ export class ProductEditComponent implements OnInit
     this.getProduct();
   }
 
-
-
   private getProduct()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
