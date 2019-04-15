@@ -13,7 +13,6 @@ import {AddressService} from '../../address/service/address.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {
-  ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
   CITY_API_URL,
   COUNTRY_API_URL,
@@ -22,7 +21,6 @@ import {
   STATE_API_URL
 } from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
-import {Address} from '../../address/model/address';
 
 @Component({
   selector: 'app-manufacturer-edit',
@@ -46,6 +44,7 @@ export class ManufacturerEditComponent implements OnInit
       address: new FormGroup(
         {
           addressType: new FormControl( '' ),
+          id: new FormControl( '' ),
           streetName: new FormControl( '' ),
           apartment: new FormControl( '' ),
           city: new FormControl( '' ),
@@ -118,25 +117,7 @@ export class ManufacturerEditComponent implements OnInit
   updateManufacturer()
   {
     this.spinnerService.show();
-    const addressUrl=SERVER_URL+ADDRESS_API_URL+'update';
-    let address=this.manufacturerForm.value.address;
-    this.addressService.updateAddress(addressUrl,address).subscribe(
-      data=>
-      {
-        address=data;
-        console.log('Address updated');
-        this.updateManufacturerObject(address);
-      },
-      error1 =>
-      {
-        console.log('Address update failed');
-      }
-    );
 
-
-  }
-  private updateManufacturerObject(address: Address)
-  {
     const manufacturerUrl=SERVER_URL+MANUFACTURER_API_URL+'update';
     const id=this.route.snapshot.paramMap.get( 'id' );
 
@@ -148,7 +129,7 @@ export class ManufacturerEditComponent implements OnInit
     manufacturer.phone=this.manufacturerForm.value.phone;
     manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
     manufacturer.fax=this.manufacturerForm.value.fax;
-    manufacturer.address=address;
+    manufacturer.address=this.manufacturerForm.value.address;
 
     this.manufacturerService.updateManufacturer( manufacturerUrl, manufacturer ).subscribe(
       data =>
@@ -163,8 +144,8 @@ export class ManufacturerEditComponent implements OnInit
         this.spinnerService.hide();
       }
     );
-  }
 
+  }
 
   private loadAddressTypes()
   {

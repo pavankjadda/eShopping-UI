@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {
-  ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
   CITY_API_URL,
   COUNTRY_API_URL,
@@ -79,7 +78,7 @@ export class ManufacturerNewComponent implements OnInit
   createManufacturer()
   {
     this.spinnerService.show();
-    const addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
+    const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
 
     let address=new Address();
     address.addressType=this.manufacturerForm.value.address.addressType;
@@ -90,51 +89,31 @@ export class ManufacturerNewComponent implements OnInit
     address.country=this.manufacturerForm.value.address.country;
     address.zipCode=this.manufacturerForm.value.address.zipCode;
 
-    this.addressService.createAddress(addressUrl,address).subscribe(
+    let manufacturer=new Manufacturer();
+    manufacturer.name=this.manufacturerForm.value.name;
+    manufacturer.displayName=this.manufacturerForm.value.displayName;
+    manufacturer.description=this.manufacturerForm.value.description;
+    manufacturer.phone=this.manufacturerForm.value.phone;
+    manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
+    manufacturer.fax=this.manufacturerForm.value.fax;
+    manufacturer.address=address;
+
+
+    this.manufacturerService.createManufacturer(manufactureUrl,manufacturer).subscribe(
       data=>
       {
-        console.log('Address created');
-        address=data;
-        this.createManufacturerObject(address);
-        this.spinnerService.hide();
+        manufacturer=data;
+        console.log('Manufacturer created');
+        this.router.navigate(['/manufacturer/list']);
       },
       error1 => {
-        console.log('Address creation failed');
+        console.log('Manufacturer creation failed');
         this.spinnerService.hide();
       }
     );
 
   }
 
-  private createManufacturerObject(address: Address)
-  {
-    if(address.id !==undefined)
-    {
-      const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
-      let manufacturer=new Manufacturer();
-      manufacturer.name=this.manufacturerForm.value.name;
-      manufacturer.displayName=this.manufacturerForm.value.displayName;
-      manufacturer.description=this.manufacturerForm.value.description;
-      manufacturer.phone=this.manufacturerForm.value.phone;
-      manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
-      manufacturer.fax=this.manufacturerForm.value.fax;
-      manufacturer.address=address;
-
-
-      this.manufacturerService.createManufacturer(manufactureUrl,manufacturer).subscribe(
-        data=>
-        {
-          manufacturer=data;
-          console.log('Manufacturer created');
-          this.router.navigate(['/manufacturer/list']);
-        },
-        error1 => {
-          console.log('Manufacturer creation failed');
-          this.spinnerService.hide();
-        }
-      );
-    }
-  }
 
 
   private loadAddressTypes()
