@@ -26,12 +26,12 @@ export class OrderNewComponent implements OnInit
 
   private getProducts()
   {
-    const productsUrl=SERVER_URL+PRODUCT_API_URL+'/list';
+    const productsUrl=SERVER_URL+PRODUCT_API_URL+'list';
     this.productService.getProducts(productsUrl).subscribe(
       data =>
       {
         this.products=data;
-        console.log('Failed to load products');
+        console.log('Successfully loaded products');
       },
       error1 =>
       {
