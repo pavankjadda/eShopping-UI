@@ -5,9 +5,11 @@ export class Manufacturer
 {
   id: number;
   name: string;
+  displayName: string;
   description: string;
   address:Address;
   contactEmail:string;
+  phone: string;
   fax:string;
   lastModifiedDate:string;
   products: Array<Product>;

@@ -8,6 +8,7 @@
         <th> Manufacturer Id</th>
         <th>Name</th>
         <th>Contact Email</th>
+        <th>Phone</th>
         <th>Fax</th>
         <th>Business Address</th>
       </tr>
@@ -16,6 +17,7 @@
         <td>{{manufacturer.id}}</td>
         <td><a [routerLink]="['/manufacturer', manufacturer.id]">{{manufacturer.name}}</a></td>
         <td>{{manufacturer.contactEmail}}</td>
+        <td>{{manufacturer.phone}}</td>
         <td>{{manufacturer.fax}}</td>
         <td>{{manufacturer.address}}</td>
 
