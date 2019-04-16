@@ -10,6 +10,9 @@ import {map} from 'rxjs/operators';
 })
 export class AuthService
 {
+  redirectUrl: string;
+  public currentUser: Observable<User>;
+  public currentUserSubject: BehaviorSubject<User>;
 
   constructor(private httpClient: HttpClient)
   {
@@ -22,15 +25,11 @@ export class AuthService
     return this.currentUserSubject.value;
   }
 
-  redirectUrl: string;
-  public currentUser: Observable<User>;
-  public currentUserSubject: BehaviorSubject<User>;
 
   static isUserLoggedIn(): boolean
   {
     return localStorage.getItem( 'isLoggedIn' )==='true';
   }
-
 
   // @ts-ignore
   login(username: string, password: string): Observable<any>
@@ -42,8 +41,6 @@ export class AuthService
           authorization: 'Basic '+btoa( username+':'+password )
         } )
     };
-
-    //return this.httpClient.get<any>( SERVER_URL+'login', httpOptions );
 
 
     return this.httpClient.get<any>( SERVER_URL+'login', httpOptions)

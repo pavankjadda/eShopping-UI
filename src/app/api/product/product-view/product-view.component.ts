@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../service/product.service';
-import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {CART_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
+import {CartService} from '../../cart/service/cart.service';
+import {OrderProductDetail} from '../../order/model/order-product-detail';
 
 @Component({
   selector: 'app-product-view',
@@ -26,6 +28,7 @@ export class ProductViewComponent implements OnInit
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
+              private cartService:CartService,
               private router: Router)
   {
   }
@@ -65,5 +68,16 @@ export class ProductViewComponent implements OnInit
           {
             console.log( error );
           });
+  }
+
+  addProductToCart()
+  {
+    const productId=this.route.snapshot.paramMap.get('id');
+    const url=SERVER_URL+CART_API_URL+'/product/add/'+productId;
+    let cart=this.cartService.getCurrentCart;
+    let orderProductDetail=new OrderProductDetail();
+    orderProductDetail.product=this.product;
+    cart.products.push(orderProductDetail);
+    this.cartService.addProductToCart( url,cart );
   }
 }

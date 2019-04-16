@@ -39,6 +39,7 @@ import {OrderEditComponent} from './order/order-edit/order-edit.component';
 import {OrderViewComponent} from './order/order-view/order-view.component';
 import {OrderDeleteComponent} from './order/order-delete/order-delete.component';
 import {OrderNewComponent} from './order/order-new/order-new.component';
+import {CartComponent} from './cart/cart.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import {OrderNewComponent} from './order/order-new/order-new.component';
     OrderEditComponent,
     OrderViewComponent,
     OrderDeleteComponent,
-    OrderNewComponent
+    OrderNewComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
