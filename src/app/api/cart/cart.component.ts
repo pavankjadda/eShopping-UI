@@ -27,9 +27,19 @@ export class CartComponent implements OnInit
 
   private getMyCart()
   {
-    let user=this.authService.currentUserValue;
+    const cartUrl=SERVER_URL+CART_API_URL+'find/user/'+this.authService.currentUserValue.id;
+    this.cartService.getMyCart(cartUrl).subscribe(
+      data=>
+      {
+        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
+        this.cartService.currentCartSubject.next( data );
+        this.cart=data;
+      }
+    );
+  }
 
-    const cartUrl=SERVER_URL+CART_API_URL+'find/user/'+user.id;
-    this.cart=this.cartService.getMyCart(cartUrl);
+  cartDataAvailable()
+  {
+    return this.cart!==undefined;
   }
 }

@@ -40,6 +40,7 @@ import {OrderViewComponent} from './order/order-view/order-view.component';
 import {OrderDeleteComponent} from './order/order-delete/order-delete.component';
 import {OrderNewComponent} from './order/order-new/order-new.component';
 import {CartComponent} from './cart/cart.component';
+import {TypeaheadModule} from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import {CartComponent} from './cart/cart.component';
     ReactiveFormsModule,
     NgxSpinnerModule,
     RouterModule,
-    ApiRoutingModule
+    ApiRoutingModule,
+    TypeaheadModule
   ]
 })
 export class ApiModule { }

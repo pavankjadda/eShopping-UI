@@ -1,11 +1,11 @@
 import {CartStatus} from './cart-status';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
-import {OrderProductDetail} from '../../order/model/order-product-detail';
+import {CartProduct} from './cart-product';
 
 export class Cart
 {
   id: number;
   status: CartStatus;
   userProfile: UserProfile;
-  products: Array<OrderProductDetail>;
+  cartProducts: Array<CartProduct>;
 }

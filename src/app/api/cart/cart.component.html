@@ -1,3 +1,25 @@
-<p>
-  cart works!
-</p>
+<h1> My Cart</h1>
+
+<div  *ngIf="cartDataAvailable()" class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+  <table class="table">
+    <thead  style="text-align: center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartProduct of (cart.cartProducts)" style="text-align: center">
+        <th scope="row">1</th>
+        <td>{{cartProduct.product.id}}</td>
+        <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
+        <td>{{cartProduct.quantity}}</td>
+        <td>{{cartProduct.quantity}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

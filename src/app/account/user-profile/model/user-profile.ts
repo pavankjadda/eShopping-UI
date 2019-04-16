@@ -1,4 +1,5 @@
 import {Address} from '../../../api/address/model/address';
+import {User} from '../../../core/user/model/user';
 
 export class UserProfile
 {
@@ -6,6 +7,11 @@ export class UserProfile
   firstName: string;
   lastName: string;
   email: string;
-  address: Address;
-  user: string;
+  addresses: Array<Address>;
+  user: User;
+
+  set setUser(user:User)
+  {
+    this.user=user;
+  }
 }

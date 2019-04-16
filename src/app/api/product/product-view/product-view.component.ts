@@ -5,7 +5,8 @@ import {ProductService} from '../service/product.service';
 import {CART_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CartService} from '../../cart/service/cart.service';
-import {OrderProductDetail} from '../../order/model/order-product-detail';
+import {AuthService} from '../../../core/auth/auth.service';
+import {CartProduct} from '../../cart/model/cart-product';
 
 @Component({
   selector: 'app-product-view',
@@ -29,6 +30,7 @@ export class ProductViewComponent implements OnInit
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private cartService:CartService,
+              private authService:AuthService,
               private router: Router)
   {
   }
@@ -73,11 +75,32 @@ export class ProductViewComponent implements OnInit
   addProductToCart()
   {
     const productId=this.route.snapshot.paramMap.get('id');
-    const url=SERVER_URL+CART_API_URL+'/product/add/'+productId;
+    const url=SERVER_URL+CART_API_URL+'product/add';
     let cart=this.cartService.getCurrentCart;
-    let orderProductDetail=new OrderProductDetail();
-    orderProductDetail.product=this.product;
-    cart.products.push(orderProductDetail);
-    this.cartService.addProductToCart( url,cart );
+    if(cart === null)
+    {
+      cart=this.cartService.createCurrentCart;
+    }
+    let newCartProduct=new CartProduct();
+    newCartProduct.product=this.product;
+    newCartProduct.quantity=1;
+    cart=CartService.doesProductExistInCart(cart,newCartProduct);
+
+
+    this.cartService.addProductToCart(url,cart).subscribe(
+      data=>
+      {
+        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
+        this.cartService.currentCartSubject.next( data );
+      },
+      error1 =>
+      {
+        console.log('Failed to update cart');
+      },
+      ()=>
+      {
+        this.router.navigate(['/product/list']);
+      }
+    );
   }
 }

@@ -12,6 +12,6 @@ export class AppComponent
 
   constructor()
   {
-    console.log(environment.production); // Logs false for default environment
+    console.log('Is production environment: '+environment.production); // Logs false for default environment
   }
 }
