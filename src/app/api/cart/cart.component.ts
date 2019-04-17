@@ -40,6 +40,6 @@ export class CartComponent implements OnInit
 
   cartDataAvailable()
   {
-    return this.cart!==undefined;
+    return this.cart!==undefined && this.cart !== null;
   }
 }

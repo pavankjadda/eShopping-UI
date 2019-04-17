@@ -7,6 +7,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {CartService} from '../../cart/service/cart.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {CartProduct} from '../../cart/model/cart-product';
+import {Cart} from '../../cart/model/cart';
 
 @Component({
   selector: 'app-product-view',
@@ -79,13 +80,24 @@ export class ProductViewComponent implements OnInit
     let cart=this.cartService.getCurrentCart;
     if(cart === null)
     {
-      cart=this.cartService.createCurrentCart;
+      this.cartService.createInitialCart();
+      this.addProductsToCart( url, cart );
+      cart=this.cartService.currentCartSubject.value;
     }
+    else
+      {
+        this.addProductsToCart( url, cart );
+
+      }
+  }
+
+  private addProductsToCart(url: string, cart: Cart)
+  {
+
     let newCartProduct=new CartProduct();
     newCartProduct.product=this.product;
     newCartProduct.quantity=1;
     cart=CartService.doesProductExistInCart(cart,newCartProduct);
-
 
     this.cartService.addProductToCart(url,cart).subscribe(
       data=>

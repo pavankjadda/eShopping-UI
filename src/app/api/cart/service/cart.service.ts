@@ -44,25 +44,26 @@ export class CartService
     this.getDraftCartStatusFromBackend();
   }
 
-  public get createCurrentCart(): Cart
+  createInitialCart()
   {
-    const url=SERVER_URL+CART_API_URL+'create/empty';
-
-    this.createEmptyCart(url).subscribe(
-      data=>
-      {
-        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
-        this.currentCartSubject.next( data );
-      },
-      error1 =>
-      {
-        console.log('Failed to create empty Cart');
-      }
-    );
-    return this.currentCartSubject.value;
+        const url=SERVER_URL+CART_API_URL+'create/empty';
+        let cart=new Cart();
+        cart.userProfile=this.authService.currentUserSubject.value.userProfile;
+        cart.status=this.getDraftCartStatus();
+        this.httpClient.post<Cart>( url, cart ).subscribe(
+          data=>
+          {
+            localStorage.setItem( 'currentCart', JSON.stringify( data ) );
+            this.currentCartSubject.next( data );
+          },
+          error1 =>
+          {
+            console.log('Error');
+          }
+        );
   }
 
-  createEmptyCart(url: string):any
+  createEmptyCart(url: string)
   {
     let cart=new Cart();
     cart.userProfile=this.authService.currentUserSubject.value.userProfile;
@@ -116,7 +117,5 @@ export class CartService
     );
 
   }
-
-
 
 }
