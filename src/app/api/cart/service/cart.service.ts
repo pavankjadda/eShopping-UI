@@ -76,23 +76,16 @@ export class CartService
    return this.currentCartSubject.value;
   }
 
-
-
-
-
   getMyCart(url: string)
   {
     return this.httpClient.get<Cart>(url);
   }
 
 
-
   addProductToCart(url: string, cart: Cart)
   {
     return this.httpClient.put<Cart>(url,cart);
   }
-
-
 
 
   private getDraftCartStatus():CartStatus
@@ -107,9 +100,6 @@ export class CartService
     }
     return null;
   }
-
-
-
 
   getDraftCartStatusFromBackend()
   {
