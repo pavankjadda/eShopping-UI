@@ -13,7 +13,28 @@ import {CartProduct} from '../model/cart-product';
 })
 export class CartService
 {
+  public currentCartSubject: BehaviorSubject<Cart>;
+  public currentCart: Observable<Cart>;
+  public cartStatuses: Array<CartStatus>;
 
+
+  static doesProductExistInCart(cart: Cart, newCartProduct: CartProduct)
+  {
+    let numberOfProducts=cart.cartProducts.length;
+    if(numberOfProducts === 0)
+    {
+      cart.cartProducts.push(newCartProduct);
+    }
+    for(let i=0;i<numberOfProducts;i++)
+    {
+      if(cart.cartProducts[0].product.id === newCartProduct.product.id)
+      {
+        cart.cartProducts[i].quantity+=1;
+        return cart;
+      }
+    }
+    return cart;
+  }
 
   constructor(private httpClient:HttpClient, private authService:AuthService, private userProfileService:UserProfileService)
   {
@@ -41,32 +62,21 @@ export class CartService
     return this.currentCartSubject.value;
   }
 
+  createEmptyCart(url: string):any
+  {
+    let cart=new Cart();
+    cart.userProfile=this.authService.currentUserSubject.value.userProfile;
+    cart.status=this.getDraftCartStatus();
+
+    return this.httpClient.post<Cart>(url, cart);
+  }
+
   public get getCurrentCart(): Cart
   {
    return this.currentCartSubject.value;
   }
-  public currentCartSubject: BehaviorSubject<Cart>;
-  public currentCart: Observable<Cart>;
-  public cartStatuses: Array<CartStatus>;
 
 
-  static doesProductExistInCart(cart: Cart, newCartProduct: CartProduct)
-  {
-    let numberOfProducts=cart.cartProducts.length;
-    if(numberOfProducts === 0)
-    {
-      cart.cartProducts.push(newCartProduct);
-    }
-    for(let i=0;i<numberOfProducts;i++)
-    {
-      if(cart.cartProducts[0].product.id === newCartProduct.product.id)
-      {
-        cart.cartProducts[i].quantity+=1;
-        return cart;
-      }
-    }
-    return cart;
-  }
 
 
 
@@ -83,14 +93,7 @@ export class CartService
   }
 
 
-  createEmptyCart(url: string):any
-  {
-    let cart=new Cart();
-    cart.userProfile=this.authService.currentUserSubject.value.userProfile;
-    cart.status=this.getDraftCartStatus();
 
-    return this.httpClient.post<Cart>(url, cart);
-  }
 
   private getDraftCartStatus():CartStatus
   {
