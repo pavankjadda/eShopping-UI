@@ -131,6 +131,7 @@ export class ManufacturerEditComponent implements OnInit
     manufacturer.fax=this.manufacturerForm.value.fax;
     manufacturer.address=this.manufacturerForm.value.address;
 
+
     this.manufacturerService.updateManufacturer( manufacturerUrl, manufacturer ).subscribe(
       data =>
       {

@@ -3,7 +3,14 @@ import {UserProfile} from '../model/user-profile';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, SERVER_URL, STATE_API_URL} from '../../../app.constants';
+import {
+  ADDRESS_TYPE_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  SERVER_URL,
+  STATE_API_URL,
+  USER_PROFILE_API_URL
+} from '../../../app.constants';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {Country} from '../../../api/country/model/country';
 import {State} from '../../../api/state/model/state';
@@ -13,6 +20,8 @@ import {StateService} from '../../../api/state/services/state.service';
 import {CountryService} from '../../../api/country/services/country.service';
 import {AddressTypeService} from '../../../api/address-type/service/address-type.service';
 import {AddressService} from '../../../api/address/service/address.service';
+import {AuthService} from '../../../core/auth/auth.service';
+import {UserProfileService} from '../service/user-profile.service';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -48,22 +57,87 @@ export class UserProfileEditComponent implements OnInit
     } );
 
 
-  constructor(private spinnerService:NgxSpinnerService,
+  constructor(private authService: AuthService,
+              private userProfileService:UserProfileService,
+              private spinnerService:NgxSpinnerService,
               private cityService:CityService,
               private stateService:StateService,
               private countryService:CountryService,
               private addressTypeService:AddressTypeService,
               private addressService:AddressService,
-            private router: Router,
-            private route:ActivatedRoute)
+              private router: Router,
+              private route:ActivatedRoute)
   {
   }
 
   ngOnInit()
   {
+    this.getUserProfile();
+    this.loadAddressTypes();
+    this.loadCountries();
   }
 
+  private getUserProfile()
+  {
+    let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
+    let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+userProfileId;
 
+    this.userProfileService.getUserProfile(userProfileUrl).subscribe(
+      data=>
+      {
+        this.userProfile=data;
+        this.userProfileForm.patchValue(
+          {
+            id: data.id,
+            username: data.user.username,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            user: data.user,
+            address: data.addresses[0]
+          }
+        );
+      },
+      error1 =>
+      {
+        console.log('Failed to get User Profile information');
+      }
+    );
+  }
+
+  updateUserProfile()
+  {
+    this.spinnerService.show();
+
+    const userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+'update';
+    let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
+    let userProfile=new UserProfile();
+    userProfile.id=userProfileId;
+    userProfile.firstName=this.userProfileForm.value.firstName;
+    userProfile.lastName=this.userProfileForm.value.lastName;
+    userProfile.email=this.userProfileForm.value.email;
+    userProfile.phone=this.userProfileForm.value.phone;
+    userProfile.user=this.authService.currentUserSubject.value;
+    userProfile.addresses=[this.userProfileForm.value.address];
+    //userProfile.addresses.push(this.userProfileForm.value.address);
+
+    this.userProfileService.updateUserProfile( userProfileUrl, userProfile ).subscribe(
+      data =>
+      {
+        userProfile=data;
+        console.log( 'userProfile updated' );
+        this.router.navigate( ['/profile'] );
+      },
+      error1 =>
+      {
+        console.log( 'Manufacturer update failed' );
+        this.spinnerService.hide();
+      }
+    );
+
+
+  }
 
   private loadAddressTypes()
   {
@@ -157,5 +231,7 @@ export class UserProfileEditComponent implements OnInit
   {
     this.router.navigate(['/manufacturer']);
   }
+
+
 
 }
