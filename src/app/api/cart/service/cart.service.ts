@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Cart} from '../model/cart';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {CART_API_URL, CART_STATUS_API_URL, SERVER_URL} from '../../../app.constants';
+import {CART_STATUS_API_URL, SERVER_URL} from '../../../app.constants';
 import {CartStatus} from '../model/cart-status';
 import {AuthService} from '../../../core/auth/auth.service';
 import {UserProfileService} from '../../../account/user-profile/service/user-profile.service';
@@ -18,8 +18,13 @@ export class CartService
   public cartStatuses: Array<CartStatus>;
 
 
-  static doesProductExistInCart(cart: Cart, newCartProduct: CartProduct)
+  static doesProductExistInCart(cart: Cart, newCartProduct:CartProduct)
   {
+    if(cart.cartProducts === undefined || cart.cartProducts === null)
+    {
+      cart.cartProducts=[newCartProduct];
+      return cart;
+    }
     let numberOfProducts=cart.cartProducts.length;
     if(numberOfProducts === 0)
     {
@@ -27,12 +32,13 @@ export class CartService
     }
     for(let i=0;i<numberOfProducts;i++)
     {
-      if(cart.cartProducts[0].product.id === newCartProduct.product.id)
+      if(cart.cartProducts[i].product.id === newCartProduct.product.id)
       {
         cart.cartProducts[i].quantity+=1;
         return cart;
       }
     }
+    cart.cartProducts.push(newCartProduct);
     return cart;
   }
 
@@ -42,34 +48,6 @@ export class CartService
     this.currentCart=this.currentCartSubject.asObservable();
 
     this.getDraftCartStatusFromBackend();
-  }
-
-  createInitialCart()
-  {
-        const url=SERVER_URL+CART_API_URL+'create/empty';
-        let cart=new Cart();
-        cart.userProfile=this.authService.currentUserSubject.value.userProfile;
-        cart.status=this.getDraftCartStatus();
-        this.httpClient.post<Cart>( url, cart ).subscribe(
-          data=>
-          {
-            localStorage.setItem( 'currentCart', JSON.stringify( data ) );
-            this.currentCartSubject.next( data );
-          },
-          error1 =>
-          {
-            console.log('Error');
-          }
-        );
-  }
-
-  createEmptyCart(url: string)
-  {
-    let cart=new Cart();
-    cart.userProfile=this.authService.currentUserSubject.value.userProfile;
-    cart.status=this.getDraftCartStatus();
-
-    return this.httpClient.post<Cart>(url, cart);
   }
 
   public get getCurrentCart(): Cart
@@ -82,14 +60,13 @@ export class CartService
     return this.httpClient.get<Cart>(url);
   }
 
-
   addProductToCart(url: string, cart: Cart)
   {
-    return this.httpClient.put<Cart>(url,cart);
+    return this.httpClient.post<Cart>(url,cart);
   }
 
 
-  private getDraftCartStatus():CartStatus
+  getDraftCartStatus():CartStatus
   {
     let statusLength=this.cartStatuses.length;
     for(let i=0; i<statusLength;i++)

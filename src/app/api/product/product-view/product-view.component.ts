@@ -80,24 +80,17 @@ export class ProductViewComponent implements OnInit
     let cart=this.cartService.getCurrentCart;
     if(cart === null)
     {
-      this.cartService.createInitialCart();
-      this.addProductsToCart( url, cart );
-      cart=this.cartService.currentCartSubject.value;
+      //this.cartService.createInitialCart();
+      cart=new Cart();
+      cart.userProfile=this.authService.currentUserSubject.value.userProfile;
+      cart.cartStatus=this.cartService.getDraftCartStatus();
     }
-    else
-      {
-        this.addProductsToCart( url, cart );
-
-      }
-  }
-
-  private addProductsToCart(url: string, cart: Cart)
-  {
 
     let newCartProduct=new CartProduct();
     newCartProduct.product=this.product;
     newCartProduct.quantity=1;
     cart=CartService.doesProductExistInCart(cart,newCartProduct);
+
 
     this.cartService.addProductToCart(url,cart).subscribe(
       data=>
@@ -111,7 +104,7 @@ export class ProductViewComponent implements OnInit
       },
       ()=>
       {
-        this.router.navigate(['/product/list']);
+        this.router.navigate(['/cart']);
       }
     );
   }

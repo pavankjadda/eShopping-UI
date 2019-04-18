@@ -5,7 +5,7 @@ import {CartProduct} from './cart-product';
 export class Cart
 {
   id: number;
-  status: CartStatus;
+  cartStatus: CartStatus;
   userProfile: UserProfile;
   cartProducts: Array<CartProduct>;
 }
