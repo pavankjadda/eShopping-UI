@@ -7,6 +7,7 @@ export class UserProfile
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   addresses: Array<Address>;
   user: User;
 

@@ -13,4 +13,9 @@ export class UserProfileService
   {
     return this.httpClient.get<UserProfile>(userProfileUrl);
   }
+
+  getUserProfileByUserId(userProfileUrl: string)
+  {
+    return this.httpClient.get<UserProfile>(userProfileUrl);
+  }
 }

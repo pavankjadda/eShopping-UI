@@ -1,3 +1,73 @@
-<p>
-  user-profile works!
-</p>
+<div>
+<h1>Profile</h1> <br>
+  <form [formGroup]="userProfileForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input class="form-control" formControlName="username" id="username" name="username" type="text" readonly>
+      <small class="form-text text-muted" id="emailHelp"></small>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input class="form-control" formControlName="firstName" id="firstName" type="text" readonly>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input  type="text" class="form-control" formControlName="lastName" id="lastName" readonly>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label> <br/>
+      <input type="text" class="form-control"  formControlName="email" id="email" readonly>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label> <br/>
+      <input type="text" class="form-control"  formControlName="phone" id="phone"  readonly >
+    </div>
+
+    <div formGroupName="address">
+      <h3>Address</h3>
+      <div formGroupName="addressType">
+        <div class="form-group">
+          <label for="type">Address Type</label>
+          <input type="text" class="form-control" formControlName="type" id="type" readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="streetName">Street Name</label>
+        <input type="text" class="form-control" formControlName="streetName" id="streetName" readonly>
+      </div>
+      <div class="form-group">
+        <label for="apartment">Apartment</label>
+        <input type="text" class="form-control" formControlName="apartment" id="apartment" readonly>
+      </div>
+      <div formGroupName="city">
+        <div class="form-group">
+          <label for="name">City</label>
+          <input type="text" class="form-control" formControlName="name" id="name" readonly>
+        </div>
+      </div>
+       <div formGroupName="state">
+          <div class="form-group">
+            <label for="name">State</label>
+            <input type="text" class="form-control" formControlName="name" id="name" readonly>
+          </div>
+        </div>
+      <div formGroupName="country">
+        <div class="form-group">
+          <label for="name">Country</label>
+          <input type="text" class="form-control" formControlName="name" id="name" readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="zipCode">Zip Code</label>
+        <input type="text" class="form-control" formControlName="zipCode" id="zipCode" readonly>
+      </div>
+    </div>
+
+    <button (click)="goHome()" class="btn btn-primary" type="submit">Home</button>
+    <button (click)="editUserProfile()" class="btn btn-primary" style="margin-left: 30px" type="button">Edit</button>
+
+  </form>
+
+</div>
