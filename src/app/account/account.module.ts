@@ -10,6 +10,8 @@ import {PasswordResetComponent} from './password-reset/password-reset.component'
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {AccountRoutingModule} from './account-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserProfileEditComponent} from './user-profile/user-profile-edit/user-profile-edit.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule({
@@ -18,14 +20,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    AccountRoutingModule],
+    AccountRoutingModule,
+    NgxSpinnerModule
+  ],
   declarations: [
     ActivateComponent,
     RegisterComponent,
     PasswordComponent,
     SettingsComponent,
     PasswordResetComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserProfileEditComponent
   ]
 })
 export class AccountModule { }
