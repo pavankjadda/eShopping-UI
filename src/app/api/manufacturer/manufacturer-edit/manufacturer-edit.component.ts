@@ -12,14 +12,7 @@ import {AddressTypeService} from '../../address-type/service/address-type.servic
 import {AddressService} from '../../address/service/address.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
-import {
-  ADDRESS_TYPE_API_URL,
-  CITY_API_URL,
-  COUNTRY_API_URL,
-  MANUFACTURER_API_URL,
-  SERVER_URL,
-  STATE_API_URL
-} from '../../../app.constants';
+import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, MANUFACTURER_API_URL, SERVER_URL, STATE_API_URL} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
 
 @Component({

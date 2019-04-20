@@ -3,14 +3,7 @@ import {UserProfile} from '../model/user-profile';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-import {
-  ADDRESS_TYPE_API_URL,
-  CITY_API_URL,
-  COUNTRY_API_URL,
-  SERVER_URL,
-  STATE_API_URL,
-  USER_PROFILE_API_URL
-} from '../../../app.constants';
+import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, SERVER_URL, STATE_API_URL, USER_PROFILE_API_URL} from '../../../app.constants';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {Country} from '../../../api/country/model/country';
 import {State} from '../../../api/state/model/state';
