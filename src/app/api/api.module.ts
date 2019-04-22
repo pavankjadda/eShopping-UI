@@ -41,6 +41,8 @@ import {OrderDeleteComponent} from './order/order-delete/order-delete.component'
 import {OrderNewComponent} from './order/order-new/order-new.component';
 import {CartComponent} from './cart/cart.component';
 import {TypeaheadModule} from 'ngx-bootstrap';
+import {DataViewModule} from 'primeng/dataview';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -87,7 +89,9 @@ import {TypeaheadModule} from 'ngx-bootstrap';
     NgxSpinnerModule,
     RouterModule,
     ApiRoutingModule,
-    TypeaheadModule
+    TypeaheadModule,
+    DataViewModule,
+    TableModule
   ]
 })
 export class ApiModule { }
