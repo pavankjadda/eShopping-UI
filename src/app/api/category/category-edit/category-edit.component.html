@@ -13,9 +13,9 @@
     </div>
     <div class="form-group">
       <label for="description">Category Description</label>
-      <input class="form-control" formControlName="description" id="description"
-             placeholder="Enter New Category Description" required
-             type="text">
+      <textarea class="form-control" formControlName="description" id="description"
+             placeholder="Enter New Category Description" required>
+      </textarea>
     </div>
 
     <button (click)="updateCategory()" class="btn btn-primary" type="submit">Update</button>
