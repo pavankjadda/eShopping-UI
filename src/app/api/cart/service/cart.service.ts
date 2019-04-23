@@ -17,7 +17,6 @@ export class CartService
   public currentCart: Observable<Cart>;
   public cartStatuses: Array<CartStatus>;
 
-
   static doesProductExistInCart(cart: Cart, newCartProduct:CartProduct)
   {
     if(cart.cartProducts === undefined || cart.cartProducts === null)
