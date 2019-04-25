@@ -4,9 +4,8 @@ import {Cart} from '../model/cart';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CART_STATUS_API_URL, SERVER_URL} from '../../../app.constants';
 import {CartStatus} from '../model/cart-status';
-import {AuthService} from '../../../core/auth/auth.service';
-import {UserProfileService} from '../../../account/user-profile/service/user-profile.service';
 import {CartProduct} from '../model/cart-product';
+import {UserProfile} from '../../../account/user-profile/model/user-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -19,34 +18,33 @@ export class CartService
 
   static doesProductExistInCart(cart: Cart, newCartProduct:CartProduct)
   {
-    if(cart.cartProducts === undefined || cart.cartProducts === null)
+    if(cart.cartProducts === undefined || cart.cartProducts === null || cart.cartProducts.length === 0)
     {
-      cart.cartProducts=[newCartProduct];
-      return cart;
+      newCartProduct.quantity=1;
     }
-    let numberOfProducts=cart.cartProducts.length;
-    if(numberOfProducts === 0)
-    {
-      cart.cartProducts.push(newCartProduct);
-    }
-    for(let i=0;i<numberOfProducts;i++)
+    for(let i=0;i<cart.cartProducts.length;i++)
     {
       if(cart.cartProducts[i].product.id === newCartProduct.product.id)
       {
-        cart.cartProducts[i].quantity+=1;
-        return cart;
+        newCartProduct.quantity=cart.cartProducts[i].quantity+1;
+        newCartProduct.id=cart.cartProducts[i].id;
+        break;
       }
     }
-    cart.cartProducts.push(newCartProduct);
-    return cart;
+    return newCartProduct;
   }
 
-  constructor(private httpClient:HttpClient, private authService:AuthService, private userProfileService:UserProfileService)
+  constructor(private httpClient:HttpClient)
   {
     this.currentCartSubject=new BehaviorSubject<Cart>(JSON.parse( localStorage.getItem( 'currentCart' ) ));
     this.currentCart=this.currentCartSubject.asObservable();
 
     this.getDraftCartStatusFromBackend();
+  }
+
+  initializeCart(initializeCartUrl: string, userProfile: UserProfile)
+  {
+    return this.httpClient.post<Cart>(initializeCartUrl,userProfile);
   }
 
   public get getCurrentCart(): Cart
@@ -59,9 +57,9 @@ export class CartService
     return this.httpClient.get<Cart>(url);
   }
 
-  addProductToCart(url: string, cart: Cart)
+  addProductToCart(url: string, cartProduct: CartProduct)
   {
-    return this.httpClient.post<Cart>(url,cart);
+    return this.httpClient.post<Cart>(url,cartProduct);
   }
 
 
@@ -93,5 +91,6 @@ export class CartService
     );
 
   }
+
 
 }

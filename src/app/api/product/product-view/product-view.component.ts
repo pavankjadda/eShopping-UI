@@ -75,24 +75,36 @@ export class ProductViewComponent implements OnInit
 
   addProductToCart()
   {
-    const productId=this.route.snapshot.paramMap.get('id');
-    const url=SERVER_URL+CART_API_URL+'product/add';
     let cart=this.cartService.getCurrentCart;
     if(cart === null)
     {
-      //this.cartService.createInitialCart();
-      cart=new Cart();
-      cart.userProfile=this.authService.currentUserSubject.value.userProfile;
-      cart.cartStatus=this.cartService.getDraftCartStatus();
+      const initializeCartUrl = SERVER_URL + CART_API_URL + 'initialize';
+      let userProfile = this.authService.currentUserSubject.value.userProfile;
+      this.cartService.initializeCart(initializeCartUrl,userProfile).subscribe(
+        data=>
+        {
+          cart=data;
+          this.updateCart(cart);
+        }
+      );
+    }
+    else
+    {
+      this.updateCart(cart);
     }
 
+  }
+
+  private updateCart(cart: Cart)
+  {
+    const addProductToCartUrl=SERVER_URL+CART_API_URL+'product/add';
     let newCartProduct=new CartProduct();
     newCartProduct.product=this.product;
     newCartProduct.quantity=1;
-    cart=CartService.doesProductExistInCart(cart,newCartProduct);
+    newCartProduct.cart=cart;
+    newCartProduct=CartService.doesProductExistInCart(cart,newCartProduct);
 
-
-    this.cartService.addProductToCart(url,cart).subscribe(
+    this.cartService.addProductToCart(addProductToCartUrl,newCartProduct).subscribe(
       data=>
       {
         localStorage.setItem( 'currentCart', JSON.stringify( data ) );
@@ -108,4 +120,5 @@ export class ProductViewComponent implements OnInit
       }
     );
   }
+
 }

@@ -1,7 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, MANUFACTURER_API_URL, SERVER_URL, STATE_API_URL} from '../../../app.constants';
+import {
+  ADDRESS_TYPE_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  MANUFACTURER_API_URL,
+  SERVER_URL,
+  STATE_API_URL
+} from '../../../app.constants';
 import {Router} from '@angular/router';
 import {CountryService} from '../../country/services/country.service';
 import {AddressTypeService} from '../../address-type/service/address-type.service';
