@@ -101,8 +101,8 @@ export class ProductViewComponent implements OnInit
     let newCartProduct=new CartProduct();
     newCartProduct.product=this.product;
     newCartProduct.quantity=1;
-    newCartProduct.cart=new Cart();
-    newCartProduct.cart.id=cart.id;
+    newCartProduct.cart=cart;
+    //newCartProduct.cart.id=cart.id;
     newCartProduct=CartService.doesProductExistInCart(cart,newCartProduct);
 
     this.cartService.addProductToCart(addProductToCartUrl,newCartProduct).subscribe(
