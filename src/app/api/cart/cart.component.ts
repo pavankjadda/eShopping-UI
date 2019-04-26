@@ -5,6 +5,7 @@ import {Cart} from './model/cart';
 import {AuthService} from '../../core/auth/auth.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {CartProduct} from './model/cart-product';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit
   cols: any[];
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
-              private authService:AuthService)
+              private authService:AuthService,
+              private router:Router)
   {
 
   }
@@ -39,7 +41,10 @@ export class CartComponent implements OnInit
         localStorage.setItem( 'currentCart', JSON.stringify( data ) );
         this.cartService.currentCartSubject.next( data );
         this.cart=data;
-        this.cartProducts=data.cartProducts;
+        if(data !== null && data.cartProducts!== null)
+        {
+          this.cartProducts=data.cartProducts;
+        }
         this.ngxSpinnerService.hide();
       }
     );
@@ -47,6 +52,27 @@ export class CartComponent implements OnInit
 
   cartDataAvailable()
   {
-    return this.cart!==undefined && this.cart !== null;
+    return this.cart!==undefined && this.cart !== null && this.cartProducts.length>=0;
+  }
+
+  deleteCart()
+  {
+    if(confirm('Are you sure you wanna delete the cart?'))
+    {
+      this.ngxSpinnerService.show();
+      const cartUrl=SERVER_URL+CART_API_URL+'delete/'+this.cartService.getCurrentCart.id;
+      this.cartService.deleteMyCart(cartUrl).subscribe(
+        data=>
+        {
+          this.getMyCart();
+          this.ngxSpinnerService.hide();
+        },
+        error1 =>
+        {
+          this.ngxSpinnerService.hide();
+        }
+      );
+    }
+
   }
 }

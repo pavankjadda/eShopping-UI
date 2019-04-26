@@ -93,4 +93,8 @@ export class CartService
   }
 
 
+  deleteMyCart(cartUrl: string)
+  {
+    return this.httpClient.delete(cartUrl);
+  }
 }
