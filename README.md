@@ -1,4 +1,4 @@
-https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI.svg?branch=feature%2F28
+[![Build Status](https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI.svg?branch=feature%2F28)](https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI)
 
 # Angular 7 UI for SpringSecurity Project
 
