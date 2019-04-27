@@ -27,19 +27,15 @@ install:
 
 jobs:
   include:
-    - stage: ng --version
-      name: "ng version"
-      script: ./test
-
-    - stage: ng build
+    - stage: Build App
       name: "ng build"
       script: ng build
 
-#    - stage: test
+#    - stage: Test App
 #      name: "ng test"
 #      script: ng test
 
-    - stage: deploy
+    - stage: Deploy App
       script: ng build --prod --base-href https://github.com/pavankjadda/SpringSecurity-SpringData-UI.git
 
 
