@@ -28,16 +28,19 @@ jobs:
   include:
     - stage: Build App
       name: "ng build"
-      script:
-        - ng --version
-        - ng build
+    - script:
+      - ng --version
+      - ng build
+    - script:
+      - ng build --prod
 
 #    - stage: Test App
 #      name: "ng test"
 #      script: ng test
 
     - stage: Deploy App
-      script: ng build --prod
+      #script: ng build --prod
+      script: ng --version
 
 
 notifications:
