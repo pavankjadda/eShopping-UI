@@ -26,15 +26,15 @@ install:
 
 jobs:
   include:
-    ## Build Stage
+    ## Build Stage  ##
     - stage: Build App
     - script:
       - ng --version
-      - ng build
+      #- ng test
     - script:
       - ng build --prod
 
-    ## Deploy Stage
+    ## Deploy Stage ##
     - stage: Deploy App
       if: branch = master
       #script: ng build --prod
