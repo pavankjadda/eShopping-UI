@@ -1,4 +1,4 @@
-https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI.svg?branch=master
+https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI.svg?branch=feature%2F28
 
 # Angular 7 UI for SpringSecurity Project
 
