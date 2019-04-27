@@ -1,0 +1,42 @@
+os: linux
+dist: trusty
+sudo: required
+
+language: node_js
+node_js:
+  - "10.15.3"
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+branches:
+  only:
+    - /.*/
+
+before_install:
+  - sudo apt-get update
+
+before_script:
+  - npm install -g @angular/cli
+  - npm install
+  - npm audit fix
+
+jobs:
+  include:
+    - stage: compile
+      name: "Compile Stage"            # names the first Tests stage job
+      script: ng lint
+    - script: npm --version
+      name: "Compile Stage2"
+
+    - stage: test
+      script: npm --version
+
+    - stage: deploy
+      script: npm --version
+
+
