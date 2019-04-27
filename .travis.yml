@@ -28,14 +28,16 @@ jobs:
   include:
     - stage: Build App
       name: "ng build"
-      script: ng build
+      script:
+        - ng --version
+        - ng build
 
 #    - stage: Test App
 #      name: "ng test"
 #      script: ng test
 
     - stage: Deploy App
-      script: ng build --prod --base-href https://github.com/pavankjadda/SpringSecurity-SpringData-UI.git
+      script: ng build --prod
 
 
 notifications:
