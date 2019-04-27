@@ -28,15 +28,20 @@ before_script:
 jobs:
   include:
     - stage: compile
-      name: "Compile Stage"            # names the first Tests stage job
+      name: "ng lint"            # names the first Tests stage job
       script: ng lint
-    - script: npm --version
-      name: "Compile Stage2"
+    - script: ng build
+      name: "ng build"
 
     - stage: test
-      script: npm --version
+      script: ng test
+      name: "ng test"
 
     - stage: deploy
-      script: npm --version
+      script: ng build --prod --base-href https://github.com/pavankjadda/SpringSecurity-SpringData-UI.git
 
 
+notifications:
+  email:
+    on_failure: always
+    on_success: change
