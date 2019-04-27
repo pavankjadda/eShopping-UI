@@ -35,9 +35,9 @@ jobs:
       name: "ng build"
       script: ng build
 
-    - stage: test
-      name: "ng test"
-      script: ng test
+#    - stage: test
+#      name: "ng test"
+#      script: ng test
 
     - stage: deploy
       script: ng build --prod --base-href https://github.com/pavankjadda/SpringSecurity-SpringData-UI.git
