@@ -30,7 +30,6 @@ jobs:
     - stage: Build App
     - script:
       - ng --version
-      #- ng test
     - script:
       - ng build --prod
 
