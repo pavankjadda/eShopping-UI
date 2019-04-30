@@ -18,7 +18,7 @@ export class CartService
 
   static doesProductExistInCart(cart: Cart, newCartProduct:CartProduct)
   {
-    if(cart.cartProducts === undefined || cart.cartProducts === null || cart.cartProducts.length === 0)
+    if( cart.cartProducts === null || cart.cartProducts === undefined || cart.cartProducts.length === 0)
     {
       newCartProduct.quantity=1;
     }
@@ -36,15 +36,25 @@ export class CartService
 
   constructor(private httpClient:HttpClient)
   {
-    this.currentCartSubject=new BehaviorSubject<Cart>(JSON.parse( localStorage.getItem( 'currentCart' ) ));
-    this.currentCart=this.currentCartSubject.asObservable();
+    if(localStorage.getItem( 'currentCart' ) === 'undefined' || localStorage.getItem( 'currentCart' ) === null)
+    {
+      this.currentCartSubject=new BehaviorSubject<Cart>(null);
+      this.currentCart=this.currentCartSubject.asObservable();
+    }
+    else
+    {
+      this.currentCartSubject=new BehaviorSubject<Cart>(JSON.parse( localStorage.getItem( 'currentCart' ) ));
+      this.currentCart=this.currentCartSubject.asObservable();
+    }
 
     this.getDraftCartStatusFromBackend();
   }
 
-  initializeCart(initializeCartUrl: string, userProfile: UserProfile)
+  async initializeCart(initializeCartUrl: string, userProfile: UserProfile)
   {
-    return this.httpClient.post<Cart>(initializeCartUrl,userProfile);
+    let response = await this.httpClient.post<any>(initializeCartUrl,userProfile).toPromise();
+    localStorage.setItem('currentCart', JSON.stringify(response));
+    this.currentCartSubject.next(response);
   }
 
   public get getCurrentCart(): Cart

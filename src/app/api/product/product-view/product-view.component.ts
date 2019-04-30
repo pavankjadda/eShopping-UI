@@ -7,7 +7,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {CartService} from '../../cart/service/cart.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {CartProduct} from '../../cart/model/cart-product';
-import {Cart} from '../../cart/model/cart';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-product-view',
@@ -17,21 +17,22 @@ import {Cart} from '../../cart/model/cart';
 export class ProductViewComponent implements OnInit
 {
   product: Product;
-  productForm=new FormGroup( {
-                               id: new FormControl( {value: '', disabled: true} ),
-                               name: new FormControl( '' ),
-                               description: new FormControl( '' ),
-                               price: new FormControl( '' ),
-                               amount: new FormControl( '' ),
-                               category: new FormControl( '' ),
-                               currency: new FormControl( '' ),
-                               manufacturer: new FormControl( '' )
-                             } );
+  productForm = new FormGroup({
+    id: new FormControl({value: '', disabled: true}),
+    name: new FormControl(''),
+    description: new FormControl(''),
+    price: new FormControl(''),
+    amount: new FormControl(''),
+    category: new FormControl(''),
+    currency: new FormControl(''),
+    manufacturer: new FormControl('')
+  });
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private cartService:CartService,
-              private authService:AuthService,
+              private cartService: CartService,
+              private authService: AuthService,
+              private httpClient: HttpClient,
               private router: Router)
   {
   }
@@ -43,82 +44,123 @@ export class ProductViewComponent implements OnInit
 
   productDataAvailable(): boolean
   {
-    return this.product!==undefined;
+    return this.product !== undefined;
   }
 
-  private getProduct()
+  async addProductToCart()
   {
-    const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=SERVER_URL+PRODUCT_API_URL+'find/'+id;
-    this.productService.getProductDetails( url ).pipe()
-        .subscribe(
-          data =>
-          {
-            this.product=data;
-            this.productForm.patchValue(
-              {
-                id: data.id,
-                name: data.name,
-                description: data.description,
-                price: data.price.currency.symbol+data.price.amount,
-                amount: data.price.amount,
-                currency: data.price.currency.symbol,
-                category: data.category.name,
-                manufacturer: data.manufacturer.name,
-              });
-          },
-          error =>
-          {
-            console.log( error );
-          });
-  }
-
-  addProductToCart()
-  {
-    let cart=this.cartService.getCurrentCart;
-    if(cart === null)
+    let cart = this.cartService.getCurrentCart;
+    if (cart === null)
     {
       const initializeCartUrl = SERVER_URL + CART_API_URL + 'initialize';
       let userProfile = this.authService.currentUserSubject.value.userProfile;
-      this.cartService.initializeCart(initializeCartUrl,userProfile).subscribe(
-        data=>
+      await this.cartService.initializeCart(initializeCartUrl, userProfile);
+    }
+      cart = this.cartService.getCurrentCart;
+      const addProductToCartUrl = SERVER_URL + CART_API_URL + 'product/add';
+      let newCartProduct = new CartProduct();
+      newCartProduct.product = this.product;
+      newCartProduct.quantity = 1;
+      newCartProduct.cart = cart;
+      //newCartProduct.cart.id=cart.id;
+      newCartProduct = CartService.doesProductExistInCart(cart, newCartProduct);
+
+      this.cartService.addProductToCart(addProductToCartUrl, newCartProduct).subscribe(
+        data =>
         {
-          cart=data;
-          this.updateCart(cart);
+          localStorage.setItem('currentCart', JSON.stringify(data));
+          this.cartService.currentCartSubject.next(data);
+        },
+        error1 =>
+        {
+          console.log('Failed to update cart');
+        },
+        () =>
+        {
+          this.router.navigate(['/cart']);
         }
       );
     }
-    else
+
+
+  private getProduct()
+  {
+    const id = this.route.snapshot.paramMap.get('id');
+    const url = SERVER_URL + PRODUCT_API_URL + 'find/' + id;
+    this.productService.getProductDetails(url).pipe()
+      .subscribe(
+        data =>
+        {
+          this.product = data;
+          this.productForm.patchValue(
+            {
+              id: data.id,
+              name: data.name,
+              description: data.description,
+              price: data.price.currency.symbol + data.price.amount,
+              amount: data.price.amount,
+              currency: data.price.currency.symbol,
+              category: data.category.name,
+              manufacturer: data.manufacturer.name,
+            });
+        },
+        error =>
+        {
+          console.log(error);
+        });
+  }
+
+  /*  private updateCart(cart: Cart)
     {
-      this.updateCart(cart);
+      const addProductToCartUrl=SERVER_URL+CART_API_URL+'product/add';
+      let newCartProduct=new CartProduct();
+      newCartProduct.product=this.product;
+      newCartProduct.quantity=1;
+      newCartProduct.cart=cart;
+      //newCartProduct.cart.id=cart.id;
+      newCartProduct=CartService.doesProductExistInCart(cart,newCartProduct);
+
+      this.cartService.addProductToCart(addProductToCartUrl,newCartProduct).subscribe(
+        data=>
+        {
+          localStorage.setItem( 'currentCart', JSON.stringify( data ) );
+          this.cartService.currentCartSubject.next( data );
+        },
+        error1 =>
+        {
+          console.log('Failed to update cart');
+        },
+        ()=>
+        {
+          this.router.navigate(['/cart']);
+        }
+      );
+    }*/
+
+  /*  loadConfig(): Promise<any>
+    {
+      return this.http.get(environment.serviceUrl.concat('/configuration'))
+        .pipe(
+          map(( r: Response ) => {
+            if ((r.status < 200) || (r.status >= 300)) {
+              throw new Error(('This request has failed ' + r.status));
+            }
+            else {
+              ConfigService._appConfig = appConfig;
+
+              ConfigService._appConfig.versionNumber = r['versionNumber'];
+              ConfigService._appConfig.pdipUrl = r['pdipUrl'];
+              ConfigService._appConfig.matUrl = r['matUrl'];
+            }}))
+        .toPromise();
     }
 
-  }
-
-  private updateCart(cart: Cart)
-  {
-    const addProductToCartUrl=SERVER_URL+CART_API_URL+'product/add';
-    let newCartProduct=new CartProduct();
-    newCartProduct.product=this.product;
-    newCartProduct.quantity=1;
-    newCartProduct.cart=cart;
-    //newCartProduct.cart.id=cart.id;
-    newCartProduct=CartService.doesProductExistInCart(cart,newCartProduct);
-
-    this.cartService.addProductToCart(addProductToCartUrl,newCartProduct).subscribe(
-      data=>
-      {
-        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
-        this.cartService.currentCartSubject.next( data );
-      },
-      error1 =>
-      {
-        console.log('Failed to update cart');
-      },
-      ()=>
-      {
-        this.router.navigate(['/cart']);
+    getAppConfig(): any {
+      if (!ConfigService._appConfig) {
+        throw Error('Config file not loaded!');
       }
-    );
-  }
+
+      return ConfigService._appConfig;
+    }*/
+
 }
