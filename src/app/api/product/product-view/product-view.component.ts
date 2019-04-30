@@ -8,6 +8,7 @@ import {CartService} from '../../cart/service/cart.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {CartProduct} from '../../cart/model/cart-product';
 import {HttpClient} from '@angular/common/http';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-view',
@@ -33,6 +34,7 @@ export class ProductViewComponent implements OnInit
               private cartService: CartService,
               private authService: AuthService,
               private httpClient: HttpClient,
+              private spinner:NgxSpinnerService,
               private router: Router)
   {
   }
@@ -49,6 +51,8 @@ export class ProductViewComponent implements OnInit
 
   async addProductToCart()
   {
+    this.spinner.show();
+
     let cart = this.cartService.getCurrentCart;
     if (cart === null)
     {
@@ -73,6 +77,7 @@ export class ProductViewComponent implements OnInit
         },
         error1 =>
         {
+          this.spinner.hide();
           console.log('Failed to update cart');
         },
         () =>
