@@ -111,4 +111,9 @@ export class CartService
   {
     return this.httpClient.post<Cart>( cartUrl, cartProduct );
   }
+
+  deleteCartProduct(cartUrl: string)
+  {
+    return this.httpClient.delete(cartUrl);
+  }
 }
