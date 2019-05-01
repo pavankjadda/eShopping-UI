@@ -17,7 +17,9 @@
       <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
         <th scope="row">{{i+1}}</th>
         <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
-        <td>{{cartProduct.quantity}}</td>
+        <td>
+          <p-spinner formControlName="age">cartProduct.quantity</p-spinner>
+        </td>
         <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
         <td></td>
       </tr>

@@ -43,6 +43,7 @@ import {CartComponent} from './cart/cart.component';
 import {TypeaheadModule} from 'ngx-bootstrap';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
+import {SpinnerModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -83,16 +84,17 @@ import {TableModule} from 'primeng/table';
     OrderNewComponent,
     CartComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    ApiRoutingModule,
-    TypeaheadModule,
-    DataViewModule,
-    TableModule
-  ]
-})
+            imports: [
+              CommonModule,
+              ReactiveFormsModule,
+              NgxSpinnerModule,
+              RouterModule,
+              ApiRoutingModule,
+              TypeaheadModule,
+              DataViewModule,
+              TableModule,
+              SpinnerModule
+            ]
+          } )
 export class ApiModule { }
 
