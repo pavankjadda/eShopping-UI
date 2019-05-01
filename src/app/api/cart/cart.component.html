@@ -12,6 +12,7 @@
       <th scope="col">Product</th>
       <th scope="col">Quantity</th>
       <th scope="col">Total Cost</th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody style="text-align: center">
@@ -24,13 +25,16 @@
         </p-spinner>
       </td>
       <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
-      <td></td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteProductFromCart(cartProduct)">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>
 
-  <p>
+  <p style="text-align: center">
     <br/>
+    <input (click)="goToProducts()" class=" btn btn-primary" type="button" value="Go to Products" style="margin: 20px">
     <input (click)="deleteCart()" class=" btn btn-danger" type="button" value="Delete Cart">
   </p>
 </div>

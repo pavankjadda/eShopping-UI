@@ -30,7 +30,7 @@ export class CartComponent implements OnInit
     this.getMyCart();
   }
 
-
+  //Takes care update and delete if quantity is zero
   updateCartProductQuantity(cartProduct: CartProduct)
   {
     this.ngxSpinnerService.show();
@@ -46,6 +46,27 @@ export class CartComponent implements OnInit
           this.ngxSpinnerService.hide();
         }
       );
+  }
+
+  deleteProductFromCart(cartProduct: CartProduct)
+  {
+    if(confirm('Are you sure you want to delete '+cartProduct.product.name+' from Cart?'))
+    {
+      this.ngxSpinnerService.show();
+      const cartUrl=SERVER_URL+CART_API_URL+'product/delete/'+cartProduct.id;
+      this.cartService.deleteCartProduct( cartUrl ).subscribe(
+        data=>
+        {
+          this.getMyCart();
+          this.ngxSpinnerService.hide();
+        },
+        error1 =>
+        {
+          this.ngxSpinnerService.hide();
+        }
+      );
+    }
+
   }
 
   cartDataAvailable()
@@ -90,5 +111,11 @@ export class CartComponent implements OnInit
         this.ngxSpinnerService.hide();
       }
     );
+  }
+
+
+  goToProducts()
+  {
+    this.router.navigate(['/product/list']);
   }
 }
