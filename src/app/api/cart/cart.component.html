@@ -19,8 +19,7 @@
       <th scope="row">{{i + 1}}</th>
       <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
       <td>
-        <p-spinner (ngModelChange)="updateCartProductQuantity(cartProduct)" [(ngModel)]="cartProduct.quantity"
-                   [step]="1" size="2">
+        <p-spinner (onChange)="updateCartProductQuantity(cartProduct)" [(ngModel)]="cartProduct.quantity" [step]="1"  [max]="100">
           cartProduct.quantity
         </p-spinner>
       </td>

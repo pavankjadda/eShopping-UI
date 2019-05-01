@@ -34,23 +34,6 @@ export class CartComponent implements OnInit
   updateCartProductQuantity(cartProduct: CartProduct)
   {
     this.ngxSpinnerService.show();
-    if(cartProduct.quantity === 0)
-    {
-      const cartUrl=SERVER_URL+CART_API_URL+'product/delete/'+cartProduct.id;
-      this.cartService.deleteCartProduct( cartUrl ).subscribe(
-        data=>
-        {
-          this.getMyCart();
-          this.ngxSpinnerService.hide();
-        },
-        error1 =>
-        {
-          this.ngxSpinnerService.hide();
-        }
-      );
-    }
-    else
-    {
       const cartUrl=SERVER_URL+CART_API_URL+'product/update';
       this.cartService.updateCartProduct( cartUrl, cartProduct ).subscribe(
         data=>
@@ -63,8 +46,6 @@ export class CartComponent implements OnInit
           this.ngxSpinnerService.hide();
         }
       );
-    }
-
   }
 
   cartDataAvailable()
