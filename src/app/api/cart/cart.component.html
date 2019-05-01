@@ -3,9 +3,10 @@
 
 <h1> My Cart</h1>
 
-<div  *ngIf="cartDataAvailable()" class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+<div *ngIf="cartDataAvailable()"
+     class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
   <table class="table">
-    <thead  style="text-align: center">
+    <thead style="text-align: center">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product</th>
@@ -14,61 +15,24 @@
     </tr>
     </thead>
     <tbody style="text-align: center">
-      <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
-        <th scope="row">{{i+1}}</th>
-        <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
-        <td>
-          <p-spinner formControlName="age">cartProduct.quantity</p-spinner>
-        </td>
-        <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
-        <td></td>
-      </tr>
+    <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
+      <th scope="row">{{i + 1}}</th>
+      <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
+      <td>
+        <p-spinner (ngModelChange)="updateCartProductQuantity(cartProduct)" [(ngModel)]="cartProduct.quantity"
+                   [step]="1" size="2">
+          cartProduct.quantity
+        </p-spinner>
+      </td>
+      <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
+      <td></td>
+    </tr>
     </tbody>
   </table>
 
   <p>
     <br/>
-    <input type="button" class=" btn btn-danger" (click)="deleteCart()" value="Delete Cart">
-
+    <input (click)="deleteCart()" class=" btn btn-danger" type="button" value="Delete Cart">
   </p>
 </div>
 
-
-<!--
-<p-dataView [value]="cartProducts">
-  <p-header>List of Cars</p-header>
-  <p-footer>Choose from the list.</p-footer>
-  <ng-template let-cartProduct pTemplate="listItem">
-    <div>
-      {{cartProduct.id}}
-    </div>
-  </ng-template>
-  <ng-template let-cartProduct pTemplate="gridItem">
-    <div class="ui-g-12 ui-md-3">
-      {{cartProduct.quantity}}
-    </div>
-  </ng-template>
-</p-dataView>
-
-
-
-<p-dataView [value]="cartProducts">
-  <p-header>
-    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-  </p-header>
-  <p-footer>
-    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-  </p-footer>
-
-  <ng-template let-cartProduct pTemplate="listItem">
-    <div>
-      {{cartProduct.id}}
-    </div>
-  </ng-template>
-  <ng-template let-cartProduct pTemplate="gridItem">
-    <div class="ui-g-12 ui-md-3">
-      {{cartProduct.quantity}}
-    </div>
-  </ng-template>
-</p-dataView>
--->

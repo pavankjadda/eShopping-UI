@@ -102,9 +102,13 @@ export class CartService
 
   }
 
-
   deleteMyCart(cartUrl: string)
   {
     return this.httpClient.delete(cartUrl);
+  }
+
+  updateCartProduct(cartUrl: string, cartProduct: CartProduct)
+  {
+    return this.httpClient.post<Cart>( cartUrl, cartProduct );
   }
 }

@@ -16,7 +16,7 @@ export class CartComponent implements OnInit
 {
   cart: Cart;
   cartProducts: Array<CartProduct>;
-  cols: any[];
+
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
               private authService:AuthService,
@@ -31,20 +31,19 @@ export class CartComponent implements OnInit
   }
 
 
-  private getMyCart()
+  updateCartProductQuantity(cartProduct: CartProduct)
   {
     this.ngxSpinnerService.show();
-    const cartUrl=SERVER_URL+CART_API_URL+'find/user/'+this.authService.currentUserValue.id;
-    this.cartService.getMyCart(cartUrl).subscribe(
+    const cartUrl=SERVER_URL+CART_API_URL+'product/update';
+
+    this.cartService.updateCartProduct( cartUrl, cartProduct ).subscribe(
       data=>
       {
-        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
-        this.cartService.currentCartSubject.next( data );
-        this.cart=data;
-        if(data !== null && data.cartProducts!== null)
-        {
-          this.cartProducts=data.cartProducts;
-        }
+        this.getMyCart();
+        this.ngxSpinnerService.hide();
+      },
+      error1 =>
+      {
         this.ngxSpinnerService.hide();
       }
     );
@@ -73,5 +72,24 @@ export class CartComponent implements OnInit
         }
       );
     }
+  }
+
+  private getMyCart()
+  {
+    this.ngxSpinnerService.show();
+    const cartUrl=SERVER_URL+CART_API_URL+'find/user/'+this.authService.currentUserValue.id;
+    this.cartService.getMyCart( cartUrl ).subscribe(
+      data =>
+      {
+        localStorage.setItem( 'currentCart', JSON.stringify( data ) );
+        this.cartService.currentCartSubject.next( data );
+        this.cart=data;
+        if(data.cartProducts!==null)
+        {
+          this.cartProducts=data.cartProducts;
+        }
+        this.ngxSpinnerService.hide();
+      }
+    );
   }
 }

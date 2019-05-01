@@ -6,6 +6,7 @@ export const CURRENCY_API_URL='api/v1/currency/';
 export const MANUFACTURER_API_URL='api/v1/manufacturer/';
 export const ORDER_API_URL='api/v1/order/';
 export const CART_API_URL='api/v1/cart/';
+export const CART_PRODUCT_API_URL='api/v1/cart/';
 export const CART_STATUS_API_URL='api/v1/cart_status/';
 
 

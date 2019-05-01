@@ -22,7 +22,7 @@ import {ProductNewComponent} from './product/product-new/product-new.component';
 import {ProductDeleteComponent} from './product/product-delete/product-delete.component';
 import {ProductViewComponent} from './product/product-view/product-view.component';
 import {ProductEditComponent} from './product/product-edit/product-edit.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ApiRoutingModule} from './api-routing.module';
 import {ManufacturerComponent} from './manufacturer/manufacturer.component';
@@ -93,7 +93,8 @@ import {SpinnerModule} from 'primeng/primeng';
               TypeaheadModule,
               DataViewModule,
               TableModule,
-              SpinnerModule
+              SpinnerModule,
+              FormsModule
             ]
           } )
 export class ApiModule { }
