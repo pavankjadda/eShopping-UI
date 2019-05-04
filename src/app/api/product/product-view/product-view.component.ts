@@ -28,7 +28,8 @@ export class ProductViewComponent implements OnInit
     amount: new FormControl(''),
     category: new FormControl(''),
     currency: new FormControl(''),
-    manufacturer: new FormControl('')
+    manufacturer: new FormControl(''),
+    quantityAvailable: new FormControl('')
   });
 
   constructor(private productService: ProductService,
@@ -127,6 +128,10 @@ export class ProductViewComponent implements OnInit
           data =>
           {
             this.productInventory = data;
+            this.productForm.patchValue(
+              {
+                quantityAvailable: data.quantity,
+              });
           },
           error =>
           {
@@ -136,6 +141,6 @@ export class ProductViewComponent implements OnInit
 
   isProductInventoryEmpty():boolean
   {
-    return this.productInventory.quantity <= 0;
+    return this.productInventory!==undefined && this.productInventory.quantity <= 0;
   }
 }
