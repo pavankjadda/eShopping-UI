@@ -17,6 +17,7 @@ export class CartComponent implements OnInit
   cart: Cart;
   cartProducts: Array<CartProduct>;
   totalCost:number;
+  taxRate:number;
 
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
