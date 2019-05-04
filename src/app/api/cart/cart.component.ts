@@ -39,7 +39,7 @@ export class CartComponent implements OnInit
   //Takes care update and delete if quantity is zero
   updateCartProductQuantity(cartProduct: CartProduct)
   {
-    this.ngxSpinnerService.show();
+      this.ngxSpinnerService.show();
       const cartUrl=SERVER_URL+CART_API_URL+'product/update';
       this.cartService.updateCartProduct( cartUrl, cartProduct ).subscribe(
         data=>
