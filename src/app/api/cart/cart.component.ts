@@ -132,10 +132,6 @@ export class CartComponent implements OnInit
   }
 
 
-  goToProducts()
-  {
-    this.router.navigate(['/product/list']);
-  }
 
   private getProductInventory()
   {
@@ -171,4 +167,10 @@ export class CartComponent implements OnInit
     }
      return 1;
   }
+
+  goToProducts()
+  {
+    this.router.navigate(['/product/list']);
+  }
+
 }
