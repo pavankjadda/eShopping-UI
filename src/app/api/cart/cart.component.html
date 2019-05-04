@@ -11,7 +11,7 @@
       <th scope="col">#</th>
       <th scope="col">Product</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Total Cost</th>
+      <th scope="col">Cost</th>
       <th scope="col"></th>
     </tr>
     </thead>
@@ -30,6 +30,14 @@
       </td>
     </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>Total Cost = ${{totalCost.toPrecision(6)}}</th>
+      </tr>
+    </tfoot>
   </table>
 
   <p style="text-align: center">

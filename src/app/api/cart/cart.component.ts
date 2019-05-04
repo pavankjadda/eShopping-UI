@@ -16,6 +16,7 @@ export class CartComponent implements OnInit
 {
   cart: Cart;
   cartProducts: Array<CartProduct>;
+  totalCost:number;
 
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
@@ -27,6 +28,7 @@ export class CartComponent implements OnInit
 
   ngOnInit()
   {
+    this.totalCost=0;
     this.getMyCart();
   }
 
@@ -108,9 +110,20 @@ export class CartComponent implements OnInit
         {
           this.cartProducts=data.cartProducts;
         }
+        this.calculateTotalCost( this.cartProducts);
         this.ngxSpinnerService.hide();
       }
     );
+  }
+
+  private calculateTotalCost(cartProducts: Array<CartProduct>)
+  {
+    let totalCost=0;
+    cartProducts.forEach(function(cartproduct)
+     {
+       totalCost+=cartproduct.quantity*cartproduct.product.price.amount;
+     });
+    this.totalCost=totalCost;
   }
 
 
