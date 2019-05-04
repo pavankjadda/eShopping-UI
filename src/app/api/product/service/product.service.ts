@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Product} from '../model/product';
 import {Currency} from '../model/currency';
 import {Manufacturer} from '../../manufacturer/model/manufacturer';
+import {ProductInventory} from '../model/product-inventory';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class ProductService
   getProductDetails(url: string)
   {
     return this.httpClient.get<Product>( url );
+  }
+
+  getProductInventory(url: string)
+  {
+    return this.httpClient.get<ProductInventory>( url );
   }
 
   getManufacturers(url: string)

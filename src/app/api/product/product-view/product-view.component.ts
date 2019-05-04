@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../service/product.service';
-import {CART_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {CART_API_URL, INVENTORY_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CartService} from '../../cart/service/cart.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {CartProduct} from '../../cart/model/cart-product';
 import {HttpClient} from '@angular/common/http';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ProductInventory} from '../model/product-inventory';
 
 @Component({
   selector: 'app-product-view',
@@ -18,6 +19,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class ProductViewComponent implements OnInit
 {
   product: Product;
+  productInventory:ProductInventory;
   productForm = new FormGroup({
     id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
@@ -42,6 +44,7 @@ export class ProductViewComponent implements OnInit
   ngOnInit()
   {
     this.getProduct();
+    this.getProductQuantityFromInventory();
   }
 
   productDataAvailable(): boolean
@@ -113,5 +116,26 @@ export class ProductViewComponent implements OnInit
         {
           console.log(error);
         });
+  }
+
+  private getProductQuantityFromInventory()
+  {
+    const id = this.route.snapshot.paramMap.get('id');
+    const url = SERVER_URL + INVENTORY_API_URL + 'product/' + id;
+    this.productService.getProductInventory(url).pipe()
+        .subscribe(
+          data =>
+          {
+            this.productInventory = data;
+          },
+          error =>
+          {
+            console.log(error);
+          });
+  }
+
+  isProductInventoryEmpty():boolean
+  {
+    return this.productInventory.quantity <= 0;
   }
 }

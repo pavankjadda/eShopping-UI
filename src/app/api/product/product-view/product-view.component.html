@@ -44,7 +44,6 @@
       </div>
     </div>
   </form>
-</div>
 
 
 <p>
@@ -52,8 +51,9 @@
   <a [routerLink]="['./edit']" style="margin-right: 30px">Edit </a>
   <a [routerLink]="['./delete']">Delete </a>
   <br/>  <br/>
-  <input type="button" class=" btn btn-primary" (click)="addProductToCart()" value="Add to Cart">
+  <input type="button" class=" btn btn-primary" (click)="addProductToCart()" value="Add to Cart" [disabled]="isProductInventoryEmpty()">
 
 </p>
 
 
+</div>
