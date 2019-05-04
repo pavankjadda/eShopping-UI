@@ -6,6 +6,7 @@ import {CART_STATUS_API_URL, SERVER_URL} from '../../../app.constants';
 import {CartStatus} from '../model/cart-status';
 import {CartProduct} from '../model/cart-product';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
+import {ProductInventory} from '../../product/model/product-inventory';
 
 @Injectable({
   providedIn: 'root'
@@ -115,5 +116,10 @@ export class CartService
   deleteCartProduct(cartUrl: string)
   {
     return this.httpClient.delete(cartUrl);
+  }
+
+  getProductInventory(inventoryUrl: string, productIdList: any[])
+  {
+    return this.httpClient.post<ProductInventory[]>( inventoryUrl ,productIdList);
   }
 }

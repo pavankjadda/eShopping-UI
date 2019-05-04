@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from './service/cart.service';
-import {CART_API_URL, SERVER_URL} from '../../app.constants';
+import {CART_API_URL, INVENTORY_API_URL, SERVER_URL} from '../../app.constants';
 import {Cart} from './model/cart';
 import {AuthService} from '../../core/auth/auth.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {CartProduct} from './model/cart-product';
 import {Router} from '@angular/router';
+import {ProductInventory} from '../product/model/product-inventory';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit
 {
   cart: Cart;
   cartProducts: Array<CartProduct>;
+  productInventory:Array<ProductInventory>;
   totalCost:number;
   taxRate:number;
 
@@ -31,6 +33,7 @@ export class CartComponent implements OnInit
   {
     this.totalCost=0;
     this.getMyCart();
+
   }
 
   //Takes care update and delete if quantity is zero
@@ -112,6 +115,7 @@ export class CartComponent implements OnInit
           this.cartProducts=data.cartProducts;
         }
         this.calculateTotalCost( this.cartProducts);
+        this.getProductInventory();
         this.ngxSpinnerService.hide();
       }
     );
@@ -131,5 +135,40 @@ export class CartComponent implements OnInit
   goToProducts()
   {
     this.router.navigate(['/product/list']);
+  }
+
+  private getProductInventory()
+  {
+    let productIdList=[];
+    this.cart.cartProducts.forEach( function(cartProduct)
+       {
+          productIdList.push(cartProduct.product.id);
+       });
+    const inventoryUrl = SERVER_URL + INVENTORY_API_URL+'product/ids';
+    this.cartService.getProductInventory( inventoryUrl, productIdList ).pipe()
+        .subscribe(
+          data =>
+          {
+            this.productInventory = data;
+          },
+          error =>
+          {
+            console.log(error);
+          });
+  }
+
+  getInventory(cartProduct: CartProduct):number
+  {
+    if(this.productInventory!==undefined)
+    {
+      for(let i=0;i<this.productInventory.length;i++)
+      {
+        if(cartProduct.product.id === this.productInventory[i].product.id && cartProduct.quantity <= this.productInventory[i].quantity)
+        {
+          return this.productInventory[i].quantity;
+        }
+      }
+    }
+     return 1;
   }
 }
