@@ -50,12 +50,6 @@ export class ProductNewComponent implements OnInit
     product.category=this.productForm.value.categoryControl;
     product.manufacturer=this.productForm.value.manufacturerControl;
 
-    product.createdBy='Admin';
-    product.createdDate='';
-    product.lastModifiedBy='Admin';
-    product.lastModifiedDate='Admin';
-
-
     const url=SERVER_URL+PRODUCT_API_URL+'create';
 
     this.productService.createProduct(url,product).subscribe(

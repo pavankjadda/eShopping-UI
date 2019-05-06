@@ -29,10 +29,6 @@ export class CategoryNewComponent implements OnInit
     const category=new Category( this.categoryForm.get( 'id' ).value );
     category.name=this.categoryForm.get('name').value;
     category.description=this.categoryForm.get( 'description' ).value;
-    category.createdBy='Pavan';
-    category.createdDate='';
-    category.lastModifiedBy='Pavan';
-    category.lastModifiedDate='Pavan';
 
     const url=SERVER_URL+CATEGORY_API_URL+'create';
     this.categoryService.createCategory(url,category).subscribe(
