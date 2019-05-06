@@ -9,6 +9,7 @@ export const ORDER_API_URL='api/v1/order/';
 export const CART_API_URL='api/v1/cart/';
 export const CART_PRODUCT_API_URL='api/v1/cart/';
 export const CART_STATUS_API_URL='api/v1/cart_status/';
+export const TAX_RATE_API_URL='api/v1/tax_rate/';
 
 
 export const ADDRESS_TYPE_API_URL='api/v1/address_type/';

@@ -13,7 +13,8 @@ export class CategoryListComponent implements OnInit
 {
   categories: Category[];
 
-  constructor(private categoryService: CategoryService, private spinner: NgxSpinnerService)
+  constructor(private categoryService: CategoryService,
+              private spinner: NgxSpinnerService)
   {
   }
 
