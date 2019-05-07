@@ -48,13 +48,16 @@
   <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
     <div *ngIf="addressesAvailable()">
       <div *ngFor="let address of addresses">
-        <p-radioButton name="shippingAddress" value="{{address}}" label="{{address.addressType.type}}"></p-radioButton>
-        <address>
+        <div class="form-check" style="margin: 10px">
+          <label class="form-check-label" style="font-weight: bold">
+            <input type="radio" class="form-check-input" name="shippingAddress" value="{{address}}">{{address.addressType.type}}
+          </label>
+        </div>
+        <address style="margin: 10px">
           {{address.streetName}}<br>
           Apt {{address.apartment}}<br>
           {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
         </address>
-
         <br>
       </div>
     </div>
@@ -67,11 +70,24 @@
 <p-panel [toggleable]="true" header="Billing Address">
   <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
     <div *ngIf="addressesAvailable()">
-
+      <div *ngFor="let address of addresses">
+        <div class="form-check" style="margin: 10px">
+          <label class="form-check-label" style="font-weight: bold">
+            <input type="radio" class="form-check-input" name="billingAddress" value="{{address}}">{{address.addressType.type}}
+          </label>
+        </div>
+        <address style="margin: 10px">
+          {{address.streetName}}<br>
+          Apt {{address.apartment}}<br>
+          {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
+        </address>
+        <br>
+      </div>
     </div>
+    <input (click)="createNewShippingAddress()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
+
   </div>
 </p-panel>
-
 
 
 <p style="text-align: center">
