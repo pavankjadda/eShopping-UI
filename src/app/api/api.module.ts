@@ -44,6 +44,7 @@ import {TypeaheadModule} from 'ngx-bootstrap';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
 import {SpinnerModule} from 'primeng/primeng';
+import {CheckoutComponent} from './checkout/checkout.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import {SpinnerModule} from 'primeng/primeng';
     OrderViewComponent,
     OrderDeleteComponent,
     OrderNewComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
             imports: [
               CommonModule,

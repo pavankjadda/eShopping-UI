@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {manufacturerManagementRoute} from './manufacturer/manufacturer.route';
 import {orderManagementRoute} from './order/order.route';
 import {cartManagementRoute} from './cart/cart.route';
+import {checkManagementRoute} from './checkout/checkout.route';
 
 @NgModule(
   {
@@ -13,6 +14,7 @@ import {cartManagementRoute} from './cart/cart.route';
       RouterModule.forChild(orderManagementRoute),
       RouterModule.forChild(manufacturerManagementRoute),
       RouterModule.forChild(cartManagementRoute),
+      RouterModule.forChild(checkManagementRoute),
       RouterModule.forChild(productManagementRoute)
     ],
     exports: [
