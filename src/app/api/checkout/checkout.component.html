@@ -1,49 +1,81 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
 
 
-<h1> Checkout</h1>
+<h1 style="text-align: center"> Checkout</h1>
 <br/>
 
-<div *ngIf="cartDataAvailable()"
-     class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
-  <table class="table">
-    <thead style="text-align: center">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Cost</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody style="text-align: center">
-    <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
-      <th scope="row">{{i + 1}}</th>
-      <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
-      <td>{{cartProduct.quantity}}</td>
-      <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
-    </tr>
-    </tbody>
-    <tfoot style="text-align: center">
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <th>Tax = ${{totalCost.toPrecision(6)}}</th>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <th><h5>Total Cost = ${{totalCost.toPrecision(6)}}</h5></th>
-    </tr>
-    </tfoot>
-  </table>
+<p-panel [toggleable]="true" header="Review Items">
+  <div *ngIf="cartDataAvailable()"
+       class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+    <table class="table">
+      <thead style="text-align: center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Cost</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody style="text-align: center">
+      <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
+        <td>{{cartProduct.quantity}}</td>
+        <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
+      </tr>
+      </tbody>
+      <tfoot style="text-align: center">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>Tax = ${{totalCost.toPrecision(6)}}</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th><h5>Total Cost = ${{totalCost.toPrecision(6)}}</h5></th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</p-panel>
 
-  <p style="text-align: center">
-    <input (click)="backToCart()" class=" btn btn-primary" type="button" value="Back to Cart" style="margin: 40px">
-    <input (click)="placeOrder()" class=" btn btn-primary" type="button" value="Placer Order" style="margin: 20px">
+<br/>
+<p-panel [toggleable]="true" header="Shipping Address">
+  <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+    <div *ngIf="addressesAvailable()">
+      <div *ngFor="let address of addresses">
+        <p-radioButton name="shippingAddress" value="{{address}}" label="{{address.addressType.type}}"></p-radioButton>
+        <address>
+          {{address.streetName}}<br>
+          Apt {{address.apartment}}<br>
+          {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
+        </address>
 
-  </p>
-</div>
+        <br>
+      </div>
+    </div>
+    <input (click)="createNewShippingAddress()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
 
+  </div>
+</p-panel>
+
+<br/>
+<p-panel [toggleable]="true" header="Billing Address">
+  <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+    <div *ngIf="addressesAvailable()">
+
+    </div>
+  </div>
+</p-panel>
+
+
+
+<p style="text-align: center">
+  <input (click)="backToCart()" class=" btn btn-primary" style="margin: 40px" type="button" value="Back to Cart">
+  <input (click)="placeOrder()" class=" btn btn-primary" style="margin: 20px" type="button" value="Placer Order">
+
+</p>
