@@ -1,5 +1,5 @@
-import {Address} from '../../address/model/address';
 import {Product} from '../../product/model/product';
+import {ManufacturerAddress} from './manufacturer-address';
 
 export class Manufacturer
 {
@@ -7,7 +7,7 @@ export class Manufacturer
   name: string;
   displayName: string;
   description: string;
-  address:Address;
+  manufacturerAddress:ManufacturerAddress;
   contactEmail:string;
   phone: string;
   fax:string;

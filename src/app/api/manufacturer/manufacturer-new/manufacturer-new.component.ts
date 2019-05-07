@@ -1,20 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, MANUFACTURER_API_URL, SERVER_URL, STATE_API_URL} from '../../../app.constants';
+import {
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  MANUFACTURER_ADDRESS_TYPE_API_URL,
+  MANUFACTURER_API_URL,
+  SERVER_URL,
+  STATE_API_URL
+} from '../../../app.constants';
 import {Router} from '@angular/router';
 import {CountryService} from '../../country/services/country.service';
 import {AddressTypeService} from '../../address-type/service/address-type.service';
-import {AddressType} from '../../address-type/model/address-type';
 import {Country} from '../../country/model/country';
 import {StateService} from '../../state/services/state.service';
 import {State} from '../../state/model/state';
 import {CityService} from '../../city/services/city.service';
 import {City} from '../../city/model/city';
 import {Manufacturer} from '../model/manufacturer';
-import {Address} from '../../address/model/address';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {AddressService} from '../../address/service/address.service';
+import {ManufacturerAddressType} from '../model/manufacturer-address-type';
+import {ManufacturerAddress} from '../model/manufacturer-address';
 
 @Component({
   selector: 'app-manufacturer-new',
@@ -23,7 +30,7 @@ import {AddressService} from '../../address/service/address.service';
 })
 export class ManufacturerNewComponent implements OnInit
 {
-  addressTypes: Array<AddressType>;
+  manufacturerAddressTypes: Array<ManufacturerAddressType>;
   countries: Array<Country>;
   states: Array<State>;
   cities: Array<City>;
@@ -34,9 +41,9 @@ export class ManufacturerNewComponent implements OnInit
       name: new FormControl( '' ),
       displayName: new FormControl( '' ),
       description: new FormControl( '' ),
-      address: new FormGroup(
+      manufacturerAddress: new FormGroup(
         {
-                  addressType: new FormControl( '' ),
+                  manufacturerAddressType: new FormControl( '' ),
                   streetName: new FormControl( '' ),
                   apartment: new FormControl( '' ),
                   city: new FormControl( '' ),
@@ -73,14 +80,14 @@ export class ManufacturerNewComponent implements OnInit
     this.spinnerService.show();
     const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
 
-    let address=new Address();
-    address.addressType=this.manufacturerForm.value.address.addressType;
-    address.streetName=this.manufacturerForm.value.address.streetName;
-    address.apartment=this.manufacturerForm.value.address.apartment;
-    address.city=this.manufacturerForm.value.address.city;
-    address.state=this.manufacturerForm.value.address.state;
-    address.country=this.manufacturerForm.value.address.country;
-    address.zipCode=this.manufacturerForm.value.address.zipCode;
+    let manufacturerAddress=new ManufacturerAddress();
+    manufacturerAddress.manufacturerAddressType=this.manufacturerForm.value.manufacturerAddress.manufacturerAddressType;
+    manufacturerAddress.streetName=this.manufacturerForm.value.manufacturerAddress.streetName;
+    manufacturerAddress.apartment=this.manufacturerForm.value.manufacturerAddress.apartment;
+    manufacturerAddress.city=this.manufacturerForm.value.manufacturerAddress.city;
+    manufacturerAddress.state=this.manufacturerForm.value.manufacturerAddress.state;
+    manufacturerAddress.country=this.manufacturerForm.value.manufacturerAddress.country;
+    manufacturerAddress.zipCode=this.manufacturerForm.value.manufacturerAddress.zipCode;
 
     let manufacturer=new Manufacturer();
     manufacturer.name=this.manufacturerForm.value.name;
@@ -89,7 +96,7 @@ export class ManufacturerNewComponent implements OnInit
     manufacturer.phone=this.manufacturerForm.value.phone;
     manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
     manufacturer.fax=this.manufacturerForm.value.fax;
-    manufacturer.address=address;
+    manufacturer.manufacturerAddress=manufacturerAddress;
 
 
     this.manufacturerService.createManufacturer(manufactureUrl,manufacturer).subscribe(
@@ -111,20 +118,21 @@ export class ManufacturerNewComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=SERVER_URL+ADDRESS_TYPE_API_URL+'list';
-    this.addressTypeService.getAddressTypes(url).subscribe(
-      addressTypes => {
-        this.addressTypes=addressTypes;
+    const url=SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
+    this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
+      manufacturerAddressTypes =>
+      {
+        this.manufacturerAddressTypes=manufacturerAddressTypes;
         this.manufacturerForm.patchValue(
           {
-                  addressType: addressTypes
+            manufacturerAddressType: manufacturerAddressTypes
           }
         );
-        console.log('Successfully loaded address types');
+        console.log('Successfully loaded manufacturerAddress types');
       },
       error1 =>
       {
-        console.log('Failed to load address types');
+        console.log('Failed to load manufacturerAddress types');
       }
     );
   }
@@ -145,7 +153,7 @@ export class ManufacturerNewComponent implements OnInit
 
   loadStates()
   {
-    const country=this.manufacturerForm.value.address.country;
+    const country=this.manufacturerForm.value.manufacturerAddress.country;
     const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
@@ -162,7 +170,7 @@ export class ManufacturerNewComponent implements OnInit
 
   loadCities()
   {
-    const state=this.manufacturerForm.value.address.state;
+    const state=this.manufacturerForm.value.manufacturerAddress.state;
     const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(

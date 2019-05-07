@@ -35,13 +35,13 @@
       <input type="text" class="form-control" formControlName="fax" id="fax" placeholder="Enter fax details" required>
     </div>
 
-    <div formGroupName="address">
+    <div formGroupName="manufacturerAddress">
       <h3>Address</h3>
       <div class="form-group">
         <label>Address Type
-          <select class="form-control" name="addressType" formControlName="addressType">
-            <option  [ngValue]="addressType" *ngFor="let addressType of addressTypes" [defaultSelected]="true">
-              {{addressType.type}}
+          <select class="form-control" name="manufacturerAddressType" formControlName="manufacturerAddressType">
+            <option  [ngValue]="manufacturerAddressType" *ngFor="let manufacturerAddressType of manufacturerAddressTypes" [defaultSelected]="true">
+              {{manufacturerAddressType.type}}
             </option>
           </select>
         </label>

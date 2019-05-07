@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AddressType} from '../../address-type/model/address-type';
 import {Country} from '../../country/model/country';
 import {State} from '../../state/model/state';
 import {City} from '../../city/model/city';
@@ -12,8 +11,16 @@ import {AddressTypeService} from '../../address-type/service/address-type.servic
 import {AddressService} from '../../address/service/address.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, MANUFACTURER_API_URL, SERVER_URL, STATE_API_URL} from '../../../app.constants';
+import {
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  MANUFACTURER_ADDRESS_TYPE_API_URL,
+  MANUFACTURER_API_URL,
+  SERVER_URL,
+  STATE_API_URL
+} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
+import {ManufacturerAddressType} from '../model/manufacturer-address-type';
 
 @Component({
   selector: 'app-manufacturer-edit',
@@ -23,7 +30,7 @@ import {Manufacturer} from '../model/manufacturer';
 export class ManufacturerEditComponent implements OnInit
 {
   manufacturer: Manufacturer;
-  addressTypes: Array<AddressType>;
+  manufacturerAddressTypes: Array<ManufacturerAddressType>;
   countries: Array<Country>;
   states: Array<State>;
   cities: Array<City>;
@@ -34,9 +41,9 @@ export class ManufacturerEditComponent implements OnInit
       name: new FormControl( '' ),
       displayName: new FormControl( '' ),
       description: new FormControl( '' ),
-      address: new FormGroup(
+      manufacturerAddress: new FormGroup(
         {
-          addressType: new FormControl( '' ),
+          manufacturerAddressType: new FormControl( '' ),
           id: new FormControl( '' ),
           streetName: new FormControl( '' ),
           apartment: new FormControl( '' ),
@@ -90,7 +97,7 @@ export class ManufacturerEditComponent implements OnInit
                 phone: data.phone,
                 contactEmail: data.contactEmail,
                 fax: data.fax,
-                address: data.address,
+                manufacturerAddress: data.manufacturerAddress,
                 products: data.products,
               });
             this.loadStates();
@@ -122,7 +129,7 @@ export class ManufacturerEditComponent implements OnInit
     manufacturer.phone=this.manufacturerForm.value.phone;
     manufacturer.contactEmail=this.manufacturerForm.value.contactEmail;
     manufacturer.fax=this.manufacturerForm.value.fax;
-    manufacturer.address=this.manufacturerForm.value.address;
+    manufacturer.manufacturerAddress=this.manufacturerForm.value.manufacturerAddress;
 
 
     this.manufacturerService.updateManufacturer( manufacturerUrl, manufacturer ).subscribe(
@@ -143,13 +150,13 @@ export class ManufacturerEditComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=SERVER_URL+ADDRESS_TYPE_API_URL+'list';
-    this.addressTypeService.getAddressTypes(url).subscribe(
-      addressTypes => {
-        this.addressTypes=addressTypes;
+    const url=SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
+    this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
+      manufacturerAddressTypes => {
+        this.manufacturerAddressTypes=manufacturerAddressTypes;
         this.manufacturerForm.patchValue(
           {
-            addressType: addressTypes
+            addressType: manufacturerAddressTypes
           }
         );
         console.log('Successfully loaded address types');
@@ -177,7 +184,7 @@ export class ManufacturerEditComponent implements OnInit
 
   loadStates()
   {
-    const country=this.manufacturerForm.value.address.country;
+    const country=this.manufacturerForm.value.manufacturerAddress.country;
     const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
@@ -194,7 +201,7 @@ export class ManufacturerEditComponent implements OnInit
 
   loadCities()
   {
-    const state=this.manufacturerForm.value.address.state;
+    const state=this.manufacturerForm.value.manufacturerAddress.state;
     const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
@@ -208,7 +215,7 @@ export class ManufacturerEditComponent implements OnInit
     );
   }
 
-  compareAddressTypeFn(c1: AddressType, c2: AddressType): boolean
+  compareAddressTypeFn(c1: ManufacturerAddressType, c2: ManufacturerAddressType): boolean
   {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
