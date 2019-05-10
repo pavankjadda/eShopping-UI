@@ -5,6 +5,7 @@ import {SERVER_URL, USER_PROFILE_API_URL} from '../../app.constants';
 import {UserProfileService} from './service/user-profile.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Address} from '../../api/address/model/address';
 
 @Component( {
   selector: 'app-user-profile',
@@ -15,6 +16,7 @@ export class UserProfileComponent implements OnInit
 {
 
   userProfile: UserProfile;
+  addresses: Array<Address>;
 
   userProfileForm = new FormGroup(
     {
@@ -25,34 +27,7 @@ export class UserProfileComponent implements OnInit
       email: new FormControl(''),
       phone: new FormControl(''),
       user: new FormControl(''),
-      address: new FormGroup(
-        {
-          //addressType: new FormControl( ''),
-          addressType: new FormGroup(
-            {
-              type: new FormControl('')
-            }
-          ),
-          id: new FormControl(''),
-          streetName: new FormControl(''),
-          apartment: new FormControl(''),
-          city: new FormGroup(
-            {
-              name: new FormControl('')
-            }
-          ),
-          state: new FormGroup(
-            {
-              name: new FormControl('')
-            }
-          ),
-          country: new FormGroup(
-            {
-              name: new FormControl('')
-            }
-          ),
-          zipCode: new FormControl(''),
-        }),
+      addresses: new FormControl('')
     });
 
   constructor(private authService:AuthService, private userProfileService:UserProfileService,private router:Router)
@@ -80,16 +55,10 @@ export class UserProfileComponent implements OnInit
             email: data.email,
             phone: data.phone,
             user: data.user,
-            address: data.addresses[0]
- /*           streetName: data.addresses[0].streetName,
-            apartment: data.addresses[0].apartment,
-            addressType: data.addresses[0].addressType.type,
-            city: data.addresses[0].city.name,
-            state: data.addresses[0].state.name,
-            country: data.addresses[0].country.name,
-            zipCode: data.addresses[0].zipCode*/
+            addresses: data.addresses
           }
         );
+        this.addresses=data.addresses;
       },
       error1 =>
       {

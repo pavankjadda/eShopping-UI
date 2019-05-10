@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="userProfileDataAvailable()">
 <h1>Profile</h1> <br>
   <form [formGroup]="userProfileForm">
     <div class="form-group">
@@ -19,51 +19,20 @@
       <input type="text" class="form-control"  formControlName="email" id="email" readonly>
     </div>
     <div class="form-group">
-      <label for="phone">Phone</label> <br/>
-      <input type="text" class="form-control"  formControlName="phone" id="phone"  readonly >
-    </div>
+    <label for="phone">Phone</label> <br/>
+    <input type="text" class="form-control"  formControlName="phone" id="phone"  readonly >
+  </div>
 
-    <div formGroupName="address">
+    <div>
       <h3>Addresses:</h3>
-      <div>
-        <div formGroupName="addressType">
+      <div  *ngFor="let address of addresses">
           <div class="form-group">
-            <label for="type">Address Type</label>
-            <input type="text" class="form-control" formControlName="type" id="type" readonly>
+            <b>{{address.addressType.type}}:</b> <br/>
+            <label>{{address.streetName}} Apt {{address.apartment}}</label> <br>
+            <label>{{address.city.name}}, {{address.state.code}} - {{address.zipCode}}</label> <br>
+            <label>{{address.country.name}}</label>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label for="streetName">Street Name</label>
-          <input type="text" class="form-control" formControlName="streetName" id="streetName" readonly>
-        </div>
-        <div class="form-group">
-          <label for="apartment">Apartment</label>
-          <input type="text" class="form-control" formControlName="apartment" id="apartment" readonly>
-        </div>
-        <div formGroupName="city">
-          <div class="form-group">
-            <label for="name">City</label>
-            <input type="text" class="form-control" formControlName="name" id="name" readonly>
-          </div>
-        </div>
-         <div formGroupName="state">
-            <div class="form-group">
-              <label for="name">State</label>
-              <input type="text" class="form-control" formControlName="name" id="name" readonly>
-            </div>
-          </div>
-        <div formGroupName="country">
-          <div class="form-group">
-            <label for="name">Country</label>
-            <input type="text" class="form-control" formControlName="name" id="name" readonly>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="zipCode">Zip Code</label>
-          <input type="text" class="form-control" formControlName="zipCode" id="zipCode" readonly>
-        </div>
+        <br/>
       </div>
     </div>
 
