@@ -6,6 +6,7 @@ import {UserProfileService} from './service/user-profile.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Address} from '../../api/address/model/address';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component( {
   selector: 'app-user-profile',
@@ -30,7 +31,10 @@ export class UserProfileComponent implements OnInit
       addresses: new FormControl('')
     });
 
-  constructor(private authService:AuthService, private userProfileService:UserProfileService,private router:Router)
+  constructor(private authService:AuthService,
+              private userProfileService:UserProfileService,
+              private spinner:NgxSpinnerService,
+              private router:Router)
   {
   }
   ngOnInit()
@@ -40,8 +44,8 @@ export class UserProfileComponent implements OnInit
 
   private getUserProfile()
   {
+    this.spinner.show();
     let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+'my_profile';
-
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>
       {
@@ -59,10 +63,12 @@ export class UserProfileComponent implements OnInit
           }
         );
         this.addresses=data.addresses;
+        this.spinner.hide();
       },
       error1 =>
       {
-        console.log('Failed to get User Profile information');
+        console.log('Failed to get User Profile information. Error: '+error1);
+        this.spinner.hide();
       }
     );
   }
