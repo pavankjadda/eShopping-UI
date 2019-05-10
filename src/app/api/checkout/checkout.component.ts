@@ -145,7 +145,7 @@ export class CheckoutComponent implements OnInit
       },
       error1 =>
       {
-        console.log('Failed to get User Profile information');
+        console.log('Failed to get User Profile information. Error: '+error1);
       }
     );
   }
