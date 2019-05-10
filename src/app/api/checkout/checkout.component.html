@@ -61,13 +61,78 @@
         <br>
       </div>
     </div>
-    <input (click)="createNewShippingAddress()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
+
+    <p-dialog [(visible)]="displayShippingAddressDialog" [modal]="true" [responsive]="true" [style]="{minWidth: '300px'}"
+              [closable]="true" [maximizable]="true" [resizable]="true" [baseZIndex]="10000"  [minY]="70" >
+      <p-header>
+        New Address
+      </p-header>
+      <div>
+        <form  [formGroup]="shippingAddressForm">
+          <h3>Address</h3>
+          <div class="form-group">
+            <label>Address Type
+              <select [compareWith]="compareAddressTypeFn" class="form-control" name="addressType" formControlName="addressType">
+                <option  [ngValue]="addressType" *ngFor="let addressType of addressTypes">
+                  {{addressType.type}}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="streetName">Street Name</label>
+            <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
+          </div>
+          <div class="form-group">
+            <label for="apartment">Apartment</label>
+            <input type="text" class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number" required>
+          </div>
+          <div class="form-group">
+            <label>Country
+              <select  [compareWith]="compareCountryFn"  class="form-control" name="country" formControlName="country"  (change)="loadStates()">
+                <option  [ngValue]="country" *ngFor="let country of countries">
+                  {{country.name}}
+                </option>
+              </select>
+            </label>
+
+            <label>State
+              <select  [compareWith]="compareStateFn"  class="form-control" name="state" formControlName="state"  (change)="loadCities()">
+                <option  [ngValue]="state" *ngFor="let state of states">
+                  {{state.name}}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>City
+              <select  [compareWith]="compareCityFn"  class="form-control" name="city" formControlName="city">
+                <option  [ngValue]="city" *ngFor="let city of cities">
+                  {{city.name}}
+                </option>
+              </select>
+            </label>
+
+            <label for="zipCode">Zip Code</label>
+            <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code" required>
+          </div>
+        </form>
+      </div>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="createNewShippingAddress()" label="Create"></button>
+        <button type="button" pButton icon="pi pi-close"  (click)="hideNewShippingAddressDialog()" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
+    </p-dialog>
+    <input (click)="createNewShippingAddressDialog()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
 
   </div>
 </p-panel>
 
 <br/>
 <p-panel [toggleable]="true" header="Billing Address">
+
   <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
     <div *ngIf="addressesAvailable()">
       <div *ngFor="let address of addresses">
@@ -84,7 +149,71 @@
         <br>
       </div>
     </div>
-    <input (click)="createNewShippingAddress()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
+
+    <p-dialog [(visible)]="displayBillingAddressDialog" [modal]="true" [responsive]="true" [style]="{minWidth: '300px'}"
+              [closable]="true" [maximizable]="true" [resizable]="true" [baseZIndex]="10000"  [minY]="70" >
+      <p-header>
+        New Address
+      </p-header>
+      <div>
+        <form  [formGroup]="billingAddressForm">
+          <h3>Address</h3>
+          <div class="form-group">
+            <label>Address Type
+              <select [compareWith]="compareAddressTypeFn" class="form-control" name="addressType" formControlName="addressType">
+                <option  [ngValue]="addressType" *ngFor="let addressType of addressTypes">
+                  {{addressType.type}}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="streetName">Street Name</label>
+            <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
+          </div>
+          <div class="form-group">
+            <label for="apartment">Apartment</label>
+            <input type="text" class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number" required>
+          </div>
+          <div class="form-group">
+            <label>Country
+              <select  [compareWith]="compareCountryFn"  class="form-control" name="country" formControlName="country"  (change)="loadStates()">
+                <option  [ngValue]="country" *ngFor="let country of countries">
+                  {{country.name}}
+                </option>
+              </select>
+            </label>
+
+            <label>State
+              <select  [compareWith]="compareStateFn"  class="form-control" name="state" formControlName="state"  (change)="loadCities()">
+                <option  [ngValue]="state" *ngFor="let state of states">
+                  {{state.name}}
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>City
+              <select  [compareWith]="compareCityFn"  class="form-control" name="city" formControlName="city">
+                <option  [ngValue]="city" *ngFor="let city of cities">
+                  {{city.name}}
+                </option>
+              </select>
+            </label>
+
+            <label for="zipCode">Zip Code</label>
+            <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code" required>
+          </div>
+        </form>
+      </div>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="createNewShippingAddress()" label="Create"></button>
+        <button type="button" pButton icon="pi pi-close"  (click)="hideNewShippingAddressDialog()" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
+    </p-dialog>
+    <input (click)="createNewShippingAddressDialog()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
 
   </div>
 </p-panel>
@@ -93,5 +222,4 @@
 <p style="text-align: center">
   <input (click)="backToCart()" class=" btn btn-primary" style="margin: 40px" type="button" value="Back to Cart">
   <input (click)="placeOrder()" class=" btn btn-primary" style="margin: 20px" type="button" value="Placer Order">
-
 </p>

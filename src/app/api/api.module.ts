@@ -43,7 +43,7 @@ import {CartComponent} from './cart/cart.component';
 import {TypeaheadModule} from 'ngx-bootstrap';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
-import {PanelModule, RadioButtonModule, SpinnerModule} from 'primeng/primeng';
+import {ConfirmDialogModule, DialogModule, PanelModule, RadioButtonModule, SpinnerModule} from 'primeng/primeng';
 import {CheckoutComponent} from './checkout/checkout.component';
 
 
@@ -98,7 +98,9 @@ import {CheckoutComponent} from './checkout/checkout.component';
               SpinnerModule,
               FormsModule,
               PanelModule,
-              RadioButtonModule
+              RadioButtonModule,
+              ConfirmDialogModule,
+              DialogModule
             ]
           } )
 export class ApiModule { }

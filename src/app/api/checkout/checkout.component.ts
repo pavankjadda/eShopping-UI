@@ -1,5 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {CART_API_URL, SERVER_URL, USER_PROFILE_API_URL} from '../../app.constants';
+import {
+  ADDRESS_API_URL,
+  ADDRESS_TYPE_API_URL,
+  CART_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  SERVER_URL,
+  STATE_API_URL,
+  USER_PROFILE_API_URL
+} from '../../app.constants';
 import {CartService} from '../cart/service/cart.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {AuthService} from '../../core/auth/auth.service';
@@ -9,6 +18,16 @@ import {CartProduct} from '../cart/model/cart-product';
 import {ProductInventory} from '../product/model/product-inventory';
 import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
 import {Address} from '../address/model/address';
+import {FormControl, FormGroup} from '@angular/forms';
+import {CityService} from '../city/services/city.service';
+import {StateService} from '../state/services/state.service';
+import {CountryService} from '../country/services/country.service';
+import {AddressTypeService} from '../address-type/service/address-type.service';
+import {AddressService} from '../address/service/address.service';
+import {AddressType} from '../address-type/model/address-type';
+import {Country} from '../country/model/country';
+import {State} from '../state/model/state';
+import {City} from '../city/model/city';
 
 @Component( {
 selector: 'app-checkout',
@@ -20,14 +39,48 @@ export class CheckoutComponent implements OnInit
 {
   cart: Cart;
   addresses: Array<Address>;
+  addressTypes: Array<AddressType>;
+  countries: Array<Country>;
+  states: Array<State>;
+  cities: Array<City>;
   cartProducts: Array<CartProduct>;
   productInventory:Array<ProductInventory>;
   totalCost:number;
+  displayShippingAddressDialog = false;
+  displayBillingAddressDialog = false;
+
+  shippingAddressForm=new FormGroup(
+    {
+                addressType: new FormControl( '' ),
+                streetName: new FormControl( '' ),
+                apartment: new FormControl( '' ),
+                city: new FormControl( '' ),
+                state: new FormControl( '' ),
+                country: new FormControl( '' ),
+                zipCode: new FormControl( '' ),
+            } );
+
+  billingAddressForm=new FormGroup(
+    {
+      addressType: new FormControl( '' ),
+      streetName: new FormControl( '' ),
+      apartment: new FormControl( '' ),
+      city: new FormControl( '' ),
+      state: new FormControl( '' ),
+      country: new FormControl( '' ),
+      zipCode: new FormControl( '' ),
+    } );
+
 
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
               private authService:AuthService,
               private userProfileService:UserProfileService,
+              private cityService:CityService,
+              private stateService:StateService,
+              private countryService:CountryService,
+              private addressTypeService:AddressTypeService,
+              private addressService:AddressService,
               private router:Router)
   {
   }
@@ -51,7 +104,7 @@ export class CheckoutComponent implements OnInit
         {
           this.cartProducts=data.cartProducts;
         }
-        this.calculateTotalCost( this.cartProducts);
+        this.calculateTotalCost(this.cartProducts);
         this.checkAndHoldInventory();
         this.getAddresses();
         this.getTaxRate();
@@ -112,20 +165,182 @@ export class CheckoutComponent implements OnInit
   {
     return this.addresses!==undefined && this.addresses !== null && this.addresses.length>=0;
   }
+
+  createNewShippingAddressDialog()
+  {
+    this.displayShippingAddressDialog=true;
+    this.loadAddressTypes();
+    this.loadCountries();
+
+  }
+
+  hideNewShippingAddressDialog()
+  {
+    this.displayShippingAddressDialog=false;
+  }
   createNewShippingAddress()
   {
+    let addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
+    let address=new Address();
 
+    address.streetName=this.shippingAddressForm.value.streetName;
+    address.apartment=this.shippingAddressForm.value.apartment;
+    address.country=this.shippingAddressForm.value.country;
+    address.state=this.shippingAddressForm.value.state;
+    address.city=this.shippingAddressForm.value.city;
+    address.zipCode=this.shippingAddressForm.value.zipCode;
+    address.addressType=this.shippingAddressForm.value.addressType;
+    address.userProfile=this.authService.currentUserSubject.value.userProfile;
+
+    this.addressService.createAddress(addressUrl,address).subscribe(
+      data=>
+      {
+        this.getAddresses();
+        this.hideNewShippingAddressDialog();
+      },
+      error1 =>
+      {
+        console.log('Error occurred: '+error1);
+      }
+    );
   }
 
-  backToCart()
+  createNewBillingAddressDialog()
   {
-    this.router.navigate(['/cart']);
+    this.displayBillingAddressDialog=true;
+    this.loadAddressTypes();
+    this.loadCountries();
+
   }
+
+  hideNewBillingAddressDialog()
+  {
+    this.displayBillingAddressDialog=false;
+  }
+  createNewBillingAddress()
+  {
+    let addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
+    let address=new Address();
+
+    address.streetName=this.billingAddressForm.value.streetName;
+    address.apartment=this.billingAddressForm.value.apartment;
+    address.country=this.billingAddressForm.value.country;
+    address.state=this.billingAddressForm.value.state;
+    address.city=this.billingAddressForm.value.city;
+    address.zipCode=this.billingAddressForm.value.zipCode;
+    address.addressType=this.billingAddressForm.value.addressType;
+    address.userProfile=this.authService.currentUserSubject.value.userProfile;
+
+    this.addressService.createAddress(addressUrl,address).subscribe(
+      data=>
+      {
+        this.getAddresses();
+        this.hideNewBillingAddressDialog();
+      },
+      error1 =>
+      {
+        console.log('Error occurred: '+error1);
+      }
+    );
+  }
+
 
   placeOrder()
   {
 
   }
 
+  private loadAddressTypes()
+  {
+    const url=SERVER_URL+ADDRESS_TYPE_API_URL+'list';
+    this.addressTypeService.getAddressTypes(url).subscribe(
+      addressTypes =>
+      {
+        this.addressTypes=addressTypes;
+        this.shippingAddressForm.patchValue(
+          {
+            addressTypes: addressTypes
+          }
+        );
+        console.log('Successfully loaded Address types');
+      },
+      error1 =>
+      {
+        console.log('Failed to load mAddress types');
+      }
+    );
+  }
+
+  private loadCountries()
+  {
+    const url=SERVER_URL+COUNTRY_API_URL+'list';
+    this.countryService.getCountries(url).subscribe(
+      countries => {
+        this.countries=countries;
+      },
+      error1 =>
+      {
+
+      }
+    );
+  }
+
+  loadStates()
+  {
+    const country=this.shippingAddressForm.value.country;
+    const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
+
+    this.stateService.getStatesByCountryId(url).subscribe(
+      data=>
+      {
+        this.states=data;
+      },
+      error1 => {
+        console.log('Failed to load states');
+      }
+    );
+
+  }
+
+  loadCities()
+  {
+    const state=this.shippingAddressForm.value.state;
+    const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
+
+    this.cityService.getCitiesByStateId(url).subscribe(
+      data=>
+      {
+        this.cities=data;
+      },
+      error1 => {
+        console.log('Failed to load cities');
+      }
+    );
+  }
+
+  compareAddressTypeFn(c1: AddressType, c2: AddressType): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  compareCountryFn(c1: Country, c2: Country): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  compareStateFn(c1: State, c2: State): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  compareCityFn(c1: City, c2: City): boolean
+  {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  backToCart()
+  {
+    this.router.navigate(['/cart']);
+  }
 
 }
