@@ -65,8 +65,7 @@ export class UserProfileComponent implements OnInit
 
   private getUserProfile()
   {
-    let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
-    let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+userProfileId;
+    let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+'my_profile';
 
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>

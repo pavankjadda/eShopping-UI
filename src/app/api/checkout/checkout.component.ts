@@ -156,15 +156,7 @@ export class CheckoutComponent implements OnInit
 
   }
 
-  cartDataAvailable()
-  {
-    return this.cart!==undefined && this.cart !== null && this.cartProducts.length>=0;
-  }
 
-  addressesAvailable()
-  {
-    return this.addresses!==undefined && this.addresses !== null && this.addresses.length>=0;
-  }
 
   createNewShippingAddressDialog()
   {
@@ -190,7 +182,6 @@ export class CheckoutComponent implements OnInit
     address.city=this.shippingAddressForm.value.city;
     address.zipCode=this.shippingAddressForm.value.zipCode;
     address.addressType=this.shippingAddressForm.value.addressType;
-    address.userProfile=this.authService.currentUserSubject.value.userProfile;
 
     this.addressService.createAddress(addressUrl,address).subscribe(
       data=>
@@ -316,6 +307,17 @@ export class CheckoutComponent implements OnInit
         console.log('Failed to load cities');
       }
     );
+  }
+
+
+  cartDataAvailable()
+  {
+    return this.cart!==undefined && this.cart !== null && this.cartProducts.length>=0;
+  }
+
+  addressesAvailable()
+  {
+    return this.addresses!==undefined && this.addresses !== null && this.addresses.length>=0;
   }
 
   compareAddressTypeFn(c1: AddressType, c2: AddressType): boolean
