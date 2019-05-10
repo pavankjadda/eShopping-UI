@@ -7,6 +7,7 @@ import {
   COUNTRY_API_URL,
   SERVER_URL,
   STATE_API_URL,
+  TAX_RATE_API_URL,
   USER_PROFILE_API_URL
 } from '../../app.constants';
 import {CartService} from '../cart/service/cart.service';
@@ -105,7 +106,7 @@ export class CheckoutComponent implements OnInit
           this.cartProducts=data.cartProducts;
         }
         this.calculateTotalCost(this.cartProducts);
-        this.checkAndHoldInventory();
+        //this.checkAndHoldInventory();
         this.getAddresses();
         this.getTaxRate();
 
@@ -153,6 +154,7 @@ export class CheckoutComponent implements OnInit
 
   private getTaxRate()
   {
+    let taxRateUrl=SERVER_URL+TAX_RATE_API_URL;
 
   }
 

@@ -44,7 +44,8 @@ export class UserProfileComponent implements OnInit
 
   private getUserProfile()
   {
-    setTimeout(() => { this.spinner.show(); }, 25);
+    this.spinner.show();
+
     let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+'my_profile';
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>

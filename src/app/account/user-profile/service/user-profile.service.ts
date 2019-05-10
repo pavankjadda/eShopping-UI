@@ -16,6 +16,6 @@ export class UserProfileService
 
   updateUserProfile(userProfileUrl: string, userProfile: UserProfile)
   {
-    return this.httpClient.put<UserProfile>( userProfileUrl, userProfile );
+    return this.httpClient.post<UserProfile>( userProfileUrl, userProfile );
   }
 }
