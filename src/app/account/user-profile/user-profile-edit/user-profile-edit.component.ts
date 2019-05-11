@@ -1,16 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {UserProfile} from '../model/user-profile';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {ActivatedRoute, Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-import {
-  ADDRESS_TYPE_API_URL,
-  CITY_API_URL,
-  COUNTRY_API_URL,
-  SERVER_URL,
-  STATE_API_URL,
-  USER_PROFILE_API_URL
-} from '../../../app.constants';
+import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, SERVER_URL, STATE_API_URL, USER_PROFILE_API_URL} from '../../../app.constants';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {Country} from '../../../api/country/model/country';
 import {State} from '../../../api/state/model/state';
@@ -22,6 +16,7 @@ import {AddressTypeService} from '../../../api/address-type/service/address-type
 import {AddressService} from '../../../api/address/service/address.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {UserProfileService} from '../service/user-profile.service';
+import {Address} from '../../../api/address/model/address';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -32,9 +27,12 @@ export class UserProfileEditComponent implements OnInit
 {
   userProfile: UserProfile;
   addressTypes: Array<AddressType>;
+  addresses: Array<Address>;
   countries: Array<Country>;
   states: Array<State>;
   cities: Array<City>;
+
+  modalRef: BsModalRef;
 
   userProfileForm=new FormGroup(
     {
@@ -66,7 +64,7 @@ export class UserProfileEditComponent implements OnInit
               private addressTypeService:AddressTypeService,
               private addressService:AddressService,
               private router: Router,
-              private route:ActivatedRoute)
+              private modalService: BsModalService)
   {
   }
 
@@ -75,6 +73,11 @@ export class UserProfileEditComponent implements OnInit
     this.getUserProfile();
     this.loadAddressTypes();
     this.loadCountries();
+  }
+
+  openModal(template: TemplateRef<any>)
+  {
+    this.modalRef = this.modalService.show(template);
   }
 
   private getUserProfile()
@@ -94,10 +97,10 @@ export class UserProfileEditComponent implements OnInit
             lastName: data.lastName,
             email: data.email,
             phone: data.phone,
-            user: data.user,
-            address: data.addresses[0]
+            user: data.user
           }
         );
+        this.addresses=data.addresses;
       },
       error1 =>
       {
@@ -134,6 +137,18 @@ export class UserProfileEditComponent implements OnInit
       }
     );
 
+
+  }
+
+
+  updateUserAddress()
+  {
+
+  }
+
+
+  deleteAddress(address: Address)
+  {
 
   }
 
@@ -227,9 +242,8 @@ export class UserProfileEditComponent implements OnInit
 
   goBack()
   {
-    this.router.navigate(['/manufacturer']);
+    this.router.navigate(['/profile']);
   }
-
 
 
 }

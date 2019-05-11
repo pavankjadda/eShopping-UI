@@ -5,80 +5,131 @@
 
   <br/>
   <form  [formGroup]="userProfileForm">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control"  id="firstName" formControlName="firstName" required placeholder="First name">
+    <div class="form-row">
+      <div class="col-3">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control"  id="firstName" formControlName="firstName" required placeholder="First name">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control"  id="lastName" formControlName="lastName" required placeholder="Last Name">
+    <div class="form-row">
+      <div class="col-3">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control"  id="lastName" formControlName="lastName" required placeholder="Last Name">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control"  id="email" formControlName="email" required placeholder="Enter email">
+    <div class="form-row">
+      <div class="col-3">
+        <label for="email">Email</label>
+        <input type="text" class="form-control"  id="email" formControlName="email" required placeholder="Enter email">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="phone">Phone</label>
-      <input type="text" class="form-control" formControlName="phone" id="phone" placeholder="Enter phone" required>
+    <div class="form-row">
+      <div class="col-3">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" formControlName="phone" id="phone" placeholder="Enter phone" required>
+      </div>
+    </div>
+    <br/>
+  <div>
+    <h3>Addresses:</h3> <br/>
+    <div *ngFor="let address of addresses">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="form-group">
+          <b>{{address.addressType.type}}:</b> <br/>
+          <label>{{address.streetName}} Apt {{address.apartment}}</label> <br>
+          <label>{{address.city.name}}, {{address.state.code}} - {{address.zipCode}}</label> <br>
+          <label>{{address.country.name}}</label>
+        </div>
+        <button (click)="openModal(addressEditModal)" class="btn btn-primary" type="button">Edit</button>
+        <button (click)="deleteAddress(address)" class="btn btn-danger" type="button" style="margin: 20px">Delete</button>
+        <ng-template #addressEditModal>
+          <div (click)="modalRef.hide()" class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Edit Address</h3>
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div formGroupName="address">
+              <div class="form-group">
+                <label>Address Type
+                  <select [compareWith]="compareAddressTypeFn" class="form-control" formControlName="addressType"
+                          name="addressType">
+                    <option *ngFor="let addressType of addressTypes" [ngValue]="addressType">
+                      {{addressType.type}}
+                    </option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-row">
+                <div class="col-6">
+                  <label for="streetName">Street Name</label>
+                  <input class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name"
+                         required type="text">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-6">
+                  <label for="apartment">Apartment</label>
+                  <input class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number"
+                         required type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Country
+                  <select (change)="loadStates()" [compareWith]="compareCountryFn" class="form-control" formControlName="country"
+                          name="country">
+                    <option *ngFor="let country of countries" [ngValue]="country">
+                      {{country.name}}
+                    </option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label>State
+                  <select (change)="loadCities()" [compareWith]="compareStateFn" class="form-control" formControlName="state"
+                          name="state">
+                    <option *ngFor="let state of states" [ngValue]="state">
+                      {{state.name}}
+                    </option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label>City
+                  <select [compareWith]="compareCityFn" class="form-control" formControlName="city" name="city">
+                    <option *ngFor="let city of cities" [ngValue]="city">
+                      {{city.name}}
+                    </option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-row">
+                <div class="col-3">
+                  <label for="zipCode">Zip Code</label>
+                  <input class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code"
+                         required type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button (click)="updateUserAddress()" class="btn btn-primary" type="button">Update</button>
+            <button (click)="modalRef.hide()" class="btn btn-danger" type="button">Cancel</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <br/>
     </div>
 
-    <div formGroupName="address">
-      <h3>Address</h3>
-      <div class="form-group">
-        <label>Address Type
-          <select [compareWith]="compareAddressTypeFn" class="form-control" name="addressType" formControlName="addressType">
-            <option  [ngValue]="addressType" *ngFor="let addressType of addressTypes">
-              {{addressType.type}}
-            </option>
-          </select>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label for="streetName">Street Name</label>
-        <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
-      </div>
-      <div class="form-group">
-        <label for="apartment">Apartment</label>
-        <input type="text" class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number" required>
-      </div>
-      <div class="form-group">
-        <label>Country
-          <select  [compareWith]="compareCountryFn"  class="form-control" name="country" formControlName="country"  (change)="loadStates()">
-            <option  [ngValue]="country" *ngFor="let country of countries">
-              {{country.name}}
-            </option>
-          </select>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>State
-          <select  [compareWith]="compareStateFn"  class="form-control" name="state" formControlName="state"  (change)="loadCities()">
-            <option  [ngValue]="state" *ngFor="let state of states">
-              {{state.name}}
-            </option>
-          </select>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>City
-          <select  [compareWith]="compareCityFn"  class="form-control" name="city" formControlName="city">
-            <option  [ngValue]="city" *ngFor="let city of cities">
-              {{city.name}}
-            </option>
-          </select>
-        </label>
-      </div>
-      <div class="form-group">
-        <label for="zipCode">Zip Code</label>
-        <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code" required>
-      </div>
     </div>
+    <br/> <br/> <br/>
     <button type="submit" class="btn btn-primary"  (click)="updateUserProfile()">Update</button>
     <button type="button" class="btn btn-primary"  style="margin-left: 30px" (click)="goBack()">Cancel</button>
-
   </form>
-
 </div>
