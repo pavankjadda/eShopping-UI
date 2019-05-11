@@ -121,7 +121,7 @@ export class UserProfileEditComponent implements OnInit
     userProfile.lastName=this.userProfileForm.value.lastName;
     userProfile.email=this.userProfileForm.value.email;
     userProfile.phone=this.userProfileForm.value.phone;
-    userProfile.addresses=[this.userProfileForm.value.address];
+    //userProfile.addresses=[this.userProfileForm.value.address];
 
     this.userProfileService.updateUserProfile( userProfileUrl, userProfile ).subscribe(
       data =>
