@@ -4,7 +4,15 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, SERVER_URL, STATE_API_URL, USER_PROFILE_API_URL} from '../../../app.constants';
+import {
+  ADDRESS_API_URL,
+  ADDRESS_TYPE_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  SERVER_URL,
+  STATE_API_URL,
+  USER_PROFILE_API_URL
+} from '../../../app.constants';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {Country} from '../../../api/country/model/country';
 import {State} from '../../../api/state/model/state';
@@ -75,9 +83,25 @@ export class UserProfileEditComponent implements OnInit
     this.loadCountries();
   }
 
-  openModal(template: TemplateRef<any>)
+  openModal(template: TemplateRef<any>, address: Address)
   {
     this.modalRef = this.modalService.show(template);
+    if(address!=null)
+    {
+      this.userProfileForm.patchValue(
+        {
+          address: address
+        }
+      );
+      this.loadStates();
+      this.loadCities();
+    }
+    else
+    {
+
+    }
+
+
   }
 
   private getUserProfile()
@@ -143,12 +167,34 @@ export class UserProfileEditComponent implements OnInit
 
   updateUserAddress()
   {
-
+    const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'update';
+    this.addressService.updateAddress(addressApiUrl,this.userProfileForm.value.address).subscribe(
+      data=>
+      {
+        this.getUserProfile();
+        this.modalRef.hide();
+      },
+      error1 =>
+      {
+        console.log('Failed to updated address. Error: '+error1);
+      }
+    );
   }
 
 
   deleteAddress(address: Address)
   {
+    const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'delete/'+address.id;
+    this.addressService.deleteAddress(addressApiUrl).subscribe(
+      data=>
+      {
+        this.getUserProfile();
+      },
+      error1 =>
+      {
+
+      }
+    );
 
   }
 
