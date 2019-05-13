@@ -2,7 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {
+  CATEGORY_API_URL,
+  CURRENCY_API_URL,
+  MANUFACTURER_API_URL,
+  PRODUCT_API_URL,
+  SERVER_URL
+} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Currency} from '../model/currency';
 import {Category} from '../../category/model/category';

@@ -40,6 +40,30 @@ const routes: Routes=[
     loadChildren: './api/checkout/checkout.module#CheckoutModule'
   },
   {
+    path: 'address',
+    loadChildren: './api/address/address.module#AddressModule'
+  },
+  {
+    path: 'address_type',
+    loadChildren: './api/address-type/address-type.module#AddressTypeModule'
+  },
+  {
+    path: 'city',
+    loadChildren: './api/city/city.module#CityModule'
+  },
+  {
+    path: 'state',
+    loadChildren: './api/state/state.module#StateModule'
+  },
+  {
+    path: 'country',
+    loadChildren: './api/country/country.module#CountryModule'
+  },
+  {
+    path: 'region',
+    loadChildren: './api/region/region.module#RegionModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
