@@ -15,13 +15,10 @@ const routes: Routes=[
     component: HomeComponent,
     canActivate: [UserAuthGuard]
   },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  },
+
   {
     path: 'customer',
-    loadChildren: './customer/customer.module#CustomerModule'
+    loadChildren: 'src/app/customer/customer.module#CustomerModule'
   },
   {
     path: 'category',
@@ -70,6 +67,15 @@ const routes: Routes=[
   {
     path: 'region',
     loadChildren: './api/region/region.module#RegionModule'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 
