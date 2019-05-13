@@ -20,6 +20,7 @@ export const checkManagementRoute: Routes=[
       RouterModule
     ]
   })
-export class CheckoutRoutingModule {
+export class CheckoutRoutingModule
+{
 
 }

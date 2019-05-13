@@ -8,12 +8,8 @@ import {RegionComponent} from './region/region.component';
 import {StateComponent} from './state/state.component';
 import {AddressComponent} from './address/address.component';
 import {AddressTypeComponent} from './address-type/address-type.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {TypeaheadModule} from 'ngx-bootstrap';
-import {DataViewModule} from 'primeng/dataview';
-import {TableModule} from 'primeng/table';
-import {ConfirmDialogModule, DialogModule, PanelModule, RadioButtonModule, SpinnerModule} from 'primeng/primeng';
 import {CategoryModule} from './category/category.module';
 import {ManufacturerModule} from './manufacturer/manufacturer.module';
 import {ProductModule} from './product/product.module';
@@ -37,15 +33,6 @@ import {CheckoutModule} from './checkout/checkout.module';
     ReactiveFormsModule,
     NgxSpinnerModule,
     RouterModule,
-    TypeaheadModule,
-    DataViewModule,
-    TableModule,
-    SpinnerModule,
-    FormsModule,
-    PanelModule,
-    RadioButtonModule,
-    ConfirmDialogModule,
-    DialogModule,
     CategoryModule,
     ManufacturerModule,
     ProductModule,
