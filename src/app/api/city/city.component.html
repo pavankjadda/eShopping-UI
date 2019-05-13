@@ -1,20 +1,23 @@
 
-
-<div style="text-align: center" >
+<div class="container-fluid container">
   <h3> Cities List</h3>
-  <div  *ngIf="cityDataAvailable()" style="text-align: center">
+  <div  *ngIf="cityDataAvailable()">
     <table style="text-align: center">
       <tr>
         <th>Id</th>
         <th>name</th>
         <th>State Name</th>
       </tr>
-      <tr *ngFor="let city of (citiesObservable)">
+      <tr *ngFor="let city of cities">
         <td>{{city.id}}</td>
         <td>{{city.name}}</td>
         <td>{{city.state.name}}</td>
       </tr>
     </table>
+    <div  style="margin: 30px">
+      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getFirstPageCities()" value="Home" >
+      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getPreviousCities()" value="Back" >
+      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getNextCities()" value="Next" >
+    </div>
   </div>
-  <a routerLink="/home">Click here to Home</a>
 </div>

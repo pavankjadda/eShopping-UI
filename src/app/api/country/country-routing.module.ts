@@ -11,7 +11,6 @@ export const countryManagementRoute: Routes=[
   }
 ];
 
-
 @NgModule({
   imports: [
     RouterModule.forChild(countryManagementRoute),
