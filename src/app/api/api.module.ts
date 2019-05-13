@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
-import {CategoryModule} from './category/category.module';
 import {ManufacturerModule} from './manufacturer/manufacturer.module';
 import {ProductModule} from './product/product.module';
 import {OrderModule} from './order/order.module';
@@ -19,7 +18,7 @@ import {RegionModule} from './region/region.module';
     [
       CommonModule,
       ReactiveFormsModule,
-      CategoryModule,
+      //CategoryModule,
       AddressModule,
       AddressTypeModule,
       CityModule,
