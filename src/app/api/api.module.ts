@@ -13,11 +13,9 @@ import {CityModule} from './city/city.module';
 import {StateModule} from './state/state.module';
 import {CountryModule} from './country/country.module';
 import {RegionModule} from './region/region.module';
+import {ApiRoutingModule} from './api-routing.module';
 
 @NgModule({
-  declarations:
-    [
-    ],
   imports:
     [
       CommonModule,
@@ -33,10 +31,11 @@ import {RegionModule} from './region/region.module';
       ProductModule,
       OrderModule,
       CartModule,
-      CheckoutModule
+      CheckoutModule,
+      ApiRoutingModule
   ]
 })
+
 export class ApiModule
 {
 }
-
