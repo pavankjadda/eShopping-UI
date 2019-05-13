@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {LayoutModule} from './layouts/layout.module';
-import {AccountModule} from './account/account.module';
 import {ApiModule} from './api/api.module';
 import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,7 +16,7 @@ import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.compone
 import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
 import {HelpersModule} from './helpers/helpers.module';
 import {SharedModule} from './shared/shared.module';
-import {CategoryModule} from './api/category/category.module';
+import {CustomerModule} from './customer/customer.module';
 
 
 @NgModule( {
@@ -32,10 +31,9 @@ import {CategoryModule} from './api/category/category.module';
     LayoutModule,
     CoreModule,
     ApiModule,
-    AccountModule,
     HelpersModule,
     SharedModule,
-    CategoryModule,
+    CustomerModule,
     AppRoutingModule
   ],
 

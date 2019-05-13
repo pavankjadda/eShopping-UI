@@ -12,13 +12,14 @@ import {CityModule} from './city/city.module';
 import {StateModule} from './state/state.module';
 import {CountryModule} from './country/country.module';
 import {RegionModule} from './region/region.module';
+import {CategoryModule} from './category/category.module';
 
 @NgModule({
   imports:
     [
       CommonModule,
       ReactiveFormsModule,
-      //CategoryModule,
+      CategoryModule,
       AddressModule,
       AddressTypeModule,
       CityModule,

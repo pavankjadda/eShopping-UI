@@ -20,6 +20,10 @@ const routes: Routes=[
     component: PageNotFoundComponent
   },
   {
+    path: 'customer',
+    loadChildren: './customer/customer.module#CustomerModule'
+  },
+  {
     path: 'category',
     loadChildren: './api/category/category.module#CategoryModule'
   },
