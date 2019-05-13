@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {CategoryComponent} from './category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {CategoryViewComponent} from './category-view/category-view.component';
@@ -7,6 +7,7 @@ import {CategoryHomeComponent} from './category-home/category-home.component';
 import {CategoryEditComponent} from './category-edit/category-edit.component';
 import {CategoryDeleteComponent} from './category-delete/category-delete.component';
 import {UserAuthGuard} from '../../guards/user-auth.guard';
+import {NgModule} from '@angular/core';
 
 
 export const categoryManagementRoute: Routes=[
@@ -44,48 +45,9 @@ export const categoryManagementRoute: Routes=[
     ]
   }];
 
-
-
-/*
-export const categoryManagementRoute: Routes=[
+@NgModule(
   {
-      path: 'category',
-      component: CategoryComponent,
-      children: [
-        {
-          path: 'list',
-          component: CategoryListComponent,
-          children: [
-            {
-              path: ':id',
-              component: CategoryViewComponent
-            }
-          ]
-        },
-        {
-          path: 'create',
-          component: CategoryNewComponent
-        },
-        {
-          path: 'new',
-          component: CategoryNewComponent
-        },
-        {
-          path: 'update',
-          component: CategoryComponent
-        },
-        {
-          path: ':id/edit',
-          component: CategoryViewComponent
-        },
-        {
-          path: ':id',
-          component: CategoryViewComponent
-        },
-        {
-          path: '',
-          component: CategoryHomeComponent
-        }
-      ]
-    }];
-*/
+  imports: [RouterModule.forChild(categoryManagementRoute)],
+  exports: [RouterModule]
+})
+export class CategoryRoutingModule{ }
