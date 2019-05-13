@@ -16,6 +16,7 @@ import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
 import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
 import {HelpersModule} from './helpers/helpers.module';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule( {
@@ -32,6 +33,7 @@ import {HelpersModule} from './helpers/helpers.module';
     ApiModule,
     AccountModule,
     HelpersModule,
+    SharedModule,
     AppRoutingModule
   ],
 

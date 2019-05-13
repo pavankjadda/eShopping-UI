@@ -5,9 +5,24 @@ import {HomeComponent} from './layouts/home/home.component';
 import {UserAuthGuard} from './guards/user-auth.guard';
 
 const routes: Routes=[
-  {path: '', component: HomeComponent,canActivate: [UserAuthGuard]},
-  {path: 'home', component: HomeComponent,canActivate: [UserAuthGuard]},
-  {path: '**', component: PageNotFoundComponent}
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'category',
+    loadChildren: './api/category/category.module#CategoryModule'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule( {

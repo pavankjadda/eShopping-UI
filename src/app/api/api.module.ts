@@ -45,6 +45,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule, DialogModule, PanelModule, RadioButtonModule, SpinnerModule} from 'primeng/primeng';
 import {CheckoutComponent} from './checkout/checkout.component';
+import {CategoryModule} from './category/category.module';
 
 
 @NgModule({
@@ -100,8 +101,9 @@ import {CheckoutComponent} from './checkout/checkout.component';
               PanelModule,
               RadioButtonModule,
               ConfirmDialogModule,
-              DialogModule
+              DialogModule,
+              CategoryModule
             ]
-          } )
+          })
 export class ApiModule { }
 
