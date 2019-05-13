@@ -8,13 +8,6 @@ import {RegionComponent} from './region/region.component';
 import {StateComponent} from './state/state.component';
 import {AddressComponent} from './address/address.component';
 import {AddressTypeComponent} from './address-type/address-type.component';
-import {ProductComponent} from './product/product.component';
-import {ProductHomeComponent} from './product/product-home/product-home.component';
-import {ProductListComponent} from './product/product-list/product-list.component';
-import {ProductNewComponent} from './product/product-new/product-new.component';
-import {ProductDeleteComponent} from './product/product-delete/product-delete.component';
-import {ProductViewComponent} from './product/product-view/product-view.component';
-import {ProductEditComponent} from './product/product-edit/product-edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ApiRoutingModule} from './api-routing.module';
@@ -33,6 +26,7 @@ import {ConfirmDialogModule, DialogModule, PanelModule, RadioButtonModule, Spinn
 import {CheckoutComponent} from './checkout/checkout.component';
 import {CategoryModule} from './category/category.module';
 import {ManufacturerModule} from './manufacturer/manufacturer.module';
+import {ProductModule} from './product/product.module';
 
 
 @NgModule({
@@ -44,13 +38,7 @@ import {ManufacturerModule} from './manufacturer/manufacturer.module';
     StateComponent,
     AddressComponent,
     AddressTypeComponent,
-    ProductComponent,
-    ProductHomeComponent,
-    ProductListComponent,
-    ProductNewComponent,
-    ProductDeleteComponent,
-    ProductViewComponent,
-    ProductEditComponent,
+
     OrderComponent,
     OrderHomeComponent,
     OrderListComponent,
@@ -77,7 +65,8 @@ import {ManufacturerModule} from './manufacturer/manufacturer.module';
     ConfirmDialogModule,
     DialogModule,
     CategoryModule,
-    ManufacturerModule
+    ManufacturerModule,
+    ProductModule
   ]
 })
 export class ApiModule { }
