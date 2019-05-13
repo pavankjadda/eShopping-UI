@@ -13,7 +13,6 @@ import {CityModule} from './city/city.module';
 import {StateModule} from './state/state.module';
 import {CountryModule} from './country/country.module';
 import {RegionModule} from './region/region.module';
-import {ApiRoutingModule} from './api-routing.module';
 
 @NgModule({
   imports:
@@ -31,8 +30,7 @@ import {ApiRoutingModule} from './api-routing.module';
       ProductModule,
       OrderModule,
       CartModule,
-      CheckoutModule,
-      ApiRoutingModule
+      CheckoutModule
   ]
 })
 
