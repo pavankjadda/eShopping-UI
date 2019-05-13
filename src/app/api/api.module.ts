@@ -11,14 +11,6 @@ import {AddressTypeComponent} from './address-type/address-type.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ApiRoutingModule} from './api-routing.module';
-import {OrderComponent} from './order/order.component';
-import {OrderHomeComponent} from './order/order-home/order-home.component';
-import {OrderListComponent} from './order/order-list/order-list.component';
-import {OrderEditComponent} from './order/order-edit/order-edit.component';
-import {OrderViewComponent} from './order/order-view/order-view.component';
-import {OrderDeleteComponent} from './order/order-delete/order-delete.component';
-import {OrderNewComponent} from './order/order-new/order-new.component';
-import {CartComponent} from './cart/cart.component';
 import {TypeaheadModule} from 'ngx-bootstrap';
 import {DataViewModule} from 'primeng/dataview';
 import {TableModule} from 'primeng/table';
@@ -27,27 +19,21 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import {CategoryModule} from './category/category.module';
 import {ManufacturerModule} from './manufacturer/manufacturer.module';
 import {ProductModule} from './product/product.module';
+import {OrderModule} from './order/order.module';
+import {CartModule} from './cart/cart.module';
 
 
 @NgModule({
   declarations:
     [
-    CityComponent,
-    CountryComponent,
-    RegionComponent,
-    StateComponent,
-    AddressComponent,
-    AddressTypeComponent,
+      CityComponent,
+      CountryComponent,
+      RegionComponent,
+      StateComponent,
+      AddressComponent,
+      AddressTypeComponent,
 
-    OrderComponent,
-    OrderHomeComponent,
-    OrderListComponent,
-    OrderEditComponent,
-    OrderViewComponent,
-    OrderDeleteComponent,
-    OrderNewComponent,
-    CartComponent,
-    CheckoutComponent
+      CheckoutComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +52,9 @@ import {ProductModule} from './product/product.module';
     DialogModule,
     CategoryModule,
     ManufacturerModule,
-    ProductModule
+    ProductModule,
+    OrderModule,
+    CartModule
   ]
 })
 export class ApiModule { }

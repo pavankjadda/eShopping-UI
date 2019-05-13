@@ -28,6 +28,18 @@ const routes: Routes=[
     loadChildren: './api/product/product.module#ProductModule'
   },
   {
+    path: 'order',
+    loadChildren: './api/order/order.module#OrderModule'
+  },
+  {
+    path: 'cart',
+    loadChildren: './api/cart/cart.module#CartModule'
+  },
+  {
+    path: 'checkout',
+    loadChildren: './api/checkout/checkout.module#CheckoutModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
