@@ -61,4 +61,8 @@ export class CategoryEditComponent implements OnInit
       });
   }
 
+  goBack()
+  {
+    this.router.navigate(['/category/'+this.categoryForm.get( 'id' ).value]);
+  }
 }
