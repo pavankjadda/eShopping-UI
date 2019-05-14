@@ -1,24 +1,60 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ManufacturerModule} from './manufacturer/manufacturer.module';
-import {ProductModule} from './product/product.module';
-import {OrderModule} from './order/order.module';
-import {CartModule} from './cart/cart.module';
-import {CheckoutModule} from './checkout/checkout.module';
-import {AddressModule} from './address/address.module';
-import {AddressTypeModule} from './address-type/address-type.module';
-import {CityModule} from './city/city.module';
-import {StateModule} from './state/state.module';
-import {CountryModule} from './country/country.module';
-import {RegionModule} from './region/region.module';
-import {CategoryModule} from './category/category.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports:
     [
+      RouterModule.forChild([
+        {
+          path: 'category',
+          loadChildren: './category/category.module#CategoryModule'
+        },
+        {
+          path: 'manufacturer',
+          loadChildren: './manufacturer/manufacturer.module#ManufacturerModule'
+        },
+        {
+          path: 'product',
+          loadChildren: './product/product.module#ProductModule'
+        },
+        {
+          path: 'order',
+          loadChildren: './order/order.module#OrderModule'
+        },
+        {
+          path: 'cart',
+          loadChildren: './cart/cart.module#CartModule'
+        },
+        {
+          path: 'checkout',
+          loadChildren: './checkout/checkout.module#CheckoutModule'
+        },
+        {
+          path: 'address',
+          loadChildren: './address/address.module#AddressModule'
+        },
+        {
+          path: 'address_type',
+          loadChildren: './address-type/address-type.module#AddressTypeModule'
+        },
+        {
+          path: 'city',
+          loadChildren: './city/city.module#CityModule'
+        },
+        {
+          path: 'state',
+          loadChildren: './state/state.module#StateModule'
+        },
+        {
+          path: 'country',
+          loadChildren: './country/country.module#CountryModule'
+        }
+      ]),
       CommonModule,
       ReactiveFormsModule,
+      /*
       CategoryModule,
       AddressModule,
       AddressTypeModule,
@@ -30,8 +66,11 @@ import {CategoryModule} from './category/category.module';
       ProductModule,
       OrderModule,
       CartModule,
-      CheckoutModule
-  ]
+      CheckoutModule*/
+  ],
+  declarations: [],
+  entryComponents: [],
+  providers: [],
 })
 
 export class ApiModule

@@ -1,5 +1,4 @@
 import {RouterModule, Routes} from '@angular/router';
-import {ManufacturerComponent} from './manufacturer.component';
 import {UserAuthGuard} from '../../guards/user-auth.guard';
 import {ManufacturerListComponent} from './manufacturer-list/manufacturer-list.component';
 import {ManufacturerNewComponent} from './manufacturer-new/manufacturer-new.component';
@@ -13,35 +12,41 @@ import {NgModule} from '@angular/core';
 export const manufacturerManagementRoute: Routes=[
   {
     path: '',
-    component: ManufacturerComponent,
-    canActivate: [UserAuthGuard],
-    children: [
-      {
-        path: 'list',
-        component: ManufacturerListComponent
-      },
-      {
-        path: 'new',
-        component: ManufacturerNewComponent
-      },
-      {
-        path: ':id/edit',
-        component: ManufacturerEditComponent
-      },
-      {
-        path: ':id/delete',
-        component: ManufacturerDeleteComponent
-      },
-      {
-        path: ':id',
-        component: ManufacturerViewComponent
-      },
-      {
-        path: '',
-        component: ManufacturerHomeComponent
-      }
-    ]
-  }];
+    component: ManufacturerHomeComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'list',
+    component: ManufacturerListComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'new',
+    component: ManufacturerNewComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/edit',
+    component: ManufacturerEditComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/delete',
+    component: ManufacturerDeleteComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/view',
+    component: ManufacturerViewComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: '',
+    component: ManufacturerHomeComponent,
+    canActivate: [UserAuthGuard]
+  }
+
+  ];
 
 @NgModule(
   {

@@ -1,5 +1,4 @@
 import {RouterModule, Routes} from '@angular/router';
-import {CategoryComponent} from './category.component';
 import {CategoryListComponent} from './category-list/category-list.component';
 import {CategoryViewComponent} from './category-view/category-view.component';
 import {CategoryNewComponent} from './category-new/category-new.component';
@@ -13,36 +12,33 @@ import {NgModule} from '@angular/core';
 export const categoryManagementRoute: Routes=[
   {
     path: '',
-    component: CategoryComponent,
+    component: CategoryHomeComponent,
     canActivate: [UserAuthGuard],
-    children: [
-      {
-        path: 'list',
-        component: CategoryListComponent
-      },
-      {
-        path: 'new',
-        component: CategoryNewComponent
-      },
-      {
-        path: ':id',
-        component: CategoryViewComponent,
-        children: [
-          {
-            path: 'edit',
-            component: CategoryEditComponent
-          },
-          {
-            path: 'delete',
-            component: CategoryDeleteComponent
-          }
-        ]
-      },
-      {
-        path: '',
-        component: CategoryHomeComponent
-      }
-    ]
+  },
+  {
+    path: 'list',
+    component: CategoryListComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'new',
+    component: CategoryNewComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/view',
+    component: CategoryViewComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/edit',
+    component: CategoryEditComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: ':id/delete',
+    component: CategoryDeleteComponent,
+    canActivate: [UserAuthGuard]
   }];
 
 @NgModule(

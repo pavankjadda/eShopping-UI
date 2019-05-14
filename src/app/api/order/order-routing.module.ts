@@ -1,5 +1,4 @@
 import {RouterModule, Routes} from '@angular/router';
-import {OrderComponent} from './order.component';
 import {UserAuthGuard} from '../../guards/user-auth.guard';
 import {OrderListComponent} from './order-list/order-list.component';
 import {OrderNewComponent} from './order-new/order-new.component';
@@ -10,40 +9,38 @@ import {OrderHomeComponent} from './order-home/order-home.component';
 import {NgModule} from '@angular/core';
 
 
-export const orderManagementRoute: Routes=[
+export const orderManagementRoute: Routes = [
   {
     path: '',
-    component: OrderComponent,
+    component: OrderHomeComponent,
     canActivate: [UserAuthGuard],
-    children: [
-      {
-        path: 'list',
-        component: OrderListComponent
-      },
-      {
-        path: 'new',
-        component: OrderNewComponent
-      },
-      {
-        path: ':id',
-        component: OrderViewComponent,
-        children: [
-          {
-            path: 'edit',
-            component: OrderEditComponent
-          },
-          {
-            path: 'delete',
-            component: OrderDeleteComponent
-          }
-        ]
-      },
-      {
-        path: '',
-        component: OrderHomeComponent
-      }
-    ]
-  }];
+  },
+  {
+    path: 'list',
+    component: OrderListComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: 'new',
+    component: OrderNewComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: ':id/view',
+    component: OrderViewComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: ':id/edit',
+    component: OrderEditComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: ':id/delete',
+    component: OrderDeleteComponent,
+    canActivate: [UserAuthGuard],
+  }
+];
 
 
 @NgModule(

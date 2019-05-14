@@ -15,6 +15,7 @@ import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.compone
 import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
 import {HelpersModule} from './helpers/helpers.module';
 import {SharedModule} from './shared/shared.module';
+import {ApiModule} from './api/api.module';
 
 
 @NgModule( {
@@ -28,7 +29,7 @@ import {SharedModule} from './shared/shared.module';
     AdminModule,
     LayoutModule,
     CoreModule,
-    //ApiModule,
+    ApiModule,
     HelpersModule,
     SharedModule,
     AppRoutingModule
