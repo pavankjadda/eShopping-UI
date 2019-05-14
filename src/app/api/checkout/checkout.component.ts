@@ -47,21 +47,11 @@ export class CheckoutComponent implements OnInit
   cartProducts: Array<CartProduct>;
   productInventory:Array<ProductInventory>;
   totalCost:number;
-  displayShippingAddressDialog = false;
+  displayAddressDialog = false;
   displayBillingAddressDialog = false;
 
-  shippingAddressForm=new FormGroup(
-    {
-                addressType: new FormControl( '' ),
-                streetName: new FormControl( '' ),
-                apartment: new FormControl( '' ),
-                city: new FormControl( '' ),
-                state: new FormControl( '' ),
-                country: new FormControl( '' ),
-                zipCode: new FormControl( '' ),
-            } );
 
-  billingAddressForm=new FormGroup(
+  addressForm=new FormGroup(
     {
       addressType: new FormControl( '' ),
       streetName: new FormControl( '' ),
@@ -71,7 +61,6 @@ export class CheckoutComponent implements OnInit
       country: new FormControl( '' ),
       zipCode: new FormControl( '' ),
     } );
-
 
   constructor(private cartService:CartService,
               private ngxSpinnerService:NgxSpinnerService,
@@ -160,75 +149,37 @@ export class CheckoutComponent implements OnInit
 
 
 
-  createNewShippingAddressDialog()
+  createNewAddressDialog(addressCategory: string)
   {
-    this.displayShippingAddressDialog=true;
+    this.displayAddressDialog=true;
     this.loadAddressTypes();
     this.loadCountries();
 
   }
 
-  hideNewShippingAddressDialog()
+  hideNewAddressDialog()
   {
-    this.displayShippingAddressDialog=false;
+    this.displayAddressDialog=false;
   }
-  createNewShippingAddress()
+
+  createNewAddress()
   {
     let addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
     let address=new Address();
 
-    address.streetName=this.shippingAddressForm.value.streetName;
-    address.apartment=this.shippingAddressForm.value.apartment;
-    address.country=this.shippingAddressForm.value.country;
-    address.state=this.shippingAddressForm.value.state;
-    address.city=this.shippingAddressForm.value.city;
-    address.zipCode=this.shippingAddressForm.value.zipCode;
-    address.addressType=this.shippingAddressForm.value.addressType;
+    address.streetName=this.addressForm.value.streetName;
+    address.apartment=this.addressForm.value.apartment;
+    address.country=this.addressForm.value.country;
+    address.state=this.addressForm.value.state;
+    address.city=this.addressForm.value.city;
+    address.zipCode=this.addressForm.value.zipCode;
+    address.addressType=this.addressForm.value.addressType;
 
     this.addressService.createAddress(addressUrl,address).subscribe(
       data=>
       {
         this.getAddresses();
-        this.hideNewShippingAddressDialog();
-      },
-      error1 =>
-      {
-        console.log('Error occurred: '+error1);
-      }
-    );
-  }
-
-  createNewBillingAddressDialog()
-  {
-    this.displayBillingAddressDialog=true;
-    this.loadAddressTypes();
-    this.loadCountries();
-
-  }
-
-  hideNewBillingAddressDialog()
-  {
-    this.displayBillingAddressDialog=false;
-  }
-  createNewBillingAddress()
-  {
-    let addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
-    let address=new Address();
-
-    address.streetName=this.billingAddressForm.value.streetName;
-    address.apartment=this.billingAddressForm.value.apartment;
-    address.country=this.billingAddressForm.value.country;
-    address.state=this.billingAddressForm.value.state;
-    address.city=this.billingAddressForm.value.city;
-    address.zipCode=this.billingAddressForm.value.zipCode;
-    address.addressType=this.billingAddressForm.value.addressType;
-    address.userProfile=this.authService.currentUserSubject.value.userProfile;
-
-    this.addressService.createAddress(addressUrl,address).subscribe(
-      data=>
-      {
-        this.getAddresses();
-        this.hideNewBillingAddressDialog();
+        this.hideNewAddressDialog();
       },
       error1 =>
       {
@@ -250,7 +201,7 @@ export class CheckoutComponent implements OnInit
       addressTypes =>
       {
         this.addressTypes=addressTypes;
-        this.shippingAddressForm.patchValue(
+        this.addressForm.patchValue(
           {
             addressTypes: addressTypes
           }
@@ -280,7 +231,7 @@ export class CheckoutComponent implements OnInit
 
   loadStates()
   {
-    const country=this.shippingAddressForm.value.country;
+    const country=this.addressForm.value.country;
     const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
@@ -297,7 +248,7 @@ export class CheckoutComponent implements OnInit
 
   loadCities()
   {
-    const state=this.shippingAddressForm.value.state;
+    const state=this.addressForm.value.state;
     const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
