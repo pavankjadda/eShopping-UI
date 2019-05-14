@@ -1,9 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {UserProfile} from '../model/user-profile';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {ActivatedRoute, Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ADDRESS_TYPE_API_URL, CITY_API_URL, COUNTRY_API_URL, SERVER_URL, STATE_API_URL, USER_PROFILE_API_URL} from '../../../app.constants';
+import {
+  ADDRESS_API_URL,
+  ADDRESS_TYPE_API_URL,
+  CITY_API_URL,
+  COUNTRY_API_URL,
+  SERVER_URL,
+  STATE_API_URL,
+  USER_PROFILE_API_URL
+} from '../../../app.constants';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {Country} from '../../../api/country/model/country';
 import {State} from '../../../api/state/model/state';
@@ -15,6 +24,7 @@ import {AddressTypeService} from '../../../api/address-type/service/address-type
 import {AddressService} from '../../../api/address/service/address.service';
 import {AuthService} from '../../../core/auth/auth.service';
 import {UserProfileService} from '../service/user-profile.service';
+import {Address} from '../../../api/address/model/address';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -25,9 +35,12 @@ export class UserProfileEditComponent implements OnInit
 {
   userProfile: UserProfile;
   addressTypes: Array<AddressType>;
+  addresses: Array<Address>;
   countries: Array<Country>;
   states: Array<State>;
   cities: Array<City>;
+
+  modalRef: BsModalRef;
 
   userProfileForm=new FormGroup(
     {
@@ -59,7 +72,7 @@ export class UserProfileEditComponent implements OnInit
               private addressTypeService:AddressTypeService,
               private addressService:AddressService,
               private router: Router,
-              private route:ActivatedRoute)
+              private modalService: BsModalService)
   {
   }
 
@@ -68,6 +81,27 @@ export class UserProfileEditComponent implements OnInit
     this.getUserProfile();
     this.loadAddressTypes();
     this.loadCountries();
+  }
+
+  openModal(template: TemplateRef<any>, address: Address)
+  {
+    this.modalRef = this.modalService.show(template);
+    if(address!=null)
+    {
+      this.userProfileForm.patchValue(
+        {
+          address: address
+        }
+      );
+      this.loadStates();
+      this.loadCities();
+    }
+    else
+    {
+
+    }
+
+
   }
 
   private getUserProfile()
@@ -87,10 +121,10 @@ export class UserProfileEditComponent implements OnInit
             lastName: data.lastName,
             email: data.email,
             phone: data.phone,
-            user: data.user,
-            address: data.addresses[0]
+            user: data.user
           }
         );
+        this.addresses=data.addresses;
       },
       error1 =>
       {
@@ -111,24 +145,56 @@ export class UserProfileEditComponent implements OnInit
     userProfile.lastName=this.userProfileForm.value.lastName;
     userProfile.email=this.userProfileForm.value.email;
     userProfile.phone=this.userProfileForm.value.phone;
-    userProfile.user=this.authService.currentUserSubject.value;
-    userProfile.addresses=[this.userProfileForm.value.address];
-    //userProfile.addresses.push(this.userProfileForm.value.address);
+    //userProfile.addresses=[this.userProfileForm.value.address];
 
     this.userProfileService.updateUserProfile( userProfileUrl, userProfile ).subscribe(
       data =>
       {
         userProfile=data;
-        console.log( 'userProfile updated' );
+        console.log( 'UserProfile updated' );
         this.router.navigate( ['/profile'] );
       },
       error1 =>
       {
-        console.log( 'Manufacturer update failed' );
+        console.log( 'UserProfile update failed' );
         this.spinnerService.hide();
       }
     );
 
+
+  }
+
+
+  updateUserAddress()
+  {
+    const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'update';
+    this.addressService.updateAddress(addressApiUrl,this.userProfileForm.value.address).subscribe(
+      data=>
+      {
+        this.getUserProfile();
+        this.modalRef.hide();
+      },
+      error1 =>
+      {
+        console.log('Failed to updated address. Error: '+error1);
+      }
+    );
+  }
+
+
+  deleteAddress(address: Address)
+  {
+    const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'delete/'+address.id;
+    this.addressService.deleteAddress(addressApiUrl).subscribe(
+      data=>
+      {
+        this.getUserProfile();
+      },
+      error1 =>
+      {
+
+      }
+    );
 
   }
 
@@ -222,9 +288,8 @@ export class UserProfileEditComponent implements OnInit
 
   goBack()
   {
-    this.router.navigate(['/manufacturer']);
+    this.router.navigate(['/profile']);
   }
-
 
 
 }

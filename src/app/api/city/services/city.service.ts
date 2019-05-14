@@ -9,9 +9,9 @@ export class CityService
 {
   constructor(private httpClient:HttpClient) { }
 
-  getCities(url,httpOptions)
+  getCities(url)
   {
-    return this.httpClient.get<City[]>(url,httpOptions);
+    return this.httpClient.get<City[]>(url);
   }
 
   getCitiesByStateId(url: string)

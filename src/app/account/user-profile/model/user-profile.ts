@@ -11,8 +11,4 @@ export class UserProfile
   addresses: Array<Address>;
   user: User;
 
-  set setUser(user:User)
-  {
-    this.user=user;
-  }
 }

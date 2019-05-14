@@ -2,8 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {LayoutModule} from './layouts/layout.module';
-import {AccountModule} from './account/account.module';
-import {ApiModule} from './api/api.module';
 import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
@@ -16,6 +14,7 @@ import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
 import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProviders';
 import {HelpersModule} from './helpers/helpers.module';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule( {
@@ -29,9 +28,9 @@ import {HelpersModule} from './helpers/helpers.module';
     AdminModule,
     LayoutModule,
     CoreModule,
-    ApiModule,
-    AccountModule,
+    //ApiModule,
     HelpersModule,
+    SharedModule,
     AppRoutingModule
   ],
 

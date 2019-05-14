@@ -14,13 +14,8 @@ export class UserProfileService
     return this.httpClient.get<UserProfile>(userProfileUrl);
   }
 
-  getUserProfileByUserId(userProfileUrl: string)
-  {
-    return this.httpClient.get<UserProfile>(userProfileUrl);
-  }
-
   updateUserProfile(userProfileUrl: string, userProfile: UserProfile)
   {
-    return this.httpClient.put<UserProfile>( userProfileUrl, userProfile );
+    return this.httpClient.post<UserProfile>( userProfileUrl, userProfile );
   }
 }

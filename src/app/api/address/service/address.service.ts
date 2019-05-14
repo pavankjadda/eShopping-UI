@@ -24,4 +24,10 @@ export class AddressService
   {
     return this.httpClient.put<Address>(url,address);
   }
+
+  deleteAddress(url: string)
+  {
+    return this.httpClient.delete(url);
+  }
+
 }
