@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ButtonModule, DialogModule, PanelModule} from 'primeng/primeng';
+import {ModalModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations:
@@ -23,6 +24,7 @@ import {ButtonModule, DialogModule, PanelModule} from 'primeng/primeng';
       DialogModule,
       ButtonModule,
       FormsModule,
+      ModalModule.forRoot()
     ],
   exports: [
     RouterModule

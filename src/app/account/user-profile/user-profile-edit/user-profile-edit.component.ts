@@ -44,23 +44,23 @@ export class UserProfileEditComponent implements OnInit
 
   userProfileForm=new FormGroup(
     {
-      id: new FormControl( {value: '', disabled: true} ),
-      firstName: new FormControl( '' ),
-      lastName: new FormControl( '' ),
-      email: new FormControl( '' ),
-      phone: new FormControl( '' ),
-      address: new FormGroup(
-        {
-          addressType: new FormControl( '' ),
-          id: new FormControl( '' ),
-          streetName: new FormControl( '' ),
-          apartment: new FormControl( '' ),
-          city: new FormControl( '' ),
-          state: new FormControl( '' ),
-          country: new FormControl( '' ),
-          zipCode: new FormControl( '' ),
-        }),
-    } );
+                id: new FormControl( {value: '', disabled: true} ),
+                firstName: new FormControl( '' ),
+                lastName: new FormControl( '' ),
+                email: new FormControl( '' ),
+                phone: new FormControl( '' ),
+                address: new FormGroup(
+                  {
+                            addressType: new FormControl( '' ),
+                            id: new FormControl( '' ),
+                            streetName: new FormControl( '' ),
+                            apartment: new FormControl( '' ),
+                            city: new FormControl( '' ),
+                            state: new FormControl( '' ),
+                            country: new FormControl( '' ),
+                            zipCode: new FormControl( '' ),
+                          }),
+            } );
 
 
   constructor(private authService: AuthService,
@@ -100,8 +100,6 @@ export class UserProfileEditComponent implements OnInit
     {
 
     }
-
-
   }
 
   private getUserProfile()

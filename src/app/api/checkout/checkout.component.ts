@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
@@ -28,6 +28,7 @@ import {AddressType} from '../address-type/model/address-type';
 import {Country} from '../country/model/country';
 import {State} from '../state/model/state';
 import {City} from '../city/model/city';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 
 @Component( {
 selector: 'app-checkout',
@@ -46,7 +47,7 @@ export class CheckoutComponent implements OnInit
   cartProducts: Array<CartProduct>;
   totalCost:number;
   displayAddressDialog = false;
-
+  modalRef: BsModalRef;
 
   addressForm=new FormGroup(
     {
@@ -68,13 +69,41 @@ export class CheckoutComponent implements OnInit
               private countryService:CountryService,
               private addressTypeService:AddressTypeService,
               private addressService:AddressService,
-              private router:Router)
+              private router:Router,
+              private modalService: BsModalService)
   {
   }
 
   ngOnInit()
   {
       this.getMyCart();
+      this.loadAddressTypes();
+      this.loadCountries();
+  }
+
+  openModal(template: TemplateRef<any>, address: Address)
+  {
+    this.modalRef = this.modalService.show(template);
+    if(address!=null)
+    {
+      this.addressForm.patchValue(
+        {
+          addressType: address.addressType,
+          streetName: address.streetName,
+          apartment: address.apartment,
+          city: address.city,
+          state: address.state,
+          country: address.country,
+          zipCode: address.zipCode,
+        }
+      );
+      this.loadStates();
+      this.loadCities();
+    }
+    else
+    {
+
+    }
   }
 
   private getMyCart()
@@ -187,8 +216,6 @@ export class CheckoutComponent implements OnInit
   updateAddress(address: Address)
   {
     this.displayAddressDialog=true;
-    this.loadAddressTypes();
-    this.loadCountries();
 
     this.addressForm.patchValue({
       streetName:address.streetName,
@@ -198,9 +225,27 @@ export class CheckoutComponent implements OnInit
       zipCode:address.zipCode,
       addressType:address.addressType,
     });
-
+    this.loadAddressTypes();
+    this.loadCountries();
     this.loadStates();
     this.loadCities();
+  }
+
+
+  updateUserAddress()
+  {
+    const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'update';
+    this.addressService.updateAddress(addressApiUrl,this.addressForm.value.address).subscribe(
+      data=>
+      {
+        this.getAddresses();
+        this.modalRef.hide();
+      },
+      error1 =>
+      {
+        console.log('Failed to updated address. Error: '+error1);
+      }
+    );
   }
 
   deleteAddress(address: Address)

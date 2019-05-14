@@ -67,14 +67,15 @@
               <br>
             </div>
             <div class="col-6">
-              <input (click)="updateAddress(address)" class=" btn btn-outline-primary" style="margin: 10px" type="button" value="Edit">
+              <button (click)="openModal(addressEditModal,address)" class="btn btn-primary" type="button">Edit</button>
               <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
             </div>
           </div>
 
         </div>
         <div class="card-footer">
-          <input (click)="createNewAddressDialog()" class=" btn btn-primary" style="margin: 10px" type="button" value="Create New">
+          <button (click)="openModal(addressEditModal,null)" class="btn btn-primary" type="button">Create New</button>
+            <!--  <input (click)="createNewAddressDialog()" class=" btn btn-primary" style="margin: 10px" type="button" value="Create New">-->
         </div>
       </div>
     </div>
@@ -114,6 +115,7 @@
   </div>
 
   <!-- Address Modal-->
+<!--
   <p-dialog [(visible)]="displayAddressDialog" [modal]="true" [responsive]="true" [style]="{minWidth: '400px'}"
             [closable]="true" [maximizable]="true" [resizable]="true" [baseZIndex]="10000"  [minY]="70" >
     <p-header>
@@ -190,7 +192,87 @@
       <button type="button" pButton icon="pi pi-close"  (click)="hideNewAddressDialog()" label="Cancel" class="ui-button-secondary"></button>
     </p-footer>
   </p-dialog>
+-->
 
+  <ng-template #addressEditModal>
+    <div (click)="modalRef.hide()" class="modal-header">
+      <h3 class="modal-title">Edit Address</h3>
+      <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addressForm">
+        <div class="form-group">
+          <label>Address Type
+            <select [compareWith]="compareAddressTypeFn" class="form-control" formControlName="addressType"
+                    name="addressType">
+              <option *ngFor="let addressType of addressTypes" [ngValue]="addressType">
+                {{addressType.type}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <div class="col-6">
+            <label for="streetName">Street Name</label>
+            <input class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name"
+                   required type="text">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-6">
+            <label for="apartment">Apartment</label>
+            <input class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number"
+                   required type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Country
+            <select (change)="loadStates()" [compareWith]="compareCountryFn" class="form-control" formControlName="country"
+                    name="country">
+              <option *ngFor="let country of countries" [ngValue]="country">
+                {{country.name}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>State
+            <select (change)="loadCities()"  [compareWith]="compareStateFn" class="form-control" formControlName="state"
+                    name="state">
+              <option *ngFor="let state of states" [ngValue]="state">
+                {{state.name}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>City
+            <select [compareWith]="compareCityFn" class="form-control" formControlName="city" name="city">
+              <option *ngFor="let city of cities" [ngValue]="city">
+                {{city.name}}
+              </option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <div class="col-3">
+            <label for="zipCode">Zip Code</label>
+            <input class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code"
+                   required type="text">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button (click)="updateUserAddress()" class="btn btn-primary" type="button">Update</button>
+      <button (click)="modalRef.hide()" class="btn btn-danger" type="button">Cancel</button>
+    </div>
+  </ng-template>
 
   <br/>
     <p style="text-align: center">
