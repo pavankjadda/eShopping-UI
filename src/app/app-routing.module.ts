@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
 import {HomeComponent} from './layouts/home/home.component';
 import {UserAuthGuard} from './guards/user-auth.guard';
 
@@ -17,6 +18,10 @@ const routes: Routes=[
   {
     path: 'account',
     loadChildren: './account/account.module#AccountModule'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

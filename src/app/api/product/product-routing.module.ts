@@ -26,6 +26,11 @@ export const productManagementRoute: Routes=[
     canActivate: [UserAuthGuard],
   },
   {
+    path: ':id',
+    component: ProductViewComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
     path: ':id/edit',
     component: ProductEditComponent,
     canActivate: [UserAuthGuard],
@@ -34,12 +39,8 @@ export const productManagementRoute: Routes=[
     path: ':id/delete',
     component: ProductDeleteComponent,
     canActivate: [UserAuthGuard],
-  },
-  {
-    path: ':id/view',
-    component: ProductViewComponent,
-    canActivate: [UserAuthGuard],
-  }];
+  }
+ ];
 
 
 @NgModule(

@@ -26,7 +26,7 @@ export const categoryManagementRoute: Routes=[
     canActivate: [UserAuthGuard]
   },
   {
-    path: ':id/view',
+    path: ':id',
     component: CategoryViewComponent,
     canActivate: [UserAuthGuard]
   },

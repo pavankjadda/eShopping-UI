@@ -26,6 +26,11 @@ export const manufacturerManagementRoute: Routes=[
     canActivate: [UserAuthGuard]
   },
   {
+    path: ':id',
+    component: ManufacturerViewComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
     path: ':id/edit',
     component: ManufacturerEditComponent,
     canActivate: [UserAuthGuard]
@@ -34,18 +39,7 @@ export const manufacturerManagementRoute: Routes=[
     path: ':id/delete',
     component: ManufacturerDeleteComponent,
     canActivate: [UserAuthGuard]
-  },
-  {
-    path: ':id/view',
-    component: ManufacturerViewComponent,
-    canActivate: [UserAuthGuard]
-  },
-  {
-    path: '',
-    component: ManufacturerHomeComponent,
-    canActivate: [UserAuthGuard]
   }
-
   ];
 
 @NgModule(

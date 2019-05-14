@@ -26,7 +26,7 @@ export const orderManagementRoute: Routes = [
     canActivate: [UserAuthGuard],
   },
   {
-    path: ':id/view',
+    path: ':id',
     component: OrderViewComponent,
     canActivate: [UserAuthGuard],
   },
