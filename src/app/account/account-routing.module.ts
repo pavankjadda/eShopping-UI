@@ -7,7 +7,7 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {SettingsComponent} from './settings/settings.component';
 import {UserProfileEditComponent} from './user-profile/user-profile-edit/user-profile-edit.component';
 
-export const AccountManagementRoutes: Routes=[
+export const accountManagementRoutes: Routes=[
   {path: 'register', component: RegisterComponent},
   {path: 'activate', component: ActivateComponent},
   {path: 'password_reset', component: PasswordResetComponent},
@@ -16,12 +16,10 @@ export const AccountManagementRoutes: Routes=[
   {path: 'settings', component: SettingsComponent}
 ];
 
-
 @NgModule(
   {
     imports: [
-      RouterModule.forChild( AccountManagementRoutes )
-
+      RouterModule.forChild(accountManagementRoutes)
     ],
     exports: [
       RouterModule

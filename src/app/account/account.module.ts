@@ -21,9 +21,9 @@ import {ModalModule} from 'ngx-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    AccountRoutingModule,
     ModalModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AccountRoutingModule
   ],
   declarations: [
     ActivateComponent,

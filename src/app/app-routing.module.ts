@@ -15,7 +15,10 @@ const routes: Routes=[
     component: HomeComponent,
     canActivate: [UserAuthGuard]
   },
-
+  {
+    path: 'account',
+    loadChildren: './account/account.module#AccountModule'
+  },
   {
     path: 'category',
     loadChildren: './api/category/category.module#CategoryModule'
@@ -61,8 +64,12 @@ const routes: Routes=[
     loadChildren: './api/country/country.module#CountryModule'
   },
   {
-    path: 'region',
-    loadChildren: './api/region/region.module#RegionModule'
+    path: 'profile',
+    loadChildren: './account/user-profile/region.module#RegionModule'
+  },
+  {
+    path: 'category',
+    loadChildren: './api/category/category.module#CategoryModule'
   },
   {
     path: '**',
