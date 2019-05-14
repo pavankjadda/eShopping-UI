@@ -16,7 +16,6 @@ import {AuthService} from '../../core/auth/auth.service';
 import {Router} from '@angular/router';
 import {Cart} from '../cart/model/cart';
 import {CartProduct} from '../cart/model/cart-product';
-import {ProductInventory} from '../product/model/product-inventory';
 import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
 import {Address} from '../address/model/address';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -45,11 +44,8 @@ export class CheckoutComponent implements OnInit
   states: Array<State>;
   cities: Array<City>;
   cartProducts: Array<CartProduct>;
-  productInventory:Array<ProductInventory>;
   totalCost:number;
   displayAddressDialog = false;
-  shippingAddressRadioButtonSelected = false;
-  billingAddressRadioButtonSelected = false;
 
 
   addressForm=new FormGroup(
@@ -336,9 +332,4 @@ export class CheckoutComponent implements OnInit
     this.router.navigate(['/cart']);
   }
 
-
-  hideShippingAddressEditAndDelete()
-  {
-    this.billingAddressRadioButtonSelected=true;
-  }
 }

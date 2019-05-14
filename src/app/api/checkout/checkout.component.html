@@ -4,48 +4,51 @@
   <h1 style="text-align: center"> Checkout</h1>
   <br/>
 
-  <p-panel [toggleable]="true" header="Review Items">
-    <div *ngIf="cartDataAvailable()" class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
-      <table class="table">
-        <thead style="text-align: center">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Cost</th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody style="text-align: center">
-        <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
-          <th scope="row">{{i + 1}}</th>
-          <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
-          <td>{{cartProduct.quantity}}</td>
-          <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
-        </tr>
-        </tbody>
-        <tfoot style="text-align: center">
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <th>Tax = ${{totalCost.toPrecision(6)}}</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <th><h5>Total Cost = ${{totalCost.toPrecision(6)}}</h5></th>
-        </tr>
-        </tfoot>
-      </table>
+  <div class="card border-info">
+    <div class="card-header"> <h4> Review Items </h4></div>
+    <div class="card-body">
+      <div *ngIf="cartDataAvailable()" class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+        <table class="table">
+          <thead style="text-align: center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cost</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody style="text-align: center">
+          <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
+            <td>{{cartProduct.quantity}}</td>
+            <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
+          </tr>
+          </tbody>
+          <tfoot style="text-align: center">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Tax = ${{totalCost.toPrecision(6)}}</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th><h5>Total Cost = ${{totalCost.toPrecision(6)}}</h5></th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
-  </p-panel>
+  </div>
   <br/>
 
   <!-- Shipping Address -->
   <div class="card border-info">
-    <div class="card-header"> Shipping Address </div>
+    <div class="card-header"> <h4> Shipping Address </h4> </div>
     <div class="card-body">
       <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
         <div *ngIf="addressesAvailable()">
@@ -64,7 +67,7 @@
               <br>
             </div>
             <div class="col-6">
-              <input (click)="updateAddress(address)" class=" btn btn-primary" style="margin: 10px" type="button" value="Edit">
+              <input (click)="updateAddress(address)" class=" btn btn-outline-primary" style="margin: 10px" type="button" value="Edit">
               <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
             </div>
           </div>
@@ -81,7 +84,7 @@
 
   <!-- Billing Address -->
   <div class="card border-info">
-    <div class="card-header"> Shipping Address </div>
+    <div class="card-header"> <h4> Billing Address </h4></div>
     <div class="card-body">
     <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
       <div *ngIf="addressesAvailable()">
@@ -89,7 +92,7 @@
           <div class="col-6">
             <div class="form-check" style="margin: 10px">
               <label class="form-check-label" style="font-weight: bold">
-                <input class="form-check-input" name="billingAddress" type="radio" value="{{address}}" (click)="hideShippingAddressEditAndDelete()">{{address.addressType.type}}
+                <input class="form-check-input" name="billingAddress" type="radio" value="{{address}}">{{address.addressType.type}}
               </label>
             </div>
             <address style="margin: 10px">
@@ -98,8 +101,8 @@
               {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
             </address>
           </div>
-          <div class="col-6" *ngIf="!billingAddressRadioButtonSelected">
-            <input (click)="updateAddress(address)" class=" btn btn-primary" style="margin: 10px" type="button" value="Edit">
+          <div class="col-6">
+            <input (click)="updateAddress(address)" class=" btn btn-outline-primary" style="margin: 10px" type="button" value="Edit">
             <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
           </div>
           <br>
@@ -191,7 +194,7 @@
 
   <br/>
     <p style="text-align: center">
-      <input (click)="backToCart()" class=" btn btn-primary" style="margin: 40px" type="button" value="Back to Cart">
+      <input (click)="backToCart()" class=" btn btn-secondary" style="margin: 40px" type="button" value="Back to Cart">
       <input (click)="placeOrder()" class=" btn btn-primary" style="margin: 20px" type="button" value="Placer Order">
     </p>
 </div>
