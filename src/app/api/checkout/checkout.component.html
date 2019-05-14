@@ -75,7 +75,6 @@
         </div>
         <div class="card-footer">
           <button (click)="openModal(addressEditModal,null)" class="btn btn-primary" type="button">Create New</button>
-            <!--  <input (click)="createNewAddressDialog()" class=" btn btn-primary" style="margin: 10px" type="button" value="Create New">-->
         </div>
       </div>
     </div>
@@ -103,13 +102,13 @@
             </address>
           </div>
           <div class="col-6">
-            <input (click)="updateAddress(address)" class=" btn btn-outline-primary" style="margin: 10px" type="button" value="Edit">
+            <button (click)="openModal(addressEditModal,address)" class="btn btn-primary" type="button">Edit</button>
             <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
           </div>
           <br>
         </div>
       </div>
-      <input (click)="createNewAddressDialog()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
+        <button (click)="openModal(addressEditModal,null)" class="btn btn-primary" type="button">Create New</button>
     </div>
     </div>
   </div>

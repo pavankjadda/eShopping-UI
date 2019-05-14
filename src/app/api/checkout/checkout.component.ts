@@ -52,6 +52,7 @@ export class CheckoutComponent implements OnInit
   addressForm=new FormGroup(
     {
       addressType: new FormControl( '' ),
+      id: new FormControl( '' ),
       streetName: new FormControl( '' ),
       apartment: new FormControl( '' ),
       city: new FormControl( '' ),
@@ -89,6 +90,7 @@ export class CheckoutComponent implements OnInit
       this.addressForm.patchValue(
         {
           addressType: address.addressType,
+          id: address.id,
           streetName: address.streetName,
           apartment: address.apartment,
           city: address.city,
@@ -102,7 +104,7 @@ export class CheckoutComponent implements OnInit
     }
     else
     {
-
+      this.addressForm.reset();
     }
   }
 
@@ -173,69 +175,16 @@ export class CheckoutComponent implements OnInit
 
   }
 
-
-  createNewAddressDialog()
-  {
-    this.displayAddressDialog=true;
-    this.loadAddressTypes();
-    this.loadCountries();
-  }
-
   hideNewAddressDialog()
   {
     this.displayAddressDialog=false;
-  }
-
-  createNewAddress()
-  {
-    let addressUrl=SERVER_URL+ADDRESS_API_URL+'create';
-    let address=new Address();
-
-    address.streetName=this.addressForm.value.streetName;
-    address.apartment=this.addressForm.value.apartment;
-    address.country=this.addressForm.value.country;
-    address.state=this.addressForm.value.state;
-    address.city=this.addressForm.value.city;
-    address.zipCode=this.addressForm.value.zipCode;
-    address.addressType=this.addressForm.value.addressType;
-
-    this.addressService.createAddress(addressUrl,address).subscribe(
-      data=>
-      {
-        this.getAddresses();
-        this.hideNewAddressDialog();
-      },
-      error1 =>
-      {
-        console.log('Error occurred: '+error1);
-      }
-    );
-  }
-
-
-  updateAddress(address: Address)
-  {
-    this.displayAddressDialog=true;
-
-    this.addressForm.patchValue({
-      streetName:address.streetName,
-      country:address.country,
-      state:address.state,
-      city:address.city,
-      zipCode:address.zipCode,
-      addressType:address.addressType,
-    });
-    this.loadAddressTypes();
-    this.loadCountries();
-    this.loadStates();
-    this.loadCities();
   }
 
 
   updateUserAddress()
   {
     const addressApiUrl=SERVER_URL+ADDRESS_API_URL+'update';
-    this.addressService.updateAddress(addressApiUrl,this.addressForm.value.address).subscribe(
+    this.addressService.updateAddress(addressApiUrl,this.addressForm.value).subscribe(
       data=>
       {
         this.getAddresses();

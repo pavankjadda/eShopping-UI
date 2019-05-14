@@ -22,7 +22,7 @@ export class AddressService
 
   updateAddress(url: string, address: Address)
   {
-    return this.httpClient.put<Address>(url,address);
+    return this.httpClient.post<Address>(url,address);
   }
 
   deleteAddress(url: string)
