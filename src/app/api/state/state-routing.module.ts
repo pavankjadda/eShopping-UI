@@ -5,7 +5,7 @@ import {StateComponent} from './state.component';
 
 export const stateManagementRoute: Routes=[
   {
-    path: 'state',
+    path: '',
     component: StateComponent,
     canActivate: [UserAuthGuard]
   }

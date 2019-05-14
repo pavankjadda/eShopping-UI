@@ -12,7 +12,7 @@ import {NgModule} from '@angular/core';
 
 export const categoryManagementRoute: Routes=[
   {
-    path: 'category',
+    path: '',
     component: CategoryComponent,
     canActivate: [UserAuthGuard],
     children: [

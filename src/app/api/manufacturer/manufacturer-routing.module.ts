@@ -12,7 +12,7 @@ import {NgModule} from '@angular/core';
 
 export const manufacturerManagementRoute: Routes=[
   {
-    path: 'manufacturer',
+    path: '',
     component: ManufacturerComponent,
     canActivate: [UserAuthGuard],
     children: [

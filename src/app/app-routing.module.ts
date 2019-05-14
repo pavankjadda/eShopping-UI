@@ -17,10 +17,6 @@ const routes: Routes=[
   },
 
   {
-    path: 'customer',
-    loadChildren: 'src/app/customer/customer.module#CustomerModule'
-  },
-  {
     path: 'category',
     loadChildren: './api/category/category.module#CategoryModule'
   },

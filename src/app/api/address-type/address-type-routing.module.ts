@@ -5,7 +5,7 @@ import {AddressTypeComponent} from './address-type.component';
 
 export const addressTypeManagementRoute: Routes=[
   {
-    path: 'address_type',
+    path: '',
     component: AddressTypeComponent,
     canActivate: [UserAuthGuard]
   }

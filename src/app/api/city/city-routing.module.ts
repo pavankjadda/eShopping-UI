@@ -5,7 +5,7 @@ import {CityComponent} from './city.component';
 
 export const cityManagementRoute: Routes=[
   {
-    path: 'city',
+    path: '',
     component: CityComponent,
     canActivate: [UserAuthGuard]
   }

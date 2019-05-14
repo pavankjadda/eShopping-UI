@@ -5,7 +5,7 @@ import {CountryComponent} from './country.component';
 
 export const countryManagementRoute: Routes=[
   {
-    path: 'country',
+    path: '',
     component: CountryComponent,
     canActivate: [UserAuthGuard]
   }

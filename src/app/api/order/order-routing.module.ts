@@ -12,7 +12,7 @@ import {NgModule} from '@angular/core';
 
 export const orderManagementRoute: Routes=[
   {
-    path: 'order',
+    path: '',
     component: OrderComponent,
     canActivate: [UserAuthGuard],
     children: [

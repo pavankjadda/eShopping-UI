@@ -6,7 +6,7 @@ import {UserAuthGuard} from '../../guards/user-auth.guard';
 
 export const addressManagementRoute: Routes=[
   {
-    path: 'address',
+    path: '',
     component: AddressComponent,
     canActivate: [UserAuthGuard]
   }

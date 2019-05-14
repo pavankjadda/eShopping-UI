@@ -6,7 +6,7 @@ import {UserAuthGuard} from '../../guards/user-auth.guard';
 
 export const checkManagementRoute: Routes=[
   {
-    path: 'checkout',
+    path: '',
     component: CheckoutComponent,
     canActivate: [UserAuthGuard]
   }

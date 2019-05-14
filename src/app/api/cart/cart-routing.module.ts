@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 
 export const cartManagementRoute: Routes=[
   {
-    path: 'cart',
+    path: '',
     component: CartComponent,
     canActivate: [UserAuthGuard]
   }
