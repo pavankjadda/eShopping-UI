@@ -63,10 +63,7 @@ const routes: Routes=[
     path: 'country',
     loadChildren: './api/country/country.module#CountryModule'
   },
-  {
-    path: 'profile',
-    loadChildren: './account/user-profile/region.module#RegionModule'
-  },
+
   {
     path: 'category',
     loadChildren: './api/category/category.module#CategoryModule'
