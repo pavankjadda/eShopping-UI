@@ -13,11 +13,12 @@ import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
 export class CategoryEditComponent implements OnInit
 {
 
-  categoryForm = new FormGroup({
-    id: new FormControl({value:'',disabled: true}, Validators.minLength(2)),
-    name: new FormControl(''),
-                                 description: new FormControl( '' ),
-  });
+  categoryForm = new FormGroup(
+    {
+              id: new FormControl({value:'',disabled: true}, Validators.minLength(2)),
+              name: new FormControl(''),
+              description: new FormControl( '' ),
+            });
 
   constructor(private categoryService:CategoryService,
               private router:Router,
@@ -25,11 +26,25 @@ export class CategoryEditComponent implements OnInit
 
   ngOnInit()
   {
-    const id = this.route.parent.snapshot.params.id;
-    this.categoryForm.controls['id'].patchValue(id,{emitEvent: false});
-    //this.route.params.pipe( switchMap((params: ParamMap) => id=params.get('id')));
-    //this.route.paramMap.pipe( switchMap((params: ParamMap) => id=params.get('id')));
-    //this.categoryForm.controls['id'].patchValue(id,{emitEvent: false});
+    const id = this.route.snapshot.paramMap.get('id');
+    const url=SERVER_URL+CATEGORY_API_URL+id;
+    this.categoryService.getCategoryDetails( url ).subscribe(
+      data=>
+      {
+        this.categoryForm.patchValue({
+          id: data.id,
+          name: data.name,
+          description: data.description
+        });
+      },
+      error =>
+      {
+        console.log(error);
+      },
+      ()=>
+      {
+        console.log('getCategoryDetails() success');
+      });
 
   }
 
