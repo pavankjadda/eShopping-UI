@@ -288,7 +288,7 @@ export class UserProfileEditComponent implements OnInit
 
   goBack()
   {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/account/profile']);
   }
 
 

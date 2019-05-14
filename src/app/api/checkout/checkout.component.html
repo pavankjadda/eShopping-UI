@@ -44,56 +44,74 @@
   <br/>
 
   <!-- Shipping Address -->
-  <p-panel [toggleable]="true" header="Shipping Address">
-    <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
-      <div *ngIf="addressesAvailable()">
-        <div *ngFor="let address of addresses">
-          <div class="form-check" style="margin: 10px">
-            <label class="form-check-label" style="font-weight: bold">
-              <input type="radio" class="form-check-input" name="shippingAddress" value="{{address}}">{{address.addressType.type}}
-            </label>
+  <div class="card border-info">
+    <div class="card-header"> Shipping Address </div>
+    <div class="card-body">
+      <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+        <div *ngIf="addressesAvailable()">
+          <div *ngFor="let address of addresses" class="row">
+            <div class="col-6">
+              <div class="form-check" style="margin: 10px">
+                <label class="form-check-label" style="font-weight: bold">
+                  <input class="form-check-input" name="shippingAddress" type="radio" value="{{address}}">{{address.addressType.type}}
+                </label>
+              </div>
+              <address style="margin-left: 20px">
+                {{address.streetName}}<br>
+                Apt {{address.apartment}}<br>
+                {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
+              </address>
+              <br>
+            </div>
+            <div class="col-6">
+              <input (click)="updateAddress(address)" class=" btn btn-primary" style="margin: 10px" type="button" value="Edit">
+              <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
+            </div>
           </div>
-          <address style="margin: 10px">
-            {{address.streetName}}<br>
-            Apt {{address.apartment}}<br>
-            {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
-          </address>
-          <br>
+
+        </div>
+        <div class="card-footer">
+          <input (click)="createNewAddressDialog()" class=" btn btn-primary" style="margin: 10px" type="button" value="Create New">
         </div>
       </div>
-      <input (click)="createNewAddressDialog('Shipping')" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
     </div>
-  </p-panel>
+  </div>
+  <br/>
 
 
   <!-- Billing Address -->
-  <p-panel [toggleable]="true" header="Billing Address">
-
+  <div class="card border-info">
+    <div class="card-header"> Shipping Address </div>
+    <div class="card-body">
     <div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
       <div *ngIf="addressesAvailable()">
-        <div *ngFor="let address of addresses">
-          <div class="form-check" style="margin: 10px">
-            <label class="form-check-label" style="font-weight: bold">
-              <input type="radio" class="form-check-input" name="billingAddress" value="{{address}}">{{address.addressType.type}}
-            </label>
+        <div *ngFor="let address of addresses" class="row">
+          <div class="col-6">
+            <div class="form-check" style="margin: 10px">
+              <label class="form-check-label" style="font-weight: bold">
+                <input class="form-check-input" name="billingAddress" type="radio" value="{{address}}" (click)="hideShippingAddressEditAndDelete()">{{address.addressType.type}}
+              </label>
+            </div>
+            <address style="margin: 10px">
+              {{address.streetName}}<br>
+              Apt {{address.apartment}}<br>
+              {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
+            </address>
           </div>
-          <address style="margin: 10px">
-            {{address.streetName}}<br>
-            Apt {{address.apartment}}<br>
-            {{address.city.name}}, {{address.state.name}} - {{address.zipCode}}<br>
-          </address>
+          <div class="col-6" *ngIf="!billingAddressRadioButtonSelected">
+            <input (click)="updateAddress(address)" class=" btn btn-primary" style="margin: 10px" type="button" value="Edit">
+            <input (click)="deleteAddress(address)" class=" btn btn-danger" style="margin: 10px" type="button" value="Delete">
+          </div>
           <br>
         </div>
       </div>
-
-      <input (click)="createNewAddressDialog('Billing')" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
-
+      <input (click)="createNewAddressDialog()" class=" btn btn-primary" type="button" style="margin: 10px" value="Create New">
     </div>
-  </p-panel>
-
+    </div>
+  </div>
 
   <!-- Address Modal-->
-  <p-dialog [(visible)]="displayAddressDialog" [modal]="true" [responsive]="true" [style]="{minWidth: '300px'}"
+  <p-dialog [(visible)]="displayAddressDialog" [modal]="true" [responsive]="true" [style]="{minWidth: '400px'}"
             [closable]="true" [maximizable]="true" [resizable]="true" [baseZIndex]="10000"  [minY]="70" >
     <p-header>
       New Address
@@ -110,15 +128,20 @@
           </label>
         </div>
 
-        <div class="form-group">
-          <label for="streetName">Street Name</label>
-          <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
+        <div class="form-row">
+          <div class="col-auto">
+            <label for="streetName">Street Name</label>
+            <input type="text" class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="apartment">Apartment</label>
-          <input type="text" class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number" required>
+        <div class="form-row">
+          <div class="col-auto">
+            <label for="apartment">Apartment</label>
+            <input type="text" class="form-control" formControlName="apartment" id="apartment" placeholder="Enter Apartment Number" required>
+          </div>
         </div>
-        <div class="form-group">
+        <div class="form-row">
+          <div class="col-auto">
           <label>Country
             <select  [compareWith]="compareCountryFn"  class="form-control" name="country" formControlName="country"  (change)="loadStates()">
               <option  [ngValue]="country" *ngFor="let country of countries">
@@ -126,7 +149,10 @@
               </option>
             </select>
           </label>
-
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-auto">
           <label>State
             <select  [compareWith]="compareStateFn"  class="form-control" name="state" formControlName="state"  (change)="loadCities()">
               <option  [ngValue]="state" *ngFor="let state of states">
@@ -135,8 +161,10 @@
             </select>
           </label>
         </div>
+        </div>
 
-        <div class="form-group">
+        <div class="form-row">
+          <div class="col-auto">
           <label>City
             <select  [compareWith]="compareCityFn"  class="form-control" name="city" formControlName="city">
               <option  [ngValue]="city" *ngFor="let city of cities">
@@ -144,9 +172,13 @@
               </option>
             </select>
           </label>
-
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-auto">
           <label for="zipCode">Zip Code</label>
           <input type="text" class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code" required>
+        </div>
         </div>
       </form>
     </div>

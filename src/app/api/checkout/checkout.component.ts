@@ -48,7 +48,8 @@ export class CheckoutComponent implements OnInit
   productInventory:Array<ProductInventory>;
   totalCost:number;
   displayAddressDialog = false;
-  displayBillingAddressDialog = false;
+  shippingAddressRadioButtonSelected = false;
+  billingAddressRadioButtonSelected = false;
 
 
   addressForm=new FormGroup(
@@ -148,13 +149,11 @@ export class CheckoutComponent implements OnInit
   }
 
 
-
-  createNewAddressDialog(addressCategory: string)
+  createNewAddressDialog()
   {
     this.displayAddressDialog=true;
     this.loadAddressTypes();
     this.loadCountries();
-
   }
 
   hideNewAddressDialog()
@@ -188,6 +187,45 @@ export class CheckoutComponent implements OnInit
     );
   }
 
+
+  updateAddress(address: Address)
+  {
+    this.displayAddressDialog=true;
+    this.loadAddressTypes();
+    this.loadCountries();
+
+    this.addressForm.patchValue({
+      streetName:address.streetName,
+      country:address.country,
+      state:address.state,
+      city:address.city,
+      zipCode:address.zipCode,
+      addressType:address.addressType,
+    });
+
+    this.loadStates();
+    this.loadCities();
+  }
+
+  deleteAddress(address: Address)
+  {
+    if(confirm('Are you sure you want to delete the Address?'))
+    {
+      let addressUrl=SERVER_URL+ADDRESS_API_URL+'delete/'+address.id;
+
+      this.addressService.deleteAddress(addressUrl).subscribe(
+        data=>
+        {
+          this.getAddresses();
+          this.hideNewAddressDialog();
+        },
+        error1 =>
+        {
+          console.log('Error occurred: '+error1);
+        }
+      );
+    }
+  }
 
   placeOrder()
   {
@@ -298,4 +336,9 @@ export class CheckoutComponent implements OnInit
     this.router.navigate(['/cart']);
   }
 
+
+  hideShippingAddressEditAndDelete()
+  {
+    this.billingAddressRadioButtonSelected=true;
+  }
 }
