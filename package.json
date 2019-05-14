@@ -27,7 +27,7 @@
     "jquery": "^3.4.1",
     "latest-version": "^5.1.0",
     "ngx-bootstrap": "^4.2.0",
-    "ngx-spinner": "^7.1.4",
+    "ngx-spinner": "^7.0.0",
     "popper.js": "^1.14.7",
     "primeicons": "^1.0.0",
     "primeng": "^7.1.1",
