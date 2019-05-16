@@ -16,24 +16,26 @@ import {httpInterceptorProviders} from './core/intercepters/httpInterceptorProvi
 import {HelpersModule} from './helpers/helpers.module';
 import {SharedModule} from './shared/shared.module';
 import {ApiModule} from './api/api.module';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule( {
-  imports: [
-    BrowserModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AdminModule,
-    LayoutModule,
-    CoreModule,
-    ApiModule,
-    HelpersModule,
-    SharedModule,
-    AppRoutingModule
-  ],
+             imports: [
+               BrowserModule,
+               CommonModule,
+               FormsModule,
+               ReactiveFormsModule,
+               BrowserAnimationsModule,
+               HttpClientModule,
+               AdminModule,
+               LayoutModule,
+               CoreModule,
+               ApiModule,
+               HelpersModule,
+               SharedModule,
+               AppRoutingModule,
+               NgxSpinnerModule
+             ],
 
   declarations: [
     AppComponent,
