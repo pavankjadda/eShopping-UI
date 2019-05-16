@@ -11,7 +11,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class AppComponent implements OnInit
 {
   title = 'Home';
-  loadingRouteConfig: boolean;
 
   constructor(private router:Router,
               private spinner:NgxSpinnerService)
@@ -24,12 +23,10 @@ export class AppComponent implements OnInit
       {
         if (event instanceof RouteConfigLoadStart)
         {
-          this.loadingRouteConfig = true;
           this.spinner.show();
         }
         else if (event instanceof RouteConfigLoadEnd)
         {
-          this.loadingRouteConfig = false;
           this.spinner.hide();
         }
     });
