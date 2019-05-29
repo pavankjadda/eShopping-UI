@@ -173,6 +173,7 @@ export class CheckoutComponent implements OnInit
   {
     let taxRateUrl=SERVER_URL+TAX_RATE_API_URL;
 
+
   }
 
   hideNewAddressDialog()

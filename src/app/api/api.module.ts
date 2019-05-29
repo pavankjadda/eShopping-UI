@@ -9,47 +9,47 @@ import {RouterModule} from '@angular/router';
       RouterModule.forChild([
         {
           path: 'category',
-          loadChildren: './category/category.module#CategoryModule'
+          loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
         },
         {
           path: 'manufacturer',
-          loadChildren: './manufacturer/manufacturer.module#ManufacturerModule'
+          loadChildren: () => import('./manufacturer/manufacturer.module').then(m => m.ManufacturerModule)
         },
         {
           path: 'product',
-          loadChildren: './product/product.module#ProductModule'
+          loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
         },
         {
           path: 'order',
-          loadChildren: './order/order.module#OrderModule'
+          loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
         },
         {
           path: 'cart',
-          loadChildren: './cart/cart.module#CartModule'
+          loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
         },
         {
           path: 'checkout',
-          loadChildren: './checkout/checkout.module#CheckoutModule'
+          loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)
         },
         {
           path: 'address',
-          loadChildren: './address/address.module#AddressModule'
+          loadChildren: () => import('./address/address.module').then(m => m.AddressModule)
         },
         {
           path: 'address_type',
-          loadChildren: './address-type/address-type.module#AddressTypeModule'
+          loadChildren: () => import('./address-type/address-type.module').then(m => m.AddressTypeModule)
         },
         {
           path: 'city',
-          loadChildren: './city/city.module#CityModule'
+          loadChildren: () => import('./city/city.module').then(m => m.CityModule)
         },
         {
           path: 'state',
-          loadChildren: './state/state.module#StateModule'
+          loadChildren: () => import('./state/state.module').then(m => m.StateModule)
         },
         {
           path: 'country',
-          loadChildren: './country/country.module#CountryModule'
+          loadChildren: () => import('./country/country.module').then(m => m.CountryModule)
         }
       ]),
       CommonModule,
