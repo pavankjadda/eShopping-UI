@@ -31,7 +31,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <th>Tax = ${{totalCost.toPrecision(6)}}</th>
+            <th>Tax = ${{taxAmount | number:'1.2-2'}}</th>
           </tr>
           <tr>
             <td></td>
@@ -56,7 +56,7 @@
             <div class="col-6">
               <div class="form-check" style="margin: 10px">
                 <label class="form-check-label" style="font-weight: bold">
-                  <input class="form-check-input" name="shippingAddress" type="radio" value="{{address}}">{{address.addressType.type}}
+                  <input class="form-check-input" name="shippingAddress" type="radio" value="{{address}}" (change)="changeShippingAddress(address)" >{{address.addressType.type}}
                 </label>
               </div>
               <address style="margin-left: 20px">

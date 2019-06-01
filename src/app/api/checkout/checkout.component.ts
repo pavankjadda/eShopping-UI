@@ -46,8 +46,11 @@ export class CheckoutComponent implements OnInit
   cities: Array<City>;
   cartProducts: Array<CartProduct>;
   totalCost:number;
+  taxRate=0;
+  taxAmount=0;
   displayAddressDialog = false;
   modalRef: BsModalRef;
+  selectedShippingAddress: Address;
 
   addressForm=new FormGroup(
     {
@@ -125,7 +128,6 @@ export class CheckoutComponent implements OnInit
         this.calculateTotalCost(this.cartProducts);
         //this.checkAndHoldInventory();
         this.getAddresses();
-        this.getTaxRate();
 
         this.ngxSpinnerService.hide();
       }
@@ -144,7 +146,11 @@ export class CheckoutComponent implements OnInit
                          {
                            totalCost+=cartproduct.quantity*cartproduct.product.price.amount;
                          });
-    this.totalCost=totalCost;
+    if(this.taxRate !== 0)
+    {
+      this.taxAmount=totalCost*this.taxRate;
+    }
+    this.totalCost=totalCost+this.taxAmount;
   }
 
   private checkAndHoldInventory()
@@ -168,12 +174,22 @@ export class CheckoutComponent implements OnInit
     );
   }
 
-
-  private getTaxRate()
+  async changeShippingAddress(address: Address)
   {
-    let taxRateUrl=SERVER_URL+TAX_RATE_API_URL;
+    this.ngxSpinnerService.show();
 
+    this.selectedShippingAddress=address;
+    await this.getTaxRate(address.state.id);
+    this.calculateTotalCost(this.cartProducts);
 
+    this.ngxSpinnerService.hide();
+  }
+
+  async getTaxRate(id: number)
+  {
+    let taxRateUrl=SERVER_URL+TAX_RATE_API_URL+'find/state/'+id;
+    let taxRateObject=await this.cartService.getTaxRate(taxRateUrl);
+    this.taxRate=taxRateObject.rate;
   }
 
   hideNewAddressDialog()
@@ -326,5 +342,6 @@ export class CheckoutComponent implements OnInit
   {
     this.router.navigate(['/cart']);
   }
+
 
 }

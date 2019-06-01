@@ -7,6 +7,7 @@ import {CartStatus} from '../model/cart-status';
 import {CartProduct} from '../model/cart-product';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
 import {ProductInventory} from '../../product/model/product-inventory';
+import {TaxRate} from '../../checkout/model/taxrate';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +74,10 @@ export class CartService
     return this.httpClient.post<Cart>(url,cartProduct);
   }
 
+  async getTaxRate(url: string)
+  {
+    return await this.httpClient.get<TaxRate>(url).toPromise();
+  }
 
   getDraftCartStatus():CartStatus
   {
