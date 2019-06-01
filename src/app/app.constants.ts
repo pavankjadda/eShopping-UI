@@ -11,6 +11,7 @@ export const ORDER_API_URL='api/v1/order/';
 export const CART_API_URL='api/v1/cart/';
 export const CART_PRODUCT_API_URL='api/v1/cart/';
 export const CART_STATUS_API_URL='api/v1/cart_status/';
+export const CART_ADDRESS_API_URL='api/v1/cart_address/';
 export const TAX_RATE_API_URL='api/v1/tax_rate/';
 
 

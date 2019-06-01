@@ -90,7 +90,7 @@
           <div class="col-6">
             <div class="form-check" style="margin: 10px">
               <label class="form-check-label" style="font-weight: bold">
-                <input class="form-check-input" name="billingAddress" type="radio" value="{{address}}">{{address.addressType.type}}
+                <input class="form-check-input" name="billingAddress" type="radio" value="{{address}}" (change)="changeBillingAddress(address)">{{address.addressType.type}}
               </label>
             </div>
             <address style="margin: 10px">

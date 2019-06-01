@@ -12,11 +12,11 @@
         <td><a [routerLink]="['/order', order.id]">{{order.id}}</a></td>
         <td>{{order.orderStatus.status}}</td>
         <td>{{order.purchasedBy.firstName}}</td>
-        <td>{{order.shippingAddress.streetName}},
-          {{order.shippingAddress.apartment}} <br/>
-          {{order.shippingAddress.city.name}},
-          {{order.shippingAddress.state.name}} -
-          {{order.shippingAddress.zipCode}} <br/>
+        <td>{{order.orderShippingAddress.streetName}},
+          {{order.orderShippingAddress.apartment}} <br/>
+          {{order.orderShippingAddress.city.name}},
+          {{order.orderShippingAddress.state.name}} -
+          {{order.orderShippingAddress.zipCode}} <br/>
         </td>
       </tr>
     </table>

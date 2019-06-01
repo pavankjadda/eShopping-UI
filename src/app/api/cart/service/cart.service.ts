@@ -8,6 +8,8 @@ import {CartProduct} from '../model/cart-product';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
 import {ProductInventory} from '../../product/model/product-inventory';
 import {TaxRate} from '../../checkout/model/taxrate';
+import {CartShippingAddress} from '../model/cart-shipping-address';
+import {CartBillingAddress} from '../model/cart-billing-address';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +81,17 @@ export class CartService
     return await this.httpClient.get<TaxRate>(url).toPromise();
   }
 
+  async changeShippingAddress(url: string, cartShippingAddress:CartShippingAddress)
+  {
+    return await this.httpClient.post<CartShippingAddress>(url,cartShippingAddress).toPromise();
+  }
+
+  async changeBillingAddress(url: string, cartBillingAddress:CartBillingAddress)
+  {
+    return await this.httpClient.post<CartShippingAddress>(url,cartBillingAddress).toPromise();
+  }
+
+
   getDraftCartStatus():CartStatus
   {
     let statusLength=this.cartStatuses.length;
@@ -105,7 +118,6 @@ export class CartService
         console.log('Failed to load Cart Status');
       }
     );
-
   }
 
   deleteMyCart(cartUrl: string)
@@ -126,5 +138,11 @@ export class CartService
   getProductInventory(inventoryUrl: string, productIdList: any[])
   {
     return this.httpClient.post<ProductInventory[]>( inventoryUrl ,productIdList);
+  }
+
+
+  createOrder(url:string, cartId:number)
+  {
+      return this.httpClient.post(url, cartId);
   }
 }

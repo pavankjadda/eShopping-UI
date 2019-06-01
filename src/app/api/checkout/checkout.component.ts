@@ -2,9 +2,11 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
+  CART_ADDRESS_API_URL,
   CART_API_URL,
   CITY_API_URL,
   COUNTRY_API_URL,
+  ORDER_API_URL,
   SERVER_URL,
   STATE_API_URL,
   TAX_RATE_API_URL,
@@ -29,6 +31,7 @@ import {Country} from '../country/model/country';
 import {State} from '../state/model/state';
 import {City} from '../city/model/city';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {CartShippingAddress} from '../cart/model/cart-shipping-address';
 
 @Component( {
 selector: 'app-checkout',
@@ -51,6 +54,7 @@ export class CheckoutComponent implements OnInit
   displayAddressDialog = false;
   modalRef: BsModalRef;
   selectedShippingAddress: Address;
+  selectedBillingAddress: Address;
 
   addressForm=new FormGroup(
     {
@@ -179,6 +183,17 @@ export class CheckoutComponent implements OnInit
     this.ngxSpinnerService.show();
 
     this.selectedShippingAddress=address;
+    let cartShippingAddressUrl=SERVER_URL+CART_ADDRESS_API_URL+'add/shipping_address';
+    let cartShippingAddress=new CartShippingAddress();
+    cartShippingAddress.addressType=address.addressType;
+    cartShippingAddress.streetName=address.streetName;
+    cartShippingAddress.apartment=address.apartment;
+    cartShippingAddress.city=address.city;
+    cartShippingAddress.state=address.state;
+    cartShippingAddress.country=address.country;
+    cartShippingAddress.zipCode=address.zipCode;
+
+    await this.cartService.changeShippingAddress(cartShippingAddressUrl,cartShippingAddress);
     await this.getTaxRate(address.state.id);
     this.calculateTotalCost(this.cartProducts);
 
@@ -190,6 +205,25 @@ export class CheckoutComponent implements OnInit
     let taxRateUrl=SERVER_URL+TAX_RATE_API_URL+'find/state/'+id;
     let taxRateObject=await this.cartService.getTaxRate(taxRateUrl);
     this.taxRate=taxRateObject.rate;
+  }
+
+  async changeBillingAddress(address: Address)
+  {
+    this.ngxSpinnerService.show();
+
+    this.selectedBillingAddress=address;
+    let cartBillingAddressUrl=SERVER_URL+CART_ADDRESS_API_URL+'add/billing_address';
+    let cartBillingAddress=new CartShippingAddress();
+    cartBillingAddress.addressType=address.addressType;
+    cartBillingAddress.streetName=address.streetName;
+    cartBillingAddress.apartment=address.apartment;
+    cartBillingAddress.city=address.city;
+    cartBillingAddress.state=address.state;
+    cartBillingAddress.country=address.country;
+    cartBillingAddress.zipCode=address.zipCode;
+
+    await this.cartService.changeBillingAddress(cartBillingAddressUrl,cartBillingAddress);
+    this.ngxSpinnerService.hide();
   }
 
   hideNewAddressDialog()
@@ -236,7 +270,19 @@ export class CheckoutComponent implements OnInit
 
   placeOrder()
   {
+    this.ngxSpinnerService.show();
+    let createOrderUrl=SERVER_URL+ORDER_API_URL+'create';
 
+    this.cartService.createOrder(createOrderUrl,this.cart.id).subscribe(
+      data=>
+      {
+        this.router.navigate(['/order']);
+      },
+      error1 =>
+      {
+        console.log('Failed to create order');
+      }
+    );
   }
 
   private loadAddressTypes()

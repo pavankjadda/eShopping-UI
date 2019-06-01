@@ -108,7 +108,12 @@ export class CartComponent implements OnInit
         localStorage.setItem( 'currentCart', JSON.stringify( data ) );
         this.cartService.currentCartSubject.next( data );
         this.cart=data;
-        if(data.cartProducts!==null)
+        if(data===null)
+        {
+          this.ngxSpinnerService.hide();
+          return;
+        }
+        if( data.cartProducts!==null)
         {
           this.cartProducts=data.cartProducts;
         }

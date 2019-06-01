@@ -8,7 +8,8 @@ export class Order
   id: number;
   orderStatus: OrderStatus;
   purchasedBy: UserProfile;
-  shippingAddress: Address;
+  orderShippingAddress: Address;
+  orderBillingAddress: Address;
   tax: number;
   shippingCharge: number;
   totalCost: number;
