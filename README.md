@@ -6,9 +6,8 @@ This project is User Interface for [Spring Security Data](https://github.com/pav
 
 
 ### How to  Run?
-### Development server
 
-1. Run `ng serve --watch` for a dev server. Navigate to `http://localhost:4200/`
+Run `ng serve --watch` for a dev server. Navigate to `http://localhost:4200/`
 
 ### Build
 
