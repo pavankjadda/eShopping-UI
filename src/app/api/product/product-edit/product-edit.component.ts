@@ -92,9 +92,6 @@ export class ProductEditComponent implements OnInit
     product.price=this.productForm.value.price;
     product.price.amount=this.productForm.value.amount;
 
-    product.lastModifiedBy='Admin';
-    product.lastModifiedDate='Admin';
-
 
     this.productService.updateProduct( url, product ).subscribe(
       value =>

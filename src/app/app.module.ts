@@ -19,29 +19,32 @@ import {ApiModule} from './api/api.module';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 
-@NgModule( {
-             imports: [
-               BrowserModule,
-               CommonModule,
-               FormsModule,
-               ReactiveFormsModule,
-               BrowserAnimationsModule,
-               HttpClientModule,
-               AdminModule,
-               LayoutModule,
-               CoreModule,
-               ApiModule,
-               HelpersModule,
-               SharedModule,
-               AppRoutingModule,
-               NgxSpinnerModule
-             ],
+@NgModule(
+  {
+   imports:
+     [
+       BrowserModule,
+       CommonModule,
+       FormsModule,
+       ReactiveFormsModule,
+       BrowserAnimationsModule,
+       HttpClientModule,
+       AdminModule,
+       LayoutModule,
+       CoreModule,
+       ApiModule,
+       HelpersModule,
+       SharedModule,
+       AppRoutingModule,
+       NgxSpinnerModule
+   ],
 
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    PageNotFoundComponent
-  ],
+  declarations:
+    [
+      AppComponent,
+      HomeComponent,
+      PageNotFoundComponent
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 } )
