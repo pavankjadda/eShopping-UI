@@ -2,7 +2,7 @@
 
 # Angular 8 UI for SpringSecurityData Project
 
-This project is User Interface for [Spring Security Data](https://github.com/pavankjadda/SpringSecurity-SpringData) developed with Angular 8.x
+This project is User Interface for [Spring Security Data](https://github.com/pavankjadda/SpringSecurity-SpringData) project and developed with Angular 8.x
 
 
 ### How to  Run?
