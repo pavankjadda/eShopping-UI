@@ -1,5 +1,5 @@
 //API URLS
-export const SERVER_URL = 'http://localhost:8080/';
+
 export const PRODUCT_API_URL = 'api/v1/product/';
 export const INVENTORY_API_URL = 'api/v1/inventory/';
 export const CATEGORY_API_URL = 'api/v1/category/';
@@ -23,3 +23,7 @@ export const COUNTRY_API_URL='api/v1/country/';
 
 export const USER_PROFILE_API_URL='api/v1/user_profile/';
 
+export class AppConstants
+{
+
+}

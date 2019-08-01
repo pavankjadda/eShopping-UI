@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {State} from './model/state';
 import {StateService} from './services/state.service';
-import {SERVER_URL, STATE_API_URL} from '../../app.constants';
+import {STATE_API_URL} from '../../app.constants';
+import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-state',
@@ -21,7 +22,7 @@ export class StateComponent implements OnInit
 
   getStates()
   {
-    const url=SERVER_URL+STATE_API_URL+'list';
+    const url=environment.SERVER_URL+STATE_API_URL+'list';
     this.stateService.getStates(url).subscribe(
       data => {
         this.states=data;

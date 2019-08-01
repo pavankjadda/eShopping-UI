@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ManufacturerService} from '../service/manufacturer.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {MANUFACTURER_API_URL, SERVER_URL} from '../../../app.constants';
+import {MANUFACTURER_API_URL} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-manufacturer-list',
@@ -22,7 +23,7 @@ export class ManufacturerListComponent implements OnInit
 
   private getManufacturers()
   {
-    let url=SERVER_URL+MANUFACTURER_API_URL+'list';
+    let url=environment.SERVER_URL+MANUFACTURER_API_URL+'list';
     this.spinner.show();
 
     this.manufacturerService.getManufacturers(url).subscribe(

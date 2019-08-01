@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
-import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL} from '../../../app.constants';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-category-view',
@@ -39,7 +40,7 @@ export class CategoryViewComponent implements OnInit
   private getCategory()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url=SERVER_URL+CATEGORY_API_URL+id;
+    const url=environment.SERVER_URL+CATEGORY_API_URL+id;
     this.categoryService.getCategoryDetails( url ).subscribe(
       data=>
       {
