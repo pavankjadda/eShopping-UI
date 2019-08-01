@@ -4,9 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
 import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
 import {RegisterService} from './register.service';
-import {SERVER_URL} from '../../app.constants';
 import {HttpHeaders} from '@angular/common/http';
 import {RegisterUser} from './register-user';
+import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-register',
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit
     registerUser.email=this.formControls.email.value;
     registerUser.password=this.formControls.password.value;
 
-    let url=SERVER_URL+'register';
+    let url=environment.SERVER_URL+'register';
     const httpOptions = {
       headers: new HttpHeaders(
         {

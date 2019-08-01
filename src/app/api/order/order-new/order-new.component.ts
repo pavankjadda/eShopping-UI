@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../service/order.service';
 import {ProductService} from '../../product/service/product.service';
-import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {PRODUCT_API_URL} from '../../../app.constants';
 import {Product} from '../../product/model/product';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-order-new',
@@ -26,7 +27,7 @@ export class OrderNewComponent implements OnInit
 
   private getProducts()
   {
-    const productsUrl=SERVER_URL+PRODUCT_API_URL+'list';
+    const productsUrl=environment.SERVER_URL+PRODUCT_API_URL+'list';
     this.productService.getProducts(productsUrl).subscribe(
       data =>
       {

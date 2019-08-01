@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../service/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SERVER_URL} from '../../../app.constants';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-category-delete',
@@ -31,7 +31,7 @@ export class CategoryDeleteComponent implements OnInit
     const id=this.categoryForm.get('id').value;
     if(confirm('Do you want to delete this Category with Id:'+id+'?'))
     {
-      const url=SERVER_URL+'api/v1/category/delete/'+id;
+      const url=environment.SERVER_URL+'api/v1/category/delete/'+id;
       this.categoryService.deleteCategory(url).subscribe(
         value => {},error1 => {},()=>{
           this.router.navigate(['/category/list']);

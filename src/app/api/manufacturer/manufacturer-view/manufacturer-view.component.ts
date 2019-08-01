@@ -3,8 +3,9 @@ import {ManufacturerService} from '../service/manufacturer.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Manufacturer} from '../model/manufacturer';
 import {FormControl, FormGroup} from '@angular/forms';
-import {MANUFACTURER_API_URL, SERVER_URL} from '../../../app.constants';
+import {MANUFACTURER_API_URL} from '../../../app.constants';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-manufacturer-view',
@@ -41,7 +42,7 @@ export class ManufacturerViewComponent implements OnInit
   private getManufacturer()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=SERVER_URL+MANUFACTURER_API_URL+'find/'+id;
+    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'find/'+id;
 
     this.spinner.show();
     this.manufacturerService.getManufacturer( url ).pipe()
@@ -80,7 +81,7 @@ export class ManufacturerViewComponent implements OnInit
     if(confirm('Are you sure you wanna delete Manufacturer?'))
     {
       const id=this.route.snapshot.paramMap.get( 'id' );
-      const url=SERVER_URL+MANUFACTURER_API_URL+'delete/'+id;
+      const url=environment.SERVER_URL+MANUFACTURER_API_URL+'delete/'+id;
 
       this.manufacturerService.deleteManufacturer(url).subscribe(
         data=>{

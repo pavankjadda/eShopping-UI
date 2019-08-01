@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from './services/country.service';
 import {Country} from './model/country';
-import {COUNTRY_API_URL, SERVER_URL} from '../../app.constants';
+import {COUNTRY_API_URL} from '../../app.constants';
+import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-country',
@@ -21,7 +22,7 @@ export class CountryComponent implements OnInit
 
   getCountries()
   {
-    const url=SERVER_URL+COUNTRY_API_URL+'list';
+    const url=environment.SERVER_URL+COUNTRY_API_URL+'list';
     this.countryService.getCountries(url).subscribe(
       data=> {
         this.countries=data;

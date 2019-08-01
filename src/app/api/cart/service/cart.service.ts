@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Cart} from '../model/cart';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {CART_STATUS_API_URL, SERVER_URL} from '../../../app.constants';
+import {CART_STATUS_API_URL} from '../../../app.constants';
 import {CartStatus} from '../model/cart-status';
 import {CartProduct} from '../model/cart-product';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
@@ -10,6 +10,7 @@ import {ProductInventory} from '../../product/model/product-inventory';
 import {TaxRate} from '../../checkout/model/taxrate';
 import {CartShippingAddress} from '../model/cart-shipping-address';
 import {CartBillingAddress} from '../model/cart-billing-address';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -107,7 +108,7 @@ export class CartService
 
   getDraftCartStatusFromBackend()
   {
-    const url=SERVER_URL+CART_STATUS_API_URL+'list';
+    const url=environment.SERVER_URL+CART_STATUS_API_URL+'list';
     this.httpClient.get<CartStatus[]>(url).subscribe(
       data=>
       {

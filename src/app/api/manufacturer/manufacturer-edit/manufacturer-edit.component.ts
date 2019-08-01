@@ -16,11 +16,11 @@ import {
   COUNTRY_API_URL,
   MANUFACTURER_ADDRESS_TYPE_API_URL,
   MANUFACTURER_API_URL,
-  SERVER_URL,
   STATE_API_URL
 } from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerAddressType} from '../model/manufacturer-address-type';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-manufacturer-edit',
@@ -81,7 +81,7 @@ export class ManufacturerEditComponent implements OnInit
   private getManufacturer()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=SERVER_URL+MANUFACTURER_API_URL+'find/'+id;
+    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'find/'+id;
 
     this.manufacturerService.getManufacturer( url ).pipe()
         .subscribe(
@@ -118,7 +118,7 @@ export class ManufacturerEditComponent implements OnInit
   {
     this.spinnerService.show();
 
-    const manufacturerUrl=SERVER_URL+MANUFACTURER_API_URL+'update';
+    const manufacturerUrl=environment.SERVER_URL+MANUFACTURER_API_URL+'update';
     const id=this.route.snapshot.paramMap.get( 'id' );
 
     let manufacturer=new Manufacturer();
@@ -150,7 +150,7 @@ export class ManufacturerEditComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
+    const url=environment.SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
     this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
       manufacturerAddressTypes => {
         this.manufacturerAddressTypes=manufacturerAddressTypes;
@@ -170,7 +170,7 @@ export class ManufacturerEditComponent implements OnInit
 
   private loadCountries()
   {
-    const url=SERVER_URL+COUNTRY_API_URL+'list';
+    const url=environment.SERVER_URL+COUNTRY_API_URL+'list';
     this.countryService.getCountries(url).subscribe(
       countries => {
         this.countries=countries;
@@ -185,7 +185,7 @@ export class ManufacturerEditComponent implements OnInit
   loadStates()
   {
     const country=this.manufacturerForm.value.manufacturerAddress.country;
-    const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
+    const url=environment.SERVER_URL+STATE_API_URL+'find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       data=>
@@ -202,7 +202,7 @@ export class ManufacturerEditComponent implements OnInit
   loadCities()
   {
     const state=this.manufacturerForm.value.manufacturerAddress.state;
-    const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
+    const url=environment.SERVER_URL+CITY_API_URL+'find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       data=>

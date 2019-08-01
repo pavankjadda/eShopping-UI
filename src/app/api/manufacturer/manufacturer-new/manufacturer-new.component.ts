@@ -6,7 +6,6 @@ import {
   COUNTRY_API_URL,
   MANUFACTURER_ADDRESS_TYPE_API_URL,
   MANUFACTURER_API_URL,
-  SERVER_URL,
   STATE_API_URL
 } from '../../../app.constants';
 import {Router} from '@angular/router';
@@ -22,6 +21,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {AddressService} from '../../address/service/address.service';
 import {ManufacturerAddressType} from '../model/manufacturer-address-type';
 import {ManufacturerAddress} from '../model/manufacturer-address';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-manufacturer-new',
@@ -78,7 +78,7 @@ export class ManufacturerNewComponent implements OnInit
   createManufacturer()
   {
     this.spinnerService.show();
-    const manufactureUrl=SERVER_URL+MANUFACTURER_API_URL+'create';
+    const manufactureUrl=environment.SERVER_URL+MANUFACTURER_API_URL+'create';
 
     let manufacturerAddress=new ManufacturerAddress();
     manufacturerAddress.manufacturerAddressType=this.manufacturerForm.value.manufacturerAddress.manufacturerAddressType;
@@ -118,7 +118,7 @@ export class ManufacturerNewComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
+    const url=environment.SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'list';
     this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
       manufacturerAddressTypes =>
       {
@@ -139,7 +139,7 @@ export class ManufacturerNewComponent implements OnInit
 
   private loadCountries()
   {
-    const url=SERVER_URL+COUNTRY_API_URL+'list';
+    const url=environment.SERVER_URL+COUNTRY_API_URL+'list';
     this.countryService.getCountries(url).subscribe(
       countries => {
         this.countries=countries;
@@ -154,7 +154,7 @@ export class ManufacturerNewComponent implements OnInit
   loadStates()
   {
     const country=this.manufacturerForm.value.manufacturerAddress.country;
-    const url=SERVER_URL+STATE_API_URL+'find/country/'+country.id;
+    const url=environment.SERVER_URL+STATE_API_URL+'find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       data=>
@@ -171,7 +171,7 @@ export class ManufacturerNewComponent implements OnInit
   loadCities()
   {
     const state=this.manufacturerForm.value.manufacturerAddress.state;
-    const url=SERVER_URL+CITY_API_URL+'find/state/'+state.id;
+    const url=environment.SERVER_URL+CITY_API_URL+'find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       data=>
