@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
-import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL} from '../../../app.constants';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-category-list',
@@ -26,7 +27,7 @@ export class CategoryListComponent implements OnInit
   getCategories()
   {
 
-    let url=SERVER_URL+CATEGORY_API_URL+'list';
+    let url=environment.SERVER_URL+CATEGORY_API_URL+'list';
     this.spinner.show();
     this.categoryService.getCategories(url).subscribe(
       data =>

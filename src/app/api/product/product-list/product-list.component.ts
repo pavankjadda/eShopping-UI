@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
-import {PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {PRODUCT_API_URL} from '../../../app.constants';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -27,7 +28,7 @@ export class ProductListComponent implements OnInit
 
   private getProducts()
   {
-    let url=SERVER_URL+PRODUCT_API_URL+'list';
+    let url=environment.SERVER_URL+PRODUCT_API_URL+'list';
     this.spinner.show();
     this.productService.getProducts(url).subscribe(
       data =>

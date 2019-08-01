@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../service/product.service';
-import {CART_API_URL, INVENTORY_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {CART_API_URL, INVENTORY_API_URL, PRODUCT_API_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CartService} from '../../cart/service/cart.service';
 import {AuthService} from '../../../core/auth/auth.service';
@@ -10,6 +10,7 @@ import {CartProduct} from '../../cart/model/cart-product';
 import {HttpClient} from '@angular/common/http';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ProductInventory} from '../model/product-inventory';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-view',
@@ -60,12 +61,12 @@ export class ProductViewComponent implements OnInit
     let cart = this.cartService.getCurrentCart;
     if (cart === null)
     {
-      const initializeCartUrl = SERVER_URL + CART_API_URL + 'initialize';
+      const initializeCartUrl = environment.SERVER_URL + CART_API_URL + 'initialize';
       let userProfile = this.authService.currentUserSubject.value.userProfile;
       await this.cartService.initializeCart(initializeCartUrl, userProfile);
     }
       cart = this.cartService.getCurrentCart;
-      const addProductToCartUrl = SERVER_URL + CART_API_URL + 'product/add';
+      const addProductToCartUrl = environment.SERVER_URL + CART_API_URL + 'product/add';
       let newCartProduct = new CartProduct();
       newCartProduct.product = this.product;
       newCartProduct.quantity = 1;
@@ -95,7 +96,7 @@ export class ProductViewComponent implements OnInit
   private getProduct()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url = SERVER_URL + PRODUCT_API_URL + 'find/' + id;
+    const url = environment.SERVER_URL + PRODUCT_API_URL + 'find/' + id;
     this.productService.getProductDetails(url).pipe()
       .subscribe(
         data =>
@@ -122,7 +123,7 @@ export class ProductViewComponent implements OnInit
   private getProductQuantityFromInventory()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url = SERVER_URL + INVENTORY_API_URL + 'product/' + id;
+    const url = environment.SERVER_URL + INVENTORY_API_URL + 'product/' + id;
     this.productService.getProductInventory(url).pipe()
         .subscribe(
           data =>

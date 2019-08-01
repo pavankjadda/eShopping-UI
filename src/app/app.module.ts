@@ -44,6 +44,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
       AppComponent,
       HomeComponent,
       PageNotFoundComponent
+
     ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

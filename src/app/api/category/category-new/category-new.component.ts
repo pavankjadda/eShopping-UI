@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CATEGORY_API_URL, SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL} from '../../../app.constants';
 import {CategoryService} from '../service/category.service';
 import {Category} from '../model/category';
 import {Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Component( {
   selector: 'app-category-new',
@@ -30,7 +31,7 @@ export class CategoryNewComponent implements OnInit
     category.name=this.categoryForm.get('name').value;
     category.description=this.categoryForm.get( 'description' ).value;
 
-    const url=SERVER_URL+CATEGORY_API_URL+'create';
+    const url=environment.SERVER_URL+CATEGORY_API_URL+'create';
     this.categoryService.createCategory(url,category).subscribe(
       value => {},error1 => {},()=>{
         this.router.navigate(['/category/list']);

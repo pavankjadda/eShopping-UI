@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../core/auth/auth.service';
 import {UserProfile} from './model/user-profile';
-import {SERVER_URL, USER_PROFILE_API_URL} from '../../app.constants';
+import {USER_PROFILE_API_URL} from '../../app.constants';
 import {UserProfileService} from './service/user-profile.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Address} from '../../api/address/model/address';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-user-profile',
@@ -46,7 +47,7 @@ export class UserProfileComponent implements OnInit
   {
     this.spinner.show();
 
-    let userProfileUrl=SERVER_URL+USER_PROFILE_API_URL+'my_profile';
+    let userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'my_profile';
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>
       {

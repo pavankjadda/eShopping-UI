@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL, SERVER_URL} from '../../../app.constants';
+import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Currency} from '../model/currency';
 import {Category} from '../../category/model/category';
 import {Manufacturer} from '../../manufacturer/model/manufacturer';
 import {CategoryService} from '../../category/service/category.service';
+import {environment} from '../../../../environments/environment';
 
 @Component( {
               selector: 'app-product-edit',
@@ -52,7 +53,7 @@ export class ProductEditComponent implements OnInit
   private getProduct()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=SERVER_URL+PRODUCT_API_URL+'find/'+id;
+    const url=environment.SERVER_URL+PRODUCT_API_URL+'find/'+id;
     this.productService.getProductDetails( url ).pipe()
         .subscribe(
           data =>
@@ -80,7 +81,7 @@ export class ProductEditComponent implements OnInit
   private updateProduct()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=SERVER_URL+PRODUCT_API_URL+'update';
+    const url=environment.SERVER_URL+PRODUCT_API_URL+'update';
 
     const product = new Product();
     product.id=Number( id );
@@ -109,7 +110,7 @@ export class ProductEditComponent implements OnInit
 
   private loadCategories()
   {
-    const url=SERVER_URL+CATEGORY_API_URL+'list';
+    const url=environment.SERVER_URL+CATEGORY_API_URL+'list';
 
     this.categoryService.getCategories( url ).subscribe(
       categories =>
@@ -128,7 +129,7 @@ export class ProductEditComponent implements OnInit
 
   private loadCurrencies()
   {
-    const url=SERVER_URL+CURRENCY_API_URL+'list';
+    const url=environment.SERVER_URL+CURRENCY_API_URL+'list';
 
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
@@ -146,7 +147,7 @@ export class ProductEditComponent implements OnInit
 
   private loadManufacturers()
   {
-    const url=SERVER_URL+MANUFACTURER_API_URL+'list';
+    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'list';
 
     this.productService.getManufacturers( url ).subscribe(
       manufacturers =>

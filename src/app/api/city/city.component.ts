@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {City} from './model/city';
 import {CityService} from './services/city.service';
-import {CITY_API_URL, SERVER_URL} from '../../app.constants';
+import {CITY_API_URL} from '../../app.constants';
+import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-city',
@@ -29,7 +30,7 @@ export class CityComponent implements OnInit
 
   getCities()
   {
-    const url=SERVER_URL+CITY_API_URL+'list?pageNumber='+this.pageNumber+'&pageSize='+this.pageSize;
+    const url=environment.SERVER_URL+CITY_API_URL+'list?pageNumber='+this.pageNumber+'&pageSize='+this.pageSize;
 
     this.cityService.getCities(url).subscribe(
       data =>
