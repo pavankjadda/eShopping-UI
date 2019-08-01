@@ -23,7 +23,3 @@ export const COUNTRY_API_URL='api/v1/country/';
 
 export const USER_PROFILE_API_URL='api/v1/user_profile/';
 
-export class AppConstants
-{
-
-}
