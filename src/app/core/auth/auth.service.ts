@@ -4,6 +4,7 @@ import {User} from '../user/model/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
+import {LOGIN_API_URL} from '../../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -41,9 +42,7 @@ export class AuthService
           authorization: 'Basic '+btoa( username+':'+password )
         } )
     };
-
-
-    return this.httpClient.get<any>( environment.SERVER_URL+'login', httpOptions)
+    return this.httpClient.get<any>( environment.SERVER_URL+LOGIN_API_URL+'login', httpOptions)
       .pipe( map( user =>
       {
         // login successful if there's a Spring Session token in the response

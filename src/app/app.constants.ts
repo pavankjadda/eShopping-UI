@@ -22,4 +22,5 @@ export const STATE_API_URL='api/v1/state/';
 export const COUNTRY_API_URL='api/v1/country/';
 
 export const USER_PROFILE_API_URL='api/v1/user_profile/';
+export const LOGIN_API_URL='api/v1/login/';
 
