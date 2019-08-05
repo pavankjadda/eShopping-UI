@@ -30,13 +30,13 @@ export class ManufacturerListComponent implements OnInit
       data =>
       {
         this.manufacturers=data;
-        this.spinner.hide();
       },
       error1 =>
       {
         console.log('Failed to load manufacturers. Error message: '+error1);
         this.spinner.hide();
       });
+    this.spinner.hide();
   }
 
   manufacturerDataAvailable(): boolean
