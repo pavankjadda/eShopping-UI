@@ -27,21 +27,16 @@ export class ManufacturerListComponent implements OnInit
     this.spinner.show();
 
     this.manufacturerService.getManufacturers(url).subscribe(
-      manufacturers =>
+      data =>
       {
-        this.manufacturers=manufacturers;
+        this.manufacturers=data;
         this.spinner.hide();
       },
-
       error1 =>
       {
-        console.log('Failed to load manufacturers');
+        console.log('Failed to load manufacturers. Error message: '+error1);
         this.spinner.hide();
-      },
-    () =>
-    {
-      this.spinner.hide();
-    } );
+      });
   }
 
   manufacturerDataAvailable(): boolean
