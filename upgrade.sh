@@ -1,3 +1,4 @@
+git add .
 git commit -m "Before Upgrade"
 git push origin master
 ng update --all --force
