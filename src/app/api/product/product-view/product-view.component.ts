@@ -96,7 +96,7 @@ export class ProductViewComponent implements OnInit
   private getProduct()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.SERVER_URL + PRODUCT_API_URL + 'find/' + id;
+    const url = environment.SERVER_URL + PRODUCT_API_URL + '/find/' + id;
     this.productService.getProductDetails(url).pipe()
       .subscribe(
         data =>
@@ -123,7 +123,7 @@ export class ProductViewComponent implements OnInit
   private getProductQuantityFromInventory()
   {
     const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.SERVER_URL + INVENTORY_API_URL + 'product/' + id;
+    const url = environment.SERVER_URL + INVENTORY_API_URL + '/product/' + id;
     this.productService.getProductInventory(url).pipe()
         .subscribe(
           data =>

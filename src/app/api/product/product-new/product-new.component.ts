@@ -51,7 +51,7 @@ export class ProductNewComponent implements OnInit
     product.category=this.productForm.value.categoryControl;
     product.manufacturer=this.productForm.value.manufacturerControl;
 
-    const url=environment.SERVER_URL+PRODUCT_API_URL+'create';
+    const url=environment.SERVER_URL+PRODUCT_API_URL+'/create';
 
     this.productService.createProduct(url,product).subscribe(
       value =>
@@ -81,7 +81,7 @@ export class ProductNewComponent implements OnInit
 
   private loadCategories()
   {
-    const url=environment.SERVER_URL+CATEGORY_API_URL+'list';
+    const url=environment.SERVER_URL+CATEGORY_API_URL+'/list';
 
     this.categoryService.getCategories(url).subscribe(
       categories =>
@@ -97,7 +97,7 @@ export class ProductNewComponent implements OnInit
 
   private loadCurrencies()
   {
-    const url=environment.SERVER_URL+CURRENCY_API_URL+'list';
+    const url=environment.SERVER_URL+CURRENCY_API_URL+'/list';
 
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
@@ -115,7 +115,7 @@ export class ProductNewComponent implements OnInit
 
   private loadManufacturers()
   {
-    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'list';
+    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'/list';
 
     this.productService.getManufacturers( url ).subscribe(
       manufacturers =>

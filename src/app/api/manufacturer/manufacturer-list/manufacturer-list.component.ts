@@ -23,7 +23,7 @@ export class ManufacturerListComponent implements OnInit
 
   private getManufacturers()
   {
-    let url=environment.SERVER_URL+MANUFACTURER_API_URL+'list';
+    let url=environment.SERVER_URL+MANUFACTURER_API_URL+'/list';
     this.spinner.show();
 
     this.manufacturerService.getManufacturers(url).subscribe(

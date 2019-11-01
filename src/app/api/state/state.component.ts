@@ -22,7 +22,7 @@ export class StateComponent implements OnInit
 
   getStates()
   {
-    const url=environment.SERVER_URL+STATE_API_URL+'list';
+    const url=environment.SERVER_URL+STATE_API_URL+'/list';
     this.stateService.getStates(url).subscribe(
       data => {
         this.states=data;

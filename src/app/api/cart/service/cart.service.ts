@@ -108,7 +108,7 @@ export class CartService
 
   getDraftCartStatusFromBackend()
   {
-    const url=environment.SERVER_URL+CART_STATUS_API_URL+'list';
+    const url=environment.SERVER_URL+CART_STATUS_API_URL+'/list';
     this.httpClient.get<CartStatus[]>(url).subscribe(
       data=>
       {

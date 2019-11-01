@@ -39,7 +39,7 @@ export class CartComponent implements OnInit
   updateCartProductQuantity(cartProduct: CartProduct)
   {
       this.ngxSpinnerService.show();
-      const cartUrl=environment.SERVER_URL+CART_API_URL+'product/update';
+      const cartUrl=environment.SERVER_URL+CART_API_URL+'/product/update';
       this.cartService.updateCartProduct( cartUrl, cartProduct ).subscribe(
         data=>
         {
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit
     if(confirm('Are you sure you want to delete '+cartProduct.product.name+' from Cart?'))
     {
       this.ngxSpinnerService.show();
-      const cartUrl=environment.SERVER_URL+CART_API_URL+'product/delete/'+cartProduct.id;
+      const cartUrl=environment.SERVER_URL+CART_API_URL+'/product/delete/'+cartProduct.id;
       this.cartService.deleteCartProduct( cartUrl ).subscribe(
         data=>
         {
@@ -84,7 +84,7 @@ export class CartComponent implements OnInit
     if(confirm('Are you sure you wanna delete the cart?'))
     {
       this.ngxSpinnerService.show();
-      const cartUrl=environment.SERVER_URL+CART_API_URL+'delete/'+this.cartService.getCurrentCart.id;
+      const cartUrl=environment.SERVER_URL+CART_API_URL+'/delete/'+this.cartService.getCurrentCart.id;
       this.cartService.deleteMyCart(cartUrl).subscribe(
         data=>
         {
@@ -102,7 +102,7 @@ export class CartComponent implements OnInit
   private getMyCart()
   {
     this.ngxSpinnerService.show();
-    const cartUrl=environment.SERVER_URL+CART_API_URL+'find/user/'+this.authService.currentUserValue.id;
+    const cartUrl=environment.SERVER_URL+CART_API_URL+'/find/user/'+this.authService.currentUserValue.id;
     this.cartService.getMyCart( cartUrl ).subscribe(
       data =>
       {
@@ -133,7 +133,7 @@ export class CartComponent implements OnInit
        {
           productIdList.push(cartProduct.product.id);
        });
-    const inventoryUrl = environment.SERVER_URL + INVENTORY_API_URL+'product/ids';
+    const inventoryUrl = environment.SERVER_URL + INVENTORY_API_URL+'/product/ids';
     this.cartService.getProductInventory( inventoryUrl, productIdList ).pipe()
         .subscribe(
           data =>

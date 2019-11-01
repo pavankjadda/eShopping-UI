@@ -27,7 +27,7 @@ export class OrderNewComponent implements OnInit
 
   private getProducts()
   {
-    const productsUrl=environment.SERVER_URL+PRODUCT_API_URL+'list';
+    const productsUrl=environment.SERVER_URL+PRODUCT_API_URL+'/list';
     this.productService.getProducts(productsUrl).subscribe(
       data =>
       {

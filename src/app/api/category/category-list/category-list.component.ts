@@ -27,7 +27,7 @@ export class CategoryListComponent implements OnInit
   getCategories()
   {
 
-    let url=environment.SERVER_URL+CATEGORY_API_URL+'list';
+    let url=environment.SERVER_URL+CATEGORY_API_URL+'/list';
     this.spinner.show();
     this.categoryService.getCategories(url).subscribe(
       data =>

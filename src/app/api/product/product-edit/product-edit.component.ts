@@ -53,7 +53,7 @@ export class ProductEditComponent implements OnInit
   private getProduct()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=environment.SERVER_URL+PRODUCT_API_URL+'find/'+id;
+    const url=environment.SERVER_URL+PRODUCT_API_URL+'/find/'+id;
     this.productService.getProductDetails( url ).pipe()
         .subscribe(
           data =>
@@ -81,7 +81,7 @@ export class ProductEditComponent implements OnInit
   private updateProduct()
   {
     const id=this.route.snapshot.paramMap.get( 'id' );
-    const url=environment.SERVER_URL+PRODUCT_API_URL+'update';
+    const url=environment.SERVER_URL+PRODUCT_API_URL+'/update';
 
     const product = new Product();
     product.id=Number( id );
@@ -110,7 +110,7 @@ export class ProductEditComponent implements OnInit
 
   private loadCategories()
   {
-    const url=environment.SERVER_URL+CATEGORY_API_URL+'list';
+    const url=environment.SERVER_URL+CATEGORY_API_URL+'/list';
 
     this.categoryService.getCategories( url ).subscribe(
       categories =>
@@ -129,7 +129,7 @@ export class ProductEditComponent implements OnInit
 
   private loadCurrencies()
   {
-    const url=environment.SERVER_URL+CURRENCY_API_URL+'list';
+    const url=environment.SERVER_URL+CURRENCY_API_URL+'/list';
 
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
@@ -147,7 +147,7 @@ export class ProductEditComponent implements OnInit
 
   private loadManufacturers()
   {
-    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'list';
+    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'/list';
 
     this.productService.getManufacturers( url ).subscribe(
       manufacturers =>

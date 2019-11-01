@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit
   {
     this.spinner.show();
 
-    let userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'my_profile';
+    let userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'/my_profile';
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>
       {
