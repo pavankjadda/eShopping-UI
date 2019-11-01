@@ -266,5 +266,8 @@
       }
     }
   },
-  "defaultProject": "SpringTestingUI"
+  "defaultProject": "SpringTestingUI",
+  "cli": {
+    "analytics": false
+  }
 }
