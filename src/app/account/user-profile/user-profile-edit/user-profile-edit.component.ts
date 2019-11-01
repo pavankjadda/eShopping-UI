@@ -158,8 +158,6 @@ export class UserProfileEditComponent implements OnInit
         this.spinnerService.hide();
       }
     );
-
-
   }
 
 
