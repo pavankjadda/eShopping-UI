@@ -271,5 +271,10 @@
   "defaultProject": "SpringTestingUI",
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
   }
 }
