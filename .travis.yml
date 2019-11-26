@@ -4,7 +4,7 @@ sudo: required
 
 language: node_js
 node_js:
-  - "10.15.3"
+  - "13.2.0"
 
 addons:
   apt:
@@ -21,7 +21,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  - npm install -g @angular/cli
+  - npm install -g @angular/cli@next
   - npm install
 
 jobs:
@@ -31,13 +31,12 @@ jobs:
       if: branch = master
       script:
       - ng --version
-      - ng build --prod
+      - ng build
 
     ## Deploy Stage ##
     - stage: Deploy App
       if: branch = master
-      #script: ng build --prod
-      script: ng --version
+      script: ng build --prod
 
 
 notifications:
