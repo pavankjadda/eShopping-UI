@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {CountryService} from './services/country.service';
-import {Country} from './model/country';
-import {COUNTRY_API_URL} from '../../app.constants';
 import {environment} from '../../../environments/environment';
+import {COUNTRY_API_URL} from '../../app.constants';
+import {Country} from './model/country';
+import {CountryService} from './services/country.service';
 
 @Component( {
   selector: 'app-country',
   templateUrl: './country.component.html',
-  styleUrls: ['./country.component.css']
+  styleUrls: ['./country.component.scss']
 } )
 export class CountryComponent implements OnInit
 {

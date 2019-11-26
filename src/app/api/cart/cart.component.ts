@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {CartService} from './service/cart.service';
-import {CART_API_URL, INVENTORY_API_URL} from '../../app.constants';
-import {Cart} from './model/cart';
-import {AuthService} from '../../core/auth/auth.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {CartProduct} from './model/cart-product';
 import {Router} from '@angular/router';
-import {ProductInventory} from '../product/model/product-inventory';
+import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
+import {CART_API_URL, INVENTORY_API_URL} from '../../app.constants';
+import {AuthService} from '../../core/auth/auth.service';
+import {ProductInventory} from '../product/model/product-inventory';
+import {Cart} from './model/cart';
+import {CartProduct} from './model/cart-product';
+import {CartService} from './service/cart.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit
 {
@@ -35,7 +35,7 @@ export class CartComponent implements OnInit
 
   }
 
-  //Takes care update and delete if quantity is zero
+  //Takes care of the update and delete if quantity is zero
   updateCartProductQuantity(cartProduct: CartProduct)
   {
       this.ngxSpinnerService.show();

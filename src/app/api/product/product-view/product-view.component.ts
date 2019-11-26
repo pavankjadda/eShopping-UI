@@ -1,26 +1,24 @@
+import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../model/product';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ProductService} from '../service/product.service';
-import {CART_API_URL, INVENTORY_API_URL, PRODUCT_API_URL} from '../../../app.constants';
 import {FormControl, FormGroup} from '@angular/forms';
-import {CartService} from '../../cart/service/cart.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
+import {CART_API_URL, PRODUCT_API_URL} from '../../../app.constants';
 import {AuthService} from '../../../core/auth/auth.service';
 import {CartProduct} from '../../cart/model/cart-product';
-import {HttpClient} from '@angular/common/http';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {ProductInventory} from '../model/product-inventory';
-import {environment} from '../../../../environments/environment';
+import {CartService} from '../../cart/service/cart.service';
+import {Product} from '../model/product';
+import {ProductService} from '../service/product.service';
 
 @Component({
   selector: 'app-product-view',
   templateUrl: './product-view.component.html',
-  styleUrls: ['./product-view.component.css']
+  styleUrls: ['./product-view.component.scss']
 })
 export class ProductViewComponent implements OnInit
 {
   product: Product;
-  productInventory:ProductInventory;
   productForm = new FormGroup({
     id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
@@ -46,7 +44,6 @@ export class ProductViewComponent implements OnInit
   ngOnInit()
   {
     this.getProduct();
-    this.getProductQuantityFromInventory();
   }
 
   productDataAvailable(): boolean
@@ -61,12 +58,12 @@ export class ProductViewComponent implements OnInit
     let cart = this.cartService.getCurrentCart;
     if (cart === null)
     {
-      const initializeCartUrl = environment.SERVER_URL + CART_API_URL + 'initialize';
+      const initializeCartUrl = environment.SERVER_URL + CART_API_URL + '/initialize';
       let userProfile = this.authService.currentUserSubject.value.userProfile;
       await this.cartService.initializeCart(initializeCartUrl, userProfile);
     }
       cart = this.cartService.getCurrentCart;
-      const addProductToCartUrl = environment.SERVER_URL + CART_API_URL + 'product/add';
+      const addProductToCartUrl = environment.SERVER_URL + CART_API_URL + '/product/add';
       let newCartProduct = new CartProduct();
       newCartProduct.product = this.product;
       newCartProduct.quantity = 1;
@@ -98,8 +95,7 @@ export class ProductViewComponent implements OnInit
     const id = this.route.snapshot.paramMap.get('id');
     const url = environment.SERVER_URL + PRODUCT_API_URL + '/find/' + id;
     this.productService.getProductDetails(url).pipe()
-      .subscribe(
-        data =>
+      .subscribe(data =>
         {
           this.product = data;
           this.productForm.patchValue(
@@ -107,6 +103,7 @@ export class ProductViewComponent implements OnInit
               id: data.id,
               name: data.name,
               description: data.description,
+              quantityAvailable: data.productInventory.quantity,
               price: data.price.currency.symbol + data.price.amount,
               amount: data.price.amount,
               currency: data.price.currency.symbol,
@@ -120,28 +117,8 @@ export class ProductViewComponent implements OnInit
         });
   }
 
-  private getProductQuantityFromInventory()
-  {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.SERVER_URL + INVENTORY_API_URL + '/product/' + id;
-    this.productService.getProductInventory(url).pipe()
-        .subscribe(
-          data =>
-          {
-            this.productInventory = data;
-            this.productForm.patchValue(
-              {
-                quantityAvailable: data.quantity,
-              });
-          },
-          error =>
-          {
-            console.log(error);
-          });
-  }
-
   isProductInventoryEmpty():boolean
   {
-    return this.productInventory!==undefined && this.productInventory.quantity <= 0;
+    return this.product.productInventory===null || this.product.productInventory.quantity<=0;
   }
 }

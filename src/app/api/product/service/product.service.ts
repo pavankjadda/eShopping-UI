@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Product} from '../model/product';
-import {Currency} from '../model/currency';
+import {Injectable} from '@angular/core';
 import {Manufacturer} from '../../manufacturer/model/manufacturer';
+import {Currency} from '../model/currency';
+import {Product} from '../model/product';
 import {ProductInventory} from '../model/product-inventory';
 
 @Injectable({
@@ -46,5 +46,10 @@ export class ProductService
   updateProduct(url: string, product: Product)
   {
     return this.httpClient.put<Product>( url, product );
+  }
+
+  updateProductInventory(url: string)
+  {
+    return this.httpClient.get<ProductInventory>( url );
   }
 }

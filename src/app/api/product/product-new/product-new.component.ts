@@ -1,20 +1,27 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ProductService} from '../service/product.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL} from '../../../app.constants';
-import {Product} from '../model/product';
-import {Price} from '../model/price';
-import {CategoryService} from '../../category/service/category.service';
+import {Router} from '@angular/router';
+import {ProductInventory} from 'src/app/api/product/model/product-inventory';
+import {
+  CATEGORY_API_URL,
+  CURRENCY_API_URL,
+  INVENTORY_API_URL,
+  MANUFACTURER_API_URL,
+  PRODUCT_API_URL
+} from 'src/app/app.constants';
+import {environment} from 'src/environments/environment';
 import {Category} from '../../category/model/category';
-import {Currency} from '../model/currency';
+import {CategoryService} from '../../category/service/category.service';
 import {Manufacturer} from '../../manufacturer/model/manufacturer';
-import {environment} from '../../../../environments/environment';
+import {Currency} from '../model/currency';
+import {Price} from '../model/price';
+import {Product} from '../model/product';
+import {ProductService} from '../service/product.service';
 
 @Component({
   selector: 'app-product-new',
   templateUrl: './product-new.component.html',
-  styleUrls: ['./product-new.component.css']
+  styleUrls: ['./product-new.component.scss']
 })
 export class ProductNewComponent implements OnInit
 {
@@ -26,6 +33,7 @@ export class ProductNewComponent implements OnInit
     id: new FormControl({value:'',disabled:true}, Validators.minLength(2)),
     name: new FormControl(''),
     description: new FormControl(''),
+    quantity: new FormControl(''),
     price: new FormControl(''),
     amount: new FormControl(''),
     categoryControl: new FormControl('',Validators.required),
@@ -41,7 +49,6 @@ export class ProductNewComponent implements OnInit
     this.loadManufacturers();
   }
 
-
   createProduct()
   {
     const product=new Product();
@@ -50,16 +57,34 @@ export class ProductNewComponent implements OnInit
     product.price=new Price( this.getCurrency(), this.productForm.value.amount);
     product.category=this.productForm.value.categoryControl;
     product.manufacturer=this.productForm.value.manufacturerControl;
-
+    let productInventory=new ProductInventory();
+    productInventory.quantity=this.productForm.value.quantity;
+    product.productInventory=productInventory;
     const url=environment.SERVER_URL+PRODUCT_API_URL+'/create';
 
     this.productService.createProduct(url,product).subscribe(
       value =>
       {
         console.log('Successfully created product');
+        //this.updateProductInventory(value);
       },error1 =>
       {
         console.log('Failed to create product');
+      },
+      ()=>{
+        this.router.navigate(['/product/list']);
+      });
+  }
+  private updateProductInventory(product: Product)
+  {
+    const url=environment.SERVER_URL+INVENTORY_API_URL+'/update?product_id='+product.id+'&quantity='+this.productForm.value.quantity;
+    this.productService.updateProductInventory(url).subscribe(
+      value =>
+      {
+        console.log('Successfully updated product inventory');
+      },error1 =>
+      {
+        console.log('Failed to update product inventory. Error: '+error1);
       },
       ()=>{
         this.router.navigate(['/product/list']);
@@ -148,5 +173,4 @@ export class ProductNewComponent implements OnInit
   goBack() {
     this.router.navigate(['/product']);
   }
-
 }

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../../environments/environment';
 import {ORDER_API_URL} from '../../../app.constants';
 import {Order} from '../model/order';
 import {OrderService} from '../service/order.service';
-import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css']
+  styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit
 {

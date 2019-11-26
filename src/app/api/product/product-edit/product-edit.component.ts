@@ -1,19 +1,26 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProductInventory} from 'src/app/api/product/model/product-inventory';
+import {
+  CATEGORY_API_URL,
+  CURRENCY_API_URL,
+  INVENTORY_API_URL,
+  MANUFACTURER_API_URL,
+  PRODUCT_API_URL
+} from 'src/app/app.constants';
+import {environment} from 'src/environments/environment';
+import {Category} from '../../category/model/category';
+import {CategoryService} from '../../category/service/category.service';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
+import {Currency} from '../model/currency';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {CATEGORY_API_URL, CURRENCY_API_URL, MANUFACTURER_API_URL, PRODUCT_API_URL} from '../../../app.constants';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Currency} from '../model/currency';
-import {Category} from '../../category/model/category';
-import {Manufacturer} from '../../manufacturer/model/manufacturer';
-import {CategoryService} from '../../category/service/category.service';
-import {environment} from '../../../../environments/environment';
 
 @Component( {
               selector: 'app-product-edit',
               templateUrl: './product-edit.component.html',
-              styleUrls: ['./product-edit.component.css']
+              styleUrls: ['./product-edit.component.scss']
             } )
 export class ProductEditComponent implements OnInit
 {
@@ -27,6 +34,7 @@ export class ProductEditComponent implements OnInit
                id: new FormControl( {value: '', disabled: true} ),
                name: new FormControl( '' ),
                description: new FormControl( '' ),
+               quantity: new FormControl( '' ),
                price: new FormControl( '' ),
                amount: new FormControl( '' ),
                categoryControl: new FormControl(null ),
@@ -70,12 +78,31 @@ export class ProductEditComponent implements OnInit
                       categoryControl: data.category,
                       manufacturerControl: data.manufacturer,
                     });
+            this.getProductInventory(id);
           },
           error =>
           {
             console.log( error );
           },
           () => console.log( 'getProduct() success' ) );
+  }
+
+  private getProductInventory(id: string)
+  {
+    const url = environment.SERVER_URL + INVENTORY_API_URL + '/product/' + id;
+    this.productService.getProductInventory(url).pipe()
+        .subscribe(
+          data =>
+          {
+            this.productForm.patchValue(
+              {
+                quantity: data.quantity,
+              });
+          },
+          error =>
+          {
+            console.log(error);
+          });
   }
 
   private updateProduct()
@@ -88,6 +115,9 @@ export class ProductEditComponent implements OnInit
     product.name=this.productForm.value.name;
     product.description=this.productForm.value.description;
 
+    let productInventory=new ProductInventory();
+    productInventory.quantity=this.productForm.value.quantity;
+    product.productInventory=productInventory;
     product.category=this.productForm.value.categoryControl;
     product.manufacturer=this.productForm.value.manufacturerControl;
     product.price=this.productForm.value.price;
@@ -184,4 +214,6 @@ export class ProductEditComponent implements OnInit
   {
     this.router.navigate( ['/product/list'] );
   }
+
+
 }

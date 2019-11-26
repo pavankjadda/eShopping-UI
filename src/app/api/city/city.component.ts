@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {CITY_API_URL} from '../../app.constants';
 import {City} from './model/city';
 import {CityService} from './services/city.service';
-import {CITY_API_URL} from '../../app.constants';
-import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-city',
   templateUrl: './city.component.html',
-  styleUrls: ['./city.component.css']
+  styleUrls: ['./city.component.scss']
 } )
 export class CityComponent implements OnInit
 {

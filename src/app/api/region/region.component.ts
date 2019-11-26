@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-region',
   templateUrl: './region.component.html',
-  styleUrls: ['./region.component.css']
+  styleUrls: ['./region.component.scss']
 })
 export class RegionComponent implements OnInit {
 

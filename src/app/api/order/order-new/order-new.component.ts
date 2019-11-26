@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {OrderService} from '../service/order.service';
-import {ProductService} from '../../product/service/product.service';
+import {environment} from '../../../../environments/environment';
 import {PRODUCT_API_URL} from '../../../app.constants';
 import {Product} from '../../product/model/product';
-import {environment} from '../../../../environments/environment';
+import {ProductService} from '../../product/service/product.service';
+import {OrderService} from '../service/order.service';
 
 @Component({
   selector: 'app-order-new',
   templateUrl: './order-new.component.html',
-  styleUrls: ['./order-new.component.css']
+  styleUrls: ['./order-new.component.scss']
 })
 export class OrderNewComponent implements OnInit
 {

@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from '../service/category.service';
-import {Category} from '../model/category';
-import {CATEGORY_API_URL} from '../../../app.constants';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
+import {CATEGORY_API_URL} from '../../../app.constants';
+import {Category} from '../model/category';
+import {CategoryService} from '../service/category.service';
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.css']
+  styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit
 {

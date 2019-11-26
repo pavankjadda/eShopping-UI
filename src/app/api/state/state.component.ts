@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {STATE_API_URL} from '../../app.constants';
 import {State} from './model/state';
 import {StateService} from './services/state.service';
-import {STATE_API_URL} from '../../app.constants';
-import {environment} from '../../../environments/environment';
 
 @Component( {
   selector: 'app-state',
   templateUrl: './state.component.html',
-  styleUrls: ['./state.component.css']
+  styleUrls: ['./state.component.scss']
 } )
 export class StateComponent implements OnInit
 {

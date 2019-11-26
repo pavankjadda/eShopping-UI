@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../core/auth/auth.service';
-import {UserProfile} from './model/user-profile';
-import {USER_PROFILE_API_URL} from '../../app.constants';
-import {UserProfileService} from './service/user-profile.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Address} from '../../api/address/model/address';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
+import {Address} from '../../api/address/model/address';
+import {USER_PROFILE_API_URL} from '../../app.constants';
+import {AuthService} from '../../core/auth/auth.service';
+import {UserProfile} from './model/user-profile';
+import {UserProfileService} from './service/user-profile.service';
 
 @Component( {
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.scss']
 } )
 export class UserProfileComponent implements OnInit
 {

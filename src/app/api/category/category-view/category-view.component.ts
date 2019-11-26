@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
+import {CATEGORY_API_URL} from '../../../app.constants';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
-import {CATEGORY_API_URL} from '../../../app.constants';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-category-view',
   templateUrl: './category-view.component.html',
-  styleUrls: ['./category-view.component.css']
+  styleUrls: ['./category-view.component.scss']
 })
 export class CategoryViewComponent implements OnInit
 {

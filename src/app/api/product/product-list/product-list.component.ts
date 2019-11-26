@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
+import {PRODUCT_API_URL} from '../../../app.constants';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
-import {PRODUCT_API_URL} from '../../../app.constants';
-import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit
 {

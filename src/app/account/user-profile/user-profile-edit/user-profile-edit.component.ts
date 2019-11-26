@@ -1,9 +1,19 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {UserProfile} from '../model/user-profile';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
+import {AddressType} from '../../../api/address-type/model/address-type';
+import {AddressTypeService} from '../../../api/address-type/service/address-type.service';
+import {Address} from '../../../api/address/model/address';
+import {AddressService} from '../../../api/address/service/address.service';
+import {City} from '../../../api/city/model/city';
+import {CityService} from '../../../api/city/services/city.service';
+import {Country} from '../../../api/country/model/country';
+import {CountryService} from '../../../api/country/services/country.service';
+import {State} from '../../../api/state/model/state';
+import {StateService} from '../../../api/state/services/state.service';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
@@ -12,24 +22,14 @@ import {
   STATE_API_URL,
   USER_PROFILE_API_URL
 } from '../../../app.constants';
-import {AddressType} from '../../../api/address-type/model/address-type';
-import {Country} from '../../../api/country/model/country';
-import {State} from '../../../api/state/model/state';
-import {City} from '../../../api/city/model/city';
-import {CityService} from '../../../api/city/services/city.service';
-import {StateService} from '../../../api/state/services/state.service';
-import {CountryService} from '../../../api/country/services/country.service';
-import {AddressTypeService} from '../../../api/address-type/service/address-type.service';
-import {AddressService} from '../../../api/address/service/address.service';
 import {AuthService} from '../../../core/auth/auth.service';
+import {UserProfile} from '../model/user-profile';
 import {UserProfileService} from '../service/user-profile.service';
-import {Address} from '../../../api/address/model/address';
-import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: './user-profile-edit.component.html',
-  styleUrls: ['./user-profile-edit.component.css']
+  styleUrls: ['./user-profile-edit.component.scss']
 })
 export class UserProfileEditComponent implements OnInit
 {

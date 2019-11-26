@@ -1,4 +1,10 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../environments/environment';
+import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
@@ -11,32 +17,26 @@ import {
   TAX_RATE_API_URL,
   USER_PROFILE_API_URL
 } from '../../app.constants';
-import {CartService} from '../cart/service/cart.service';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {AuthService} from '../../core/auth/auth.service';
-import {Router} from '@angular/router';
+import {AddressType} from '../address-type/model/address-type';
+import {AddressTypeService} from '../address-type/service/address-type.service';
+import {Address} from '../address/model/address';
+import {AddressService} from '../address/service/address.service';
 import {Cart} from '../cart/model/cart';
 import {CartProduct} from '../cart/model/cart-product';
-import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
-import {Address} from '../address/model/address';
-import {FormControl, FormGroup} from '@angular/forms';
-import {CityService} from '../city/services/city.service';
-import {StateService} from '../state/services/state.service';
-import {CountryService} from '../country/services/country.service';
-import {AddressTypeService} from '../address-type/service/address-type.service';
-import {AddressService} from '../address/service/address.service';
-import {AddressType} from '../address-type/model/address-type';
-import {Country} from '../country/model/country';
-import {State} from '../state/model/state';
-import {City} from '../city/model/city';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {CartShippingAddress} from '../cart/model/cart-shipping-address';
-import {environment} from '../../../environments/environment';
+import {CartService} from '../cart/service/cart.service';
+import {City} from '../city/model/city';
+import {CityService} from '../city/services/city.service';
+import {Country} from '../country/model/country';
+import {CountryService} from '../country/services/country.service';
+import {State} from '../state/model/state';
+import {StateService} from '../state/services/state.service';
 
 @Component( {
 selector: 'app-checkout',
 templateUrl: './checkout.component.html',
-styleUrls: ['./checkout.component.css']
+styleUrls: ['./checkout.component.scss']
 } )
 
 export class CheckoutComponent implements OnInit

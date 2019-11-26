@@ -1,16 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Country} from '../../country/model/country';
-import {State} from '../../state/model/state';
-import {City} from '../../city/model/city';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ManufacturerService} from '../service/manufacturer.service';
-import {CityService} from '../../city/services/city.service';
-import {StateService} from '../../state/services/state.service';
-import {CountryService} from '../../country/services/country.service';
-import {AddressTypeService} from '../../address-type/service/address-type.service';
-import {AddressService} from '../../address/service/address.service';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
 import {
   CITY_API_URL,
   COUNTRY_API_URL,
@@ -18,14 +10,22 @@ import {
   MANUFACTURER_API_URL,
   STATE_API_URL
 } from '../../../app.constants';
+import {AddressTypeService} from '../../address-type/service/address-type.service';
+import {AddressService} from '../../address/service/address.service';
+import {City} from '../../city/model/city';
+import {CityService} from '../../city/services/city.service';
+import {Country} from '../../country/model/country';
+import {CountryService} from '../../country/services/country.service';
+import {State} from '../../state/model/state';
+import {StateService} from '../../state/services/state.service';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerAddressType} from '../model/manufacturer-address-type';
-import {environment} from '../../../../environments/environment';
+import {ManufacturerService} from '../service/manufacturer.service';
 
 @Component({
   selector: 'app-manufacturer-edit',
   templateUrl: './manufacturer-edit.component.html',
-  styleUrls: ['./manufacturer-edit.component.css']
+  styleUrls: ['./manufacturer-edit.component.scss']
 })
 export class ManufacturerEditComponent implements OnInit
 {

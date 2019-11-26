@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ManufacturerService} from '../service/manufacturer.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
 import {MANUFACTURER_API_URL} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
-import {environment} from '../../../../environments/environment';
+import {ManufacturerService} from '../service/manufacturer.service';
 
 @Component({
   selector: 'app-manufacturer-list',
   templateUrl: './manufacturer-list.component.html',
-  styleUrls: ['./manufacturer-list.component.css']
+  styleUrls: ['./manufacturer-list.component.scss']
 })
 export class ManufacturerListComponent implements OnInit
 {

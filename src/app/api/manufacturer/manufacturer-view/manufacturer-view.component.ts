@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {ManufacturerService} from '../service/manufacturer.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Manufacturer} from '../model/manufacturer';
 import {FormControl, FormGroup} from '@angular/forms';
-import {MANUFACTURER_API_URL} from '../../../app.constants';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
+import {MANUFACTURER_API_URL} from '../../../app.constants';
+import {Manufacturer} from '../model/manufacturer';
+import {ManufacturerService} from '../service/manufacturer.service';
 
 @Component({
   selector: 'app-manufacturer-view',
   templateUrl: './manufacturer-view.component.html',
-  styleUrls: ['./manufacturer-view.component.css']
+  styleUrls: ['./manufacturer-view.component.scss']
 })
 export class ManufacturerViewComponent implements OnInit
 {

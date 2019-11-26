@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CategoryService} from '../service/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
+import {CategoryService} from '../service/category.service';
 
 @Component({
   selector: 'app-category-delete',
   templateUrl: './category-delete.component.html',
-  styleUrls: ['./category-delete.component.css']
+  styleUrls: ['./category-delete.component.scss']
 })
 export class CategoryDeleteComponent implements OnInit
 {

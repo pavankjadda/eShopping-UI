@@ -5,7 +5,7 @@ import {AuthService} from '../../../core/auth/auth.service';
 @Component( {
   selector: 'app-product-home',
   templateUrl: './product-home.component.html',
-  styleUrls: ['./product-home.component.css']
+  styleUrls: ['./product-home.component.scss']
 } )
 export class ProductHomeComponent implements OnInit
 {

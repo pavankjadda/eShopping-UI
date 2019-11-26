@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ManufacturerService} from '../service/manufacturer.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
 import {
   CITY_API_URL,
   COUNTRY_API_URL,
@@ -8,25 +10,23 @@ import {
   MANUFACTURER_API_URL,
   STATE_API_URL
 } from '../../../app.constants';
-import {Router} from '@angular/router';
-import {CountryService} from '../../country/services/country.service';
 import {AddressTypeService} from '../../address-type/service/address-type.service';
-import {Country} from '../../country/model/country';
-import {StateService} from '../../state/services/state.service';
-import {State} from '../../state/model/state';
-import {CityService} from '../../city/services/city.service';
-import {City} from '../../city/model/city';
-import {Manufacturer} from '../model/manufacturer';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {AddressService} from '../../address/service/address.service';
-import {ManufacturerAddressType} from '../model/manufacturer-address-type';
+import {City} from '../../city/model/city';
+import {CityService} from '../../city/services/city.service';
+import {Country} from '../../country/model/country';
+import {CountryService} from '../../country/services/country.service';
+import {State} from '../../state/model/state';
+import {StateService} from '../../state/services/state.service';
+import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerAddress} from '../model/manufacturer-address';
-import {environment} from '../../../../environments/environment';
+import {ManufacturerAddressType} from '../model/manufacturer-address-type';
+import {ManufacturerService} from '../service/manufacturer.service';
 
 @Component({
   selector: 'app-manufacturer-new',
   templateUrl: './manufacturer-new.component.html',
-  styleUrls: ['./manufacturer-new.component.css']
+  styleUrls: ['./manufacturer-new.component.scss']
 })
 export class ManufacturerNewComponent implements OnInit
 {

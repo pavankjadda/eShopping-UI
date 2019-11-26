@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CategoryService} from '../service/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Category} from '../model/category';
-import {CATEGORY_API_URL} from '../../../app.constants';
 import {environment} from '../../../../environments/environment';
+import {CATEGORY_API_URL} from '../../../app.constants';
+import {Category} from '../model/category';
+import {CategoryService} from '../service/category.service';
 
 @Component({
   selector: 'app-category-edit',
   templateUrl: './category-edit.component.html',
-  styleUrls: ['./category-edit.component.css']
+  styleUrls: ['./category-edit.component.scss']
 })
 export class CategoryEditComponent implements OnInit
 {

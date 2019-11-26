@@ -1,17 +1,17 @@
+import {HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../core/auth/auth.service';
-import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
-import {RegisterService} from './register.service';
-import {HttpHeaders} from '@angular/common/http';
-import {RegisterUser} from './register-user';
 import {environment} from '../../../environments/environment';
+import {AuthService} from '../../core/auth/auth.service';
+import {RegisterUser} from './register-user';
+import {RegisterService} from './register.service';
+import {confirmPasswordValidator, passwordValidator, usernameValidator} from './registerform-validator';
 
 @Component( {
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 } )
 export class RegisterComponent implements OnInit
 {
