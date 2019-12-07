@@ -22,7 +22,7 @@ before_install:
 
 install:
   - npm install -g @angular/cli@next
-  - npm install
+  #- npm install
 
 jobs:
   include:
