@@ -33,7 +33,7 @@ import {ModalModule} from 'ngx-bootstrap';
 
 export class CheckoutModule
 {
-  
+
 }
 
 

@@ -97,4 +97,9 @@ export class LoginComponent implements OnInit
   {
     this.message='Logged '+(AuthService.isUserLoggedIn() ? 'in' : 'out');
   }
+
+  resetForm() {
+    this.f.username.setValue(null);
+    this.f.password.setValue(null);
+  }
 }

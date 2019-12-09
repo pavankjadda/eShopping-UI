@@ -31,5 +31,5 @@ import {SpinnerModule} from 'primeng/primeng';
 
 export class CartModule
 {
-  
+
 }
