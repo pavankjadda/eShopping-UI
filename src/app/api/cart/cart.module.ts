@@ -5,7 +5,6 @@ import {CartComponent} from './cart.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {SpinnerModule} from 'primeng/primeng';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import {SpinnerModule} from 'primeng/primeng';
       NgxSpinnerModule,
       RouterModule,
       CartRoutingModule,
-      SpinnerModule,
       FormsModule
     ],
   exports:
