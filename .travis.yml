@@ -13,9 +13,6 @@ branches:
     - master
     - development
 
-before_install:
-  - sudo apt-get update
-
 install:
   - npm install -g @angular/cli@next
 
