@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI.svg?branch=master)](https://travis-ci.com/pavankjadda/SpringSecurity-SpringData-UI)
+Master: [![Build Status](https://travis-ci.com/pavankjadda/eShopping-UI.svg?branch=master)](https://travis-ci.com/pavankjadda/eShopping-UI)
 
-# Angular 8 UI for SpringSecurityData Project
+Development: [![Build Status](https://travis-ci.com/pavankjadda/eShopping-UI.svg?branch=development)](https://travis-ci.com/pavankjadda/eShopping-UI)
 
-This project is User Interface for [Spring Security Data](https://github.com/pavankjadda/SpringSecurity-SpringData) project and developed with Angular 8.x
+# Angular 9 UI for SpringSecurityData Project
+
+This project is User Interface for [eShopping](https://github.com/pavankjadda/eShopping.git) project and developed with Angular 9.x
 
 
 ### How to  Run?
