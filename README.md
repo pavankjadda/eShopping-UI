@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.com/pavankjadda/eShopping-UI.svg?branch=master)](https://travis-ci.com/pavankjadda/eShopping-UI)
+Master: [![Build Status](https://travis-ci.com/pavankjadda/eShopping-UI.svg?branch=master)](https://travis-ci.com/pavankjadda/eShopping-UI)
+
+Development: [![Build Status](https://travis-ci.com/pavankjadda/eShopping-UI.svg?branch=development)](https://travis-ci.com/pavankjadda/eShopping-UI)
 
 # Angular 9 UI for SpringSecurityData Project
 
