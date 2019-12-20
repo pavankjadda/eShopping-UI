@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x]
+        node-version: [12.x, 13.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -17,9 +17,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: Install Angular CLI
       run: |
         npm install -g @angular/cli@next
-        npm install
-        npm build --prod
+    - name: Install dependencies
+      run: npm install
+    - name: Build the app
+      run: ng build --prod
         
