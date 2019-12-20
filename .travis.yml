@@ -4,26 +4,20 @@ sudo: required
 
 language: node_js
 node_js:
-  - "13.2.0"
-  - "12.13.1"
+  - "13.5.0"
+  - "12.14.0"
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 
 branches:
   only:
-    - /.*/
+    - master
+    - development
 
 before_install:
   - sudo apt-get update
 
 install:
   - npm install -g @angular/cli@next
-  - npm install
 
 jobs:
   include:
@@ -31,8 +25,7 @@ jobs:
     - stage: Build App
       if: branch = development
       script:
-      - ng --version
-      - ng build
+      - ng build --prod
 
     ## Deploy Stage ##
     - stage: Deploy App
