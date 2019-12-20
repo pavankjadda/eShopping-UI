@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Upgrade Angular version
-CURRENT_BRANCH="${git branch | grep \* | cut -d ' ' -f2}"
+CURRENT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
 
 git add .
 git commit -m "Before Upgrade"
