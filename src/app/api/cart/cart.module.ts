@@ -5,6 +5,7 @@ import {CartComponent} from './cart.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {SpinnerModule} from 'primeng';
 
 
 @NgModule({
@@ -12,15 +13,16 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     [
     CartComponent
   ],
-  imports:
-    [
-      CommonModule,
-      ReactiveFormsModule,
-      NgxSpinnerModule,
-      RouterModule,
-      CartRoutingModule,
-      FormsModule
-    ],
+    imports:
+        [
+            CommonModule,
+            ReactiveFormsModule,
+            NgxSpinnerModule,
+            RouterModule,
+            CartRoutingModule,
+            FormsModule,
+            SpinnerModule
+        ],
   exports:
     [
     RouterModule

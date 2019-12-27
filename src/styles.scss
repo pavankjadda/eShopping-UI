@@ -8,6 +8,8 @@ $fa-font-path: "~font-awesome/fonts";
 @import  "~primeng/resources/themes/nova-light/theme.css";
 @import  "~primeng/resources/primeng.min.css";
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 
 html, body { height: 100%; }
 //body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

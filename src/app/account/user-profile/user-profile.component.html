@@ -9,19 +9,19 @@
         <input class="form-control" formControlName="username" id="username" name="username" type="text" readonly>
         <small class="form-text text-muted" id="emailHelp"></small>
       </div>
-      <div class="col-auto mb-3">
-        <label for="firstName">First Name</label>
-        <input class="form-control" formControlName="firstName" id="firstName" type="text" readonly>
+      <div class="col-auto  mb-3">
+        <label for="email">Email</label> <br/>
+        <input type="text" class="form-control"  formControlName="email" id="email" readonly>
       </div>
     </div>
     <div class="form-row">
       <div class="col-auto">
-        <label for="lastName">Last Name</label>
-        <input  type="text" class="form-control" formControlName="lastName" id="lastName" readonly>
+        <label for="firstName">First Name</label>
+        <input class="form-control" formControlName="firstName" id="firstName" type="text" readonly>
       </div>
       <div class="col-auto">
-        <label for="email">Email</label> <br/>
-        <input type="text" class="form-control"  formControlName="email" id="email" readonly>
+        <label for="lastName">Last Name</label>
+        <input  type="text" class="form-control" formControlName="lastName" id="lastName" readonly>
       </div>
     </div>
 
@@ -32,7 +32,6 @@
       </div>
   </div>
     <br> <br>
-
     <div >
       <h3>Addresses:</h3>
       <div  *ngFor="let address of addresses">

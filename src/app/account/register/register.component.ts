@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit
     registerUser.email=this.formControls.email.value;
     registerUser.password=this.formControls.password.value;
 
-    let url=environment.SERVER_URL+'register';
+    let url=environment.BASE_URL+'register';
     const httpOptions = {
       headers: new HttpHeaders(
         {
