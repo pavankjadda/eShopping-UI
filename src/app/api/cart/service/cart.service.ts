@@ -11,6 +11,7 @@ import {TaxRate} from '../../checkout/model/taxrate';
 import {CartShippingAddress} from '../model/cart-shipping-address';
 import {CartBillingAddress} from '../model/cart-billing-address';
 import {environment} from '../../../../environments/environment';
+import {CartProductSlim} from '../model/cart-product-slim';
 
 @Injectable({
   providedIn: 'root'
@@ -108,7 +109,7 @@ export class CartService
 
   getDraftCartStatusFromBackend()
   {
-    const url=environment.SERVER_URL+CART_STATUS_API_URL+'/list';
+    const url=environment.BASE_URL+CART_STATUS_API_URL+'/list';
     this.httpClient.get<CartStatus[]>(url).subscribe(
       data=>
       {
@@ -126,9 +127,9 @@ export class CartService
     return this.httpClient.delete(cartUrl);
   }
 
-  updateCartProduct(cartUrl: string, cartProduct: CartProduct)
+  updateCartProduct(cartUrl: string, cartProductSlim: CartProductSlim)
   {
-    return this.httpClient.post<Cart>( cartUrl, cartProduct );
+    return this.httpClient.post<Cart>( cartUrl, cartProductSlim );
   }
 
   deleteCartProduct(cartUrl: string)

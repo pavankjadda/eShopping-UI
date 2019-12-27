@@ -60,7 +60,7 @@ export class ProductNewComponent implements OnInit
     let productInventory=new ProductInventory();
     productInventory.quantity=this.productForm.value.quantity;
     product.productInventory=productInventory;
-    const url=environment.SERVER_URL+PRODUCT_API_URL+'/create';
+    const url=environment.BASE_URL+PRODUCT_API_URL+'/create';
 
     this.productService.createProduct(url,product).subscribe(
       value =>
@@ -77,7 +77,7 @@ export class ProductNewComponent implements OnInit
   }
   private updateProductInventory(product: Product)
   {
-    const url=environment.SERVER_URL+INVENTORY_API_URL+'/update?product_id='+product.id+'&quantity='+this.productForm.value.quantity;
+    const url=environment.BASE_URL+INVENTORY_API_URL+'/update?product_id='+product.id+'&quantity='+this.productForm.value.quantity;
     this.productService.updateProductInventory(url).subscribe(
       value =>
       {
@@ -106,7 +106,7 @@ export class ProductNewComponent implements OnInit
 
   private loadCategories()
   {
-    const url=environment.SERVER_URL+CATEGORY_API_URL+'/list';
+    const url=environment.BASE_URL+CATEGORY_API_URL+'/list';
 
     this.categoryService.getCategories(url).subscribe(
       categories =>
@@ -122,7 +122,7 @@ export class ProductNewComponent implements OnInit
 
   private loadCurrencies()
   {
-    const url=environment.SERVER_URL+CURRENCY_API_URL+'/list';
+    const url=environment.BASE_URL+CURRENCY_API_URL+'/list';
 
     this.productService.getCurrencies( url ).subscribe(
       currencies =>
@@ -140,7 +140,7 @@ export class ProductNewComponent implements OnInit
 
   private loadManufacturers()
   {
-    const url=environment.SERVER_URL+MANUFACTURER_API_URL+'/list';
+    const url=environment.BASE_URL+MANUFACTURER_API_URL+'/list';
 
     this.productService.getManufacturers( url ).subscribe(
       manufacturers =>

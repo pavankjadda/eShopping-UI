@@ -22,7 +22,7 @@ export class CountryComponent implements OnInit
 
   getCountries()
   {
-    const url=environment.SERVER_URL+COUNTRY_API_URL+'/list';
+    const url=environment.BASE_URL+COUNTRY_API_URL+'/list';
     this.countryService.getCountries(url).subscribe(
       data=> {
         this.countries=data;

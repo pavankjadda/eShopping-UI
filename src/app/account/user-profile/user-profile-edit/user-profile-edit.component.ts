@@ -105,7 +105,7 @@ export class UserProfileEditComponent implements OnInit
   private getUserProfile()
   {
     let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
-    let userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'/'+userProfileId;
+    let userProfileUrl=environment.BASE_URL+USER_PROFILE_API_URL+'/'+userProfileId;
 
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>
@@ -135,7 +135,7 @@ export class UserProfileEditComponent implements OnInit
   {
     this.spinnerService.show();
 
-    const userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'/update';
+    const userProfileUrl=environment.BASE_URL+USER_PROFILE_API_URL+'/update';
     let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
     let userProfile=new UserProfile();
     userProfile.id=userProfileId;
@@ -163,7 +163,7 @@ export class UserProfileEditComponent implements OnInit
 
   updateUserAddress()
   {
-    const addressApiUrl=environment.SERVER_URL+ADDRESS_API_URL+'/update';
+    const addressApiUrl=environment.BASE_URL+ADDRESS_API_URL+'/update';
     this.addressService.updateAddress(addressApiUrl,this.userProfileForm.value.address).subscribe(
       data=>
       {
@@ -180,7 +180,7 @@ export class UserProfileEditComponent implements OnInit
 
   deleteAddress(address: Address)
   {
-    const addressApiUrl=environment.SERVER_URL+ADDRESS_API_URL+'/delete/'+address.id;
+    const addressApiUrl=environment.BASE_URL+ADDRESS_API_URL+'/delete/'+address.id;
     this.addressService.deleteAddress(addressApiUrl).subscribe(
       data=>
       {
@@ -196,7 +196,7 @@ export class UserProfileEditComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=environment.SERVER_URL+ADDRESS_TYPE_API_URL+'/list';
+    const url=environment.BASE_URL+ADDRESS_TYPE_API_URL+'/list';
     this.addressTypeService.getAddressTypes(url).subscribe(
       addressTypes =>
       {
@@ -217,7 +217,7 @@ export class UserProfileEditComponent implements OnInit
 
   private loadCountries()
   {
-    const url=environment.SERVER_URL+COUNTRY_API_URL+'/list';
+    const url=environment.BASE_URL+COUNTRY_API_URL+'/list';
     this.countryService.getCountries(url).subscribe(
       countries => {
         this.countries=countries;
@@ -232,7 +232,7 @@ export class UserProfileEditComponent implements OnInit
   loadStates()
   {
     const country=this.userProfileForm.value.address.country;
-    const url=environment.SERVER_URL+STATE_API_URL+'/find/country/'+country.id;
+    const url=environment.BASE_URL+STATE_API_URL+'/find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       data=>
@@ -249,7 +249,7 @@ export class UserProfileEditComponent implements OnInit
   loadCities()
   {
     const state=this.userProfileForm.value.address.state;
-    const url=environment.SERVER_URL+CITY_API_URL+'/find/state/'+state.id;
+    const url=environment.BASE_URL+CITY_API_URL+'/find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       data=>

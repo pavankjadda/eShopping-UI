@@ -42,7 +42,7 @@ export class AuthService
           authorization: 'Basic '+btoa( username+':'+password )
         } )
     };
-    return this.httpClient.get<any>( environment.SERVER_URL+LOGIN_API_URL+'/login', httpOptions)
+    return this.httpClient.get<any>( environment.BASE_URL+LOGIN_API_URL+'/login', httpOptions)
       .pipe( map( user =>
       {
         // login successful if there's a Spring Session token in the response

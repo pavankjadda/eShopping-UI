@@ -118,7 +118,7 @@ export class CheckoutComponent implements OnInit
   private getMyCart()
   {
     this.ngxSpinnerService.show();
-    const cartUrl=environment.SERVER_URL+CART_API_URL+'/find/user/'+this.authService.currentUserValue.id;
+    const cartUrl=environment.BASE_URL+CART_API_URL+'/find/user/'+this.authService.currentUserValue.id;
     this.cartService.getMyCart( cartUrl ).subscribe(
       data =>
       {
@@ -165,7 +165,7 @@ export class CheckoutComponent implements OnInit
   private getAddresses()
   {
     let userProfileId=this.authService.currentUserSubject.value.userProfile.id;
-    let userProfileUrl=environment.SERVER_URL+USER_PROFILE_API_URL+'/'+userProfileId;
+    let userProfileUrl=environment.BASE_URL+USER_PROFILE_API_URL+'/'+userProfileId;
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       data=>
       {
@@ -183,7 +183,7 @@ export class CheckoutComponent implements OnInit
     this.ngxSpinnerService.show();
 
     this.selectedShippingAddress=address;
-    let cartShippingAddressUrl=environment.SERVER_URL+CART_ADDRESS_API_URL+'/add/shipping_address';
+    let cartShippingAddressUrl=environment.BASE_URL+CART_ADDRESS_API_URL+'/add/shipping_address';
     let cartShippingAddress=new CartShippingAddress();
     cartShippingAddress.addressType=address.addressType;
     cartShippingAddress.streetName=address.streetName;
@@ -202,7 +202,7 @@ export class CheckoutComponent implements OnInit
 
   async getTaxRate(id: number)
   {
-    let taxRateUrl=environment.SERVER_URL+TAX_RATE_API_URL+'/find/state/'+id;
+    let taxRateUrl=environment.BASE_URL+TAX_RATE_API_URL+'/find/state/'+id;
     let taxRateObject=await this.cartService.getTaxRate(taxRateUrl);
     this.taxRate=taxRateObject.rate;
   }
@@ -212,7 +212,7 @@ export class CheckoutComponent implements OnInit
     this.ngxSpinnerService.show();
 
     this.selectedBillingAddress=address;
-    let cartBillingAddressUrl=environment.SERVER_URL+CART_ADDRESS_API_URL+'/add/billing_address';
+    let cartBillingAddressUrl=environment.BASE_URL+CART_ADDRESS_API_URL+'/add/billing_address';
     let cartBillingAddress=new CartShippingAddress();
     cartBillingAddress.addressType=address.addressType;
     cartBillingAddress.streetName=address.streetName;
@@ -234,7 +234,7 @@ export class CheckoutComponent implements OnInit
 
   updateUserAddress()
   {
-    const addressApiUrl=environment.SERVER_URL+ADDRESS_API_URL+'/update';
+    const addressApiUrl=environment.BASE_URL+ADDRESS_API_URL+'/update';
     this.addressService.updateAddress(addressApiUrl,this.addressForm.value).subscribe(
       data=>
       {
@@ -252,7 +252,7 @@ export class CheckoutComponent implements OnInit
   {
     if(confirm('Are you sure you want to delete the Address?'))
     {
-      let addressUrl=environment.SERVER_URL+ADDRESS_API_URL+'/delete/'+address.id;
+      let addressUrl=environment.BASE_URL+ADDRESS_API_URL+'/delete/'+address.id;
 
       this.addressService.deleteAddress(addressUrl).subscribe(
         data=>
@@ -271,7 +271,7 @@ export class CheckoutComponent implements OnInit
   placeOrder()
   {
     this.ngxSpinnerService.show();
-    let createOrderUrl=environment.SERVER_URL+ORDER_API_URL+'/create';
+    let createOrderUrl=environment.BASE_URL+ORDER_API_URL+'/create';
 
     this.cartService.createOrder(createOrderUrl,this.cart.id).subscribe(
       data=>
@@ -287,7 +287,7 @@ export class CheckoutComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=environment.SERVER_URL+ADDRESS_TYPE_API_URL+'/list';
+    const url=environment.BASE_URL+ADDRESS_TYPE_API_URL+'/list';
     this.addressTypeService.getAddressTypes(url).subscribe(
       addressTypes =>
       {
@@ -308,7 +308,7 @@ export class CheckoutComponent implements OnInit
 
   private loadCountries()
   {
-    const url=environment.SERVER_URL+COUNTRY_API_URL+'/list';
+    const url=environment.BASE_URL+COUNTRY_API_URL+'/list';
     this.countryService.getCountries(url).subscribe(
       countries => {
         this.countries=countries;
@@ -323,7 +323,7 @@ export class CheckoutComponent implements OnInit
   loadStates()
   {
     const country=this.addressForm.value.country;
-    const url=environment.SERVER_URL+STATE_API_URL+'/find/country/'+country.id;
+    const url=environment.BASE_URL+STATE_API_URL+'/find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       data=>
@@ -340,7 +340,7 @@ export class CheckoutComponent implements OnInit
   loadCities()
   {
     const state=this.addressForm.value.state;
-    const url=environment.SERVER_URL+CITY_API_URL+'/find/state/'+state.id;
+    const url=environment.BASE_URL+CITY_API_URL+'/find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       data=>
