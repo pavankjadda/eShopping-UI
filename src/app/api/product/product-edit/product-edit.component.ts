@@ -212,8 +212,6 @@ export class ProductEditComponent implements OnInit
 
   goBack()
   {
-    this.router.navigate( ['/product/list'] );
+    this.router.navigate( ['/product/'+this.route.snapshot.paramMap.get( 'id' )] );
   }
-
-
 }
