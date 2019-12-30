@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  SERVER_URL: 'https://nextgen-code.com'
+  BASE_URL: 'https://nextgen-code.com'
 };

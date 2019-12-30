@@ -26,7 +26,7 @@ export class OrderListComponent implements OnInit
 
   private getOrders()
   {
-    const url=environment.SERVER_URL+ORDER_API_URL+'/list';
+    const url=environment.BASE_URL+ORDER_API_URL+'/list';
     this.orderService.getOrders( url).subscribe(
       data =>
       {

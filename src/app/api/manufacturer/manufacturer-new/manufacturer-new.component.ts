@@ -78,7 +78,7 @@ export class ManufacturerNewComponent implements OnInit
   createManufacturer()
   {
     this.spinnerService.show();
-    const manufactureUrl=environment.SERVER_URL+MANUFACTURER_API_URL+'/create';
+    const manufactureUrl=environment.BASE_URL+MANUFACTURER_API_URL+'/create';
 
     let manufacturerAddress=new ManufacturerAddress();
     manufacturerAddress.manufacturerAddressType=this.manufacturerForm.value.manufacturerAddress.manufacturerAddressType;
@@ -118,7 +118,7 @@ export class ManufacturerNewComponent implements OnInit
 
   private loadAddressTypes()
   {
-    const url=environment.SERVER_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'/list';
+    const url=environment.BASE_URL+MANUFACTURER_ADDRESS_TYPE_API_URL+'/list';
     this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
       manufacturerAddressTypes =>
       {
@@ -139,7 +139,7 @@ export class ManufacturerNewComponent implements OnInit
 
   private loadCountries()
   {
-    const url=environment.SERVER_URL+COUNTRY_API_URL+'/list';
+    const url=environment.BASE_URL+COUNTRY_API_URL+'/list';
     this.countryService.getCountries(url).subscribe(
       countries => {
         this.countries=countries;
@@ -154,7 +154,7 @@ export class ManufacturerNewComponent implements OnInit
   loadStates()
   {
     const country=this.manufacturerForm.value.manufacturerAddress.country;
-    const url=environment.SERVER_URL+STATE_API_URL+'/find/country/'+country.id;
+    const url=environment.BASE_URL+STATE_API_URL+'/find/country/'+country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       data=>
@@ -171,7 +171,7 @@ export class ManufacturerNewComponent implements OnInit
   loadCities()
   {
     const state=this.manufacturerForm.value.manufacturerAddress.state;
-    const url=environment.SERVER_URL+CITY_API_URL+'/find/state/'+state.id;
+    const url=environment.BASE_URL+CITY_API_URL+'/find/state/'+state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       data=>
