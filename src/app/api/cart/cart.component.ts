@@ -8,7 +8,7 @@ import {ProductInventory} from '../product/model/product-inventory';
 import {Cart} from './model/cart';
 import {CartProduct} from './model/cart-product';
 import {CartService} from './service/cart.service';
-import {CartProductSlim} from './model/cart-product-slim';
+import {CartProductDtoSlim} from './model/cart-product-dto-slim';
 
 @Component({
   selector: 'app-cart',
@@ -41,7 +41,7 @@ export class CartComponent implements OnInit
   {
       this.ngxSpinnerService.show();
       const cartUrl=environment.BASE_URL+CART_API_URL+'/product/update';
-      let cartProductSlim= new CartProductSlim();
+      let cartProductSlim= new CartProductDtoSlim();
       cartProductSlim.cartId=cartProduct.cart.id;
       cartProductSlim.cartProductId=cartProduct.id;
       cartProductSlim.quantity=cartProduct.quantity;

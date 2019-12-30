@@ -6,10 +6,10 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {CART_API_URL, PRODUCT_API_URL} from '../../../app.constants';
 import {AuthService} from '../../../core/auth/auth.service';
-import {CartProduct} from '../../cart/model/cart-product';
 import {CartService} from '../../cart/service/cart.service';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
+import {CartProductDtoSlim} from '../../cart/model/cart-product-dto-slim';
 
 @Component({
   selector: 'app-product-view',
@@ -53,7 +53,7 @@ export class ProductViewComponent implements OnInit
 
   async addProductToCart()
   {
-    this.spinner.show();
+    await this.spinner.show();
 
     let cart = this.cartService.getCurrentCart;
     if (cart === null)
@@ -64,14 +64,14 @@ export class ProductViewComponent implements OnInit
     }
       cart = this.cartService.getCurrentCart;
       const addProductToCartUrl = environment.BASE_URL + CART_API_URL + '/product/add';
-      let newCartProduct = new CartProduct();
-      newCartProduct.product = this.product;
-      newCartProduct.quantity = 1;
-      newCartProduct.cart = cart;
-      //newCartProduct.cart.id=cart.id;
-      newCartProduct = CartService.doesProductExistInCart(cart, newCartProduct);
+      let cartProductDtoSlim=new CartProductDtoSlim();
+      cartProductDtoSlim.cartId=cart.id;
+      cartProductDtoSlim.productId=this.product.id;
+      cartProductDtoSlim.quantity=1;
 
-      this.cartService.addProductToCart(addProductToCartUrl, newCartProduct).subscribe(
+      cartProductDtoSlim = CartService.doesProductExistInCart(cart, cartProductDtoSlim);
+
+      this.cartService.addProductToCart(addProductToCartUrl, cartProductDtoSlim).subscribe(
         data =>
         {
           localStorage.setItem('currentCart', JSON.stringify(data));
