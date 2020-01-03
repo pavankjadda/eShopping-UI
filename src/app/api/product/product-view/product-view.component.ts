@@ -64,11 +64,11 @@ export class ProductViewComponent implements OnInit
     }
       cart = this.cartService.getCurrentCart;
       const addProductToCartUrl = environment.BASE_URL + CART_API_URL + '/product/add';
+
       let cartProductDtoSlim=new CartProductDtoSlim();
       cartProductDtoSlim.cartId=cart.id;
       cartProductDtoSlim.productId=this.product.id;
       cartProductDtoSlim.quantity=1;
-
       cartProductDtoSlim = CartService.doesProductExistInCart(cart, cartProductDtoSlim);
 
       this.cartService.addProductToCart(addProductToCartUrl, cartProductDtoSlim).subscribe(
