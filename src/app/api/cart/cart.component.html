@@ -1,10 +1,9 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
 
 
-<h1> My Cart</h1>
-
 <div *ngIf="cartDataAvailable()"
      class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+  <h1> My Cart</h1>
   <table class="table">
     <thead style="text-align: center">
     <tr>
@@ -32,10 +31,17 @@
     </tbody>
   </table>
 
-  <input (click)="deleteCart()" class=" btn btn-danger btn-sm" type="button" value="Delete Cart">
-  <p style="text-align: center">
-    <input (click)="goToProducts()" class=" btn btn-primary" type="button" value="All Products" style="margin: 20px">
+  <input (click)="deleteCart()" class=" btn btn-danger btn-md" type="button" value="Delete Cart">
+  <p style="text-align: center;">
+    <input (click)="goToProducts()" class=" btn btn-primary" style="margin: 20px" type="button" value="Browse Products">
     <input (click)="checkout()" class=" btn btn-primary" type="button" value="Checkout" style="margin: 20px">
   </p>
 </div>
 
+<div *ngIf="!cartDataAvailable()">
+  <br/> <br/> <br/>
+  <h4> Your Shopping Cart is empty</h4>
+  <p style="text-align: center">
+    <input (click)="goToProducts()" class=" btn btn-primary" style="margin: 20px" type="button" value="Browse Products">
+  </p>
+</div>

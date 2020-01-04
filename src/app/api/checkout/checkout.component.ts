@@ -270,17 +270,19 @@ export class CheckoutComponent implements OnInit
 
   placeOrder()
   {
-    this.ngxSpinnerService.show();
+    this.ngxSpinnerService.show('Please wait while creating the Order');
     let createOrderUrl=environment.BASE_URL+ORDER_API_URL+'/create';
 
     this.cartService.createOrder(createOrderUrl,this.cart.id).subscribe(
       data=>
       {
         this.router.navigate(['/order']);
+        this.ngxSpinnerService.hide();
       },
       error1 =>
       {
-        console.log('Failed to create order');
+        console.log('Failed to create order. Error: '+error1);
+        this.ngxSpinnerService.hide();
       }
     );
   }

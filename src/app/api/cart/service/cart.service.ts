@@ -4,14 +4,13 @@ import {Cart} from '../model/cart';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CART_STATUS_API_URL} from '../../../app.constants';
 import {CartStatus} from '../model/cart-status';
-import {CartProduct} from '../model/cart-product';
 import {UserProfile} from '../../../account/user-profile/model/user-profile';
 import {ProductInventory} from '../../product/model/product-inventory';
 import {TaxRate} from '../../checkout/model/taxrate';
 import {CartShippingAddress} from '../model/cart-shipping-address';
 import {CartBillingAddress} from '../model/cart-billing-address';
 import {environment} from '../../../../environments/environment';
-import {CartProductSlim} from '../model/cart-product-slim';
+import {CartProductJson} from '../model/cart-product-json';
 
 @Injectable({
   providedIn: 'root'
@@ -22,22 +21,18 @@ export class CartService
   public currentCart: Observable<Cart>;
   public cartStatuses: Array<CartStatus>;
 
-  static doesProductExistInCart(cart: Cart, newCartProduct:CartProduct)
-  {
-    if( cart.cartProducts === null || cart.cartProducts === undefined || cart.cartProducts.length === 0)
-    {
-      newCartProduct.quantity=1;
+  static doesProductExistInCart(cart: Cart, newCartProductDtoSlim: CartProductJson) {
+    if (cart.cartProducts === null || cart.cartProducts === undefined || cart.cartProducts.length === 0) {
+      newCartProductDtoSlim.quantity = 1;
     }
-    for(let i=0;i<cart.cartProducts.length;i++)
-    {
-      if(cart.cartProducts[i].product.id === newCartProduct.product.id)
-      {
-        newCartProduct.quantity=cart.cartProducts[i].quantity+1;
-        newCartProduct.id=cart.cartProducts[i].id;
+    for (let i = 0; i < cart.cartProducts.length; i++) {
+      if (cart.cartProducts[i].product.id === newCartProductDtoSlim.productId) {
+        newCartProductDtoSlim.quantity = cart.cartProducts[i].quantity + 1;
+        newCartProductDtoSlim.cartProductId=cart.cartProducts[i].id;
         break;
       }
     }
-    return newCartProduct;
+    return newCartProductDtoSlim;
   }
 
   constructor(private httpClient:HttpClient)
@@ -73,9 +68,8 @@ export class CartService
     return this.httpClient.get<Cart>(url);
   }
 
-  addProductToCart(url: string, cartProduct: CartProduct)
-  {
-    return this.httpClient.post<Cart>(url,cartProduct);
+  addProductToCart(url: string, cartProductDtoSlim: CartProductJson) {
+    return this.httpClient.post<Cart>(url, cartProductDtoSlim);
   }
 
   async getTaxRate(url: string)
@@ -127,9 +121,8 @@ export class CartService
     return this.httpClient.delete(cartUrl);
   }
 
-  updateCartProduct(cartUrl: string, cartProductSlim: CartProductSlim)
-  {
-    return this.httpClient.post<Cart>( cartUrl, cartProductSlim );
+  updateCartProduct(cartUrl: string, cartProductSlim: CartProductJson) {
+    return this.httpClient.post<Cart>(cartUrl, cartProductSlim);
   }
 
   deleteCartProduct(cartUrl: string)
