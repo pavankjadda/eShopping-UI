@@ -10,7 +10,7 @@ import {TaxRate} from '../../checkout/model/taxrate';
 import {CartShippingAddress} from '../model/cart-shipping-address';
 import {CartBillingAddress} from '../model/cart-billing-address';
 import {environment} from '../../../../environments/environment';
-import {CartProductDtoSlim} from '../model/cart-product-dto-slim';
+import {CartProductJson} from '../model/cart-product-json';
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +21,13 @@ export class CartService
   public currentCart: Observable<Cart>;
   public cartStatuses: Array<CartStatus>;
 
-  static doesProductExistInCart(cart: Cart, newCartProductDtoSlim:CartProductDtoSlim)
-  {
-    if( cart.cartProducts === null || cart.cartProducts === undefined || cart.cartProducts.length === 0)
-    {
-      newCartProductDtoSlim.quantity=1;
+  static doesProductExistInCart(cart: Cart, newCartProductDtoSlim: CartProductJson) {
+    if (cart.cartProducts === null || cart.cartProducts === undefined || cart.cartProducts.length === 0) {
+      newCartProductDtoSlim.quantity = 1;
     }
-    for(let i=0;i<cart.cartProducts.length;i++)
-    {
-      if(cart.cartProducts[i].product.id === newCartProductDtoSlim.productId)
-      {
-        newCartProductDtoSlim.quantity=cart.cartProducts[i].quantity+1;
+    for (let i = 0; i < cart.cartProducts.length; i++) {
+      if (cart.cartProducts[i].product.id === newCartProductDtoSlim.productId) {
+        newCartProductDtoSlim.quantity = cart.cartProducts[i].quantity + 1;
         newCartProductDtoSlim.cartProductId=cart.cartProducts[i].id;
         break;
       }
@@ -72,10 +68,8 @@ export class CartService
     return this.httpClient.get<Cart>(url);
   }
 
-
-  addProductToCart(url: string, cartProductDtoSlim: CartProductDtoSlim)
-  {
-    return this.httpClient.post<Cart>(url,cartProductDtoSlim);
+  addProductToCart(url: string, cartProductDtoSlim: CartProductJson) {
+    return this.httpClient.post<Cart>(url, cartProductDtoSlim);
   }
 
   async getTaxRate(url: string)
@@ -127,9 +121,8 @@ export class CartService
     return this.httpClient.delete(cartUrl);
   }
 
-  updateCartProduct(cartUrl: string, cartProductSlim: CartProductDtoSlim)
-  {
-    return this.httpClient.post<Cart>( cartUrl, cartProductSlim );
+  updateCartProduct(cartUrl: string, cartProductSlim: CartProductJson) {
+    return this.httpClient.post<Cart>(cartUrl, cartProductSlim);
   }
 
   deleteCartProduct(cartUrl: string)

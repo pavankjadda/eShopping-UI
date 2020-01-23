@@ -9,7 +9,7 @@ import {AuthService} from '../../../core/auth/auth.service';
 import {CartService} from '../../cart/service/cart.service';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
-import {CartProductDtoSlim} from '../../cart/model/cart-product-dto-slim';
+import {CartProductJson} from '../../cart/model/cart-product-json';
 
 @Component({
   selector: 'app-product-view',
@@ -54,34 +54,29 @@ export class ProductViewComponent implements OnInit
   async addProductToCart()
   {
     await this.spinner.show();
-
     let cart = this.cartService.getCurrentCart;
-    if (cart === null)
-    {
+    if (cart === null) {
       const initializeCartUrl = environment.BASE_URL + CART_API_URL + '/initialize';
       let userProfile = this.authService.currentUserSubject.value.userProfile;
       await this.cartService.initializeCart(initializeCartUrl, userProfile);
     }
-      cart = this.cartService.getCurrentCart;
-      const addProductToCartUrl = environment.BASE_URL + CART_API_URL + '/product/add';
+    cart = this.cartService.getCurrentCart;
+    const addProductToCartUrl = environment.BASE_URL + CART_API_URL + '/product/add';
+    let cartProductJson = new CartProductJson();
+    cartProductJson.cartId = cart.id;
+    cartProductJson.productId = this.product.id;
+    cartProductJson.quantity = 1;
+    cartProductJson = CartService.doesProductExistInCart(cart, cartProductJson);
 
-      let cartProductDtoSlim=new CartProductDtoSlim();
-      cartProductDtoSlim.cartId=cart.id;
-      cartProductDtoSlim.productId=this.product.id;
-      cartProductDtoSlim.quantity=1;
-      cartProductDtoSlim = CartService.doesProductExistInCart(cart, cartProductDtoSlim);
-
-      this.cartService.addProductToCart(addProductToCartUrl, cartProductDtoSlim).subscribe(
-        data =>
-        {
-          localStorage.setItem('currentCart', JSON.stringify(data));
-          this.cartService.currentCartSubject.next(data);
-        },
-        error1 =>
-        {
-          this.spinner.hide();
-          console.log('Failed to update cart');
-        },
+    this.cartService.addProductToCart(addProductToCartUrl, cartProductJson).subscribe(
+      data => {
+        localStorage.setItem('currentCart', JSON.stringify(data));
+        this.cartService.currentCartSubject.next(data);
+      },
+      error1 => {
+        this.spinner.hide();
+        console.log('Failed to update cart');
+      },
         () =>
         {
           this.router.navigate(['/cart']);

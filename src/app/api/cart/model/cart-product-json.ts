@@ -1,5 +1,4 @@
-export class CartProductDtoSlim
-{
+export class CartProductJson {
   cartProductId: number;
   cartId: number;
   productId: number;
