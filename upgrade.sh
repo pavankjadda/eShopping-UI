@@ -7,6 +7,7 @@ echo "Current branch is $CURRENT_BRANCH"
 git add .
 git commit -m "Before Upgrade"
 git push origin "$CURRENT_BRANCH"
+ng update @angular/cli @angular/core --update=true
 ng update --all --force
 git add .
 git commit -m "After Upgrade"
