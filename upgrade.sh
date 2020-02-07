@@ -7,8 +7,8 @@ echo "Current branch is $CURRENT_BRANCH"
 git add .
 git commit -m "Before Upgrade"
 git push origin "$CURRENT_BRANCH"
+ng update @angular/cli @angular/core --next=true
 ng update --all --force
-npm install  typescript@3.6.4 --save
 git add .
 git commit -m "After Upgrade"
 git push origin "$CURRENT_BRANCH"
