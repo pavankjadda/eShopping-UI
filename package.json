@@ -1,6 +1,6 @@
 {
   "name": "spring-security-data-ui",
-  "version": "2.0.0-beta3",
+  "version": "2.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -44,7 +44,7 @@
     "@angular/cli": "^9.0.2",
     "@angular/compiler-cli": "^9.0.1",
     "@angular/language-service": "~9.0.1",
-    "@types/jasmine": "~3.5.3",
+    "@types/jasmine": "~3.5.4",
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "~13.7.1",
     "codelyzer": "^5.2.1",
