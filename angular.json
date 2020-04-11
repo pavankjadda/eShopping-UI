@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SpringTestingUI": {
+    "eShopping-UI": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SpringTestingUI",
+            "outputPath": "dist/eShopping-UI",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SpringTestingUI:build"
+            "browserTarget": "eShopping-UI:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SpringTestingUI:build:production"
+              "browserTarget": "eShopping-UI:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SpringTestingUI:build"
+            "browserTarget": "eShopping-UI:build"
           }
         },
         "test": {
@@ -112,7 +112,7 @@
         }
       }
     },
-    "SpringTestingUI-e2e": {
+    "eShopping-UI-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -121,11 +121,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SpringTestingUI:serve"
+            "devServerTarget": "eShopping-UI:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SpringTestingUI:serve:production"
+              "devServerTarget": "eShopping-UI:serve:production"
             }
           }
         },
@@ -268,7 +268,7 @@
       }
     }
   },
-  "defaultProject": "SpringTestingUI",
+  "defaultProject": "eShopping-UI",
   "cli": {
     "analytics": false
   },

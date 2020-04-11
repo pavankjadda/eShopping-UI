@@ -1,7 +1,7 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
 import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
@@ -32,6 +32,7 @@ import {Country} from '../country/model/country';
 import {CountryService} from '../country/services/country.service';
 import {State} from '../state/model/state';
 import {StateService} from '../state/services/state.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component( {
 selector: 'app-checkout',
