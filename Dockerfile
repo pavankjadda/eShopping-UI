@@ -1,5 +1,4 @@
-### STAGE 1: Build ###
-
+############ STAGE 1: Build ############
 # We label our stage as ‘builder’
 FROM node:lts-alpine as builder
 
@@ -15,7 +14,8 @@ COPY . .
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN $(npm bin)/ng build --prod --output-path=dist
 
-### STAGE 2: Setup ###
+
+############### STAGE 2: Setup ##################
 # Use Nginx alpine image
 FROM nginx:stable-alpine as nginx
 
