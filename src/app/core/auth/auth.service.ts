@@ -32,6 +32,11 @@ export class AuthService
     return localStorage.getItem( 'isLoggedIn' )==='true';
   }
 
+  isUserLoggedIn(): boolean
+  {
+    return localStorage.getItem( 'isLoggedIn' )==='true';
+  }
+
   // @ts-ignore
   login(username: string, password: string): Observable<any>
   {
