@@ -38,6 +38,6 @@ jobs:
 
         echo VERSION=$VERSION
 
-        docker tag eshopping $IMAGE_ID:$VERSION
+        docker tag eshopping-ui $IMAGE_ID:$VERSION
 
         docker push $IMAGE_ID:$VERSION
