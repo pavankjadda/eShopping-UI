@@ -17,6 +17,7 @@ import {HelpersModule} from './helpers/helpers.module';
 import {SharedModule} from './shared/shared.module';
 import {ApiModule} from './api/api.module';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule(
@@ -37,18 +38,18 @@ import {NgxSpinnerModule} from 'ngx-spinner';
        SharedModule,
        AppRoutingModule,
        NgxSpinnerModule
-   ],
+     ],
 
-  declarations:
-    [
-      AppComponent,
-      HomeComponent,
-      PageNotFoundComponent
+    declarations:
+      [
+        AppComponent,
+        HomeComponent,
+        PageNotFoundComponent
 
-    ],
-  providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
-} )
+      ],
+    providers: [httpInterceptorProviders, CookieService],
+    bootstrap: [AppComponent]
+  } )
 
 export class AppModule
 {

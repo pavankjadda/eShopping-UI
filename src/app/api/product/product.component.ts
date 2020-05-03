@@ -6,13 +6,13 @@ import {AuthService} from '../../core/auth/auth.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit
-{
+export class ProductComponent implements OnInit {
 
-  ngOnInit()
-  {
-    if(!AuthService.isUserLoggedIn())
-    {
+  constructor(private authService: AuthService) {
+  }
+
+  ngOnInit() {
+    if (!this.authService.isUserLoggedIn()) {
 
     }
   }

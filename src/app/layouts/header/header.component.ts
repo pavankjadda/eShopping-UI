@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit
 
   isLoggedIn()
   {
-    return AuthService.isUserLoggedIn();
+    return this.authService.isUserLoggedIn();
   }
 
   logout()

@@ -19,8 +19,7 @@ export class ProductHomeComponent implements OnInit
 
   ngOnInit()
   {
-    if(!AuthService.isUserLoggedIn())
-    {
+    if (!this.authService.isUserLoggedIn()) {
 
     }
   }
