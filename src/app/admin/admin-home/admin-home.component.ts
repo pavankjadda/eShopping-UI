@@ -20,8 +20,7 @@ export class AdminHomeComponent implements OnInit
   ngOnInit()
   {
     //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())
-    if(!AuthService.isUserLoggedIn())
-    {
+    if (!this.authService.isUserLoggedIn()) {
       this.authService.logout();
       this.router.navigate(['/login']);
     }

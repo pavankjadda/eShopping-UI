@@ -1,5 +1,7 @@
-<nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" routerLink="/">Home</a>
+<nav class="navbar  fixed-top navbar-dark mat-toolbar custom-header">
+  <div >
+    <a class="navbar-brand headerTitle" routerLink="/" >eShopping</a>
+  </div>
   <div class="navbar-expand mr-auto">
     <div *ngIf="isLoggedIn()" class="navbar-nav">
       <!--<a class="nav-item nav-link" routerLink="/customer">Customer</a>-->
@@ -10,17 +12,19 @@
       <a class="nav-item nav-link" routerLink="/cart">Cart</a>
     </div>
   </div>
-
-  <div class="navbar-expand ml-auto navbar-nav">
-    <div  *ngIf="isLoggedIn()" class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/account/profile">Profile</a>
-      <a class="nav-item nav-link" routerLink="/logout">Logout</a>
-    </div>
+  <div  *ngIf="authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu" >
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{authService.currentUserValue.username}}
+      <mat-icon aria-hidden="false" aria-label="Example home icon">arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
   </div>
 
-  <div class="navbar-expand ml-auto navbar-nav">
-    <div  *ngIf="!isLoggedIn()" class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
-    </div>
+  <div  *ngIf="!authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu" >
+    <button mat-button  routerLink="/login">
+      Login
+    </button>
   </div>
 </nav>

@@ -5,31 +5,26 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {LOGIN_API_URL} from '../../app.constants';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService
-{
+export class AuthService {
   redirectUrl: string;
   public currentUser: Observable<User>;
   public currentUserSubject: BehaviorSubject<User>;
 
-  constructor(private httpClient: HttpClient)
-  {
-    this.currentUserSubject=new BehaviorSubject<User>( JSON.parse( localStorage.getItem( 'currentUser' ) ) );
-    this.currentUser=this.currentUserSubject.asObservable();
+  constructor(private httpClient: HttpClient,
+              private cookieService: CookieService) {
   }
 
-  public get currentUserValue(): User
-  {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): User {
+    return JSON.parse(this.cookieService.get('currentUser'));
   }
 
-
-  static isUserLoggedIn(): boolean
-  {
-    return localStorage.getItem( 'isLoggedIn' )==='true';
+  isUserLoggedIn(): boolean {
+    return this.cookieService.get('isLoggedIn') === 'true';
   }
 
   // @ts-ignore
@@ -46,12 +41,11 @@ export class AuthService
       .pipe( map( user =>
       {
         // login successful if there's a Spring Session token in the response
-        if(user && user.token)
-        {
-          // store user details and Spring Session token in local storage to keep user logged in between page refreshes
-          localStorage.setItem( 'currentUser', JSON.stringify( user ) );
-          localStorage.setItem( 'isLoggedIn', 'true' );
-          this.currentUserSubject.next( user );
+        if(user && user.token) {
+          // store user details and Spring Session token as cookies
+          this.cookieService.set('currentUser', JSON.stringify(user));
+          this.cookieService.set('X-Auth-Token', user.token);
+          this.cookieService.set('isLoggedIn', 'true');
         }
         return user;
       }));
@@ -59,9 +53,6 @@ export class AuthService
 
   logout()
   {
-    localStorage.removeItem( 'currentUser' );
-    this.currentUserSubject.next( null );
-    localStorage.setItem( 'isLoggedIn', 'false' );
+    this.cookieService.deleteAll();
   }
-
 }

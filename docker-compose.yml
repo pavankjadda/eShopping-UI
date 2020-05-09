@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nginx:
+    build: .
+    image: jpavanaryan/eshopping-ui
+    ports:
+      - "80:80"

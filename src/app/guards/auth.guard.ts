@@ -40,8 +40,7 @@ export class AuthGuard implements CanActivate
 
   private checkLogin(url: string): boolean
   {
-    if(AuthService.isUserLoggedIn()&&this.hasAdminRole())
-    {
+    if (this.authService.isUserLoggedIn() && this.hasAdminRole()) {
       return true;
     }
 

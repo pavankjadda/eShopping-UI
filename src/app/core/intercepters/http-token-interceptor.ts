@@ -2,28 +2,24 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AuthService} from '../auth/auth.service';
-import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable()
-export class HttpTokenInterceptor implements HttpInterceptor
-{
-  constructor(private authService: AuthService, private router: Router)
-  {
+export class HttpTokenInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService,
+              private cookieService: CookieService) {
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
-  {
-    let currentUser=this.authService.currentUserValue;
-    if(currentUser&&currentUser.token)
-    {
-      request=request.clone(
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let xAuthToken = this.cookieService.get('X-Auth-Token');
+    if (xAuthToken) {
+      request = request.clone(
         {
           setHeaders: {
-            'X-Auth-Token': currentUser.token
+            'X-Auth-Token': xAuthToken
           }
-        } );
+        });
     }
-
-    return next.handle( request );
+    return next.handle(request);
   }
 }

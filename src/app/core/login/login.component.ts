@@ -32,9 +32,8 @@ export class LoginComponent implements OnInit
   ngOnInit()
   {
     // redirect to home if already logged in
-    if(this.authService.currentUserValue)
-    {
-      this.router.navigate( ['/home'] );
+    if (this.authService.isUserLoggedIn()) {
+      this.router.navigate(['/home']);
     }
 
     this.loginForm=this.formBuilder.group( {
@@ -61,13 +60,10 @@ export class LoginComponent implements OnInit
     this.authService.login( this.f.username.value, this.f.password.value ).subscribe(
  response=>
       {
-        if(response['token']&&AuthService.isUserLoggedIn())
-        {
+        if (response['token'] && this.authService.isUserLoggedIn()) {
           this.router.navigate(['/home']);
-        }
-        else
-        {
-          localStorage.removeItem( 'currentUser' );
+        } else {
+          localStorage.removeItem('currentUser');
           this.router.navigate(['/login']);
         }
       },
@@ -95,7 +91,7 @@ export class LoginComponent implements OnInit
   }
   private setMessage()
   {
-    this.message='Logged '+(AuthService.isUserLoggedIn() ? 'in' : 'out');
+    this.message = 'Logged ' + (this.authService.isUserLoggedIn() ? 'in' : 'out');
   }
 
   resetForm() {
