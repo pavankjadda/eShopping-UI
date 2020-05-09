@@ -9,14 +9,14 @@ import {AuthService} from '../../core/auth/auth.service';
 export class CategoryComponent implements OnInit
 {
 
-  constructor(
-    private authService: AuthService
-  ) {
+  constructor(private authService: AuthService)
+  {
   }
 
   ngOnInit()
   {
-    if (!this.authService.isUserLoggedIn()) {
+    if (!this.authService.isUserLoggedIn())
+    {
 
     }
   }
