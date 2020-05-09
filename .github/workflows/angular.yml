@@ -1,4 +1,4 @@
-name: eShopping-UI
+name: Build eShopping-UI Project
 
 on: [push]
 
