@@ -2,9 +2,9 @@ Master: ![build](https://github.com/pavankjadda/eShopping-UI/workflows/eShopping
 
 Development: ![build](https://github.com/pavankjadda/eShopping-UI/workflows/eShopping-UI/badge.svg?branch=development)
 
-# Angular 9 UI for SpringSecurityData Project
+# Angular 10 UI for SpringSecurityData Project
 
-This project is User Interface for [eShopping](https://github.com/pavankjadda/eShopping.git) project and developed with Angular 9.x
+This project is User Interface for [eShopping](https://github.com/pavankjadda/eShopping.git) project and developed with Angular 10.x
 
 
 ### How to  Run?
