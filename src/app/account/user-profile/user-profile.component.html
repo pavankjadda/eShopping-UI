@@ -1,55 +1,105 @@
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  color="#fff"
+  size="large"
+  type="ball-elastic-dots"
+></ngx-spinner>
 
 <div *ngIf="userProfileDataAvailable()">
-<h1>Profile</h1> <br>
+  <h1>Profile</h1>
+  <br />
   <form [formGroup]="userProfileForm">
-    <div class="form-row  align-items-center">
+    <div class="form-row align-items-center">
       <div class="col-auto mb-3">
         <label for="username">Username</label>
-        <input class="form-control" formControlName="username" id="username" name="username" type="text" readonly>
+        <input
+          class="form-control"
+          formControlName="username"
+          id="username"
+          name="username"
+          type="text"
+          readonly
+        />
         <small class="form-text text-muted" id="emailHelp"></small>
       </div>
-      <div class="col-auto  mb-3">
-        <label for="email">Email</label> <br/>
-        <input type="text" class="form-control"  formControlName="email" id="email" readonly>
+      <div class="col-auto mb-3">
+        <label for="email">Email</label> <br />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="email"
+          id="email"
+          readonly
+        />
       </div>
     </div>
     <div class="form-row">
       <div class="col-auto">
         <label for="firstName">First Name</label>
-        <input class="form-control" formControlName="firstName" id="firstName" type="text" readonly>
+        <input
+          class="form-control"
+          formControlName="firstName"
+          id="firstName"
+          type="text"
+          readonly
+        />
       </div>
       <div class="col-auto">
         <label for="lastName">Last Name</label>
-        <input  type="text" class="form-control" formControlName="lastName" id="lastName" readonly>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+          id="lastName"
+          readonly
+        />
       </div>
     </div>
 
     <div class="form-row">
       <div class="col-auto">
-        <label for="phone">Phone</label> <br/>
-        <input type="text" class="form-control"  formControlName="phone" id="phone"  readonly >
+        <label for="phone">Phone</label> <br />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="phone"
+          id="phone"
+          readonly
+        />
       </div>
-  </div>
-    <br> <br>
-    <div >
+    </div>
+    <br />
+    <br />
+    <div>
       <h3>Addresses:</h3>
-      <div  *ngFor="let address of addresses">
-        <div   class="card" style="width: 18rem;">
+      <div *ngFor="let address of addresses">
+        <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <b>{{address.addressType.type}}:</b> <br/>
-            <label>{{address.streetName}} Apt {{address.apartment}}</label> <br>
-            <label>{{address.city.name}}, {{address.state.code}} - {{address.zipCode}}</label> <br>
-            <label>{{address.country.name}}</label>
+            <b>{{ address.addressType.type }}:</b> <br />
+            <label>{{ address.streetName }} Apt {{ address.apartment }}</label>
+            <br />
+            <label
+              >{{ address.city.name }}, {{ address.state.code }} -
+              {{ address.zipCode }}</label
+            >
+            <br />
+            <label>{{ address.country.name }}</label>
           </div>
         </div>
-        <br>
+        <br />
       </div>
     </div>
 
-    <button (click)="editUserProfile()" class="btn btn-primary"  type="button">Edit</button>
-    <button (click)="goHome()" class="btn btn-primary" style="margin-left: 30px" type="submit">Home</button>
-
+    <button (click)="editUserProfile()" class="btn btn-primary" type="button">
+      Edit
+    </button>
+    <button
+      (click)="goHome()"
+      class="btn btn-primary"
+      style="margin-left: 30px;"
+      type="submit"
+    >
+      Home
+    </button>
   </form>
-
 </div>

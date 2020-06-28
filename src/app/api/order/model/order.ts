@@ -1,10 +1,9 @@
-import {Address} from '../../address/model/address';
-import {UserProfile} from '../../../account/user-profile/model/user-profile';
-import {OrderStatus} from './order-status';
-import {OrderProductDetail} from './order-product-detail';
+import {Address} from "../../address/model/address";
+import {UserProfile} from "../../../account/user-profile/model/user-profile";
+import {OrderStatus} from "./order-status";
+import {OrderProductDetail} from "./order-product-detail";
 
-export class Order
-{
+export class Order {
   id: number;
   orderStatus: OrderStatus;
   purchasedBy: UserProfile;

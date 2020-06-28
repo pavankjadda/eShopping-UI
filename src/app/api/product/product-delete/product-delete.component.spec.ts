@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {ProductDeleteComponent} from './product-delete.component';
+import {ProductDeleteComponent} from "./product-delete.component";
 
-describe('ProductDeleteComponent', () => {
+describe("ProductDeleteComponent", () => {
   let component: ProductDeleteComponent;
   let fixture: ComponentFixture<ProductDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDeleteComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductDeleteComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ProductDeleteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

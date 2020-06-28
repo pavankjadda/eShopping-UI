@@ -1,5 +1,4 @@
-export class Photo
-{
+export class Photo {
   id: number;
   name: string;
   description: string;

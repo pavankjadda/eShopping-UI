@@ -1,47 +1,95 @@
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  color="#fff"
+  size="large"
+  type="ball-elastic-dots"
+></ngx-spinner>
 
-
-<div *ngIf="cartDataAvailable()"
-     class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
-  <h1> My Cart</h1>
+<div
+  *ngIf="cartDataAvailable()"
+  class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg"
+>
+  <h1>My Cart</h1>
   <table class="table">
-    <thead style="text-align: center">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Cost</th>
-      <th scope="col"></th>
-    </tr>
+    <thead style="text-align: center;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Cost</th>
+        <th scope="col"></th>
+      </tr>
     </thead>
-    <tbody style="text-align: center">
-    <tr *ngFor="let cartProduct of (cart.cartProducts); index as i">
-      <th scope="row">{{i + 1}}</th>
-      <td><a [routerLink]="['/product', cartProduct.product.id]">{{cartProduct.product.name}}</a></td>
-      <td>
-        <p-spinner (onChange)="updateCartProductQuantity(cartProduct)" [(ngModel)]="cartProduct.quantity"  [step]="1"  [max]="getInventory(cartProduct)">
-          cartProduct.quantity
-        </p-spinner>
-      </td>
-      <td>{{cartProduct.product.price.currency.symbol}} {{cartProduct.quantity * cartProduct.product.price.amount}}</td>
-      <td>
-        <button class="btn btn-danger btn-sm" (click)="deleteProductFromCart(cartProduct)">Delete</button>
-      </td>
-    </tr>
+    <tbody style="text-align: center;">
+      <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <a [routerLink]="['/product', cartProduct.product.id]">{{
+            cartProduct.product.name
+          }}</a>
+        </td>
+        <td>
+          <p-spinner
+            (onChange)="updateCartProductQuantity(cartProduct)"
+            [(ngModel)]="cartProduct.quantity"
+            [step]="1"
+            [max]="getInventory(cartProduct)"
+          >
+            cartProduct.quantity
+          </p-spinner>
+        </td>
+        <td>
+          {{ cartProduct.product.price.currency.symbol }}
+          {{ cartProduct.quantity * cartProduct.product.price.amount }}
+        </td>
+        <td>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteProductFromCart(cartProduct)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
 
-  <input (click)="deleteCart()" class=" btn btn-danger btn-md" type="button" value="Delete Cart">
+  <input
+    (click)="deleteCart()"
+    class="btn btn-danger btn-md"
+    type="button"
+    value="Delete Cart"
+  />
   <p style="text-align: center;">
-    <input (click)="goToProducts()" class=" btn btn-primary" style="margin: 20px" type="button" value="Browse Products">
-    <input (click)="checkout()" class=" btn btn-primary" type="button" value="Checkout" style="margin: 20px">
+    <input
+      (click)="goToProducts()"
+      class="btn btn-primary"
+      style="margin: 20px;"
+      type="button"
+      value="Browse Products"
+    />
+    <input
+      (click)="checkout()"
+      class="btn btn-primary"
+      type="button"
+      value="Checkout"
+      style="margin: 20px;"
+    />
   </p>
 </div>
 
 <div *ngIf="!cartDataAvailable()">
-  <br/> <br/> <br/>
-  <h4> Your Shopping Cart is empty</h4>
-  <p style="text-align: center">
-    <input (click)="goToProducts()" class=" btn btn-primary" style="margin: 20px" type="button" value="Browse Products">
+  <br />
+  <br />
+  <br />
+  <h4>Your Shopping Cart is empty</h4>
+  <p style="text-align: center;">
+    <input
+      (click)="goToProducts()"
+      class="btn btn-primary"
+      style="margin: 20px;"
+      type="button"
+      value="Browse Products"
+    />
   </p>
 </div>

@@ -1,8 +1,7 @@
 .fa-heart {
   color: hotpink;
 }
-.assistance_div
-{
+.assistance_div {
   margin-right: auto;
   margin-left: auto;
 }
@@ -17,19 +16,17 @@
   flex-flow: column;
 }*/
 
-.custom-footer
-{
+.custom-footer {
   background: #3f51b5;
   text-align: center !important;
   position: relative;
   margin-top: -100px; /* negative value of footer height */
   height: 100px;
-  clear:both;
+  clear: both;
   bottom: 0;
 }
 
-.custom-navbar-text
-{
+.custom-navbar-text {
   padding-top: 0;
   padding-bottom: 0;
 }

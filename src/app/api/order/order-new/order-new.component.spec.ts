@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {OrderNewComponent} from './order-new.component';
+import {OrderNewComponent} from "./order-new.component";
 
-describe('OrderNewComponent', () => {
+describe("OrderNewComponent", () => {
   let component: OrderNewComponent;
   let fixture: ComponentFixture<OrderNewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderNewComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderNewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('OrderNewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

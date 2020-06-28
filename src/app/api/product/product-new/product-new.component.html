@@ -1,49 +1,101 @@
 <div>
-<h2>Create New Product</h2>
+  <h2>Create New Product</h2>
 
-<br/>
-<form  [formGroup]="productForm">
-  <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label for="name">Name</label>
-    <input type="text" class="form-control"  id="name" formControlName="name" required placeholder="Enter Product Name">
-  </div>
-  <div class="form-group   col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label for="description">Description</label>
-    <textarea class="form-control"  id="description" formControlName="description" required placeholder="Enter Product Description">
-    </textarea>
-  </div>
-  <div class="form-group   col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label for="quantity">Quantity</label>
-    <input type="text" class="form-control" formControlName="quantity" id="quantity" placeholder="Enter quantity" required>
-  </div>
-  <div class="form-group   col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label for="amount">Price ($)</label>
-    <input type="text" class="form-control" formControlName="amount" id="amount" placeholder="Enter Product Price (in USD)" required>
-  </div>
+  <br />
+  <form [formGroup]="productForm">
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        required
+        placeholder="Enter Product Name"
+      />
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        formControlName="description"
+        required
+        placeholder="Enter Product Description"
+      >
+      </textarea>
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label for="quantity">Quantity</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="quantity"
+        id="quantity"
+        placeholder="Enter quantity"
+        required
+      />
+    </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label for="amount">Price ($)</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="amount"
+        id="amount"
+        placeholder="Enter Product Price (in USD)"
+        required
+      />
+    </div>
 
-  <div class="form-group  col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label>Category:
-      <select class="form-control" name="categoryControl" formControlName="categoryControl">
-        <option  [ngValue]="category" *ngFor="let category of categories" [defaultSelected]="true">
-          {{category.name}}
-        </option>
-      </select>
-    </label>
-  </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label
+        >Category:
+        <select
+          class="form-control"
+          name="categoryControl"
+          formControlName="categoryControl"
+        >
+          <option
+            [ngValue]="category"
+            *ngFor="let category of categories"
+            [defaultSelected]="true"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </label>
+    </div>
 
-  <div class="form-group  col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-    <label>Manufacturer:
-      <select class="form-control" formControlName="manufacturerControl" name="manufacturerControl">
-        <option   [ngValue]="manufacturer" *ngFor="let manufacturer of manufacturers"  [defaultSelected]="true">
-          {{manufacturer.name}}
-        </option>
-      </select>
-    </label>
-  </div>
+    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <label
+        >Manufacturer:
+        <select
+          class="form-control"
+          formControlName="manufacturerControl"
+          name="manufacturerControl"
+        >
+          <option
+            [ngValue]="manufacturer"
+            *ngFor="let manufacturer of manufacturers"
+            [defaultSelected]="true"
+          >
+            {{ manufacturer.name }}
+          </option>
+        </select>
+      </label>
+    </div>
 
-  <button type="submit" class="btn btn-primary"  (click)="createProduct()">Submit</button>
-  <button type="button" class="btn btn-primary"  style="margin-left: 30px" (click)="goBack()">Cancel</button>
-
-</form>
-
+    <button type="submit" class="btn btn-primary" (click)="createProduct()">
+      Submit
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-left: 30px;"
+      (click)="goBack()"
+    >
+      Cancel
+    </button>
+  </form>
 </div>

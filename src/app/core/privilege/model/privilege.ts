@@ -1,5 +1,4 @@
-export class Privilege
-{
+export class Privilege {
   id: number;
   name: string;
 }

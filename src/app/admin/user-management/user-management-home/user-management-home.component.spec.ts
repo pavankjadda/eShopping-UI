@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {UserManagementHomeComponent} from './user-management-home.component';
+import {UserManagementHomeComponent} from "./user-management-home.component";
 
-describe('UserManagementHomeComponent', () => {
+describe("UserManagementHomeComponent", () => {
   let component: UserManagementHomeComponent;
   let fixture: ComponentFixture<UserManagementHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserManagementHomeComponent ]
-    })
-    .compileComponents();
+      declarations: [UserManagementHomeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('UserManagementHomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

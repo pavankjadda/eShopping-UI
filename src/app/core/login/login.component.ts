@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {AuthService} from '../auth/auth.service';
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {NgxSpinnerService} from "ngx-spinner";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit
-{
+export class LoginComponent implements OnInit {
   message: string;
   loginForm: FormGroup;
-  submitted=false;
+  submitted = false;
   returnUrl: string;
   loginFailed: boolean;
 
@@ -23,75 +22,63 @@ export class LoginComponent implements OnInit
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService
-  )
-  {
+  ) {}
 
-  }
-
-
-  ngOnInit()
-  {
+  ngOnInit() {
     // redirect to home if already logged in
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(["/home"]);
     }
 
-    this.loginForm=this.formBuilder.group( {
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    } );
+    this.loginForm = this.formBuilder.group({
+      username: ["", Validators.required],
+      password: ["", Validators.required],
+    });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl=this.route.snapshot.queryParams['returnUrl']||'/';
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
     //Logout user if already logged in
     this.logout();
   }
 
   // convenience getter for easy access to form fields
-  get f()
-  {
+  get f() {
     return this.loginForm.controls;
   }
 
-
-  login()
-  {
+  login() {
     this.spinner.show();
-    this.authService.login( this.f.username.value, this.f.password.value ).subscribe(
- response=>
-      {
-        if (response['token'] && this.authService.isUserLoggedIn()) {
-          this.router.navigate(['/home']);
-        } else {
-          localStorage.removeItem('currentUser');
-          this.router.navigate(['/login']);
-        }
-      },
-        error =>
-        {
-            console.log(error);
-            this.loginFailed=true;
+    this.authService
+      .login(this.f.username.value, this.f.password.value)
+      .subscribe(
+        (response) => {
+          if (response["token"] && this.authService.isUserLoggedIn()) {
+            this.router.navigate(["/home"]);
+          } else {
+            localStorage.removeItem("currentUser");
+            this.router.navigate(["/login"]);
+          }
+        },
+        (error) => {
+          console.log(error);
+          this.loginFailed = true;
           this.spinner.hide();
         },
-      () =>
-      {
-        this.spinner.hide();
-      } );
+        () => {
+          this.spinner.hide();
+        }
+      );
   }
 
-  logout()
-  {
+  logout() {
     this.authService.logout();
     this.setMessage();
   }
 
-  isUserLoggedIn()
-  {
-
-  }
-  private setMessage()
-  {
-    this.message = 'Logged ' + (this.authService.isUserLoggedIn() ? 'in' : 'out');
+  isUserLoggedIn() {}
+  private setMessage() {
+    this.message =
+      "Logged " + (this.authService.isUserLoggedIn() ? "in" : "out");
   }
 
   resetForm() {

@@ -1,18 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Order} from '../model/order';
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Order} from "../model/order";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class OrderService
-{
+export class OrderService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient:HttpClient) { }
-
-
-  getOrders(url: string)
-  {
+  getOrders(url: string) {
     return this.httpClient.get<Order[]>(url);
   }
 }

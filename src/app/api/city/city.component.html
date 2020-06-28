@@ -1,23 +1,40 @@
-
 <div class="container-fluid container">
-  <h3> Cities List</h3>
-  <div  *ngIf="cityDataAvailable()">
-    <table style="text-align: center">
+  <h3>Cities List</h3>
+  <div *ngIf="cityDataAvailable()">
+    <table style="text-align: center;">
       <tr>
         <th>Id</th>
         <th>name</th>
         <th>State Name</th>
       </tr>
       <tr *ngFor="let city of cities">
-        <td>{{city.id}}</td>
-        <td>{{city.name}}</td>
-        <td>{{city.state.name}}</td>
+        <td>{{ city.id }}</td>
+        <td>{{ city.name }}</td>
+        <td>{{ city.state.name }}</td>
       </tr>
     </table>
-    <div  style="margin: 30px">
-      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getFirstPageCities()" value="Home" >
-      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getPreviousCities()" value="Back" >
-      <input type="button" class=" btn btn-primary" style="margin: 30px" (click)="getNextCities()" value="Next" >
+    <div style="margin: 30px;">
+      <input
+        type="button"
+        class="btn btn-primary"
+        style="margin: 30px;"
+        (click)="getFirstPageCities()"
+        value="Home"
+      />
+      <input
+        type="button"
+        class="btn btn-primary"
+        style="margin: 30px;"
+        (click)="getPreviousCities()"
+        value="Back"
+      />
+      <input
+        type="button"
+        class="btn btn-primary"
+        style="margin: 30px;"
+        (click)="getNextCities()"
+        value="Next"
+      />
     </div>
   </div>
 </div>

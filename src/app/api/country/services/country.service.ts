@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Country} from '../model/country';
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Country} from "../model/country";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class CountryService
-{
-  constructor(private httpClient:HttpClient) { }
+export class CountryService {
+  constructor(private httpClient: HttpClient) {}
 
-  getCountries(url)
-  {
+  getCountries(url) {
     return this.httpClient.get<Country[]>(url);
   }
 }

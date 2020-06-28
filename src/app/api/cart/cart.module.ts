@@ -1,35 +1,23 @@
-import {NgModule} from '@angular/core';
-import {CartRoutingModule} from './cart-routing.module';
-import {RouterModule} from '@angular/router';
-import {CartComponent} from './cart.component';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgxSpinnerModule} from 'ngx-spinner';
-import {SpinnerModule} from 'primeng';
-
+import {NgModule} from "@angular/core";
+import {CartRoutingModule} from "./cart-routing.module";
+import {RouterModule} from "@angular/router";
+import {CartComponent} from "./cart.component";
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {SpinnerModule} from "primeng";
 
 @NgModule({
-  declarations:
-    [
-    CartComponent
+  declarations: [CartComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    RouterModule,
+    CartRoutingModule,
+    FormsModule,
+    SpinnerModule,
   ],
-    imports:
-        [
-            CommonModule,
-            ReactiveFormsModule,
-            NgxSpinnerModule,
-            RouterModule,
-            CartRoutingModule,
-            FormsModule,
-            SpinnerModule
-        ],
-  exports:
-    [
-    RouterModule
-  ]
+  exports: [RouterModule],
 })
-
-export class CartModule
-{
-
-}
+export class CartModule {}

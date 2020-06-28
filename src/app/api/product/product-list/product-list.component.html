@@ -1,11 +1,16 @@
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  color="#fff"
+  size="large"
+  type="ball-elastic-dots"
+></ngx-spinner>
 
 <div class="container container-fluid">
-  <h3 style="text-align: center" > Products List</h3>
+  <h3 style="text-align: center;">Products List</h3>
   <div *ngIf="productsDataAvailable()">
     <table class="table table-bordered">
-      <tr style="text-align: center" >
-        <th> Product Id</th>
+      <tr style="text-align: center;">
+        <th>Product Id</th>
         <th>Name</th>
         <th>Category</th>
         <th>Manufacturer</th>
@@ -13,20 +18,23 @@
         <th>Description</th>
       </tr>
 
-      <tr *ngFor="let product of (products)" style="text-align: center">
-        <td>{{product.id}}</td>
-        <td><a [routerLink]="['/product', product.id]">{{product.name}}</a></td>
-        <td>{{product.category.name}}</td>
-        <td>{{product.manufacturer.name}}</td>
-        <td>{{product.price.currency.symbol}}{{product.price.amount}}</td>
-        <td>{{product.description}}</td>
+      <tr *ngFor="let product of products" style="text-align: center;">
+        <td>{{ product.id }}</td>
+        <td>
+          <a [routerLink]="['/product', product.id]">{{ product.name }}</a>
+        </td>
+        <td>{{ product.category.name }}</td>
+        <td>{{ product.manufacturer.name }}</td>
+        <td>{{ product.price.currency.symbol }}{{ product.price.amount }}</td>
+        <td>{{ product.description }}</td>
       </tr>
     </table>
 
-    <div style="text-align: center">
-      <a [routerLink]="['/product']" style="margin-right: 30px">Back</a>
-      <a [routerLink]="['/product/new']" style="margin-right: 30px">Create New</a>
+    <div style="text-align: center;">
+      <a [routerLink]="['/product']" style="margin-right: 30px;">Back</a>
+      <a [routerLink]="['/product/new']" style="margin-right: 30px;"
+        >Create New</a
+      >
     </div>
   </div>
-
 </div>

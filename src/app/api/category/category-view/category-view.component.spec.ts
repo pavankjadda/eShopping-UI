@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {CategoryViewComponent} from './category-view.component';
+import {CategoryViewComponent} from "./category-view.component";
 
-describe('CategoryViewComponent', () => {
+describe("CategoryViewComponent", () => {
   let component: CategoryViewComponent;
   let fixture: ComponentFixture<CategoryViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryViewComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryViewComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('CategoryViewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

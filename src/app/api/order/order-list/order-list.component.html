@@ -1,29 +1,34 @@
 <div class="container container-fluid">
-  <h3 style="text-align: center"> Orders List</h3>
+  <h3 style="text-align: center;">Orders List</h3>
   <div *ngIf="orderDetailsDataAvailable()">
     <table class="table table-bordered">
-      <tr style="text-align: center">
+      <tr style="text-align: center;">
         <th>Order Id</th>
         <th>Order Status</th>
         <th>Purchased By</th>
         <th>Shipping Address</th>
       </tr>
-      <tr *ngFor="let order of (orders)" style="text-align: center">
-        <td><a [routerLink]="['/order', order.id]">{{order.id}}</a></td>
-        <td>{{order.orderStatus.status}}</td>
-        <td>{{order.purchasedBy.firstName}}</td>
-        <td>{{order.orderShippingAddress.streetName}},
-          {{order.orderShippingAddress.apartment}} <br/>
-          {{order.orderShippingAddress.city.name}},
-          {{order.orderShippingAddress.state.name}} -
-          {{order.orderShippingAddress.zipCode}} <br/>
+      <tr *ngFor="let order of orders" style="text-align: center;">
+        <td>
+          <a [routerLink]="['/order', order.id]">{{ order.id }}</a>
+        </td>
+        <td>{{ order.orderStatus.status }}</td>
+        <td>{{ order.purchasedBy.firstName }}</td>
+        <td>
+          {{ order.orderShippingAddress.streetName }},
+          {{ order.orderShippingAddress.apartment }} <br />
+          {{ order.orderShippingAddress.city.name }},
+          {{ order.orderShippingAddress.state.name }} -
+          {{ order.orderShippingAddress.zipCode }} <br />
         </td>
       </tr>
     </table>
 
-    <div style="text-align: center">
-      <a [routerLink]="['/order']" style="margin-right: 30px">Back</a>
-      <a [routerLink]="['/order/new']" style="margin-right: 30px">Create New</a>
+    <div style="text-align: center;">
+      <a [routerLink]="['/order']" style="margin-right: 30px;">Back</a>
+      <a [routerLink]="['/order/new']" style="margin-right: 30px;"
+        >Create New</a
+      >
     </div>
   </div>
 </div>

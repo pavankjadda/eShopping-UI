@@ -1,11 +1,10 @@
-import {City} from '../../city/model/city';
-import {State} from '../../state/model/state';
-import {Country} from '../../country/model/country';
-import {AddressType} from '../../address-type/model/address-type';
-import {Cart} from './cart';
+import {City} from "../../city/model/city";
+import {State} from "../../state/model/state";
+import {Country} from "../../country/model/country";
+import {AddressType} from "../../address-type/model/address-type";
+import {Cart} from "./cart";
 
-export class CartShippingAddress
-{
+export class CartShippingAddress {
   id: number;
   streetName: string;
   apartment: string;

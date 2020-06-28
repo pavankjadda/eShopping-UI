@@ -1,11 +1,16 @@
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  color="#fff"
+  size="large"
+  type="ball-elastic-dots"
+></ngx-spinner>
 
 <div class="container container-fluid">
-  <h3 style="text-align: center" > Manufacturer List</h3>
+  <h3 style="text-align: center;">Manufacturer List</h3>
   <div *ngIf="manufacturerDataAvailable()">
     <table class="table table-bordered">
-      <tr style="text-align: center" >
-        <th> Manufacturer Id</th>
+      <tr style="text-align: center;">
+        <th>Manufacturer Id</th>
         <th>Name</th>
         <th>Contact Email</th>
         <th>Phone</th>
@@ -13,22 +18,35 @@
         <th>Business Address</th>
       </tr>
 
-      <tr *ngFor="let manufacturer of (manufacturers)" style="text-align: center">
-        <td>{{manufacturer.id}}</td>
-        <td><a [routerLink]="['/manufacturer', manufacturer.id]">{{manufacturer.name}}</a></td>
-        <td>{{manufacturer.contactEmail}}</td>
-        <td>{{manufacturer.phone}}</td>
-        <td>{{manufacturer.fax}}</td>
-        <td> {{manufacturer.manufacturerAddress.streetName}}{{manufacturer.manufacturerAddress.apartment}} <br/>{{manufacturer.manufacturerAddress.city.name}},{{manufacturer.manufacturerAddress.state.name}},{{manufacturer.manufacturerAddress.country.name}},{{manufacturer.manufacturerAddress.zipCode}},
+      <tr
+        *ngFor="let manufacturer of manufacturers"
+        style="text-align: center;"
+      >
+        <td>{{ manufacturer.id }}</td>
+        <td>
+          <a [routerLink]="['/manufacturer', manufacturer.id]">{{
+            manufacturer.name
+          }}</a>
         </td>
-
+        <td>{{ manufacturer.contactEmail }}</td>
+        <td>{{ manufacturer.phone }}</td>
+        <td>{{ manufacturer.fax }}</td>
+        <td>
+          {{ manufacturer.manufacturerAddress.streetName
+          }}{{ manufacturer.manufacturerAddress.apartment }} <br />{{
+            manufacturer.manufacturerAddress.city.name
+          }},{{ manufacturer.manufacturerAddress.state.name }},{{
+            manufacturer.manufacturerAddress.country.name
+          }},{{ manufacturer.manufacturerAddress.zipCode }},
+        </td>
       </tr>
     </table>
 
-    <div style="text-align: center">
-      <a [routerLink]="['/manufacturer']" style="margin-right: 30px">Back</a>
-      <a [routerLink]="['/manufacturer/new']" style="margin-right: 30px">Create New</a>
+    <div style="text-align: center;">
+      <a [routerLink]="['/manufacturer']" style="margin-right: 30px;">Back</a>
+      <a [routerLink]="['/manufacturer/new']" style="margin-right: 30px;"
+        >Create New</a
+      >
     </div>
   </div>
-
 </div>

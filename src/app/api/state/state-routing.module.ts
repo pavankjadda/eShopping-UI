@@ -1,26 +1,18 @@
-import {RouterModule, Routes} from '@angular/router';
-import {UserAuthGuard} from '../../guards/user-auth.guard';
-import {NgModule} from '@angular/core';
-import {StateComponent} from './state.component';
+import {RouterModule, Routes} from "@angular/router";
+import {UserAuthGuard} from "../../guards/user-auth.guard";
+import {NgModule} from "@angular/core";
+import {StateComponent} from "./state.component";
 
-export const stateManagementRoute: Routes=[
+export const stateManagementRoute: Routes = [
   {
-    path: '',
+    path: "",
     component: StateComponent,
-    canActivate: [UserAuthGuard]
-  }
+    canActivate: [UserAuthGuard],
+  },
 ];
 
-
 @NgModule({
-  imports: [
-    RouterModule.forChild(stateManagementRoute),
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(stateManagementRoute)],
+  exports: [RouterModule],
 })
-export class StateRoutingModule
-{
-
-}
+export class StateRoutingModule {}

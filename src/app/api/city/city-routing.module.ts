@@ -1,26 +1,18 @@
-import {RouterModule, Routes} from '@angular/router';
-import {UserAuthGuard} from '../../guards/user-auth.guard';
-import {NgModule} from '@angular/core';
-import {CityComponent} from './city.component';
+import {RouterModule, Routes} from "@angular/router";
+import {UserAuthGuard} from "../../guards/user-auth.guard";
+import {NgModule} from "@angular/core";
+import {CityComponent} from "./city.component";
 
-export const cityManagementRoute: Routes=[
+export const cityManagementRoute: Routes = [
   {
-    path: '',
+    path: "",
     component: CityComponent,
-    canActivate: [UserAuthGuard]
-  }
+    canActivate: [UserAuthGuard],
+  },
 ];
 
-
 @NgModule({
-  imports: [
-    RouterModule.forChild(cityManagementRoute),
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(cityManagementRoute)],
+  exports: [RouterModule],
 })
-export class CityRoutingModule
-{
-
-}
+export class CityRoutingModule {}

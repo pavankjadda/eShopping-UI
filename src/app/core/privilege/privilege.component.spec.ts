@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {PrivilegeComponent} from './privilege.component';
+import {PrivilegeComponent} from "./privilege.component";
 
-describe('PrivilegeComponent', () => {
+describe("PrivilegeComponent", () => {
   let component: PrivilegeComponent;
   let fixture: ComponentFixture<PrivilegeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivilegeComponent ]
-    })
-    .compileComponents();
+      declarations: [PrivilegeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('PrivilegeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {ManufacturerDeleteComponent} from './manufacturer-delete.component';
+import {ManufacturerDeleteComponent} from "./manufacturer-delete.component";
 
-describe('ManufacturerDeleteComponent', () => {
+describe("ManufacturerDeleteComponent", () => {
   let component: ManufacturerDeleteComponent;
   let fixture: ComponentFixture<ManufacturerDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManufacturerDeleteComponent ]
-    })
-    .compileComponents();
+      declarations: [ManufacturerDeleteComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ManufacturerDeleteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

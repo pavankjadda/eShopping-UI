@@ -1,8 +1,7 @@
-import {Address} from '../../../api/address/model/address';
-import {User} from '../../../core/user/model/user';
+import {Address} from "../../../api/address/model/address";
+import {User} from "../../../core/user/model/user";
 
-export class UserProfile
-{
+export class UserProfile {
   id: number;
   firstName: string;
   lastName: string;
@@ -10,5 +9,4 @@ export class UserProfile
   phone: string;
   addresses: Array<Address>;
   user: User;
-
 }

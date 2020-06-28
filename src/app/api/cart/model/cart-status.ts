@@ -1,5 +1,4 @@
-export class CartStatus
-{
+export class CartStatus {
   id: number;
   status: string;
 }

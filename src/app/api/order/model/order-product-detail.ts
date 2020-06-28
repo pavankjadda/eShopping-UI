@@ -1,7 +1,6 @@
-import {Product} from '../../product/model/product';
+import {Product} from "../../product/model/product";
 
-export class OrderProductDetail
-{
+export class OrderProductDetail {
   id: number;
   originalPrice: number;
   discount: number;

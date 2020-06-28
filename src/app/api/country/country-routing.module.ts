@@ -1,26 +1,18 @@
-import {RouterModule, Routes} from '@angular/router';
-import {UserAuthGuard} from '../../guards/user-auth.guard';
-import {NgModule} from '@angular/core';
-import {CountryComponent} from './country.component';
+import {RouterModule, Routes} from "@angular/router";
+import {UserAuthGuard} from "../../guards/user-auth.guard";
+import {NgModule} from "@angular/core";
+import {CountryComponent} from "./country.component";
 
-export const countryManagementRoute: Routes=[
+export const countryManagementRoute: Routes = [
   {
-    path: '',
+    path: "",
     component: CountryComponent,
-    canActivate: [UserAuthGuard]
-  }
+    canActivate: [UserAuthGuard],
+  },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(countryManagementRoute),
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(countryManagementRoute)],
+  exports: [RouterModule],
 })
-
-export class CountryRoutingModule
-{
-
-}
+export class CountryRoutingModule {}

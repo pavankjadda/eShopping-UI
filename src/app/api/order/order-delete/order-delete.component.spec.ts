@@ -1,16 +1,15 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {OrderDeleteComponent} from './order-delete.component';
+import {OrderDeleteComponent} from "./order-delete.component";
 
-describe('OrderDeleteComponent', () => {
+describe("OrderDeleteComponent", () => {
   let component: OrderDeleteComponent;
   let fixture: ComponentFixture<OrderDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderDeleteComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderDeleteComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('OrderDeleteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

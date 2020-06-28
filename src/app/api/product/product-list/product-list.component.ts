@@ -1,52 +1,47 @@
-import {Component, OnInit} from '@angular/core';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {environment} from '../../../../environments/environment';
-import {PRODUCT_API_URL} from '../../../app.constants';
-import {Product} from '../model/product';
-import {ProductService} from '../service/product.service';
+import {Component, OnInit} from "@angular/core";
+import {NgxSpinnerService} from "ngx-spinner";
+import {environment} from "../../../../environments/environment";
+import {PRODUCT_API_URL} from "../../../app.constants";
+import {Product} from "../model/product";
+import {ProductService} from "../service/product.service";
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: "app-product-list",
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"],
 })
-export class ProductListComponent implements OnInit
-{
+export class ProductListComponent implements OnInit {
   products: Array<Product>;
 
-  constructor(private productService: ProductService, private spinner: NgxSpinnerService)
-  {
-  }
+  constructor(
+    private productService: ProductService,
+    private spinner: NgxSpinnerService
+  ) {}
   ngOnInit() {
     this.getProducts();
   }
 
-  productsDataAvailable(): boolean
-  {
-    return this.products!==undefined;
+  productsDataAvailable(): boolean {
+    return this.products !== undefined;
   }
 
-  private getProducts()
-  {
-    let url=environment.BASE_URL+PRODUCT_API_URL+'/list';
+  private getProducts() {
+    let url = environment.BASE_URL + PRODUCT_API_URL + "/list";
     this.spinner.show();
     this.productService.getProducts(url).subscribe(
-      data =>
-      {
-        this.products=data;
+      (data) => {
+        this.products = data;
         this.spinner.hide();
       },
-      err =>
-      {
+      (err) => {
         this.spinner.hide();
-        console.error( err );
+        console.error(err);
       },
-      () =>
-      {
+      () => {
         this.spinner.hide();
-      } );
+      }
+    );
 
     return this.products;
   }
-
 }
