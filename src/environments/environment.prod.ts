@@ -2,6 +2,6 @@ import {version} from "../../package.json";
 
 export const environment = {
   production: true,
-  BASE_URL: "https://nextgen-code.com",
+  BASE_URL: "//eshopping.gq",
   VERSION: version,
 };
