@@ -5,10 +5,8 @@ import {LayoutModule} from './layouts/layout.module';
 import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminModule} from './admin/admin.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import {AppComponent} from './app.component';
 import {HomeComponent} from './layouts/home/home.component';
 import {PageNotFoundComponent} from './layouts/pagenotfound/pagenotfound.component';
@@ -25,7 +23,6 @@ import {CookieService} from 'ngx-cookie-service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     AdminModule,
     LayoutModule,
