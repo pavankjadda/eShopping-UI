@@ -1,8 +1,8 @@
-import {ProductInventory} from "src/app/api/product/model/product-inventory";
-import {Category} from "../../category/model/category";
-import {Manufacturer} from "../../manufacturer/model/manufacturer";
-import {Photo} from "./photo";
-import {Price} from "./price";
+import {ProductInventory} from 'src/app/api/product/model/product-inventory';
+import {Category} from '../../category/model/category';
+import {Manufacturer} from '../../manufacturer/model/manufacturer';
+import {Photo} from './photo';
+import {Price} from './price';
 
 export class Product {
   id: number;

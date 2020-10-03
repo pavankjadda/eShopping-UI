@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot,} from "@angular/router";
-import {AuthService} from "../core/auth/auth.service";
-import {Role} from "../core/role/model/role";
-import {CookieService} from "ngx-cookie-service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot,} from '@angular/router';
+import {AuthService} from '../core/auth/auth.service';
+import {Role} from '../core/role/model/role';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UserAuthGuard implements CanActivate {
   constructor(
@@ -31,10 +31,10 @@ export class UserAuthGuard implements CanActivate {
 
   hasUserRole() {
     let userRoles: Array<Role> = JSON.parse(
-      this.cookieService.get("currentUser")
+      this.cookieService.get('currentUser')
     ).roles;
     for (let role of userRoles) {
-      if (role.name === "ROLE_USER") {
+      if (role.name === 'ROLE_USER') {
         return true;
       }
     }
@@ -50,7 +50,7 @@ export class UserAuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     // Navigate to the login page with extras
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
     return false;
   }
 }

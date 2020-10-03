@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CategoryHomeComponent} from "./category-home.component";
+import {CategoryHomeComponent} from './category-home.component';
 
-describe("CategoryHomeComponent", () => {
+describe('CategoryHomeComponent', () => {
   let component: CategoryHomeComponent;
   let fixture: ComponentFixture<CategoryHomeComponent>;
 
@@ -18,7 +18,7 @@ describe("CategoryHomeComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

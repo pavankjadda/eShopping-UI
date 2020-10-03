@@ -1,69 +1,69 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: "category",
+        path: 'category',
         loadChildren: () =>
-          import("./category/category.module").then((m) => m.CategoryModule),
+          import('./category/category.module').then((m) => m.CategoryModule),
       },
       {
-        path: "manufacturer",
+        path: 'manufacturer',
         loadChildren: () =>
-          import("./manufacturer/manufacturer.module").then(
+          import('./manufacturer/manufacturer.module').then(
             (m) => m.ManufacturerModule
           ),
       },
       {
-        path: "product",
+        path: 'product',
         loadChildren: () =>
-          import("./product/product.module").then((m) => m.ProductModule),
+          import('./product/product.module').then((m) => m.ProductModule),
       },
       {
-        path: "order",
+        path: 'order',
         loadChildren: () =>
-          import("./order/order.module").then((m) => m.OrderModule),
+          import('./order/order.module').then((m) => m.OrderModule),
       },
       {
-        path: "cart",
+        path: 'cart',
         loadChildren: () =>
-          import("./cart/cart.module").then((m) => m.CartModule),
+          import('./cart/cart.module').then((m) => m.CartModule),
       },
       {
-        path: "checkout",
+        path: 'checkout',
         loadChildren: () =>
-          import("./checkout/checkout.module").then((m) => m.CheckoutModule),
+          import('./checkout/checkout.module').then((m) => m.CheckoutModule),
       },
       {
-        path: "address",
+        path: 'address',
         loadChildren: () =>
-          import("./address/address.module").then((m) => m.AddressModule),
+          import('./address/address.module').then((m) => m.AddressModule),
       },
       {
-        path: "address_type",
+        path: 'address_type',
         loadChildren: () =>
-          import("./address-type/address-type.module").then(
+          import('./address-type/address-type.module').then(
             (m) => m.AddressTypeModule
           ),
       },
       {
-        path: "city",
+        path: 'city',
         loadChildren: () =>
-          import("./city/city.module").then((m) => m.CityModule),
+          import('./city/city.module').then((m) => m.CityModule),
       },
       {
-        path: "state",
+        path: 'state',
         loadChildren: () =>
-          import("./state/state.module").then((m) => m.StateModule),
+          import('./state/state.module').then((m) => m.StateModule),
       },
       {
-        path: "country",
+        path: 'country',
         loadChildren: () =>
-          import("./country/country.module").then((m) => m.CountryModule),
+          import('./country/country.module').then((m) => m.CountryModule),
       },
     ]),
     CommonModule,

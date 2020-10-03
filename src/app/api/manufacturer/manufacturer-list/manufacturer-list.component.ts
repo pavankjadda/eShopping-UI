@@ -1,14 +1,14 @@
-import {Component, OnInit} from "@angular/core";
-import {NgxSpinnerService} from "ngx-spinner";
-import {environment} from "../../../../environments/environment";
-import {MANUFACTURER_API_URL} from "../../../app.constants";
-import {Manufacturer} from "../model/manufacturer";
-import {ManufacturerService} from "../service/manufacturer.service";
+import {Component, OnInit} from '@angular/core';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
+import {MANUFACTURER_API_URL} from '../../../app.constants';
+import {Manufacturer} from '../model/manufacturer';
+import {ManufacturerService} from '../service/manufacturer.service';
 
 @Component({
-  selector: "app-manufacturer-list",
-  templateUrl: "./manufacturer-list.component.html",
-  styleUrls: ["./manufacturer-list.component.scss"],
+  selector: 'app-manufacturer-list',
+  templateUrl: './manufacturer-list.component.html',
+  styleUrls: ['./manufacturer-list.component.scss'],
 })
 export class ManufacturerListComponent implements OnInit {
   manufacturers: Array<Manufacturer>;
@@ -23,7 +23,7 @@ export class ManufacturerListComponent implements OnInit {
   }
 
   private getManufacturers() {
-    let url = environment.BASE_URL + MANUFACTURER_API_URL + "/list";
+    let url = environment.BASE_URL + MANUFACTURER_API_URL + '/list';
     this.spinner.show();
 
     this.manufacturerService.getManufacturers(url).subscribe(
@@ -31,7 +31,7 @@ export class ManufacturerListComponent implements OnInit {
         this.manufacturers = data;
       },
       (error1) => {
-        console.log("Failed to load manufacturers. Error message: " + error1);
+        console.log('Failed to load manufacturers. Error message: ' + error1);
         this.spinner.hide();
       }
     );

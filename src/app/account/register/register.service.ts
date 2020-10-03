@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {RegisterUser} from "./register-user";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {RegisterUser} from './register-user';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RegisterService {
   constructor(private httpClient: HttpClient) {}

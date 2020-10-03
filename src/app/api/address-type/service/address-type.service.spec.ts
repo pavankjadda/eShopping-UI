@@ -1,11 +1,11 @@
-import {TestBed} from "@angular/core/testing";
+import {TestBed} from '@angular/core/testing';
 
-import {AddressTypeService} from "./address-type.service";
+import {AddressTypeService} from './address-type.service';
 
-describe("AddressTypeService", () => {
+describe('AddressTypeService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it("should be created", () => {
+  it('should be created', () => {
     const service: AddressTypeService = TestBed.get(AddressTypeService);
     expect(service).toBeTruthy();
   });

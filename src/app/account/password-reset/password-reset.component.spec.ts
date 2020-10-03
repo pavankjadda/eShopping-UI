@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PasswordResetComponent} from "./password-reset.component";
+import {PasswordResetComponent} from './password-reset.component';
 
-describe("PasswordResetComponent", () => {
+describe('PasswordResetComponent', () => {
   let component: PasswordResetComponent;
   let fixture: ComponentFixture<PasswordResetComponent>;
 
@@ -18,7 +18,7 @@ describe("PasswordResetComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

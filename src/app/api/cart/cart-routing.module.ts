@@ -1,11 +1,11 @@
-import {RouterModule, Routes} from "@angular/router";
-import {CartComponent} from "./cart.component";
-import {UserAuthGuard} from "../../guards/user-auth.guard";
-import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from '@angular/router';
+import {CartComponent} from './cart.component';
+import {UserAuthGuard} from '../../guards/user-auth.guard';
+import {NgModule} from '@angular/core';
 
 export const cartManagementRoute: Routes = [
   {
-    path: "",
+    path: '',
     component: CartComponent,
     canActivate: [UserAuthGuard],
   },

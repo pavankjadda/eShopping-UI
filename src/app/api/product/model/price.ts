@@ -1,4 +1,4 @@
-import {Currency} from "./currency";
+import {Currency} from './currency';
 
 export class Price {
   id: number;

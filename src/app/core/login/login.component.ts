@@ -1,13 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {NgxSpinnerService} from "ngx-spinner";
-import {AuthService} from "../auth/auth.service";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   message: string;
@@ -27,16 +27,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // redirect to home if already logged in
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(["/home"]);
+      this.router.navigate(['/home']);
     }
 
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     //Logout user if already logged in
     this.logout();
   }
@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
       .login(this.f.username.value, this.f.password.value)
       .subscribe(
         (response) => {
-          if (response["token"] && this.authService.isUserLoggedIn()) {
-            this.router.navigate(["/home"]);
+          if (response['token'] && this.authService.isUserLoggedIn()) {
+            this.router.navigate(['/home']);
           } else {
-            localStorage.removeItem("currentUser");
-            this.router.navigate(["/login"]);
+            localStorage.removeItem('currentUser');
+            this.router.navigate(['/login']);
           }
         },
         (error) => {
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
   isUserLoggedIn() {}
   private setMessage() {
     this.message =
-      "Logged " + (this.authService.isUserLoggedIn() ? "in" : "out");
+      'Logged ' + (this.authService.isUserLoggedIn() ? 'in' : 'out');
   }
 
   resetForm() {

@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Address} from "../model/address";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Address} from '../model/address';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AddressService {
   constructor(private httpClient: HttpClient) {}

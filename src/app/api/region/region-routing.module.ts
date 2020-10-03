@@ -1,11 +1,11 @@
-import {RouterModule, Routes} from "@angular/router";
-import {UserAuthGuard} from "../../guards/user-auth.guard";
-import {NgModule} from "@angular/core";
-import {RegionComponent} from "./region.component";
+import {RouterModule, Routes} from '@angular/router';
+import {UserAuthGuard} from '../../guards/user-auth.guard';
+import {NgModule} from '@angular/core';
+import {RegionComponent} from './region.component';
 
 export const regionManagementRoute: Routes = [
   {
-    path: "",
+    path: '',
     component: RegionComponent,
     canActivate: [UserAuthGuard],
   },

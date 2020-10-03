@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../core/auth/auth.service";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../core/auth/auth.service';
 
 @Component({
-  selector: "app-admin-home",
-  templateUrl: "./admin-home.component.html",
-  styleUrls: ["./admin-home.component.scss"],
+  selector: 'app-admin-home',
+  templateUrl: './admin-home.component.html',
+  styleUrls: ['./admin-home.component.scss'],
 })
 export class AdminHomeComponent implements OnInit {
   constructor(
@@ -18,7 +18,7 @@ export class AdminHomeComponent implements OnInit {
     //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())
     if (!this.authService.isUserLoggedIn()) {
       this.authService.logout();
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     }
   }
 }

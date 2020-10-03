@@ -1,11 +1,11 @@
-import {TestBed} from "@angular/core/testing";
+import {TestBed} from '@angular/core/testing';
 
-import {TimeoutInterceptorService} from "./timeout-interceptor.service";
+import {TimeoutInterceptorService} from './timeout-interceptor.service';
 
-describe("TimeoutInterceptorService", () => {
+describe('TimeoutInterceptorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it("should be created", () => {
+  it('should be created', () => {
     const service: TimeoutInterceptorService = TestBed.get(
       TimeoutInterceptorService
     );

@@ -1,17 +1,17 @@
-import {HttpHeaders} from "@angular/common/http";
-import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
-import {AuthService} from "../../core/auth/auth.service";
-import {RegisterUser} from "./register-user";
-import {RegisterService} from "./register.service";
-import {confirmPasswordValidator, passwordValidator, usernameValidator,} from "./registerform-validator";
+import {HttpHeaders} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
+import {AuthService} from '../../core/auth/auth.service';
+import {RegisterUser} from './register-user';
+import {RegisterService} from './register.service';
+import {confirmPasswordValidator, passwordValidator, usernameValidator,} from './registerform-validator';
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         username: [
-          "",
+          '',
           [
             Validators.required,
             Validators.minLength(4),
@@ -47,11 +47,11 @@ export class RegisterComponent implements OnInit {
           ],
         ],
         email: [
-          "",
+          '',
           [Validators.required, Validators.email, Validators.nullValidator],
         ],
         password: [
-          "",
+          '',
           [
             Validators.required,
             Validators.minLength(4),
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
           ],
         ],
         confirmPassword: [
-          "",
+          '',
           [
             Validators.required,
             Validators.minLength(4),
@@ -72,10 +72,10 @@ export class RegisterComponent implements OnInit {
         ],
       },
       {
-        validator: this.checkIfMatchingPasswords("password", "confirmPassword"),
+        validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
       }
     );
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onSubmit() {
@@ -86,20 +86,20 @@ export class RegisterComponent implements OnInit {
     registerUser.email = this.formControls.email.value;
     registerUser.password = this.formControls.password.value;
 
-    let url = environment.BASE_URL + "register";
+    let url = environment.BASE_URL + 'register';
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       }),
     };
 
     this.registerService.registerUser(url, registerUser, httpOptions).subscribe(
       (response) => {
-        console.log("User Registration Completed  " + response);
-        this.router.navigate(["/home"]);
+        console.log('User Registration Completed  ' + response);
+        this.router.navigate(['/home']);
       },
-      (error) => console.log("error: " + error),
-      () => console.log("User Registration Completed ")
+      (error) => console.log('error: ' + error),
+      () => console.log('User Registration Completed ')
     );
   }
 

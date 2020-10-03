@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Country} from "../model/country";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Country} from '../model/country';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CountryService {
   constructor(private httpClient: HttpClient) {}

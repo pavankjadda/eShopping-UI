@@ -1,10 +1,10 @@
-import {Component, OnInit, TemplateRef} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
-import {NgxSpinnerService} from "ngx-spinner";
-import {environment} from "../../../environments/environment";
-import {UserProfileService} from "../../account/user-profile/service/user-profile.service";
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../environments/environment';
+import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
@@ -16,28 +16,28 @@ import {
   STATE_API_URL,
   TAX_RATE_API_URL,
   USER_PROFILE_API_URL,
-} from "../../app.constants";
-import {AuthService} from "../../core/auth/auth.service";
-import {AddressType} from "../address-type/model/address-type";
-import {AddressTypeService} from "../address-type/service/address-type.service";
-import {Address} from "../address/model/address";
-import {AddressService} from "../address/service/address.service";
-import {Cart} from "../cart/model/cart";
-import {CartProduct} from "../cart/model/cart-product";
-import {CartShippingAddress} from "../cart/model/cart-shipping-address";
-import {CartService} from "../cart/service/cart.service";
-import {City} from "../city/model/city";
-import {CityService} from "../city/services/city.service";
-import {Country} from "../country/model/country";
-import {CountryService} from "../country/services/country.service";
-import {State} from "../state/model/state";
-import {StateService} from "../state/services/state.service";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+} from '../../app.constants';
+import {AuthService} from '../../core/auth/auth.service';
+import {AddressType} from '../address-type/model/address-type';
+import {AddressTypeService} from '../address-type/service/address-type.service';
+import {Address} from '../address/model/address';
+import {AddressService} from '../address/service/address.service';
+import {Cart} from '../cart/model/cart';
+import {CartProduct} from '../cart/model/cart-product';
+import {CartShippingAddress} from '../cart/model/cart-shipping-address';
+import {CartService} from '../cart/service/cart.service';
+import {City} from '../city/model/city';
+import {CityService} from '../city/services/city.service';
+import {Country} from '../country/model/country';
+import {CountryService} from '../country/services/country.service';
+import {State} from '../state/model/state';
+import {StateService} from '../state/services/state.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: "app-checkout",
-  templateUrl: "./checkout.component.html",
-  styleUrls: ["./checkout.component.scss"],
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
   cart: Cart;
@@ -56,14 +56,14 @@ export class CheckoutComponent implements OnInit {
   selectedBillingAddress: Address;
 
   addressForm = new FormGroup({
-    addressType: new FormControl(""),
-    id: new FormControl(""),
-    streetName: new FormControl(""),
-    apartment: new FormControl(""),
-    city: new FormControl(""),
-    state: new FormControl(""),
-    country: new FormControl(""),
-    zipCode: new FormControl(""),
+    addressType: new FormControl(''),
+    id: new FormControl(''),
+    streetName: new FormControl(''),
+    apartment: new FormControl(''),
+    city: new FormControl(''),
+    state: new FormControl(''),
+    country: new FormControl(''),
+    zipCode: new FormControl(''),
   });
 
   constructor(
@@ -111,10 +111,10 @@ export class CheckoutComponent implements OnInit {
     const cartUrl =
       environment.BASE_URL +
       CART_API_URL +
-      "/find/user/" +
+      '/find/user/' +
       this.authService.currentUserValue.id;
     this.cartService.getMyCart(cartUrl).subscribe((data) => {
-      localStorage.setItem("currentCart", JSON.stringify(data));
+      localStorage.setItem('currentCart', JSON.stringify(data));
       this.cartService.currentCartSubject.next(data);
       this.cart = data;
       if (data.cartProducts !== null) {
@@ -147,13 +147,13 @@ export class CheckoutComponent implements OnInit {
     let userProfileId = this.authService.currentUserSubject.value.userProfile
       .id;
     let userProfileUrl =
-      environment.BASE_URL + USER_PROFILE_API_URL + "/" + userProfileId;
+      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       (data) => {
         this.addresses = data.addresses;
       },
       (error1) => {
-        console.log("Failed to get User Profile information. Error: " + error1);
+        console.log('Failed to get User Profile information. Error: ' + error1);
       }
     );
   }
@@ -163,7 +163,7 @@ export class CheckoutComponent implements OnInit {
 
     this.selectedShippingAddress = address;
     let cartShippingAddressUrl =
-      environment.BASE_URL + CART_ADDRESS_API_URL + "/add/shipping_address";
+      environment.BASE_URL + CART_ADDRESS_API_URL + '/add/shipping_address';
     let cartShippingAddress = new CartShippingAddress();
     cartShippingAddress.addressType = address.addressType;
     cartShippingAddress.streetName = address.streetName;
@@ -185,7 +185,7 @@ export class CheckoutComponent implements OnInit {
 
   async getTaxRate(id: number) {
     let taxRateUrl =
-      environment.BASE_URL + TAX_RATE_API_URL + "/find/state/" + id;
+      environment.BASE_URL + TAX_RATE_API_URL + '/find/state/' + id;
     let taxRateObject = await this.cartService.getTaxRate(taxRateUrl);
     this.taxRate = taxRateObject.rate;
   }
@@ -195,7 +195,7 @@ export class CheckoutComponent implements OnInit {
 
     this.selectedBillingAddress = address;
     let cartBillingAddressUrl =
-      environment.BASE_URL + CART_ADDRESS_API_URL + "/add/billing_address";
+      environment.BASE_URL + CART_ADDRESS_API_URL + '/add/billing_address';
     let cartBillingAddress = new CartShippingAddress();
     cartBillingAddress.addressType = address.addressType;
     cartBillingAddress.streetName = address.streetName;
@@ -217,7 +217,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   updateUserAddress() {
-    const addressApiUrl = environment.BASE_URL + ADDRESS_API_URL + "/update";
+    const addressApiUrl = environment.BASE_URL + ADDRESS_API_URL + '/update';
     this.addressService
       .updateAddress(addressApiUrl, this.addressForm.value)
       .subscribe(
@@ -226,15 +226,15 @@ export class CheckoutComponent implements OnInit {
           this.modalRef.hide();
         },
         (error1) => {
-          console.log("Failed to updated address. Error: " + error1);
+          console.log('Failed to updated address. Error: ' + error1);
         }
       );
   }
 
   deleteAddress(address: Address) {
-    if (confirm("Are you sure you want to delete the Address?")) {
+    if (confirm('Are you sure you want to delete the Address?')) {
       let addressUrl =
-        environment.BASE_URL + ADDRESS_API_URL + "/delete/" + address.id;
+        environment.BASE_URL + ADDRESS_API_URL + '/delete/' + address.id;
 
       this.addressService.deleteAddress(addressUrl).subscribe(
         (data) => {
@@ -242,46 +242,46 @@ export class CheckoutComponent implements OnInit {
           this.hideNewAddressDialog();
         },
         (error1) => {
-          console.log("Error occurred: " + error1);
+          console.log('Error occurred: ' + error1);
         }
       );
     }
   }
 
   placeOrder() {
-    this.ngxSpinnerService.show("Please wait while creating the Order");
-    let createOrderUrl = environment.BASE_URL + ORDER_API_URL + "/create";
+    this.ngxSpinnerService.show('Please wait while creating the Order');
+    let createOrderUrl = environment.BASE_URL + ORDER_API_URL + '/create';
 
     this.cartService.createOrder(createOrderUrl, this.cart.id).subscribe(
       (data) => {
-        this.router.navigate(["/order"]);
+        this.router.navigate(['/order']);
         this.ngxSpinnerService.hide();
       },
       (error1) => {
-        console.log("Failed to create order. Error: " + error1);
+        console.log('Failed to create order. Error: ' + error1);
         this.ngxSpinnerService.hide();
       }
     );
   }
 
   private loadAddressTypes() {
-    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + "/list";
+    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
     this.addressTypeService.getAddressTypes(url).subscribe(
       (addressTypes) => {
         this.addressTypes = addressTypes;
         this.addressForm.patchValue({
           addressTypes: addressTypes,
         });
-        console.log("Successfully loaded Address types");
+        console.log('Successfully loaded Address types');
       },
       (error1) => {
-        console.log("Failed to load mAddress types");
+        console.log('Failed to load mAddress types');
       }
     );
   }
 
   private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + "/list";
+    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
     this.countryService.getCountries(url).subscribe(
       (countries) => {
         this.countries = countries;
@@ -293,28 +293,28 @@ export class CheckoutComponent implements OnInit {
   loadStates() {
     const country = this.addressForm.value.country;
     const url =
-      environment.BASE_URL + STATE_API_URL + "/find/country/" + country.id;
+      environment.BASE_URL + STATE_API_URL + '/find/country/' + country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       (data) => {
         this.states = data;
       },
       (error1) => {
-        console.log("Failed to load states");
+        console.log('Failed to load states');
       }
     );
   }
 
   loadCities() {
     const state = this.addressForm.value.state;
-    const url = environment.BASE_URL + CITY_API_URL + "/find/state/" + state.id;
+    const url = environment.BASE_URL + CITY_API_URL + '/find/state/' + state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       (data) => {
         this.cities = data;
       },
       (error1) => {
-        console.log("Failed to load cities");
+        console.log('Failed to load cities');
       }
     );
   }
@@ -352,6 +352,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   backToCart() {
-    this.router.navigate(["/cart"]);
+    this.router.navigate(['/cart']);
   }
 }

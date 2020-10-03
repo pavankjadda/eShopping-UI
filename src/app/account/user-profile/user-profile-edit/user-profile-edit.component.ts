@@ -1,19 +1,19 @@
-import {Component, OnInit, TemplateRef} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {environment} from "../../../../environments/environment";
-import {AddressType} from "../../../api/address-type/model/address-type";
-import {AddressTypeService} from "../../../api/address-type/service/address-type.service";
-import {Address} from "../../../api/address/model/address";
-import {AddressService} from "../../../api/address/service/address.service";
-import {City} from "../../../api/city/model/city";
-import {CityService} from "../../../api/city/services/city.service";
-import {Country} from "../../../api/country/model/country";
-import {CountryService} from "../../../api/country/services/country.service";
-import {State} from "../../../api/state/model/state";
-import {StateService} from "../../../api/state/services/state.service";
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../../../environments/environment';
+import {AddressType} from '../../../api/address-type/model/address-type';
+import {AddressTypeService} from '../../../api/address-type/service/address-type.service';
+import {Address} from '../../../api/address/model/address';
+import {AddressService} from '../../../api/address/service/address.service';
+import {City} from '../../../api/city/model/city';
+import {CityService} from '../../../api/city/services/city.service';
+import {Country} from '../../../api/country/model/country';
+import {CountryService} from '../../../api/country/services/country.service';
+import {State} from '../../../api/state/model/state';
+import {StateService} from '../../../api/state/services/state.service';
 import {
   ADDRESS_API_URL,
   ADDRESS_TYPE_API_URL,
@@ -21,15 +21,15 @@ import {
   COUNTRY_API_URL,
   STATE_API_URL,
   USER_PROFILE_API_URL,
-} from "../../../app.constants";
-import {AuthService} from "../../../core/auth/auth.service";
-import {UserProfile} from "../model/user-profile";
-import {UserProfileService} from "../service/user-profile.service";
+} from '../../../app.constants';
+import {AuthService} from '../../../core/auth/auth.service';
+import {UserProfile} from '../model/user-profile';
+import {UserProfileService} from '../service/user-profile.service';
 
 @Component({
-  selector: "app-user-profile-edit",
-  templateUrl: "./user-profile-edit.component.html",
-  styleUrls: ["./user-profile-edit.component.scss"],
+  selector: 'app-user-profile-edit',
+  templateUrl: './user-profile-edit.component.html',
+  styleUrls: ['./user-profile-edit.component.scss'],
 })
 export class UserProfileEditComponent implements OnInit {
   userProfile: UserProfile;
@@ -42,20 +42,20 @@ export class UserProfileEditComponent implements OnInit {
   modalRef: BsModalRef;
 
   userProfileForm = new FormGroup({
-    id: new FormControl({ value: "", disabled: true }),
-    firstName: new FormControl(""),
-    lastName: new FormControl(""),
-    email: new FormControl(""),
-    phone: new FormControl(""),
+    id: new FormControl({ value: '', disabled: true }),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
     address: new FormGroup({
-      addressType: new FormControl(""),
-      id: new FormControl(""),
-      streetName: new FormControl(""),
-      apartment: new FormControl(""),
-      city: new FormControl(""),
-      state: new FormControl(""),
-      country: new FormControl(""),
-      zipCode: new FormControl(""),
+      addressType: new FormControl(''),
+      id: new FormControl(''),
+      streetName: new FormControl(''),
+      apartment: new FormControl(''),
+      city: new FormControl(''),
+      state: new FormControl(''),
+      country: new FormControl(''),
+      zipCode: new FormControl(''),
     }),
   });
 
@@ -94,7 +94,7 @@ export class UserProfileEditComponent implements OnInit {
     let userProfileId = this.authService.currentUserSubject.value.userProfile
       .id;
     let userProfileUrl =
-      environment.BASE_URL + USER_PROFILE_API_URL + "/" + userProfileId;
+      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
 
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(
       (data) => {
@@ -111,7 +111,7 @@ export class UserProfileEditComponent implements OnInit {
         this.addresses = data.addresses;
       },
       (error1) => {
-        console.log("Failed to get User Profile information");
+        console.log('Failed to get User Profile information');
       }
     );
   }
@@ -120,7 +120,7 @@ export class UserProfileEditComponent implements OnInit {
     this.spinnerService.show();
 
     const userProfileUrl =
-      environment.BASE_URL + USER_PROFILE_API_URL + "/update";
+      environment.BASE_URL + USER_PROFILE_API_URL + '/update';
     let userProfileId = this.authService.currentUserSubject.value.userProfile
       .id;
     let userProfile = new UserProfile();
@@ -136,18 +136,18 @@ export class UserProfileEditComponent implements OnInit {
       .subscribe(
         (data) => {
           userProfile = data;
-          console.log("UserProfile updated");
-          this.router.navigate(["/account/profile"]);
+          console.log('UserProfile updated');
+          this.router.navigate(['/account/profile']);
         },
         (error1) => {
-          console.log("UserProfile update failed");
+          console.log('UserProfile update failed');
           this.spinnerService.hide();
         }
       );
   }
 
   updateUserAddress() {
-    const addressApiUrl = environment.BASE_URL + ADDRESS_API_URL + "/update";
+    const addressApiUrl = environment.BASE_URL + ADDRESS_API_URL + '/update';
     this.addressService
       .updateAddress(addressApiUrl, this.userProfileForm.value.address)
       .subscribe(
@@ -156,14 +156,14 @@ export class UserProfileEditComponent implements OnInit {
           this.modalRef.hide();
         },
         (error1) => {
-          console.log("Failed to updated address. Error: " + error1);
+          console.log('Failed to updated address. Error: ' + error1);
         }
       );
   }
 
   deleteAddress(address: Address) {
     const addressApiUrl =
-      environment.BASE_URL + ADDRESS_API_URL + "/delete/" + address.id;
+      environment.BASE_URL + ADDRESS_API_URL + '/delete/' + address.id;
     this.addressService.deleteAddress(addressApiUrl).subscribe(
       (data) => {
         this.getUserProfile();
@@ -173,23 +173,23 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   private loadAddressTypes() {
-    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + "/list";
+    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
     this.addressTypeService.getAddressTypes(url).subscribe(
       (addressTypes) => {
         this.addressTypes = addressTypes;
         this.userProfileForm.patchValue({
           addressType: addressTypes,
         });
-        console.log("Successfully loaded address types");
+        console.log('Successfully loaded address types');
       },
       (error1) => {
-        console.log("Failed to load address types");
+        console.log('Failed to load address types');
       }
     );
   }
 
   private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + "/list";
+    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
     this.countryService.getCountries(url).subscribe(
       (countries) => {
         this.countries = countries;
@@ -201,28 +201,28 @@ export class UserProfileEditComponent implements OnInit {
   loadStates() {
     const country = this.userProfileForm.value.address.country;
     const url =
-      environment.BASE_URL + STATE_API_URL + "/find/country/" + country.id;
+      environment.BASE_URL + STATE_API_URL + '/find/country/' + country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       (data) => {
         this.states = data;
       },
       (error1) => {
-        console.log("Failed to load states");
+        console.log('Failed to load states');
       }
     );
   }
 
   loadCities() {
     const state = this.userProfileForm.value.address.state;
-    const url = environment.BASE_URL + CITY_API_URL + "/find/state/" + state.id;
+    const url = environment.BASE_URL + CITY_API_URL + '/find/state/' + state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       (data) => {
         this.cities = data;
       },
       (error1) => {
-        console.log("Failed to load cities");
+        console.log('Failed to load cities');
       }
     );
   }
@@ -244,6 +244,6 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(["/account/profile"]);
+    this.router.navigate(['/account/profile']);
   }
 }
