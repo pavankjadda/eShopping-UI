@@ -9,7 +9,6 @@ git commit -m "Before Upgrade"
 git push origin "$CURRENT_BRANCH"
 
 ng update --all --force
-npm i typescript@3.9.7 --save
 npm i zone.js@0.10.3 --save
 
 git add .
