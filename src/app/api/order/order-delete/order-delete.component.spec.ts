@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {OrderDeleteComponent} from './order-delete.component';
 
@@ -6,7 +6,7 @@ describe('OrderDeleteComponent', () => {
   let component: OrderDeleteComponent;
   let fixture: ComponentFixture<OrderDeleteComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [OrderDeleteComponent],
     }).compileComponents();
