@@ -8,8 +8,8 @@ git add .
 git commit -m "Before Upgrade"
 git push origin "$CURRENT_BRANCH"
 
-ng update --all --force
-npm i zone.js@0.10.3 --save
+npm update
+npm i typescript@4.0.5
 
 git add .
 git commit -m "After Upgrade"
