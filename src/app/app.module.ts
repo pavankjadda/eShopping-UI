@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 import {ApiModule} from './api/api.module';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {CookieService} from 'ngx-cookie-service';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {CookieService} from 'ngx-cookie-service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AdminModule,
     LayoutModule,
     CoreModule,

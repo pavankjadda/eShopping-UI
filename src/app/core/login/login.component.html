@@ -5,11 +5,11 @@
   type="ball-elastic-dots"
 ></ngx-spinner>
 
-<div>
-  <div class="container container-fluid login-form">
-    <h2 class="offset-5">Login</h2>
-    <form [formGroup]="loginForm" style="margin-top: 30px;">
-      <div class="form-group offset-4">
+<div class="container-fluid">
+  <div class="mx-auto col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" >
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" style="margin-top: 30px;" (submit)="login()">
+      <div class="mx-auto">
         <label for="username">Username</label>
         <input
           [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
@@ -22,7 +22,7 @@
           <div *ngIf="f.username.errors.required">Username is required</div>
         </div>
       </div>
-      <div class="form-group offset-4">
+      <div class="mx-auto">
         <label for="password">Password</label>
         <input
           [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -35,20 +35,17 @@
           <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
       </div>
-      <div class="form-group offset-4">
+      <div class="mx-auto">
         <button
-          (click)="login()"
-          class="btn btn-primary"
-          style="margin-right: 20px;"
+          type="submit"
+          class=" btn btn-primary"
+          style="margin: 20px;"
         >
           Login
         </button>
-        <button (click)="resetForm()" class="btn btn-outline-danger">
-          Reset
-        </button>
       </div>
 
-      <div class="form-group offset-4">
+      <div class="mx-auto">
         <div *ngIf="loginFailed" style="color: red;">
           Failed to Login, Please try again
         </div>
