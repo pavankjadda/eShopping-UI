@@ -12,10 +12,15 @@ import {OrderService} from '../service/order.service';
 export class OrderListComponent implements OnInit {
   orders: Array<Order>;
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService) {
+  }
 
   ngOnInit() {
     this.getOrders();
+  }
+
+  orderDetailsDataAvailable() {
+    return this.orders !== undefined;
   }
 
   private getOrders() {
@@ -31,9 +36,5 @@ export class OrderListComponent implements OnInit {
         console.log('getOrders success');
       }
     );
-  }
-
-  orderDetailsDataAvailable() {
-    return this.orders !== undefined;
   }
 }

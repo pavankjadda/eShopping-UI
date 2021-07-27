@@ -6,7 +6,8 @@ import {City} from '../model/city';
   providedIn: 'root',
 })
 export class CityService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getCities(url) {
     return this.httpClient.get<City[]>(url);

@@ -6,7 +6,8 @@ import {RegisterUser} from './register-user';
   providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   registerUser(
     url: string,

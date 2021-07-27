@@ -6,7 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./role.component.scss'],
 })
 export class RoleComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

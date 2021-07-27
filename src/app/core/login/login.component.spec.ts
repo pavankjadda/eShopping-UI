@@ -15,10 +15,10 @@ describe('LoginComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [LoginComponent],
       providers: [
-        { provide: FormBuilder, useValue: FormBuilder },
-        { provide: FormGroup, useValue: FormGroup },
-        { provide: AuthService, useValue: AuthService },
-        { provide: NgxSpinnerService, useValue: NgxSpinnerService },
+        {provide: FormBuilder, useValue: FormBuilder},
+        {provide: FormGroup, useValue: FormGroup},
+        {provide: AuthService, useValue: AuthService},
+        {provide: NgxSpinnerService, useValue: NgxSpinnerService},
       ],
     }).compileComponents();
   }));

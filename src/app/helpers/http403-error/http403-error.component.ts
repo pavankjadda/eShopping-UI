@@ -6,7 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./http403-error.component.scss'],
 })
 export class Http403ErrorComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

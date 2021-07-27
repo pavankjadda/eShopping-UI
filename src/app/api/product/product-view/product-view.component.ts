@@ -19,7 +19,7 @@ import {CartProductJson} from '../../cart/model/cart-product-json';
 export class ProductViewComponent implements OnInit {
   product: Product;
   productForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
     description: new FormControl(''),
     price: new FormControl(''),
@@ -38,7 +38,8 @@ export class ProductViewComponent implements OnInit {
     private httpClient: HttpClient,
     private spinner: NgxSpinnerService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getProduct();
@@ -83,6 +84,13 @@ export class ProductViewComponent implements OnInit {
       );
   }
 
+  isProductInventoryEmpty(): boolean {
+    return (
+      this.product.productInventory === null ||
+      this.product.productInventory.quantity <= 0
+    );
+  }
+
   private getProduct() {
     const id = this.route.snapshot.paramMap.get('id');
     const url = environment.BASE_URL + PRODUCT_API_URL + '/find/' + id;
@@ -108,12 +116,5 @@ export class ProductViewComponent implements OnInit {
           console.log(error);
         }
       );
-  }
-
-  isProductInventoryEmpty(): boolean {
-    return (
-      this.product.productInventory === null ||
-      this.product.productInventory.quantity <= 0
-    );
   }
 }

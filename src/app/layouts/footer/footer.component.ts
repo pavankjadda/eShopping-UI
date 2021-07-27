@@ -9,7 +9,8 @@ import {environment} from '../../../environments/environment';
 export class FooterComponent implements OnInit {
   appVersion: any;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.appVersion = environment.VERSION;

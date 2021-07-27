@@ -1,6 +1,6 @@
 <div *ngIf="productDataAvailable()">
   <h2>Update Product</h2>
-  <br />
+  <br/>
   <form [formGroup]="productForm">
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="id">Product Id</label>
@@ -35,22 +35,22 @@
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="quantity">Quantity</label>
       <input
-        type="text"
         class="form-control"
         formControlName="quantity"
         id="quantity"
         placeholder="Enter quantity"
         required
+        type="text"
       />
     </div>
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="amount">Price (In $)</label> <br />
-      <input type="text" formControlName="amount" id="amount" required />
+      <label for="amount">Price (In $)</label> <br/>
+      <input formControlName="amount" id="amount" required type="text"/>
     </div>
 
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label
-        >Category:
+      >Category:
         <select
           [compareWith]="compareCategoryFn"
           class="form-control"
@@ -66,7 +66,7 @@
 
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label
-        >Manufacturer:
+      >Manufacturer:
         <select
           [compareWith]="compareManufacturerFn"
           class="form-control"

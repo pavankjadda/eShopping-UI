@@ -15,4 +15,5 @@ export const regionManagementRoute: Routes = [
   imports: [RouterModule.forChild(regionManagementRoute)],
   exports: [RouterModule],
 })
-export class RegionRoutingModule {}
+export class RegionRoutingModule {
+}

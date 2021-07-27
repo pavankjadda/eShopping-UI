@@ -31,4 +31,5 @@ import {CategoryComponent} from './category.component';
   ],
   exports: [RouterModule],
 })
-export class CategoryModule {}
+export class CategoryModule {
+}

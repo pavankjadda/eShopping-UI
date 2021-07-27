@@ -6,7 +6,8 @@ import {Country} from '../model/country';
   providedIn: 'root',
 })
 export class CountryService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getCountries(url) {
     return this.httpClient.get<Country[]>(url);

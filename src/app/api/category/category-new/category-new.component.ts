@@ -13,7 +13,7 @@ import {CategoryService} from '../service/category.service';
 })
 export class CategoryNewComponent implements OnInit {
   categoryForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }, Validators.minLength(2)),
+    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
     name: new FormControl(''),
     description: new FormControl(''),
   });
@@ -21,9 +21,11 @@ export class CategoryNewComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   createCategory() {
     const category = new Category(this.categoryForm.get('id').value);
@@ -32,8 +34,10 @@ export class CategoryNewComponent implements OnInit {
 
     const url = environment.BASE_URL + CATEGORY_API_URL + '/create';
     this.categoryService.createCategory(url, category).subscribe(
-      (value) => {},
-      (error1) => {},
+      (value) => {
+      },
+      (error1) => {
+      },
       () => {
         this.router.navigate(['/category/list']);
       }

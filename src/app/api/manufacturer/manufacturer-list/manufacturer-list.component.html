@@ -26,17 +26,17 @@
         <td>
           <a [routerLink]="['/manufacturer', manufacturer.id]">{{
             manufacturer.name
-          }}</a>
+            }}</a>
         </td>
         <td>{{ manufacturer.contactEmail }}</td>
         <td>{{ manufacturer.phone }}</td>
         <td>{{ manufacturer.fax }}</td>
         <td>
           {{ manufacturer.manufacturerAddress.streetName
-          }}{{ manufacturer.manufacturerAddress.apartment }} <br />{{
-            manufacturer.manufacturerAddress.city.name
+          }}{{ manufacturer.manufacturerAddress.apartment }} <br/>{{
+          manufacturer.manufacturerAddress.city.name
           }},{{ manufacturer.manufacturerAddress.state.name }},{{
-            manufacturer.manufacturerAddress.country.name
+          manufacturer.manufacturerAddress.country.name
           }},{{ manufacturer.manufacturerAddress.zipCode }},
         </td>
       </tr>
@@ -45,7 +45,7 @@
     <div style="text-align: center;">
       <a [routerLink]="['/manufacturer']" style="margin-right: 30px;">Back</a>
       <a [routerLink]="['/manufacturer/new']" style="margin-right: 30px;"
-        >Create New</a
+      >Create New</a
       >
     </div>
   </div>

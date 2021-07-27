@@ -20,4 +20,5 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [HeaderComponent, FooterComponent, MainComponent],
   exports: [MainComponent],
 })
-export class LayoutModule {}
+export class LayoutModule {
+}

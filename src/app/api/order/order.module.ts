@@ -31,4 +31,5 @@ import {RouterModule} from '@angular/router';
   ],
   exports: [RouterModule],
 })
-export class OrderModule {}
+export class OrderModule {
+}

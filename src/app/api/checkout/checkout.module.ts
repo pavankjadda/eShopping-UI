@@ -20,4 +20,5 @@ import {ModalModule} from 'ngx-bootstrap/modal';
   ],
   exports: [RouterModule],
 })
-export class CheckoutModule {}
+export class CheckoutModule {
+}

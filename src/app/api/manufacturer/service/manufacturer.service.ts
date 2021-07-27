@@ -6,7 +6,8 @@ import {Manufacturer} from '../model/manufacturer';
   providedIn: 'root',
 })
 export class ManufacturerService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getManufacturer(url: string) {
     return this.httpClient.get<Manufacturer>(url);
@@ -15,6 +16,7 @@ export class ManufacturerService {
   getManufacturers(url: string) {
     return this.httpClient.get<Manufacturer[]>(url);
   }
+
   createManufacturer(url: string, manufacturer: Manufacturer) {
     return this.httpClient.post<Manufacturer>(url, manufacturer);
   }

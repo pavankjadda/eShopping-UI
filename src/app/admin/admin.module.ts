@@ -6,4 +6,5 @@ import {AdminRoutingModule} from './admin-routing.module';
   declarations: [],
   imports: [CommonModule, AdminRoutingModule],
 })
-export class AdminModule {}
+export class AdminModule {
+}

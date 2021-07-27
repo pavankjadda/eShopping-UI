@@ -16,10 +16,15 @@ export class ManufacturerListComponent implements OnInit {
   constructor(
     private manufacturerService: ManufacturerService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getManufacturers();
+  }
+
+  manufacturerDataAvailable(): boolean {
+    return this.manufacturers !== undefined;
   }
 
   private getManufacturers() {
@@ -36,9 +41,5 @@ export class ManufacturerListComponent implements OnInit {
       }
     );
     this.spinner.hide();
-  }
-
-  manufacturerDataAvailable(): boolean {
-    return this.manufacturers !== undefined;
   }
 }

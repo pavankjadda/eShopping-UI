@@ -6,7 +6,8 @@ import {Category} from '../model/category';
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getCategories(url) {
     return this.httpClient.get<Category[]>(url);

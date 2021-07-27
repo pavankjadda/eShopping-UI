@@ -12,7 +12,8 @@ import {StateService} from './services/state.service';
 export class StateComponent implements OnInit {
   states: Array<State>;
 
-  constructor(private stateService: StateService) {}
+  constructor(private stateService: StateService) {
+  }
 
   ngOnInit() {
     this.getStates();
@@ -29,6 +30,7 @@ export class StateComponent implements OnInit {
     );
     return this.states;
   }
+
   statesDataAvailable(): boolean {
     return this.states !== undefined;
   }

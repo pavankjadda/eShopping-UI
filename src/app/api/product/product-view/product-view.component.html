@@ -47,7 +47,7 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="manufacturer"
-        >Manufacturer</label
+      >Manufacturer</label
       >
       <div class="col-sm-10">
         <input
@@ -62,13 +62,13 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="quantityAvailable"
-        >Price</label
+      >Price</label
       >
       <div class="col-sm-10">
         <input
           class="form-control-plaintext"
-          id="quantityAvailable"
           formControlName="price"
+          id="quantityAvailable"
           readonly
           type="text"
         />
@@ -77,13 +77,13 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="price"
-        >Available Quantity</label
+      >Available Quantity</label
       >
       <div class="col-sm-10">
         <input
           class="form-control-plaintext"
-          id="price"
           formControlName="quantityAvailable"
+          id="price"
           readonly
           type="text"
         />
@@ -92,7 +92,7 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="description"
-        >Description</label
+      >Description</label
       >
       <div class="col-sm-10">
         <input
@@ -110,14 +110,14 @@
     <a [routerLink]="['/product/list']" style="margin-right: 30px;">Back </a>
     <a [routerLink]="['./edit']" style="margin-right: 30px;">Edit </a>
     <a [routerLink]="['./delete']">Delete </a>
-    <br />
-    <br />
+    <br/>
+    <br/>
     <input
-      type="button"
-      class="btn btn-primary"
       (click)="addProductToCart()"
-      value="Add to Cart"
       [disabled]="isProductInventoryEmpty()"
+      class="btn btn-primary"
+      type="button"
+      value="Add to Cart"
     />
   </p>
 </div>

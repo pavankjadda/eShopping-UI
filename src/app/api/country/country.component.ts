@@ -12,7 +12,8 @@ import {CountryService} from './services/country.service';
 export class CountryComponent implements OnInit {
   countries: Array<Country>;
 
-  constructor(private countryService: CountryService) {}
+  constructor(private countryService: CountryService) {
+  }
 
   ngOnInit() {
     this.getCountries();

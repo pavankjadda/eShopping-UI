@@ -34,4 +34,5 @@ import {ModalModule} from 'ngx-bootstrap/modal';
     UserProfileEditComponent,
   ],
 })
-export class AccountModule {}
+export class AccountModule {
+}

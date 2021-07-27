@@ -8,4 +8,5 @@ import {FileExistingValuePipe} from './pipes/file-existing-value.pipe';
   declarations: [Http403ErrorComponent, FileExistingValuePipe],
   imports: [CommonModule, HelpersRoutingModule],
 })
-export class HelpersModule {}
+export class HelpersModule {
+}

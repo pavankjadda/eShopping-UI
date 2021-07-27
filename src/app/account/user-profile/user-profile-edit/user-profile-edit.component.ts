@@ -42,7 +42,7 @@ export class UserProfileEditComponent implements OnInit {
   modalRef: BsModalRef;
 
   userProfileForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
@@ -70,7 +70,8 @@ export class UserProfileEditComponent implements OnInit {
     private addressService: AddressService,
     private router: Router,
     private modalService: BsModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getUserProfile();
@@ -88,32 +89,6 @@ export class UserProfileEditComponent implements OnInit {
       this.loadCities();
     } else {
     }
-  }
-
-  private getUserProfile() {
-    let userProfileId = this.authService.currentUserSubject.value.userProfile
-      .id;
-    let userProfileUrl =
-      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
-
-    this.userProfileService.getUserProfile(userProfileUrl).subscribe(
-      (data) => {
-        this.userProfile = data;
-        this.userProfileForm.patchValue({
-          id: data.id,
-          username: data.user.username,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          phone: data.phone,
-          user: data.user,
-        });
-        this.addresses = data.addresses;
-      },
-      (error1) => {
-        console.log('Failed to get User Profile information');
-      }
-    );
   }
 
   updateUserProfile() {
@@ -168,33 +143,8 @@ export class UserProfileEditComponent implements OnInit {
       (data) => {
         this.getUserProfile();
       },
-      (error1) => {}
-    );
-  }
-
-  private loadAddressTypes() {
-    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
-    this.addressTypeService.getAddressTypes(url).subscribe(
-      (addressTypes) => {
-        this.addressTypes = addressTypes;
-        this.userProfileForm.patchValue({
-          addressType: addressTypes,
-        });
-        console.log('Successfully loaded address types');
-      },
       (error1) => {
-        console.log('Failed to load address types');
       }
-    );
-  }
-
-  private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
-    this.countryService.getCountries(url).subscribe(
-      (countries) => {
-        this.countries = countries;
-      },
-      (error1) => {}
     );
   }
 
@@ -245,5 +195,58 @@ export class UserProfileEditComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/account/profile']);
+  }
+
+  private getUserProfile() {
+    let userProfileId = this.authService.currentUserSubject.value.userProfile
+      .id;
+    let userProfileUrl =
+      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
+
+    this.userProfileService.getUserProfile(userProfileUrl).subscribe(
+      (data) => {
+        this.userProfile = data;
+        this.userProfileForm.patchValue({
+          id: data.id,
+          username: data.user.username,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          user: data.user,
+        });
+        this.addresses = data.addresses;
+      },
+      (error1) => {
+        console.log('Failed to get User Profile information');
+      }
+    );
+  }
+
+  private loadAddressTypes() {
+    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
+    this.addressTypeService.getAddressTypes(url).subscribe(
+      (addressTypes) => {
+        this.addressTypes = addressTypes;
+        this.userProfileForm.patchValue({
+          addressType: addressTypes,
+        });
+        console.log('Successfully loaded address types');
+      },
+      (error1) => {
+        console.log('Failed to load address types');
+      }
+    );
+  }
+
+  private loadCountries() {
+    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
+    this.countryService.getCountries(url).subscribe(
+      (countries) => {
+        this.countries = countries;
+      },
+      (error1) => {
+      }
+    );
   }
 }

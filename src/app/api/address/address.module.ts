@@ -8,4 +8,5 @@ import {AddressRoutingModule} from './address-routing.module';
   declarations: [AddressComponent],
   imports: [CommonModule, ReactiveFormsModule, AddressRoutingModule],
 })
-export class AddressModule {}
+export class AddressModule {
+}

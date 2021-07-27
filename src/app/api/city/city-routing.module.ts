@@ -15,4 +15,5 @@ export const cityManagementRoute: Routes = [
   imports: [RouterModule.forChild(cityManagementRoute)],
   exports: [RouterModule],
 })
-export class CityRoutingModule {}
+export class CityRoutingModule {
+}

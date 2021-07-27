@@ -5,5 +5,6 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root',
 })
 export class CheckoutService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 }

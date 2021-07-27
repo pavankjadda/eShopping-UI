@@ -25,4 +25,5 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     LogoutComponent,
   ],
 })
-export class CoreModule {}
+export class CoreModule {
+}

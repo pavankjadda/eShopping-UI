@@ -18,7 +18,8 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService
-  ) {}
+  ) {
+  }
 
   public get currentUserValue(): User {
     return JSON.parse(this.cookieService.get('currentUser'));

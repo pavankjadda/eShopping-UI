@@ -7,7 +7,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./region.component.scss'],
 })
 export class RegionComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
     //this.router.navigate(['/region']);

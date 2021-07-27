@@ -22,7 +22,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+  }
+
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.loginForm.controls;
+  }
 
   ngOnInit() {
     // redirect to home if already logged in
@@ -39,11 +45,6 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     //Logout user if already logged in
     this.logout();
-  }
-
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.loginForm.controls;
   }
 
   login() {
@@ -75,14 +76,16 @@ export class LoginComponent implements OnInit {
     this.setMessage();
   }
 
-  isUserLoggedIn() {}
-  private setMessage() {
-    this.message =
-      'Logged ' + (this.authService.isUserLoggedIn() ? 'in' : 'out');
+  isUserLoggedIn() {
   }
 
   resetForm() {
     this.f.username.setValue(null);
     this.f.password.setValue(null);
+  }
+
+  private setMessage() {
+    this.message =
+      'Logged ' + (this.authService.isUserLoggedIn() ? 'in' : 'out');
   }
 }

@@ -16,7 +16,9 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+  }
+
   ngOnInit() {
     this.getProducts();
   }

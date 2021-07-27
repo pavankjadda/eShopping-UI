@@ -69,7 +69,7 @@ export const ApiRoutes: Routes = [
     RouterModule.forChild(ApiRoutes),
   ],
   exports: [RouterModule],
-  declarations: [
-  ],
+  declarations: [],
 })
-export class ApiRoutingModule {}
+export class ApiRoutingModule {
+}

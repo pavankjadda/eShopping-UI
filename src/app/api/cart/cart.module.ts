@@ -20,4 +20,5 @@ import {SpinnerModule} from 'primeng/spinner';
   ],
   exports: [RouterModule],
 })
-export class CartModule {}
+export class CartModule {
+}

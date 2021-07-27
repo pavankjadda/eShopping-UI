@@ -12,45 +12,45 @@
   <h1>My Cart</h1>
   <table class="table">
     <thead style="text-align: center;">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Cost</th>
-        <th scope="col"></th>
-      </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Cost</th>
+      <th scope="col"></th>
+    </tr>
     </thead>
     <tbody style="text-align: center;">
-      <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          <a [routerLink]="['/product', cartProduct.product.id]">{{
-            cartProduct.product.name
+    <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <a [routerLink]="['/product', cartProduct.product.id]">{{
+          cartProduct.product.name
           }}</a>
-        </td>
-        <td>
-          <p-spinner
-            (onChange)="updateCartProductQuantity(cartProduct)"
-            [(ngModel)]="cartProduct.quantity"
-            [step]="1"
-            [max]="getInventory(cartProduct)"
-          >
-            cartProduct.quantity
-          </p-spinner>
-        </td>
-        <td>
-          {{ cartProduct.product.price.currency.symbol }}
-          {{ cartProduct.quantity * cartProduct.product.price.amount }}
-        </td>
-        <td>
-          <button
-            class="btn btn-danger btn-sm"
-            (click)="deleteProductFromCart(cartProduct)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+      </td>
+      <td>
+        <p-spinner
+          (onChange)="updateCartProductQuantity(cartProduct)"
+          [(ngModel)]="cartProduct.quantity"
+          [max]="getInventory(cartProduct)"
+          [step]="1"
+        >
+          cartProduct.quantity
+        </p-spinner>
+      </td>
+      <td>
+        {{ cartProduct.product.price.currency.symbol }}
+        {{ cartProduct.quantity * cartProduct.product.price.amount }}
+      </td>
+      <td>
+        <button
+          (click)="deleteProductFromCart(cartProduct)"
+          class="btn btn-danger btn-sm"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 
@@ -71,17 +71,17 @@
     <input
       (click)="checkout()"
       class="btn btn-primary"
+      style="margin: 20px;"
       type="button"
       value="Checkout"
-      style="margin: 20px;"
     />
   </p>
 </div>
 
 <div *ngIf="!cartDataAvailable()">
-  <br />
-  <br />
-  <br />
+  <br/>
+  <br/>
+  <br/>
   <h4>Your Shopping Cart is empty</h4>
   <p style="text-align: center;">
     <input

@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
       let passwordInput = group.controls[password],
         passwordConfirmationInput = group.controls[confirmPassword];
       if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({ passwordsMatched: false });
+        return passwordConfirmationInput.setErrors({passwordsMatched: false});
       } else {
         return passwordConfirmationInput.setErrors(null);
       }

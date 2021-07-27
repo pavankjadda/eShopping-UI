@@ -15,7 +15,8 @@ export class CityComponent implements OnInit {
   pageNumber: number;
   totalPages: number;
 
-  constructor(private cityService: CityService) {}
+  constructor(private cityService: CityService) {
+  }
 
   ngOnInit() {
     this.pageNumber = 0;

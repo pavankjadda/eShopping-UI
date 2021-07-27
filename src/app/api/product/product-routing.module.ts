@@ -45,4 +45,5 @@ export const productManagementRoute: Routes = [
   imports: [RouterModule.forChild(productManagementRoute)],
   exports: [RouterModule],
 })
-export class ProductRoutingModule {}
+export class ProductRoutingModule {
+}

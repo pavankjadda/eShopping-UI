@@ -29,7 +29,7 @@ export class ProductNewComponent implements OnInit {
   manufacturers: Array<Manufacturer>;
 
   productForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }, Validators.minLength(2)),
+    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
     name: new FormControl(''),
     description: new FormControl(''),
     quantity: new FormControl(''),
@@ -39,11 +39,13 @@ export class ProductNewComponent implements OnInit {
     currency: new FormControl('', Validators.required),
     manufacturerControl: new FormControl('', Validators.required),
   });
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.loadCategories();
@@ -79,6 +81,23 @@ export class ProductNewComponent implements OnInit {
       }
     );
   }
+
+  manufacturersDataAvailable(): boolean {
+    return this.manufacturers !== undefined;
+  }
+
+  categoriesDataAvailable(): boolean {
+    return this.categories !== undefined;
+  }
+
+  currenciesDataAvailable(): boolean {
+    return this.currencies !== undefined;
+  }
+
+  goBack() {
+    this.router.navigate(['/product']);
+  }
+
   private updateProductInventory(product: Product) {
     const url =
       environment.BASE_URL +
@@ -116,8 +135,10 @@ export class ProductNewComponent implements OnInit {
       (categories) => {
         this.categories = categories;
       },
-      (error1) => {},
-      () => {}
+      (error1) => {
+      },
+      () => {
+      }
     );
   }
 
@@ -128,8 +149,10 @@ export class ProductNewComponent implements OnInit {
       (currencies) => {
         this.currencies = currencies;
       },
-      (error1) => {},
-      () => {}
+      (error1) => {
+      },
+      () => {
+      }
     );
   }
 
@@ -140,24 +163,10 @@ export class ProductNewComponent implements OnInit {
       (manufacturers) => {
         this.manufacturers = manufacturers;
       },
-      (error1) => {},
-      () => {}
+      (error1) => {
+      },
+      () => {
+      }
     );
-  }
-
-  manufacturersDataAvailable(): boolean {
-    return this.manufacturers !== undefined;
-  }
-
-  categoriesDataAvailable(): boolean {
-    return this.categories !== undefined;
-  }
-
-  currenciesDataAvailable(): boolean {
-    return this.currencies !== undefined;
-  }
-
-  goBack() {
-    this.router.navigate(['/product']);
   }
 }

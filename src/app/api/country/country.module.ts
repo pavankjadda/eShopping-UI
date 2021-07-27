@@ -8,4 +8,5 @@ import {CountryRoutingModule} from './country-routing.module';
   declarations: [CountryComponent],
   imports: [CommonModule, ReactiveFormsModule, CountryRoutingModule],
 })
-export class CountryModule {}
+export class CountryModule {
+}

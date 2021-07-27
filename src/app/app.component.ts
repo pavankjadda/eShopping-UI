@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private spinner: NgxSpinnerService) {
     console.log('Is production environment: ' + environment.production); // Logs false for default environment
   }
+
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof RouteConfigLoadStart) {

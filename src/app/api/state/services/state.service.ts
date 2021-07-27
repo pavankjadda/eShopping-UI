@@ -7,7 +7,8 @@ import {State} from '../model/state';
   providedIn: 'root',
 })
 export class StateService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getStates(url) {
     return this.httpClient.get<State[]>(url);

@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     if (!this.authService.isUserLoggedIn()) {

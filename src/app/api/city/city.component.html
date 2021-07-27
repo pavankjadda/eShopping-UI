@@ -15,24 +15,24 @@
     </table>
     <div style="margin: 30px;">
       <input
-        type="button"
+        (click)="getFirstPageCities()"
         class="btn btn-primary"
         style="margin: 30px;"
-        (click)="getFirstPageCities()"
+        type="button"
         value="Home"
       />
       <input
-        type="button"
+        (click)="getPreviousCities()"
         class="btn btn-primary"
         style="margin: 30px;"
-        (click)="getPreviousCities()"
+        type="button"
         value="Back"
       />
       <input
-        type="button"
+        (click)="getNextCities()"
         class="btn btn-primary"
         style="margin: 30px;"
-        (click)="getNextCities()"
+        type="button"
         value="Next"
       />
     </div>

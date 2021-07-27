@@ -8,4 +8,5 @@ import {StateRoutingModule} from './state-routing.module';
   declarations: [StateComponent],
   imports: [CommonModule, ReactiveFormsModule, StateRoutingModule],
 })
-export class StateModule {}
+export class StateModule {
+}

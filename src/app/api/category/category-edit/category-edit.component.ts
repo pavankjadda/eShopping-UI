@@ -13,7 +13,7 @@ import {CategoryService} from '../service/category.service';
 })
 export class CategoryEditComponent implements OnInit {
   categoryForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }, Validators.minLength(2)),
+    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
     name: new FormControl(''),
     description: new FormControl(''),
   });
@@ -22,7 +22,8 @@ export class CategoryEditComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -51,8 +52,10 @@ export class CategoryEditComponent implements OnInit {
     const url = environment.BASE_URL + CATEGORY_API_URL + '/update';
 
     this.categoryService.updateCategory(url, category).subscribe(
-      (value) => {},
-      (error1) => {},
+      (value) => {
+      },
+      (error1) => {
+      },
       () => {
         this.router.navigate(['/category/list']);
       }

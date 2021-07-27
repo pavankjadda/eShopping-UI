@@ -7,7 +7,8 @@ export const DEFAULT_TIMEOUT = new InjectionToken<number>('defaultTimeout');
 
 @Injectable()
 export class TimeoutInterceptorService implements HttpInterceptor {
-  constructor(@Inject(DEFAULT_TIMEOUT) protected defaultTimeout: number) {}
+  constructor(@Inject(DEFAULT_TIMEOUT) protected defaultTimeout: number) {
+  }
 
   intercept(
     req: HttpRequest<any>,

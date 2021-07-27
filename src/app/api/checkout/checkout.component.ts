@@ -78,7 +78,8 @@ export class CheckoutComponent implements OnInit {
     private addressService: AddressService,
     private router: Router,
     private modalService: BsModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getMyCart();
@@ -104,58 +105,6 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.addressForm.reset();
     }
-  }
-
-  private getMyCart() {
-    this.ngxSpinnerService.show();
-    const cartUrl =
-      environment.BASE_URL +
-      CART_API_URL +
-      '/find/user/' +
-      this.authService.currentUserValue.id;
-    this.cartService.getMyCart(cartUrl).subscribe((data) => {
-      localStorage.setItem('currentCart', JSON.stringify(data));
-      this.cartService.currentCartSubject.next(data);
-      this.cart = data;
-      if (data.cartProducts !== null) {
-        this.cartProducts = data.cartProducts;
-      }
-      this.calculateTotalCost(this.cartProducts);
-      //this.checkAndHoldInventory();
-      this.getAddresses();
-
-      this.ngxSpinnerService.hide();
-    });
-  }
-
-  private createOrder() {}
-
-  private calculateTotalCost(cartProducts: Array<CartProduct>) {
-    let totalCost = 0;
-    cartProducts.forEach(function (cartproduct) {
-      totalCost += cartproduct.quantity * cartproduct.product.price.amount;
-    });
-    if (this.taxRate !== 0) {
-      this.taxAmount = totalCost * this.taxRate;
-    }
-    this.totalCost = totalCost + this.taxAmount;
-  }
-
-  private checkAndHoldInventory() {}
-
-  private getAddresses() {
-    let userProfileId = this.authService.currentUserSubject.value.userProfile
-      .id;
-    let userProfileUrl =
-      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
-    this.userProfileService.getUserProfile(userProfileUrl).subscribe(
-      (data) => {
-        this.addresses = data.addresses;
-      },
-      (error1) => {
-        console.log('Failed to get User Profile information. Error: ' + error1);
-      }
-    );
   }
 
   async changeShippingAddress(address: Address) {
@@ -264,32 +213,6 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  private loadAddressTypes() {
-    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
-    this.addressTypeService.getAddressTypes(url).subscribe(
-      (addressTypes) => {
-        this.addressTypes = addressTypes;
-        this.addressForm.patchValue({
-          addressTypes: addressTypes,
-        });
-        console.log('Successfully loaded Address types');
-      },
-      (error1) => {
-        console.log('Failed to load mAddress types');
-      }
-    );
-  }
-
-  private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
-    this.countryService.getCountries(url).subscribe(
-      (countries) => {
-        this.countries = countries;
-      },
-      (error1) => {}
-    );
-  }
-
   loadStates() {
     const country = this.addressForm.value.country;
     const url =
@@ -353,5 +276,86 @@ export class CheckoutComponent implements OnInit {
 
   backToCart() {
     this.router.navigate(['/cart']);
+  }
+
+  private getMyCart() {
+    this.ngxSpinnerService.show();
+    const cartUrl =
+      environment.BASE_URL +
+      CART_API_URL +
+      '/find/user/' +
+      this.authService.currentUserValue.id;
+    this.cartService.getMyCart(cartUrl).subscribe((data) => {
+      localStorage.setItem('currentCart', JSON.stringify(data));
+      this.cartService.currentCartSubject.next(data);
+      this.cart = data;
+      if (data.cartProducts !== null) {
+        this.cartProducts = data.cartProducts;
+      }
+      this.calculateTotalCost(this.cartProducts);
+      //this.checkAndHoldInventory();
+      this.getAddresses();
+
+      this.ngxSpinnerService.hide();
+    });
+  }
+
+  private createOrder() {
+  }
+
+  private calculateTotalCost(cartProducts: Array<CartProduct>) {
+    let totalCost = 0;
+    cartProducts.forEach(function (cartproduct) {
+      totalCost += cartproduct.quantity * cartproduct.product.price.amount;
+    });
+    if (this.taxRate !== 0) {
+      this.taxAmount = totalCost * this.taxRate;
+    }
+    this.totalCost = totalCost + this.taxAmount;
+  }
+
+  private checkAndHoldInventory() {
+  }
+
+  private getAddresses() {
+    let userProfileId = this.authService.currentUserSubject.value.userProfile
+      .id;
+    let userProfileUrl =
+      environment.BASE_URL + USER_PROFILE_API_URL + '/' + userProfileId;
+    this.userProfileService.getUserProfile(userProfileUrl).subscribe(
+      (data) => {
+        this.addresses = data.addresses;
+      },
+      (error1) => {
+        console.log('Failed to get User Profile information. Error: ' + error1);
+      }
+    );
+  }
+
+  private loadAddressTypes() {
+    const url = environment.BASE_URL + ADDRESS_TYPE_API_URL + '/list';
+    this.addressTypeService.getAddressTypes(url).subscribe(
+      (addressTypes) => {
+        this.addressTypes = addressTypes;
+        this.addressForm.patchValue({
+          addressTypes: addressTypes,
+        });
+        console.log('Successfully loaded Address types');
+      },
+      (error1) => {
+        console.log('Failed to load mAddress types');
+      }
+    );
+  }
+
+  private loadCountries() {
+    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
+    this.countryService.getCountries(url).subscribe(
+      (countries) => {
+        this.countries = countries;
+      },
+      (error1) => {
+      }
+    );
   }
 }

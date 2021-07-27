@@ -6,4 +6,5 @@ import {LoginManagementRoutes} from './login/login-management.route';
   imports: [RouterModule.forChild(LoginManagementRoutes)],
   exports: [RouterModule],
 })
-export class CoreRoutingModule {}
+export class CoreRoutingModule {
+}

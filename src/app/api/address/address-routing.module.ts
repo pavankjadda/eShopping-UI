@@ -15,4 +15,5 @@ export const addressManagementRoute: Routes = [
   imports: [RouterModule.forChild(addressManagementRoute)],
   exports: [RouterModule],
 })
-export class AddressRoutingModule {}
+export class AddressRoutingModule {
+}

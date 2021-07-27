@@ -15,4 +15,5 @@ export const cartManagementRoute: Routes = [
   imports: [RouterModule.forChild(cartManagementRoute)],
   exports: [RouterModule],
 })
-export class CartRoutingModule {}
+export class CartRoutingModule {
+}

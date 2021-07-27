@@ -7,7 +7,7 @@
 
 <div class="container container-fluid">
   <h1 style="text-align: center;">Checkout</h1>
-  <br />
+  <br/>
 
   <div class="card border-info">
     <div class="card-header"><h4>Review Items</h4></div>
@@ -18,50 +18,50 @@
       >
         <table class="table">
           <thead style="text-align: center;">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Cost</th>
-              <th scope="col"></th>
-            </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cost</th>
+            <th scope="col"></th>
+          </tr>
           </thead>
           <tbody style="text-align: center;">
-            <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>
-                <a [routerLink]="['/product', cartProduct.product.id]">{{
-                  cartProduct.product.name
+          <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <a [routerLink]="['/product', cartProduct.product.id]">{{
+                cartProduct.product.name
                 }}</a>
-              </td>
-              <td>{{ cartProduct.quantity }}</td>
-              <td>
-                {{ cartProduct.product.price.currency.symbol }}
-                {{ cartProduct.quantity * cartProduct.product.price.amount }}
-              </td>
-            </tr>
+            </td>
+            <td>{{ cartProduct.quantity }}</td>
+            <td>
+              {{ cartProduct.product.price.currency.symbol }}
+              {{ cartProduct.quantity * cartProduct.product.price.amount }}
+            </td>
+          </tr>
           </tbody>
           <tfoot style="text-align: center;">
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <th>Tax = ${{ taxAmount | number: "1.2-2" }}</th>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <th>
-                <h5>Total Cost = ${{ totalCost.toPrecision(6) }}</h5>
-              </th>
-            </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Tax = ${{ taxAmount | number: "1.2-2" }}</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>
+              <h5>Total Cost = ${{ totalCost.toPrecision(6) }}</h5>
+            </th>
+          </tr>
           </tfoot>
         </table>
       </div>
     </div>
   </div>
-  <br />
+  <br/>
 
   <!-- Shipping Address -->
   <div class="card border-info">
@@ -76,21 +76,21 @@
               <div class="form-check" style="margin: 10px;">
                 <label class="form-check-label" style="font-weight: bold;">
                   <input
+                    (change)="changeShippingAddress(address)"
                     class="form-check-input"
                     name="shippingAddress"
                     type="radio"
                     value="{{ address }}"
-                    (change)="changeShippingAddress(address)"
                   />{{ address.addressType.type }}
                 </label>
               </div>
               <address style="margin-left: 20px;">
-                {{ address.streetName }}<br />
-                Apt {{ address.apartment }}<br />
+                {{ address.streetName }}<br/>
+                Apt {{ address.apartment }}<br/>
                 {{ address.city.name }}, {{ address.state.name }} -
-                {{ address.zipCode }}<br />
+                {{ address.zipCode }}<br/>
               </address>
-              <br />
+              <br/>
             </div>
             <div class="col-6">
               <button
@@ -122,7 +122,7 @@
       </div>
     </div>
   </div>
-  <br />
+  <br/>
 
   <!-- Billing Address -->
   <div class="card border-info">
@@ -137,19 +137,19 @@
               <div class="form-check" style="margin: 10px;">
                 <label class="form-check-label" style="font-weight: bold;">
                   <input
+                    (change)="changeBillingAddress(address)"
                     class="form-check-input"
                     name="billingAddress"
                     type="radio"
                     value="{{ address }}"
-                    (change)="changeBillingAddress(address)"
                   />{{ address.addressType.type }}
                 </label>
               </div>
               <address style="margin: 10px;">
-                {{ address.streetName }}<br />
-                Apt {{ address.apartment }}<br />
+                {{ address.streetName }}<br/>
+                Apt {{ address.apartment }}<br/>
                 {{ address.city.name }}, {{ address.state.name }} -
-                {{ address.zipCode }}<br />
+                {{ address.zipCode }}<br/>
               </address>
             </div>
             <div class="col-6">
@@ -168,7 +168,7 @@
                 value="Delete"
               />
             </div>
-            <br />
+            <br/>
           </div>
         </div>
         <div class="card-footer">
@@ -201,7 +201,7 @@
       <form [formGroup]="addressForm">
         <div class="form-group">
           <label
-            >Address Type
+          >Address Type
             <select
               [compareWith]="compareAddressTypeFn"
               class="form-control"
@@ -246,7 +246,7 @@
         </div>
         <div class="form-group">
           <label
-            >Country
+          >Country
             <select
               (change)="loadStates()"
               [compareWith]="compareCountryFn"
@@ -263,7 +263,7 @@
 
         <div class="form-group">
           <label
-            >State
+          >State
             <select
               (change)="loadCities()"
               [compareWith]="compareStateFn"
@@ -280,7 +280,7 @@
 
         <div class="form-group">
           <label
-            >City
+          >City
             <select
               [compareWith]="compareCityFn"
               class="form-control"
@@ -322,7 +322,7 @@
     </div>
   </ng-template>
 
-  <br />
+  <br/>
   <p style="text-align: center;">
     <input
       (click)="backToCart()"

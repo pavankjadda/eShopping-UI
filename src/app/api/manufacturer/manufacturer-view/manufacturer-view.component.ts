@@ -16,7 +16,7 @@ export class ManufacturerViewComponent implements OnInit {
   manufacturer: Manufacturer;
 
   manufacturerForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
     displayName: new FormControl(''),
     description: new FormControl(''),
@@ -32,10 +32,32 @@ export class ManufacturerViewComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getManufacturer();
+  }
+
+  manufacturerDataAvailable(): boolean {
+    return this.manufacturer !== undefined;
+  }
+
+  deleteManufacturer() {
+    if (confirm('Are you sure you wanna delete Manufacturer?')) {
+      const id = this.route.snapshot.paramMap.get('id');
+      const url = environment.BASE_URL + MANUFACTURER_API_URL + '/delete/' + id;
+
+      this.manufacturerService.deleteManufacturer(url).subscribe(
+        (data) => {
+          console.log('Manufacturer with id: ' + id + ' deleted');
+          this.router.navigate(['manufacturer/list']);
+        },
+        (error1) => {
+          console.log('Failed to delete Manufacturer with id: ' + id);
+        }
+      );
+    }
   }
 
   private getManufacturer() {
@@ -78,26 +100,5 @@ export class ManufacturerViewComponent implements OnInit {
           this.spinner.hide();
         }
       );
-  }
-
-  manufacturerDataAvailable(): boolean {
-    return this.manufacturer !== undefined;
-  }
-
-  deleteManufacturer() {
-    if (confirm('Are you sure you wanna delete Manufacturer?')) {
-      const id = this.route.snapshot.paramMap.get('id');
-      const url = environment.BASE_URL + MANUFACTURER_API_URL + '/delete/' + id;
-
-      this.manufacturerService.deleteManufacturer(url).subscribe(
-        (data) => {
-          console.log('Manufacturer with id: ' + id + ' deleted');
-          this.router.navigate(['manufacturer/list']);
-        },
-        (error1) => {
-          console.log('Failed to delete Manufacturer with id: ' + id);
-        }
-      );
-    }
   }
 }

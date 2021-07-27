@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   addresses: Array<Address>;
 
   userProfileForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     firstName: new FormControl(''),
     username: new FormControl(''),
     lastName: new FormControl(''),
@@ -34,9 +34,23 @@ export class UserProfileComponent implements OnInit {
     private userProfileService: UserProfileService,
     private spinner: NgxSpinnerService,
     private router: Router
-  ) {}
+  ) {
+  }
+
   ngOnInit() {
     this.getUserProfile();
+  }
+
+  userProfileDataAvailable() {
+    return this.userProfile !== undefined && this.userProfile !== null;
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
+  editUserProfile() {
+    this.router.navigate(['/account/profile/edit']);
   }
 
   private getUserProfile() {
@@ -65,17 +79,5 @@ export class UserProfileComponent implements OnInit {
         this.spinner.hide();
       }
     );
-  }
-
-  userProfileDataAvailable() {
-    return this.userProfile !== undefined && this.userProfile !== null;
-  }
-
-  goHome() {
-    this.router.navigate(['/']);
-  }
-
-  editUserProfile() {
-    this.router.navigate(['/account/profile/edit']);
   }
 }

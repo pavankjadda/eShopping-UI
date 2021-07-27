@@ -20,12 +20,14 @@ export class CartComponent implements OnInit {
   cartProducts: Array<CartProduct>;
   productInventory: Array<ProductInventory>;
   totalCost: number;
+
   constructor(
     private cartService: CartService,
     private ngxSpinnerService: NgxSpinnerService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.totalCost = 0;
@@ -56,8 +58,8 @@ export class CartComponent implements OnInit {
     if (
       confirm(
         'Are you sure you want to delete ' +
-          cartProduct.product.name +
-          ' from Cart?'
+        cartProduct.product.name +
+        ' from Cart?'
       )
     ) {
       this.ngxSpinnerService.show();
@@ -106,6 +108,28 @@ export class CartComponent implements OnInit {
     }
   }
 
+  getInventory(cartProduct: CartProduct): number {
+    if (this.productInventory !== undefined) {
+      for (let i = 0; i < this.productInventory.length; i++) {
+        if (
+          cartProduct.product.id === this.productInventory[i].product.id &&
+          cartProduct.quantity <= this.productInventory[i].quantity
+        ) {
+          return this.productInventory[i].quantity;
+        }
+      }
+    }
+    return 1;
+  }
+
+  goToProducts() {
+    this.router.navigate(['/product/list']);
+  }
+
+  checkout() {
+    this.router.navigate(['/checkout']);
+  }
+
   private getMyCart() {
     this.ngxSpinnerService.show();
     const cartUrl =
@@ -147,27 +171,5 @@ export class CartComponent implements OnInit {
           console.log(error);
         }
       );
-  }
-
-  getInventory(cartProduct: CartProduct): number {
-    if (this.productInventory !== undefined) {
-      for (let i = 0; i < this.productInventory.length; i++) {
-        if (
-          cartProduct.product.id === this.productInventory[i].product.id &&
-          cartProduct.quantity <= this.productInventory[i].quantity
-        ) {
-          return this.productInventory[i].quantity;
-        }
-      }
-    }
-    return 1;
-  }
-
-  goToProducts() {
-    this.router.navigate(['/product/list']);
-  }
-
-  checkout() {
-    this.router.navigate(['/checkout']);
   }
 }

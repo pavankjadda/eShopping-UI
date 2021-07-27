@@ -6,7 +6,8 @@ import {UserProfile} from '../model/user-profile';
   providedIn: 'root',
 })
 export class UserProfileService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getUserProfile(userProfileUrl: string) {
     return this.httpClient.get<UserProfile>(userProfileUrl);

@@ -13,17 +13,18 @@ import {CategoryService} from '../service/category.service';
 })
 export class CategoryViewComponent implements OnInit {
   category: Category;
+  categoryForm = new FormGroup({
+    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
+    name: new FormControl({value: '', disabled: true}),
+    description: new FormControl({value: '', disabled: true}),
+  });
+
   constructor(
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
-
-  categoryForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }, Validators.minLength(2)),
-    name: new FormControl({ value: '', disabled: true }),
-    description: new FormControl({ value: '', disabled: true }),
-  });
+  ) {
+  }
 
   ngOnInit() {
     this.getCategory();

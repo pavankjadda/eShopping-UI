@@ -22,4 +22,5 @@ import {AdminHomeRoutes} from './admin-home/admin-home-routing';
     UserManagementHomeComponent,
   ],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule {
+}

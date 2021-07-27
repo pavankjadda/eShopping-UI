@@ -8,4 +8,5 @@ import {RegionRoutingModule} from './region-routing.module';
   declarations: [RegionComponent],
   imports: [CommonModule, ReactiveFormsModule, RegionRoutingModule],
 })
-export class RegionModule {}
+export class RegionModule {
+}

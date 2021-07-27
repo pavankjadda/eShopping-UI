@@ -16,7 +16,8 @@ export class OrderNewComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private productService: ProductService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getProducts();

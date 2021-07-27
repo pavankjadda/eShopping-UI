@@ -15,4 +15,5 @@ export const countryManagementRoute: Routes = [
   imports: [RouterModule.forChild(countryManagementRoute)],
   exports: [RouterModule],
 })
-export class CountryRoutingModule {}
+export class CountryRoutingModule {
+}

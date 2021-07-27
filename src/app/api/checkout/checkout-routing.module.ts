@@ -10,8 +10,10 @@ export const checkManagementRoute: Routes = [
     canActivate: [UserAuthGuard],
   },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(checkManagementRoute)],
   exports: [RouterModule],
 })
-export class CheckoutRoutingModule {}
+export class CheckoutRoutingModule {
+}

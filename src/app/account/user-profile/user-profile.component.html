@@ -7,7 +7,7 @@
 
 <div *ngIf="userProfileDataAvailable()">
   <h1>Profile</h1>
-  <br />
+  <br/>
   <form [formGroup]="userProfileForm">
     <div class="form-row align-items-center">
       <div class="col-auto mb-3">
@@ -17,19 +17,19 @@
           formControlName="username"
           id="username"
           name="username"
-          type="text"
           readonly
+          type="text"
         />
         <small class="form-text text-muted" id="emailHelp"></small>
       </div>
       <div class="col-auto mb-3">
-        <label for="email">Email</label> <br />
+        <label for="email">Email</label> <br/>
         <input
-          type="text"
           class="form-control"
           formControlName="email"
           id="email"
           readonly
+          type="text"
         />
       </div>
     </div>
@@ -40,53 +40,53 @@
           class="form-control"
           formControlName="firstName"
           id="firstName"
-          type="text"
           readonly
+          type="text"
         />
       </div>
       <div class="col-auto">
         <label for="lastName">Last Name</label>
         <input
-          type="text"
           class="form-control"
           formControlName="lastName"
           id="lastName"
           readonly
+          type="text"
         />
       </div>
     </div>
 
     <div class="form-row">
       <div class="col-auto">
-        <label for="phone">Phone</label> <br />
+        <label for="phone">Phone</label> <br/>
         <input
-          type="text"
           class="form-control"
           formControlName="phone"
           id="phone"
           readonly
+          type="text"
         />
       </div>
     </div>
-    <br />
-    <br />
+    <br/>
+    <br/>
     <div>
       <h3>Addresses:</h3>
       <div *ngFor="let address of addresses">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <b>{{ address.addressType.type }}:</b> <br />
+            <b>{{ address.addressType.type }}:</b> <br/>
             <label>{{ address.streetName }} Apt {{ address.apartment }}</label>
-            <br />
+            <br/>
             <label
-              >{{ address.city.name }}, {{ address.state.code }} -
+            >{{ address.city.name }}, {{ address.state.code }} -
               {{ address.zipCode }}</label
             >
-            <br />
+            <br/>
             <label>{{ address.country.name }}</label>
           </div>
         </div>
-        <br />
+        <br/>
       </div>
     </div>
 

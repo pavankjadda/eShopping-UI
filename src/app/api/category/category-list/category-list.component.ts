@@ -16,7 +16,8 @@ export class CategoryListComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.getCategories();

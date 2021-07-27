@@ -29,7 +29,7 @@ export class ProductEditComponent implements OnInit {
   manufacturers: Array<Manufacturer>;
 
   productForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
     description: new FormControl(''),
     quantity: new FormControl(''),
@@ -45,13 +45,32 @@ export class ProductEditComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.loadCategories();
     this.loadCurrencies();
     this.loadManufacturers();
     this.getProduct();
+  }
+
+  productDataAvailable(): boolean {
+    return this.product !== undefined;
+  }
+
+  compareCategoryFn(c1: Category, c2: Category): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  compareManufacturerFn(c1: Manufacturer, c2: Manufacturer): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  goBack() {
+    this.router.navigate([
+      '/product/' + this.route.snapshot.paramMap.get('id'),
+    ]);
   }
 
   private getProduct() {
@@ -140,7 +159,8 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log('Failed to load categories');
       },
-      () => {}
+      () => {
+      }
     );
   }
 
@@ -154,7 +174,8 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log('Failed to load currencies');
       },
-      () => {}
+      () => {
+      }
     );
   }
 
@@ -169,25 +190,8 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log('Failed to load manufacturers');
       },
-      () => {}
+      () => {
+      }
     );
-  }
-
-  productDataAvailable(): boolean {
-    return this.product !== undefined;
-  }
-
-  compareCategoryFn(c1: Category, c2: Category): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
-  }
-
-  compareManufacturerFn(c1: Manufacturer, c2: Manufacturer): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
-  }
-
-  goBack() {
-    this.router.navigate([
-      '/product/' + this.route.snapshot.paramMap.get('id'),
-    ]);
   }
 }

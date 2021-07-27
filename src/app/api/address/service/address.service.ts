@@ -6,7 +6,8 @@ import {Address} from '../model/address';
   providedIn: 'root',
 })
 export class AddressService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getAddresses(url: string) {
     return this.httpClient.get<Address[]>(url);

@@ -31,4 +31,5 @@ import {ProductRoutingModule} from './product-routing.module';
   ],
   exports: [RouterModule],
 })
-export class ProductModule {}
+export class ProductModule {
+}

@@ -12,7 +12,8 @@ export class UserManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     //if(this.authService.currentUserValue.token === '' || !this.authService.isValidSession())

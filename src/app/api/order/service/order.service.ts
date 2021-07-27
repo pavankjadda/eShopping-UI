@@ -6,7 +6,8 @@ import {Order} from '../model/order';
   providedIn: 'root',
 })
 export class OrderService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getOrders(url: string) {
     return this.httpClient.get<Order[]>(url);

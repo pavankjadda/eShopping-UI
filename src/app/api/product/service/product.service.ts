@@ -9,7 +9,8 @@ import {ProductInventory} from '../model/product-inventory';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getProducts(url) {
     return this.httpClient.get<Product[]>(url);

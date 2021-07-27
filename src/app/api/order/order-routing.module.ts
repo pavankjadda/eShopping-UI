@@ -45,4 +45,5 @@ export const orderManagementRoute: Routes = [
   imports: [RouterModule.forChild(orderManagementRoute)],
   exports: [RouterModule],
 })
-export class OrderRoutingModule {}
+export class OrderRoutingModule {
+}

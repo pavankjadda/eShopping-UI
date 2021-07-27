@@ -45,4 +45,5 @@ export const manufacturerManagementRoute: Routes = [
   imports: [RouterModule.forChild(manufacturerManagementRoute)],
   exports: [RouterModule],
 })
-export class ManufacturerRoutingModule {}
+export class ManufacturerRoutingModule {
+}

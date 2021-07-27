@@ -8,16 +8,17 @@ import {SettingsComponent} from './settings/settings.component';
 import {UserProfileEditComponent} from './user-profile/user-profile-edit/user-profile-edit.component';
 
 export const accountManagementRoutes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'activate', component: ActivateComponent },
-  { path: 'password_reset', component: PasswordResetComponent },
-  { path: 'profile', component: UserProfileComponent },
-  { path: 'profile/edit', component: UserProfileEditComponent },
-  { path: 'settings', component: SettingsComponent },
+  {path: 'register', component: RegisterComponent},
+  {path: 'activate', component: ActivateComponent},
+  {path: 'password_reset', component: PasswordResetComponent},
+  {path: 'profile', component: UserProfileComponent},
+  {path: 'profile/edit', component: UserProfileEditComponent},
+  {path: 'settings', component: SettingsComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(accountManagementRoutes)],
   exports: [RouterModule],
 })
-export class AccountRoutingModule {}
+export class AccountRoutingModule {
+}

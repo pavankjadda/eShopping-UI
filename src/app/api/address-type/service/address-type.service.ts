@@ -7,11 +7,13 @@ import {ManufacturerAddressType} from '../../manufacturer/model/manufacturer-add
   providedIn: 'root',
 })
 export class AddressTypeService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   getAddressTypes(url: string) {
     return this.httpClient.get<AddressType[]>(url);
   }
+
   getManufacturerAddressTypes(url: string) {
     return this.httpClient.get<ManufacturerAddressType[]>(url);
   }

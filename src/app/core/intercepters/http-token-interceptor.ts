@@ -9,7 +9,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private cookieService: CookieService
-  ) {}
+  ) {
+  }
 
   intercept(
     request: HttpRequest<any>,

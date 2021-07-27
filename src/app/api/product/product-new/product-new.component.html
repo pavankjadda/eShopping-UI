@@ -1,65 +1,65 @@
 <div>
   <h2>Create New Product</h2>
 
-  <br />
+  <br/>
   <form [formGroup]="productForm">
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="name">Name</label>
       <input
-        type="text"
         class="form-control"
-        id="name"
         formControlName="name"
-        required
+        id="name"
         placeholder="Enter Product Name"
+        required
+        type="text"
       />
     </div>
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="description">Description</label>
       <textarea
         class="form-control"
-        id="description"
         formControlName="description"
-        required
+        id="description"
         placeholder="Enter Product Description"
+        required
       >
       </textarea>
     </div>
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="quantity">Quantity</label>
       <input
-        type="text"
         class="form-control"
         formControlName="quantity"
         id="quantity"
         placeholder="Enter quantity"
         required
+        type="text"
       />
     </div>
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label for="amount">Price ($)</label>
       <input
-        type="text"
         class="form-control"
         formControlName="amount"
         id="amount"
         placeholder="Enter Product Price (in USD)"
         required
+        type="text"
       />
     </div>
 
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label
-        >Category:
+      >Category:
         <select
           class="form-control"
-          name="categoryControl"
           formControlName="categoryControl"
+          name="categoryControl"
         >
           <option
-            [ngValue]="category"
             *ngFor="let category of categories"
             [defaultSelected]="true"
+            [ngValue]="category"
           >
             {{ category.name }}
           </option>
@@ -69,16 +69,16 @@
 
     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <label
-        >Manufacturer:
+      >Manufacturer:
         <select
           class="form-control"
           formControlName="manufacturerControl"
           name="manufacturerControl"
         >
           <option
-            [ngValue]="manufacturer"
             *ngFor="let manufacturer of manufacturers"
             [defaultSelected]="true"
+            [ngValue]="manufacturer"
           >
             {{ manufacturer.name }}
           </option>
@@ -86,14 +86,14 @@
       </label>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="createProduct()">
+    <button (click)="createProduct()" class="btn btn-primary" type="submit">
       Submit
     </button>
     <button
-      type="button"
+      (click)="goBack()"
       class="btn btn-primary"
       style="margin-left: 30px;"
-      (click)="goBack()"
+      type="button"
     >
       Cancel
     </button>

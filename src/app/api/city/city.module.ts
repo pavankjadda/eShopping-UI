@@ -8,4 +8,5 @@ import {CityRoutingModule} from './city-routing.module';
   declarations: [CityComponent],
   imports: [CommonModule, ReactiveFormsModule, CityRoutingModule],
 })
-export class CityModule {}
+export class CityModule {
+}

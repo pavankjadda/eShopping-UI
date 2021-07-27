@@ -35,7 +35,7 @@ export class ManufacturerNewComponent implements OnInit {
   cities: Array<City>;
 
   manufacturerForm = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
+    id: new FormControl({value: '', disabled: true}),
     name: new FormControl(''),
     displayName: new FormControl(''),
     description: new FormControl(''),
@@ -63,7 +63,8 @@ export class ManufacturerNewComponent implements OnInit {
     private addressService: AddressService,
     private spinnerService: NgxSpinnerService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.loadAddressTypes();
@@ -108,33 +109,6 @@ export class ManufacturerNewComponent implements OnInit {
       );
   }
 
-  private loadAddressTypes() {
-    const url =
-      environment.BASE_URL + MANUFACTURER_ADDRESS_TYPE_API_URL + '/list';
-    this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
-      (manufacturerAddressTypes) => {
-        this.manufacturerAddressTypes = manufacturerAddressTypes;
-        this.manufacturerForm.patchValue({
-          manufacturerAddressType: manufacturerAddressTypes,
-        });
-        console.log('Successfully loaded manufacturerAddress types');
-      },
-      (error1) => {
-        console.log('Failed to load manufacturerAddress types');
-      }
-    );
-  }
-
-  private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
-    this.countryService.getCountries(url).subscribe(
-      (countries) => {
-        this.countries = countries;
-      },
-      (error1) => {}
-    );
-  }
-
   loadStates() {
     const country = this.manufacturerForm.value.manufacturerAddress.country;
     const url =
@@ -166,5 +140,33 @@ export class ManufacturerNewComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/manufacturer']);
+  }
+
+  private loadAddressTypes() {
+    const url =
+      environment.BASE_URL + MANUFACTURER_ADDRESS_TYPE_API_URL + '/list';
+    this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
+      (manufacturerAddressTypes) => {
+        this.manufacturerAddressTypes = manufacturerAddressTypes;
+        this.manufacturerForm.patchValue({
+          manufacturerAddressType: manufacturerAddressTypes,
+        });
+        console.log('Successfully loaded manufacturerAddress types');
+      },
+      (error1) => {
+        console.log('Failed to load manufacturerAddress types');
+      }
+    );
+  }
+
+  private loadCountries() {
+    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
+    this.countryService.getCountries(url).subscribe(
+      (countries) => {
+        this.countries = countries;
+      },
+      (error1) => {
+      }
+    );
   }
 }

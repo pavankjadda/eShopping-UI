@@ -13,4 +13,5 @@ import {ApiRoutingModule} from './api-routing.module';
   entryComponents: [],
   providers: [],
 })
-export class ApiModule {}
+export class ApiModule {
+}
