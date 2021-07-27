@@ -9,7 +9,7 @@ git commit -m "Before Upgrade"
 git push origin "$CURRENT_BRANCH"
 
 npm update
-npm i typescript@4.0.5
+npm i typescript@4.2.4
 
 git add .
 git commit -m "After Upgrade"
