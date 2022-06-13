@@ -1,4 +1,4 @@
-name: Build eShopping-UI Project
+name: Build Project
 
 on: [push]
 
@@ -17,11 +17,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install Angular CLI
-      run: |
-        npm install -g @angular/cli @angular/core
     - name: Install dependencies
-      run: npm install
+      run: npm install --force
     - name: Build the app
-      run: ng build --prod
+      run: npm run build
 
