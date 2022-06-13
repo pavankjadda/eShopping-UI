@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -41,21 +41,21 @@ export class UserProfileEditComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  userProfileForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    address: new FormGroup({
-      addressType: new FormControl(''),
-      id: new FormControl(''),
-      streetName: new FormControl(''),
-      apartment: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      country: new FormControl(''),
-      zipCode: new FormControl(''),
+  userProfileForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    firstName: new UntypedFormControl(''),
+    lastName: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    phone: new UntypedFormControl(''),
+    address: new UntypedFormGroup({
+      addressType: new UntypedFormControl(''),
+      id: new UntypedFormControl(''),
+      streetName: new UntypedFormControl(''),
+      apartment: new UntypedFormControl(''),
+      city: new UntypedFormControl(''),
+      state: new UntypedFormControl(''),
+      country: new UntypedFormControl(''),
+      zipCode: new UntypedFormControl(''),
     }),
   });
 
@@ -151,7 +151,7 @@ export class UserProfileEditComponent implements OnInit {
   loadStates() {
     const country = this.userProfileForm.value.address.country;
     const url =
-      environment.BASE_URL + STATE_API_URL + '/find/country/' + country.id;
+      environment.BASE_URL + STATE_API_URL + '/find/country/' + country?.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       (data) => {
@@ -165,7 +165,7 @@ export class UserProfileEditComponent implements OnInit {
 
   loadCities() {
     const state = this.userProfileForm.value.address.state;
-    const url = environment.BASE_URL + CITY_API_URL + '/find/state/' + state.id;
+    const url = environment.BASE_URL + CITY_API_URL + '/find/state/' + state?.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       (data) => {

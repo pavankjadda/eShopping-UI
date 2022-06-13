@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, UntypedFormGroup} from '@angular/forms';
 import {AuthService} from '../auth/auth.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -16,7 +16,7 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       providers: [
         {provide: FormBuilder, useValue: FormBuilder},
-        {provide: FormGroup, useValue: FormGroup},
+        {provide: UntypedFormGroup, useValue: UntypedFormGroup},
         {provide: AuthService, useValue: AuthService},
         {provide: NgxSpinnerService, useValue: NgxSpinnerService},
       ],

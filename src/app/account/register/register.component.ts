@@ -1,6 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../core/auth/auth.service';
@@ -14,7 +14,7 @@ import {confirmPasswordValidator, passwordValidator, usernameValidator,} from '.
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   returnUrl: string;
   submitted: boolean;
 
@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private checkIfMatchingPasswords(password: string, confirmPassword: string) {
-    return (group: FormGroup) => {
+    return (group: UntypedFormGroup) => {
       let passwordInput = group.controls[password],
         passwordConfirmationInput = group.controls[confirmPassword];
       if (passwordInput.value !== passwordConfirmationInput.value) {

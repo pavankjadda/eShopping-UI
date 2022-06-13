@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
@@ -34,25 +34,25 @@ export class ManufacturerEditComponent implements OnInit {
   states: Array<State>;
   cities: Array<City>;
 
-  manufacturerForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    name: new FormControl(''),
-    displayName: new FormControl(''),
-    description: new FormControl(''),
-    manufacturerAddress: new FormGroup({
-      manufacturerAddressType: new FormControl(''),
-      id: new FormControl(''),
-      streetName: new FormControl(''),
-      apartment: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      country: new FormControl(''),
-      zipCode: new FormControl(''),
+  manufacturerForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    name: new UntypedFormControl(''),
+    displayName: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
+    manufacturerAddress: new UntypedFormGroup({
+      manufacturerAddressType: new UntypedFormControl(''),
+      id: new UntypedFormControl(''),
+      streetName: new UntypedFormControl(''),
+      apartment: new UntypedFormControl(''),
+      city: new UntypedFormControl(''),
+      state: new UntypedFormControl(''),
+      country: new UntypedFormControl(''),
+      zipCode: new UntypedFormControl(''),
     }),
-    phone: new FormControl(''),
-    contactEmail: new FormControl(''),
-    fax: new FormControl(''),
-    products: new FormControl(''),
+    phone: new UntypedFormControl(''),
+    contactEmail: new UntypedFormControl(''),
+    fax: new UntypedFormControl(''),
+    products: new UntypedFormControl(''),
   });
 
   constructor(

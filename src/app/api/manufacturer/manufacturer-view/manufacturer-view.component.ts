@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
@@ -15,16 +15,16 @@ import {ManufacturerService} from '../service/manufacturer.service';
 export class ManufacturerViewComponent implements OnInit {
   manufacturer: Manufacturer;
 
-  manufacturerForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    name: new FormControl(''),
-    displayName: new FormControl(''),
-    description: new FormControl(''),
-    manufacturerAddress: new FormControl(''),
-    contactEmail: new FormControl(''),
-    phone: new FormControl(''),
-    fax: new FormControl(''),
-    products: new FormControl(''),
+  manufacturerForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    name: new UntypedFormControl(''),
+    displayName: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
+    manufacturerAddress: new UntypedFormControl(''),
+    contactEmail: new UntypedFormControl(''),
+    phone: new UntypedFormControl(''),
+    fax: new UntypedFormControl(''),
+    products: new UntypedFormControl(''),
   });
 
   constructor(

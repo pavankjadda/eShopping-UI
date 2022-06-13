@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CATEGORY_API_URL} from '../../../app.constants';
@@ -12,10 +12,10 @@ import {CategoryService} from '../service/category.service';
   styleUrls: ['./category-new.component.scss'],
 })
 export class CategoryNewComponent implements OnInit {
-  categoryForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new FormControl(''),
-    description: new FormControl(''),
+  categoryForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
+    name: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
   });
 
   constructor(

@@ -4,14 +4,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ApiRoutingModule} from './api-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ApiRoutingModule
-  ],
-  declarations: [],
-  entryComponents: [],
-  providers: [],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        ApiRoutingModule
+    ],
+    declarations: [],
+    providers: []
 })
 export class ApiModule {
 }

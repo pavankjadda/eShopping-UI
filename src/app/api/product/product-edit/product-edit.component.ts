@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductInventory} from 'src/app/api/product/model/product-inventory';
 import {
@@ -28,16 +28,16 @@ export class ProductEditComponent implements OnInit {
   currencies: Array<Currency>;
   manufacturers: Array<Manufacturer>;
 
-  productForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    name: new FormControl(''),
-    description: new FormControl(''),
-    quantity: new FormControl(''),
-    price: new FormControl(''),
-    amount: new FormControl(''),
-    categoryControl: new FormControl(null),
-    currency: new FormControl(''),
-    manufacturerControl: new FormControl(null),
+  productForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    name: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
+    quantity: new UntypedFormControl(''),
+    price: new UntypedFormControl(''),
+    amount: new UntypedFormControl(''),
+    categoryControl: new UntypedFormControl(null),
+    currency: new UntypedFormControl(''),
+    manufacturerControl: new UntypedFormControl(null),
   });
 
   constructor(

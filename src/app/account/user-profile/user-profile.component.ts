@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
@@ -18,15 +18,15 @@ export class UserProfileComponent implements OnInit {
   userProfile: UserProfile;
   addresses: Array<Address>;
 
-  userProfileForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    firstName: new FormControl(''),
-    username: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    user: new FormControl(''),
-    addresses: new FormControl(''),
+  userProfileForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    firstName: new UntypedFormControl(''),
+    username: new UntypedFormControl(''),
+    lastName: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    phone: new UntypedFormControl(''),
+    user: new UntypedFormControl(''),
+    addresses: new UntypedFormControl(''),
   });
 
   constructor(

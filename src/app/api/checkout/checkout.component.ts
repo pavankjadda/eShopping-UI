@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -55,15 +55,15 @@ export class CheckoutComponent implements OnInit {
   selectedShippingAddress: Address;
   selectedBillingAddress: Address;
 
-  addressForm = new FormGroup({
-    addressType: new FormControl(''),
-    id: new FormControl(''),
-    streetName: new FormControl(''),
-    apartment: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
-    country: new FormControl(''),
-    zipCode: new FormControl(''),
+  addressForm = new UntypedFormGroup({
+    addressType: new UntypedFormControl(''),
+    id: new UntypedFormControl(''),
+    streetName: new UntypedFormControl(''),
+    apartment: new UntypedFormControl(''),
+    city: new UntypedFormControl(''),
+    state: new UntypedFormControl(''),
+    country: new UntypedFormControl(''),
+    zipCode: new UntypedFormControl(''),
   });
 
   constructor(

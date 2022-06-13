@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CategoryService} from '../service/category.service';
@@ -10,9 +10,9 @@ import {CategoryService} from '../service/category.service';
   styleUrls: ['./category-delete.component.scss'],
 })
 export class CategoryDeleteComponent implements OnInit {
-  categoryForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new FormControl({value: '', disabled: true}),
+  categoryForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
+    name: new UntypedFormControl({value: '', disabled: true}),
   });
 
   constructor(

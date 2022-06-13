@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CATEGORY_API_URL} from '../../../app.constants';
@@ -13,10 +13,10 @@ import {CategoryService} from '../service/category.service';
 })
 export class CategoryViewComponent implements OnInit {
   category: Category;
-  categoryForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new FormControl({value: '', disabled: true}),
-    description: new FormControl({value: '', disabled: true}),
+  categoryForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
+    name: new UntypedFormControl({value: '', disabled: true}),
+    description: new UntypedFormControl({value: '', disabled: true}),
   });
 
   constructor(

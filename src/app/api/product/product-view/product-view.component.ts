@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
@@ -18,16 +18,16 @@ import {CartProductJson} from '../../cart/model/cart-product-json';
 })
 export class ProductViewComponent implements OnInit {
   product: Product;
-  productForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    name: new FormControl(''),
-    description: new FormControl(''),
-    price: new FormControl(''),
-    amount: new FormControl(''),
-    category: new FormControl(''),
-    currency: new FormControl(''),
-    manufacturer: new FormControl(''),
-    quantityAvailable: new FormControl(''),
+  productForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}),
+    name: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
+    price: new UntypedFormControl(''),
+    amount: new UntypedFormControl(''),
+    category: new UntypedFormControl(''),
+    currency: new UntypedFormControl(''),
+    manufacturer: new UntypedFormControl(''),
+    quantityAvailable: new UntypedFormControl(''),
   });
 
   constructor(

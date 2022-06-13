@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ProductInventory} from 'src/app/api/product/model/product-inventory';
 import {
@@ -28,16 +28,16 @@ export class ProductNewComponent implements OnInit {
   currencies: Array<Currency>;
   manufacturers: Array<Manufacturer>;
 
-  productForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new FormControl(''),
-    description: new FormControl(''),
-    quantity: new FormControl(''),
-    price: new FormControl(''),
-    amount: new FormControl(''),
-    categoryControl: new FormControl('', Validators.required),
-    currency: new FormControl('', Validators.required),
-    manufacturerControl: new FormControl('', Validators.required),
+  productForm = new UntypedFormGroup({
+    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
+    name: new UntypedFormControl(''),
+    description: new UntypedFormControl(''),
+    quantity: new UntypedFormControl(''),
+    price: new UntypedFormControl(''),
+    amount: new UntypedFormControl(''),
+    categoryControl: new UntypedFormControl('', Validators.required),
+    currency: new UntypedFormControl('', Validators.required),
+    manufacturerControl: new UntypedFormControl('', Validators.required),
   });
 
   constructor(

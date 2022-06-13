@@ -97,13 +97,6 @@
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets", "src/assets/html"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     },
@@ -122,13 +115,6 @@
             "production": {
               "devServerTarget": "eShopping-UI:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -219,16 +205,6 @@
               "projects/state/src/assets"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/state/tsconfig.app.json",
-              "projects/state/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     },
@@ -248,18 +224,10 @@
               "devServerTarget": "state:serve:production"
             }
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/state-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     }
   },
-  "defaultProject": "eShopping-UI",
   "cli": {
     "analytics": false
   },
