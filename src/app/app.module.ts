@@ -17,6 +17,7 @@ import {ApiModule} from './api/api.module';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {CookieService} from 'ngx-cookie-service';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     SharedModule,
     AppRoutingModule,
     NgxSpinnerModule,
+    StoreModule.forRoot({}, {}),
   ],
 
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
