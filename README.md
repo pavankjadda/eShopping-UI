@@ -1,8 +1,7 @@
 Master: ![build](https://github.com/pavankjadda/eShopping-UI/workflows/eShopping-UI/badge.svg?branch=master)
 
-Development: ![build](https://github.com/pavankjadda/eShopping-UI/workflows/eShopping-UI/badge.svg?branch=development)
 
-# Angular 10 UI for Spring Security Data Project
+# Angular UI for eShopping Project
 
 This project is User Interface for [eShopping](https://github.com/pavankjadda/eShopping.git) project and developed with Angular 10.x
 
