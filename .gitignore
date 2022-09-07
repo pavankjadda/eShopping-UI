@@ -39,3 +39,5 @@ testem.log
 .DS_Store
 Thumbs.db
 /mygpgkey_pub.gpg
+.vercel
+.angular
