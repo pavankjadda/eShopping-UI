@@ -8,7 +8,7 @@
 <div>
   <h2>Edit Profile</h2>
 
-  <br/>
+  <br />
   <form [formGroup]="userProfileForm">
     <div class="form-row">
       <div class="col-auto">
@@ -62,39 +62,39 @@
         />
       </div>
     </div>
-    <br/>
+    <br />
     <div>
       <h3>Addresses:</h3>
-      <br/>
+      <br />
       <div>
         <button
-          (click)="openModal(addressEditModal, null)"
+          (click)="openModal(null)"
           class="btn btn-primary"
           type="button"
         >
           Create New
         </button>
-        <br/>
-        <br/>
+        <br />
+        <br />
       </div>
       <div *ngFor="let address of addresses">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem">
           <div class="card-body">
             <div class="form-group">
-              <b>{{ address.addressType.type }}:</b> <br/>
+              <b>{{ address.addressType.type }}:</b> <br />
               <label
-              >{{ address.streetName }} Apt {{ address.apartment }}</label
+                >{{ address.streetName }} Apt {{ address.apartment }}</label
               >
-              <br/>
+              <br />
               <label
-              >{{ address.city.name }}, {{ address.state.code }} -
+                >{{ address.city.name }}, {{ address.state.code }} -
                 {{ address.zipCode }}</label
               >
-              <br/>
+              <br />
               <label>{{ address.country.name }}</label>
             </div>
             <button
-              (click)="openModal(addressEditModal, address)"
+              (click)="openModal( address)"
               class="btn btn-primary"
               type="button"
             >
@@ -103,18 +103,23 @@
             <button
               (click)="deleteAddress(address)"
               class="btn btn-danger"
-              style="margin: 20px;"
+              style="margin: 20px"
               type="button"
             >
               Delete
             </button>
           </div>
         </div>
-        <br/>
+        <br />
       </div>
 
-      <ng-template #addressEditModal>
-        <div (click)="modalRef.hide()" class="modal-header">
+      <p-dialog
+        header="Header"
+        [(visible)]="display"
+        [style]="{ width: '50vw' }"
+        [baseZIndex]="10000"
+      >
+        <div (click)="display = false" class="modal-header">
           <h3 class="modal-title">Edit Address</h3>
           <button
             aria-label="Close"
@@ -129,7 +134,7 @@
           <div formGroupName="address">
             <div class="form-group">
               <label
-              >Address Type
+                >Address Type
                 <select
                   [compareWith]="compareAddressTypeFn"
                   class="form-control"
@@ -174,7 +179,7 @@
             </div>
             <div class="form-group">
               <label
-              >Country
+                >Country
                 <select
                   (change)="loadStates()"
                   [compareWith]="compareCountryFn"
@@ -191,7 +196,7 @@
 
             <div class="form-group">
               <label
-              >State
+                >State
                 <select
                   (change)="loadCities()"
                   [compareWith]="compareStateFn"
@@ -208,7 +213,7 @@
 
             <div class="form-group">
               <label
-              >City
+                >City
                 <select
                   [compareWith]="compareCityFn"
                   class="form-control"
@@ -245,25 +250,38 @@
             Update
           </button>
           <button
-            (click)="modalRef.hide()"
+            (click)="display = false"
             class="btn btn-danger"
             type="button"
           >
             Cancel
           </button>
         </div>
-      </ng-template>
+        <ng-template pTemplate="footer">
+          <p-button
+            icon="pi pi-check"
+            (click)="display = false"
+            label="Yes"
+            styleClass="p-button-text"
+          ></p-button>
+          <p-button
+            icon="pi pi-times"
+            (click)="display = false"
+            label="No"
+          ></p-button>
+        </ng-template>
+      </p-dialog>
     </div>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
     <button (click)="updateUserProfile()" class="btn btn-primary" type="submit">
       Update
     </button>
     <button
       (click)="goBack()"
       class="btn btn-outline-primary"
-      style="margin-left: 30px;"
+      style="margin-left: 30px"
       type="button"
     >
       Cancel

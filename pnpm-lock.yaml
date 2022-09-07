@@ -32,7 +32,7 @@ specifiers:
   '@types/node': ^17.0.42
   '@typescript-eslint/eslint-plugin': 5.29.0
   '@typescript-eslint/parser': 5.29.0
-  bootstrap: ^5.1.3
+  bootstrap: ^5.2.0
   chart.js: ^3.8.0
   core-js: ^3.22.8
   eslint: ^8.18.0
@@ -46,12 +46,11 @@ specifiers:
   karma-jasmine: ~5.0.1
   karma-jasmine-html-reporter: ^2.0.0
   latest-version: ^6.0.0
-  ngx-bootstrap: ^8.0.0
-  ngx-cookie-service: ^14.0.0
-  ngx-spinner: ^13.1.1
+  ngx-cookie-service: ^14.0.1
+  ngx-spinner: ^14.0.0
   prettier: 2.6.2
   primeicons: ^5.0.0
-  primeng: ^13.4.1
+  primeng: ^14.0.2
   protractor: ~7.0.0
   quill: ^1.3.7
   rxjs: ~7.5.5
@@ -84,11 +83,10 @@ dependencies:
   font-awesome: 4.7.0
   jquery: 3.6.1
   latest-version: 6.0.0
-  ngx-bootstrap: 8.0.0_fbmbn6iaxyp2vdzryo6gnjywi4
   ngx-cookie-service: 14.0.1_uchnd6nn6sowdcjd52hhsu5hlm
-  ngx-spinner: 13.1.1_uchnd6nn6sowdcjd52hhsu5hlm
+  ngx-spinner: 14.0.0_uchnd6nn6sowdcjd52hhsu5hlm
   primeicons: 5.0.0
-  primeng: 13.4.1_psmp3x36tkjtjn26zsek3tgaru
+  primeng: 14.0.2_psmp3x36tkjtjn26zsek3tgaru
   quill: 1.3.7
   rxjs: 7.5.6
   tslib: 2.4.0
@@ -6304,23 +6302,6 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /ngx-bootstrap/8.0.0_fbmbn6iaxyp2vdzryo6gnjywi4:
-    resolution: {integrity: sha512-UjJ/57Pr7ctdI2L113QX1IqJPYtOMrp5Qq/RLvUT1TOwPQWPi9LXTQ/7BtipkptQjer7Fk9yueITH3Y8vD+Dmg==}
-    peerDependencies:
-      '@angular/animations': ^13.0.0
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
-      '@angular/forms': ^13.0.0
-      rxjs: ^6.5.3 || ^7.4.0
-    dependencies:
-      '@angular/animations': 14.2.0_@angular+core@14.2.0
-      '@angular/common': 14.2.0_ulhd65egriw6odwvy6kqq5spge
-      '@angular/core': 14.2.0_rxjs@7.5.6+zone.js@0.11.8
-      '@angular/forms': 14.2.0_6lk4yxyxfaqzosenawf2bqx6vy
-      rxjs: 7.5.6
-      tslib: 2.4.0
-    dev: false
-
   /ngx-cookie-service/14.0.1_uchnd6nn6sowdcjd52hhsu5hlm:
     resolution: {integrity: sha512-PHjpA/bpp1ZgvQ2AWdXA6oxPQgE9k0WljQ7tvUH/u0Acl6p6akzF8kWlQiWxkgR3hBs7xB3paIsTk6GKdtakMg==}
     peerDependencies:
@@ -6332,11 +6313,11 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /ngx-spinner/13.1.1_uchnd6nn6sowdcjd52hhsu5hlm:
-    resolution: {integrity: sha512-6aJz4KxIsBrlQckJxcM3CEvMcYbZoSDnQZPu0F/ZYAYunbBOTb9iydw0Gjczg9moum1VURWjX5dTVKmFo85c2Q==}
+  /ngx-spinner/14.0.0_uchnd6nn6sowdcjd52hhsu5hlm:
+    resolution: {integrity: sha512-rz7wRCW4L+eZStpWwKUZ8mW+1WWtVEs1DZLDT1DUx1v3k+pLh5BhoDzfF1YySxTqZX13I7pwl13urqzniQ/jXQ==}
     peerDependencies:
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
+      '@angular/common': ^14.0.0
+      '@angular/core': ^14.0.0
     dependencies:
       '@angular/common': 14.2.0_ulhd65egriw6odwvy6kqq5spge
       '@angular/core': 14.2.0_rxjs@7.5.6+zone.js@0.11.8
@@ -7350,12 +7331,12 @@ packages:
     resolution: {integrity: sha512-heygWF0X5HFI1otlZE62pp6ye7sZ8om78J9au2BRkg8O7Y8AHTZ9qKMRzchZUHLe8zUAvdi6hZzzm9XxgwIExw==}
     dev: false
 
-  /primeng/13.4.1_psmp3x36tkjtjn26zsek3tgaru:
-    resolution: {integrity: sha512-Dp72Yt7ORwoVYXr5r4oNTacQHUyLAdTuvXXNg9ZNjjxCdIfYZsVjTFBHBVzgEo9BpPy+/5twYy1JP/eXXDNPHg==}
+  /primeng/14.0.2_psmp3x36tkjtjn26zsek3tgaru:
+    resolution: {integrity: sha512-u86x44LqD3tqA/ENnxqrjxZv6XZBlyhMDx2piTG0TTSNe5XKhrcoA7Bg7G3czdXKm8RFJNtAjBxZYoxdBmb/+Q==}
     peerDependencies:
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
-      '@angular/forms': ^13.0.0
+      '@angular/common': ^14.0.0
+      '@angular/core': ^14.0.0
+      '@angular/forms': ^14.0.0
       primeicons: ^5.0.0
       rxjs: ^6.0.0 || ^7.0.0
       zone.js: ^0.10.2 || ^0.11.0

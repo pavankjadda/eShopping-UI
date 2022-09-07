@@ -12,7 +12,8 @@ import {AccountRoutingModule} from './account-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserProfileEditComponent} from './user-profile/user-profile-edit/user-profile-edit.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {ModalModule} from 'ngx-bootstrap/modal';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -20,9 +21,10 @@ import {ModalModule} from 'ngx-bootstrap/modal';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    ModalModule.forRoot(),
     NgxSpinnerModule,
     AccountRoutingModule,
+    DialogModule,
+    ButtonModule
   ],
   declarations: [
     ActivateComponent,

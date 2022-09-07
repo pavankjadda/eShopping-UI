@@ -1,7 +1,6 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {AddressType} from '../../../api/address-type/model/address-type';
@@ -38,8 +37,7 @@ export class UserProfileEditComponent implements OnInit {
   countries: Array<Country>;
   states: Array<State>;
   cities: Array<City>;
-
-  modalRef: BsModalRef;
+  display: boolean = false;
 
   userProfileForm = new UntypedFormGroup({
     id: new UntypedFormControl({value: '', disabled: true}),
@@ -68,8 +66,7 @@ export class UserProfileEditComponent implements OnInit {
     private countryService: CountryService,
     private addressTypeService: AddressTypeService,
     private addressService: AddressService,
-    private router: Router,
-    private modalService: BsModalService
+    private router: Router
   ) {
   }
 
@@ -79,8 +76,8 @@ export class UserProfileEditComponent implements OnInit {
     this.loadCountries();
   }
 
-  openModal(template: TemplateRef<any>, address: Address) {
-    this.modalRef = this.modalService.show(template);
+  openModal( address: Address) {
+    this.display=true;
     if (address != null) {
       this.userProfileForm.patchValue({
         address: address,
@@ -128,7 +125,7 @@ export class UserProfileEditComponent implements OnInit {
       .subscribe(
         (data) => {
           this.getUserProfile();
-          this.modalRef.hide();
+          this.display=false;
         },
         (error1) => {
           console.log('Failed to updated address. Error: ' + error1);
