@@ -94,7 +94,7 @@
             </div>
             <div class="col-6">
               <button
-                (click)="openModal(addressEditModal, address)"
+                (click)="openModal( address)"
                 class="btn btn-primary"
                 type="button"
               >
@@ -112,7 +112,7 @@
         </div>
         <div class="card-footer">
           <button
-            (click)="openModal(addressEditModal, null)"
+            (click)="openModal( null)"
             class="btn btn-primary"
             type="button"
           >
@@ -154,7 +154,7 @@
             </div>
             <div class="col-6">
               <button
-                (click)="openModal(addressEditModal, address)"
+                (click)="openModal(address)"
                 class="btn btn-primary"
                 type="button"
               >
@@ -173,7 +173,7 @@
         </div>
         <div class="card-footer">
           <button
-            (click)="openModal(addressEditModal, null)"
+            (click)="openModal(null)"
             class="btn btn-primary"
             type="button"
           >
@@ -185,8 +185,13 @@
   </div>
 
   <!-- Address Modal-->
-  <ng-template #addressEditModal>
-    <div (click)="modalRef.hide()" class="modal-header">
+  <p-dialog
+    header="Header"
+    [(visible)]="display"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+  >
+    <div (click)="display=false" class="modal-header">
       <h3 class="modal-title">Edit Address</h3>
       <button
         aria-label="Close"
@@ -316,11 +321,11 @@
       >
         Update
       </button>
-      <button (click)="modalRef.hide()" class="btn btn-danger" type="button">
+      <button (click)="display=false" class="btn btn-danger" type="button">
         Cancel
       </button>
     </div>
-  </ng-template>
+  </p-dialog>
 
   <br/>
   <p style="text-align: center;">

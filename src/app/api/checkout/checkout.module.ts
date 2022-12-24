@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {ModalModule} from 'ngx-bootstrap/modal';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [CheckoutComponent],
@@ -16,7 +16,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
     CheckoutRoutingModule,
     FormsModule,
     NgxSpinnerModule,
-    ModalModule.forRoot(),
+    DialogModule,
   ],
   exports: [RouterModule],
 })

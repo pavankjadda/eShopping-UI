@@ -32,7 +32,6 @@ import {Country} from '../country/model/country';
 import {CountryService} from '../country/services/country.service';
 import {State} from '../state/model/state';
 import {StateService} from '../state/services/state.service';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-checkout',
@@ -51,9 +50,10 @@ export class CheckoutComponent implements OnInit {
   taxRate = 0;
   taxAmount = 0;
   displayAddressDialog = false;
-  modalRef: BsModalRef;
+
   selectedShippingAddress: Address;
   selectedBillingAddress: Address;
+  display: boolean = false;
 
   addressForm = new UntypedFormGroup({
     addressType: new UntypedFormControl(''),
@@ -77,7 +77,6 @@ export class CheckoutComponent implements OnInit {
     private addressTypeService: AddressTypeService,
     private addressService: AddressService,
     private router: Router,
-    private modalService: BsModalService
   ) {
   }
 
@@ -87,8 +86,8 @@ export class CheckoutComponent implements OnInit {
     this.loadCountries();
   }
 
-  openModal(template: TemplateRef<any>, address: Address) {
-    this.modalRef = this.modalService.show(template);
+  openModal( address: Address) {
+    this.display=true;
     if (address != null) {
       this.addressForm.patchValue({
         addressType: address.addressType,
@@ -172,7 +171,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe(
         (data) => {
           this.getAddresses();
-          this.modalRef.hide();
+          this.display=false;
         },
         (error1) => {
           console.log('Failed to updated address. Error: ' + error1);
