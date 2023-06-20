@@ -1,15 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-privilege',
-    templateUrl: './privilege.component.html',
-    styleUrls: ['./privilege.component.scss'],
-    standalone: true,
+  selector: "app-privilege",
+  templateUrl: "./privilege.component.html",
+  standalone: true,
 })
-export class PrivilegeComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-}
+export class PrivilegeComponent {}

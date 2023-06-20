@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component } from "@angular/core";
+import { Routes } from "@angular/router";
+import { UserAuthGuard } from "../../guards/user-auth.guard";
 
 @Component({
-    selector: 'app-region',
-    templateUrl: './region.component.html',
-    styleUrls: ['./region.component.scss'],
-    standalone: true,
+  selector: "app-region",
+  templateUrl: "./region.component.html",
+  standalone: true,
 })
-export class RegionComponent implements OnInit {
-  constructor(private router: Router) {
-  }
+export class RegionComponent {}
 
-  ngOnInit() {
-    //this.router.navigate(['/region']);
-  }
-}
+export const regionRoutes: Routes = [
+  {
+    path: "",
+    component: RegionComponent,
+    canActivate: [UserAuthGuard],
+  },
+];

@@ -1,15 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-order-delete',
-    templateUrl: './order-delete.component.html',
-    styleUrls: ['./order-delete.component.scss'],
-    standalone: true,
+  selector: "app-order-delete",
+  templateUrl: "./order-delete.component.html",
+  standalone: true,
 })
-export class OrderDeleteComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-}
+export class OrderDeleteComponent {}

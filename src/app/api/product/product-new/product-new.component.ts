@@ -1,34 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Router} from '@angular/router';
-import {ProductInventory} from 'src/app/api/product/model/product-inventory';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { ProductInventory } from "src/app/api/product/model/product-inventory";
 import {
   CATEGORY_API_URL,
   CURRENCY_API_URL,
   INVENTORY_API_URL,
   MANUFACTURER_API_URL,
   PRODUCT_API_URL,
-} from 'src/app/app.constants';
-import {environment} from 'src/environments/environment';
-import {Category} from '../../category/model/category';
-import {CategoryService} from '../../category/service/category.service';
-import {Manufacturer} from '../../manufacturer/model/manufacturer';
-import {Currency} from '../model/currency';
-import {Price} from '../model/price';
-import {Product} from '../model/product';
-import {ProductService} from '../service/product.service';
-import { NgFor } from '@angular/common';
+} from "src/app/app.constants";
+import { environment } from "src/environments/environment";
+import { Category } from "../../category/model/category";
+import { CategoryService } from "../../category/service/category.service";
+import { Manufacturer } from "../../manufacturer/model/manufacturer";
+import { Currency } from "../model/currency";
+import { Price } from "../model/price";
+import { Product } from "../model/product";
+import { ProductService } from "../service/product.service";
+import { NgFor } from "@angular/common";
 
 @Component({
-    selector: 'app-product-new',
-    templateUrl: './product-new.component.html',
-    styleUrls: ['./product-new.component.scss'],
-    standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgFor,
-    ],
+  selector: "app-product-new",
+  templateUrl: "./product-new.component.html",
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, NgFor],
 })
 export class ProductNewComponent implements OnInit {
   categories: Array<Category>;
@@ -36,23 +37,25 @@ export class ProductNewComponent implements OnInit {
   manufacturers: Array<Manufacturer>;
 
   productForm = new UntypedFormGroup({
-    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new UntypedFormControl(''),
-    description: new UntypedFormControl(''),
-    quantity: new UntypedFormControl(''),
-    price: new UntypedFormControl(''),
-    amount: new UntypedFormControl(''),
-    categoryControl: new UntypedFormControl('', Validators.required),
-    currency: new UntypedFormControl('', Validators.required),
-    manufacturerControl: new UntypedFormControl('', Validators.required),
+    id: new UntypedFormControl(
+      { value: "", disabled: true },
+      Validators.minLength(2)
+    ),
+    name: new UntypedFormControl(""),
+    description: new UntypedFormControl(""),
+    quantity: new UntypedFormControl(""),
+    price: new UntypedFormControl(""),
+    amount: new UntypedFormControl(""),
+    categoryControl: new UntypedFormControl("", Validators.required),
+    currency: new UntypedFormControl("", Validators.required),
+    manufacturerControl: new UntypedFormControl("", Validators.required),
   });
 
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.loadCategories();
@@ -73,18 +76,18 @@ export class ProductNewComponent implements OnInit {
     let productInventory = new ProductInventory();
     productInventory.quantity = this.productForm.value.quantity;
     product.productInventory = productInventory;
-    const url = environment.BASE_URL + PRODUCT_API_URL + '/create';
+    const url = environment.BASE_URL + PRODUCT_API_URL + "/create";
 
     this.productService.createProduct(url, product).subscribe(
       (value) => {
-        console.log('Successfully created product');
+        console.log("Successfully created product");
         //this.updateProductInventory(value);
       },
       (error1) => {
-        console.log('Failed to create product');
+        console.log("Failed to create product");
       },
       () => {
-        this.router.navigate(['/product/list']);
+        this.router.navigate(["/product/list"]);
       }
     );
   }
@@ -102,33 +105,33 @@ export class ProductNewComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/product']);
+    this.router.navigate(["/product"]);
   }
 
   private updateProductInventory(product: Product) {
     const url =
       environment.BASE_URL +
       INVENTORY_API_URL +
-      '/update?product_id=' +
+      "/update?product_id=" +
       product.id +
-      '&quantity=' +
+      "&quantity=" +
       this.productForm.value.quantity;
     this.productService.updateProductInventory(url).subscribe(
       (value) => {
-        console.log('Successfully updated product inventory');
+        console.log("Successfully updated product inventory");
       },
       (error1) => {
-        console.log('Failed to update product inventory. Error: ' + error1);
+        console.log("Failed to update product inventory. Error: " + error1);
       },
       () => {
-        this.router.navigate(['/product/list']);
+        this.router.navigate(["/product/list"]);
       }
     );
   }
 
   private getCurrency() {
     for (let currency of this.currencies) {
-      if (currency.symbol === '$') {
+      if (currency.symbol === "$") {
         return new Currency(currency.id);
       }
     }
@@ -136,44 +139,38 @@ export class ProductNewComponent implements OnInit {
   }
 
   private loadCategories() {
-    const url = environment.BASE_URL + CATEGORY_API_URL + '/list';
+    const url = environment.BASE_URL + CATEGORY_API_URL + "/list";
 
     this.categoryService.getCategories(url).subscribe(
       (categories) => {
         this.categories = categories;
       },
-      (error1) => {
-      },
-      () => {
-      }
+      (error1) => {},
+      () => {}
     );
   }
 
   private loadCurrencies() {
-    const url = environment.BASE_URL + CURRENCY_API_URL + '/list';
+    const url = environment.BASE_URL + CURRENCY_API_URL + "/list";
 
     this.productService.getCurrencies(url).subscribe(
       (currencies) => {
         this.currencies = currencies;
       },
-      (error1) => {
-      },
-      () => {
-      }
+      (error1) => {},
+      () => {}
     );
   }
 
   private loadManufacturers() {
-    const url = environment.BASE_URL + MANUFACTURER_API_URL + '/list';
+    const url = environment.BASE_URL + MANUFACTURER_API_URL + "/list";
 
     this.productService.getManufacturers(url).subscribe(
       (manufacturers) => {
         this.manufacturers = manufacturers;
       },
-      (error1) => {
-      },
-      () => {
-      }
+      (error1) => {},
+      () => {}
     );
   }
 }

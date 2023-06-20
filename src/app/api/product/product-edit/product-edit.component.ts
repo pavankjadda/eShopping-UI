@@ -1,34 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ProductInventory} from 'src/app/api/product/model/product-inventory';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ProductInventory } from "src/app/api/product/model/product-inventory";
 import {
   CATEGORY_API_URL,
   CURRENCY_API_URL,
   INVENTORY_API_URL,
   MANUFACTURER_API_URL,
   PRODUCT_API_URL,
-} from 'src/app/app.constants';
-import {environment} from 'src/environments/environment';
-import {Category} from '../../category/model/category';
-import {CategoryService} from '../../category/service/category.service';
-import {Manufacturer} from '../../manufacturer/model/manufacturer';
-import {Currency} from '../model/currency';
-import {Product} from '../model/product';
-import {ProductService} from '../service/product.service';
-import { NgIf, NgFor } from '@angular/common';
+} from "src/app/app.constants";
+import { environment } from "src/environments/environment";
+import { Category } from "../../category/model/category";
+import { CategoryService } from "../../category/service/category.service";
+import { Manufacturer } from "../../manufacturer/model/manufacturer";
+import { Currency } from "../model/currency";
+import { Product } from "../model/product";
+import { ProductService } from "../service/product.service";
+import { NgFor, NgIf } from "@angular/common";
 
 @Component({
-    selector: 'app-product-edit',
-    templateUrl: './product-edit.component.html',
-    styleUrls: ['./product-edit.component.scss'],
-    standalone: true,
-    imports: [
-        NgIf,
-        FormsModule,
-        ReactiveFormsModule,
-        NgFor,
-    ],
+  selector: "app-product-edit",
+  templateUrl: "./product-edit.component.html",
+  standalone: true,
+  imports: [NgIf, FormsModule, ReactiveFormsModule, NgFor],
 })
 export class ProductEditComponent implements OnInit {
   product: Product;
@@ -37,14 +36,14 @@ export class ProductEditComponent implements OnInit {
   manufacturers: Array<Manufacturer>;
 
   productForm = new UntypedFormGroup({
-    id: new UntypedFormControl({value: '', disabled: true}),
-    name: new UntypedFormControl(''),
-    description: new UntypedFormControl(''),
-    quantity: new UntypedFormControl(''),
-    price: new UntypedFormControl(''),
-    amount: new UntypedFormControl(''),
+    id: new UntypedFormControl({ value: "", disabled: true }),
+    name: new UntypedFormControl(""),
+    description: new UntypedFormControl(""),
+    quantity: new UntypedFormControl(""),
+    price: new UntypedFormControl(""),
+    amount: new UntypedFormControl(""),
     categoryControl: new UntypedFormControl(null),
-    currency: new UntypedFormControl(''),
+    currency: new UntypedFormControl(""),
     manufacturerControl: new UntypedFormControl(null),
   });
 
@@ -53,8 +52,7 @@ export class ProductEditComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.loadCategories();
@@ -77,13 +75,13 @@ export class ProductEditComponent implements OnInit {
 
   goBack() {
     this.router.navigate([
-      '/product/' + this.route.snapshot.paramMap.get('id'),
+      "/product/" + this.route.snapshot.paramMap.get("id"),
     ]);
   }
 
   private getProduct() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.BASE_URL + PRODUCT_API_URL + '/find/' + id;
+    const id = this.route.snapshot.paramMap.get("id");
+    const url = environment.BASE_URL + PRODUCT_API_URL + "/find/" + id;
     this.productService
       .getProductDetails(url)
       .pipe()
@@ -105,12 +103,12 @@ export class ProductEditComponent implements OnInit {
         (error) => {
           console.log(error);
         },
-        () => console.log('getProduct() success')
+        () => console.log("getProduct() success")
       );
   }
 
   private getProductInventory(id: string) {
-    const url = environment.BASE_URL + INVENTORY_API_URL + '/product/' + id;
+    const url = environment.BASE_URL + INVENTORY_API_URL + "/product/" + id;
     this.productService
       .getProductInventory(url)
       .pipe()
@@ -127,8 +125,8 @@ export class ProductEditComponent implements OnInit {
   }
 
   private updateProduct() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.BASE_URL + PRODUCT_API_URL + '/update';
+    const id = this.route.snapshot.paramMap.get("id");
+    const url = environment.BASE_URL + PRODUCT_API_URL + "/update";
 
     const product = new Product();
     product.id = Number(id);
@@ -145,61 +143,58 @@ export class ProductEditComponent implements OnInit {
 
     this.productService.updateProduct(url, product).subscribe(
       (value) => {
-        console.log('Successfully updated product');
+        console.log("Successfully updated product");
       },
       (error1) => {
-        console.log('Failed to update product');
+        console.log("Failed to update product");
       },
       () => {
-        this.router.navigate(['/product/list']);
+        this.router.navigate(["/product/list"]);
       }
     );
   }
 
   private loadCategories() {
-    const url = environment.BASE_URL + CATEGORY_API_URL + '/list';
+    const url = environment.BASE_URL + CATEGORY_API_URL + "/list";
 
     this.categoryService.getCategories(url).subscribe(
       (categories) => {
         this.categories = categories;
-        console.log('Successfully loaded categories');
+        console.log("Successfully loaded categories");
       },
       (error1) => {
-        console.log('Failed to load categories');
+        console.log("Failed to load categories");
       },
-      () => {
-      }
+      () => {}
     );
   }
 
   private loadCurrencies() {
-    const url = environment.BASE_URL + CURRENCY_API_URL + '/list';
+    const url = environment.BASE_URL + CURRENCY_API_URL + "/list";
 
     this.productService.getCurrencies(url).subscribe(
       (currencies) => {
         this.currencies = currencies;
       },
       (error1) => {
-        console.log('Failed to load currencies');
+        console.log("Failed to load currencies");
       },
-      () => {
-      }
+      () => {}
     );
   }
 
   private loadManufacturers() {
-    const url = environment.BASE_URL + MANUFACTURER_API_URL + '/list';
+    const url = environment.BASE_URL + MANUFACTURER_API_URL + "/list";
 
     this.productService.getManufacturers(url).subscribe(
       (manufacturers) => {
         this.manufacturers = manufacturers;
-        console.log('Successfully loaded manufacturers');
+        console.log("Successfully loaded manufacturers");
       },
       (error1) => {
-        console.log('Failed to load manufacturers');
+        console.log("Failed to load manufacturers");
       },
-      () => {
-      }
+      () => {}
     );
   }
 }
