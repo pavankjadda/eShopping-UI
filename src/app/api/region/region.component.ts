@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-region',
-  templateUrl: './region.component.html',
-  styleUrls: ['./region.component.scss'],
+    selector: 'app-region',
+    templateUrl: './region.component.html',
+    styleUrls: ['./region.component.scss'],
+    standalone: true,
 })
 export class RegionComponent implements OnInit {
   constructor(private router: Router) {

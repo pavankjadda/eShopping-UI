@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CATEGORY_API_URL} from '../../../app.constants';
@@ -7,9 +7,11 @@ import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
 
 @Component({
-  selector: 'app-category-new',
-  templateUrl: './category-new.component.html',
-  styleUrls: ['./category-new.component.scss'],
+    selector: 'app-category-new',
+    templateUrl: './category-new.component.html',
+    styleUrls: ['./category-new.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule],
 })
 export class CategoryNewComponent implements OnInit {
   categoryForm = new UntypedFormGroup({

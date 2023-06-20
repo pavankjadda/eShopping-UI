@@ -1,17 +1,25 @@
 import {HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import { FormBuilder, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../core/auth/auth.service';
 import {RegisterUser} from './register-user';
 import {RegisterService} from './register.service';
 import {confirmPasswordValidator, passwordValidator, usernameValidator,} from './registerform-validator';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgClass,
+        NgIf,
+    ],
 })
 export class RegisterComponent implements OnInit {
   registerForm: UntypedFormGroup;

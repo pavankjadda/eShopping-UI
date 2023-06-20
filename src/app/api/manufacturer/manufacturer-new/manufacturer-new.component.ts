@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {
   CITY_API_URL,
@@ -22,11 +22,19 @@ import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerAddress} from '../model/manufacturer-address';
 import {ManufacturerAddressType} from '../model/manufacturer-address-type';
 import {ManufacturerService} from '../service/manufacturer.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-manufacturer-new',
-  templateUrl: './manufacturer-new.component.html',
-  styleUrls: ['./manufacturer-new.component.scss'],
+    selector: 'app-manufacturer-new',
+    templateUrl: './manufacturer-new.component.html',
+    styleUrls: ['./manufacturer-new.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgFor,
+    ],
 })
 export class ManufacturerNewComponent implements OnInit {
   manufacturerAddressTypes: Array<ManufacturerAddressType>;

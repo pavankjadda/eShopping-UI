@@ -13,23 +13,21 @@ import {RouterModule} from '@angular/router';
 import {ProductRoutingModule} from './product-routing.module';
 
 @NgModule({
-  declarations: [
-    ProductComponent,
-    ProductHomeComponent,
-    ProductListComponent,
-    ProductNewComponent,
-    ProductDeleteComponent,
-    ProductViewComponent,
-    ProductEditComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    ProductRoutingModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        RouterModule,
+        ProductRoutingModule,
+        ProductComponent,
+        ProductHomeComponent,
+        ProductListComponent,
+        ProductNewComponent,
+        ProductDeleteComponent,
+        ProductViewComponent,
+        ProductEditComponent,
+    ],
+    exports: [RouterModule],
 })
 export class ProductModule {
 }

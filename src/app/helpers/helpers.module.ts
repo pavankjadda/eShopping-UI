@@ -5,8 +5,7 @@ import {HelpersRoutingModule} from './helpers-routing.module';
 import {FileExistingValuePipe} from './pipes/file-existing-value.pipe';
 
 @NgModule({
-  declarations: [Http403ErrorComponent, FileExistingValuePipe],
-  imports: [CommonModule, HelpersRoutingModule],
+    imports: [CommonModule, HelpersRoutingModule, Http403ErrorComponent, FileExistingValuePipe],
 })
 export class HelpersModule {
 }

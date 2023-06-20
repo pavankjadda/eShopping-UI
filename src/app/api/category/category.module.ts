@@ -13,23 +13,21 @@ import {CategoryDeleteComponent} from './category-delete/category-delete.compone
 import {CategoryComponent} from './category.component';
 
 @NgModule({
-  declarations: [
-    CategoryComponent,
-    CategoryListComponent,
-    CategoryViewComponent,
-    CategoryNewComponent,
-    CategoryHomeComponent,
-    CategoryEditComponent,
-    CategoryDeleteComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    CategoryRoutingModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        RouterModule,
+        CategoryRoutingModule,
+        CategoryComponent,
+        CategoryListComponent,
+        CategoryViewComponent,
+        CategoryNewComponent,
+        CategoryHomeComponent,
+        CategoryEditComponent,
+        CategoryDeleteComponent,
+    ],
+    exports: [RouterModule],
 })
 export class CategoryModule {
 }

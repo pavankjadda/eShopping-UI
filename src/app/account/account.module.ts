@@ -16,25 +16,23 @@ import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 
 @NgModule({
-  imports: [
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    NgxSpinnerModule,
-    AccountRoutingModule,
-    DialogModule,
-    ButtonModule
-  ],
-  declarations: [
-    ActivateComponent,
-    RegisterComponent,
-    PasswordComponent,
-    SettingsComponent,
-    PasswordResetComponent,
-    UserProfileComponent,
-    UserProfileEditComponent,
-  ],
+    imports: [
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        NgxSpinnerModule,
+        AccountRoutingModule,
+        DialogModule,
+        ButtonModule,
+        ActivateComponent,
+        RegisterComponent,
+        PasswordComponent,
+        SettingsComponent,
+        PasswordResetComponent,
+        UserProfileComponent,
+        UserProfileEditComponent
+    ],
 })
 export class AccountModule {
 }

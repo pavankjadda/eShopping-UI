@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import {ProductInventory} from 'src/app/api/product/model/product-inventory';
 import {
@@ -17,11 +17,18 @@ import {Currency} from '../model/currency';
 import {Price} from '../model/price';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-product-new',
-  templateUrl: './product-new.component.html',
-  styleUrls: ['./product-new.component.scss'],
+    selector: 'app-product-new',
+    templateUrl: './product-new.component.html',
+    styleUrls: ['./product-new.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgFor,
+    ],
 })
 export class ProductNewComponent implements OnInit {
   categories: Array<Category>;

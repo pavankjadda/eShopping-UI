@@ -10,20 +10,18 @@ import {LogoutComponent} from './logout/logout.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    CoreRoutingModule,
-  ],
-  declarations: [
-    LoginComponent,
-    UserComponent,
-    RoleComponent,
-    PrivilegeComponent,
-    LogoutComponent,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        CoreRoutingModule,
+        LoginComponent,
+        UserComponent,
+        RoleComponent,
+        PrivilegeComponent,
+        LogoutComponent,
+    ],
 })
 export class CoreModule {
 }

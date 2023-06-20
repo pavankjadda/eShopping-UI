@@ -5,8 +5,7 @@ import {CityComponent} from './city.component';
 import {CityRoutingModule} from './city-routing.module';
 
 @NgModule({
-  declarations: [CityComponent],
-  imports: [CommonModule, ReactiveFormsModule, CityRoutingModule],
+    imports: [CommonModule, ReactiveFormsModule, CityRoutingModule, CityComponent],
 })
 export class CityModule {
 }

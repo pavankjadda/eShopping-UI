@@ -8,17 +8,17 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
-  declarations: [CheckoutComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    CheckoutRoutingModule,
-    FormsModule,
-    NgxSpinnerModule,
-    DialogModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        CheckoutRoutingModule,
+        FormsModule,
+        NgxSpinnerModule,
+        DialogModule,
+        CheckoutComponent,
+    ],
+    exports: [RouterModule],
 })
 export class CheckoutModule {
 }

@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CategoryService} from '../service/category.service';
 
 @Component({
-  selector: 'app-category-delete',
-  templateUrl: './category-delete.component.html',
-  styleUrls: ['./category-delete.component.scss'],
+    selector: 'app-category-delete',
+    templateUrl: './category-delete.component.html',
+    styleUrls: ['./category-delete.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule],
 })
 export class CategoryDeleteComponent implements OnInit {
   categoryForm = new UntypedFormGroup({

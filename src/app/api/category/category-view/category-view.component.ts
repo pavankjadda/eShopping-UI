@@ -1,15 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {CATEGORY_API_URL} from '../../../app.constants';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-category-view',
-  templateUrl: './category-view.component.html',
-  styleUrls: ['./category-view.component.scss'],
+    selector: 'app-category-view',
+    templateUrl: './category-view.component.html',
+    styleUrls: ['./category-view.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterOutlet,
+    ],
 })
 export class CategoryViewComponent implements OnInit {
   category: Category;

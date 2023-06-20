@@ -1,7 +1,7 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {AddressType} from '../../../api/address-type/model/address-type';
 import {AddressTypeService} from '../../../api/address-type/service/address-type.service';
@@ -24,11 +24,25 @@ import {
 import {AuthService} from '../../../core/auth/auth.service';
 import {UserProfile} from '../model/user-profile';
 import {UserProfileService} from '../service/user-profile.service';
+import { ButtonModule } from 'primeng/button';
+import { SharedModule } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-user-profile-edit',
-  templateUrl: './user-profile-edit.component.html',
-  styleUrls: ['./user-profile-edit.component.scss'],
+    selector: 'app-user-profile-edit',
+    templateUrl: './user-profile-edit.component.html',
+    styleUrls: ['./user-profile-edit.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgFor,
+        DialogModule,
+        SharedModule,
+        ButtonModule,
+    ],
 })
 export class UserProfileEditComponent implements OnInit {
   userProfile: UserProfile;

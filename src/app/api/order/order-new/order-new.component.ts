@@ -6,9 +6,10 @@ import {ProductService} from '../../product/service/product.service';
 import {OrderService} from '../service/order.service';
 
 @Component({
-  selector: 'app-order-new',
-  templateUrl: './order-new.component.html',
-  styleUrls: ['./order-new.component.scss'],
+    selector: 'app-order-new',
+    templateUrl: './order-new.component.html',
+    styleUrls: ['./order-new.component.scss'],
+    standalone: true,
 })
 export class OrderNewComponent implements OnInit {
   products: Array<Product>;

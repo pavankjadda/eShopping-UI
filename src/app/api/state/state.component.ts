@@ -3,11 +3,19 @@ import {environment} from '../../../environments/environment';
 import {STATE_API_URL} from '../../app.constants';
 import {State} from './model/state';
 import {StateService} from './services/state.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-state',
-  templateUrl: './state.component.html',
-  styleUrls: ['./state.component.scss'],
+    selector: 'app-state',
+    templateUrl: './state.component.html',
+    styleUrls: ['./state.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class StateComponent implements OnInit {
   states: Array<State>;

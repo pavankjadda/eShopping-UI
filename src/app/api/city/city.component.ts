@@ -3,11 +3,14 @@ import {environment} from '../../../environments/environment';
 import {CITY_API_URL} from '../../app.constants';
 import {City} from './model/city';
 import {CityService} from './services/city.service';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss'],
+    selector: 'app-city',
+    templateUrl: './city.component.html',
+    styleUrls: ['./city.component.scss'],
+    standalone: true,
+    imports: [NgIf, NgFor],
 })
 export class CityComponent implements OnInit {
   cities: Array<City>;

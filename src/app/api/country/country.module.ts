@@ -5,8 +5,7 @@ import {CountryComponent} from './country.component';
 import {CountryRoutingModule} from './country-routing.module';
 
 @NgModule({
-  declarations: [CountryComponent],
-  imports: [CommonModule, ReactiveFormsModule, CountryRoutingModule],
+    imports: [CommonModule, ReactiveFormsModule, CountryRoutingModule, CountryComponent],
 })
 export class CountryModule {
 }

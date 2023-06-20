@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {
   CITY_API_URL,
@@ -21,11 +21,19 @@ import {StateService} from '../../state/services/state.service';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerAddressType} from '../model/manufacturer-address-type';
 import {ManufacturerService} from '../service/manufacturer.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-manufacturer-edit',
-  templateUrl: './manufacturer-edit.component.html',
-  styleUrls: ['./manufacturer-edit.component.scss'],
+    selector: 'app-manufacturer-edit',
+    templateUrl: './manufacturer-edit.component.html',
+    styleUrls: ['./manufacturer-edit.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgFor,
+    ],
 })
 export class ManufacturerEditComponent implements OnInit {
   manufacturer: Manufacturer;
