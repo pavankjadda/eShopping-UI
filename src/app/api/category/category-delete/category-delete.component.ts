@@ -1,45 +1,51 @@
-import {Component, OnInit} from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {environment} from '../../../../environments/environment';
-import {CategoryService} from '../service/category.service';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { environment } from "../../../../environments/environment";
+import { CategoryService } from "../service/category.service";
 
 @Component({
-    selector: 'app-category-delete',
-    templateUrl: './category-delete.component.html',
-    styleUrls: ['./category-delete.component.scss'],
-    standalone: true,
-    imports: [FormsModule, ReactiveFormsModule],
+  selector: "app-category-delete",
+  templateUrl: "./category-delete.component.html",
+
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class CategoryDeleteComponent implements OnInit {
   categoryForm = new UntypedFormGroup({
-    id: new UntypedFormControl({value: '', disabled: true}, Validators.minLength(2)),
-    name: new UntypedFormControl({value: '', disabled: true}),
+    id: new UntypedFormControl(
+      { value: "", disabled: true },
+      Validators.minLength(2)
+    ),
+    name: new UntypedFormControl({ value: "", disabled: true }),
   });
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     const id = this.route.parent.snapshot.params.id;
-    this.categoryForm.controls['id'].patchValue(id, {emitEvent: false});
+    this.categoryForm.controls["id"].patchValue(id, { emitEvent: false });
   }
 
   deleteCategory() {
-    const id = this.categoryForm.get('id').value;
-    if (confirm('Do you want to delete this Category with Id:' + id + '?')) {
-      const url = environment.BASE_URL + 'api/v1/category/delete/' + id;
+    const id = this.categoryForm.get("id").value;
+    if (confirm("Do you want to delete this Category with Id:" + id + "?")) {
+      const url = environment.BASE_URL + "api/v1/category/delete/" + id;
       this.categoryService.deleteCategory(url).subscribe(
-        (value) => {
-        },
-        (error1) => {
-        },
+        (value) => {},
+        (error1) => {},
         () => {
-          this.router.navigate(['/category/list']);
+          this.router.navigate(["/category/list"]);
         }
       );
     }

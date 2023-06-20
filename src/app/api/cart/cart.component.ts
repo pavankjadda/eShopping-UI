@@ -1,31 +1,31 @@
-import {Component, OnInit} from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
-import {environment} from '../../../environments/environment';
-import {CART_API_URL, INVENTORY_API_URL} from '../../app.constants';
-import {AuthService} from '../../core/auth/auth.service';
-import {ProductInventory} from '../product/model/product-inventory';
-import {Cart} from './model/cart';
-import {CartProduct} from './model/cart-product';
-import {CartService} from './service/cart.service';
-import {CartProductJson} from './model/cart-product-json';
-import { FormsModule } from '@angular/forms';
-import { SpinnerModule } from 'primeng/spinner';
-import { NgIf, NgFor } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { Router, RouterLink, Routes } from "@angular/router";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { environment } from "../../../environments/environment";
+import { CART_API_URL, INVENTORY_API_URL } from "../../app.constants";
+import { AuthService } from "../../core/auth/auth.service";
+import { ProductInventory } from "../product/model/product-inventory";
+import { Cart } from "./model/cart";
+import { CartProduct } from "./model/cart-product";
+import { CartService } from "./service/cart.service";
+import { CartProductJson } from "./model/cart-product-json";
+import { FormsModule } from "@angular/forms";
+import { SpinnerModule } from "primeng/spinner";
+import { NgFor, NgIf } from "@angular/common";
+import { UserAuthGuard } from "../../guards/user-auth.guard";
 
 @Component({
-    selector: 'app-cart',
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.scss'],
-    standalone: true,
-    imports: [
-        NgxSpinnerModule,
-        NgIf,
-        NgFor,
-        RouterLink,
-        SpinnerModule,
-        FormsModule,
-    ],
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  standalone: true,
+  imports: [
+    NgxSpinnerModule,
+    NgIf,
+    NgFor,
+    RouterLink,
+    SpinnerModule,
+    FormsModule,
+  ],
 })
 export class CartComponent implements OnInit {
   cart: Cart;
@@ -38,8 +38,7 @@ export class CartComponent implements OnInit {
     private ngxSpinnerService: NgxSpinnerService,
     private authService: AuthService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.totalCost = 0;
@@ -49,7 +48,7 @@ export class CartComponent implements OnInit {
   //Takes care of the update and deletes cart product if quantity is zero
   updateCartProductQuantity(cartProduct: CartProduct) {
     this.ngxSpinnerService.show();
-    const cartUrl = environment.BASE_URL + CART_API_URL + '/product/update';
+    const cartUrl = environment.BASE_URL + CART_API_URL + "/product/update";
     let cartProductSlim = new CartProductJson();
     cartProductSlim.cartId = cartProduct.cart.id;
     cartProductSlim.cartProductId = cartProduct.id;
@@ -69,16 +68,16 @@ export class CartComponent implements OnInit {
   deleteProductFromCart(cartProduct: CartProduct) {
     if (
       confirm(
-        'Are you sure you want to delete ' +
-        cartProduct.product.name +
-        ' from Cart?'
+        "Are you sure you want to delete " +
+          cartProduct.product.name +
+          " from Cart?"
       )
     ) {
       this.ngxSpinnerService.show();
       const cartUrl =
         environment.BASE_URL +
         CART_API_URL +
-        '/product/delete/' +
+        "/product/delete/" +
         cartProduct.id;
       this.cartService.deleteCartProduct(cartUrl).subscribe(
         (data) => {
@@ -101,12 +100,12 @@ export class CartComponent implements OnInit {
   }
 
   deleteCart() {
-    if (confirm('Are you sure you wanna delete the cart?')) {
+    if (confirm("Are you sure you wanna delete the cart?")) {
       this.ngxSpinnerService.show();
       const cartUrl =
         environment.BASE_URL +
         CART_API_URL +
-        '/delete/' +
+        "/delete/" +
         this.cartService.getCurrentCart.id;
       this.cartService.deleteMyCart(cartUrl).subscribe(
         (data) => {
@@ -135,11 +134,11 @@ export class CartComponent implements OnInit {
   }
 
   goToProducts() {
-    this.router.navigate(['/product/list']);
+    this.router.navigate(["/product/list"]);
   }
 
   checkout() {
-    this.router.navigate(['/checkout']);
+    this.router.navigate(["/checkout"]);
   }
 
   private getMyCart() {
@@ -147,10 +146,10 @@ export class CartComponent implements OnInit {
     const cartUrl =
       environment.BASE_URL +
       CART_API_URL +
-      '/find/user/' +
+      "/find/user/" +
       this.authService.currentUserValue.id;
     this.cartService.getMyCart(cartUrl).subscribe((data) => {
-      localStorage.setItem('currentCart', JSON.stringify(data));
+      localStorage.setItem("currentCart", JSON.stringify(data));
       this.cartService.currentCartSubject.next(data);
       this.cart = data;
       if (data === null) {
@@ -171,7 +170,7 @@ export class CartComponent implements OnInit {
       productIdList.push(cartProduct.product.id);
     });
     const inventoryUrl =
-      environment.BASE_URL + INVENTORY_API_URL + '/product/ids';
+      environment.BASE_URL + INVENTORY_API_URL + "/product/ids";
     this.cartService
       .getProductInventory(inventoryUrl, productIdList)
       .pipe()
@@ -185,3 +184,12 @@ export class CartComponent implements OnInit {
       );
   }
 }
+
+// Cart Routing
+export const cartRoutes: Routes = [
+  {
+    path: "",
+    component: CartComponent,
+    canActivate: [UserAuthGuard],
+  },
+];

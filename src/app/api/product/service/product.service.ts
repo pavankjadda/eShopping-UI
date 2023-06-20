@@ -1,16 +1,15 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Manufacturer} from '../../manufacturer/model/manufacturer';
-import {Currency} from '../model/currency';
-import {Product} from '../model/product';
-import {ProductInventory} from '../model/product-inventory';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Manufacturer } from "../../manufacturer/model/manufacturer";
+import { Currency } from "../model/currency";
+import { Product } from "../model/product";
+import { ProductInventory } from "../model/product-inventory";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ProductService {
-  constructor(private httpClient: HttpClient) {
-  }
+  httpClient = inject(HttpClient);
 
   getProducts(url) {
     return this.httpClient.get<Product[]>(url);

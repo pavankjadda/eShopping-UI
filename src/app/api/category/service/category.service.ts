@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Category} from '../model/category';
+import { inject, Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Category } from "../model/category";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CategoryService {
-  constructor(private httpClient: HttpClient) {
-  }
+  httpClient = inject(HttpClient);
 
   getCategories(url) {
     return this.httpClient.get<Category[]>(url);
@@ -15,7 +14,6 @@ export class CategoryService {
 
   createCategory(url, category) {
     return this.httpClient.post(url, category);
-    //return this.httpClient.put(url,httpOptions,category);
   }
 
   getCategoryDetails(url) {

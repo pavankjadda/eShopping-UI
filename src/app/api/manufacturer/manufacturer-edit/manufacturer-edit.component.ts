@@ -1,39 +1,38 @@
-import {Component, OnInit} from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
-import {environment} from '../../../../environments/environment';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+  UntypedFormGroup,
+} from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { environment } from "../../../../environments/environment";
 import {
   CITY_API_URL,
   COUNTRY_API_URL,
   MANUFACTURER_ADDRESS_TYPE_API_URL,
   MANUFACTURER_API_URL,
   STATE_API_URL,
-} from '../../../app.constants';
-import {AddressTypeService} from '../../address-type/service/address-type.service';
-import {AddressService} from '../../address/service/address.service';
-import {City} from '../../city/model/city';
-import {CityService} from '../../city/services/city.service';
-import {Country} from '../../country/model/country';
-import {CountryService} from '../../country/services/country.service';
-import {State} from '../../state/model/state';
-import {StateService} from '../../state/services/state.service';
-import {Manufacturer} from '../model/manufacturer';
-import {ManufacturerAddressType} from '../model/manufacturer-address-type';
-import {ManufacturerService} from '../service/manufacturer.service';
-import { NgFor } from '@angular/common';
+} from "../../../app.constants";
+import { AddressTypeService } from "../../address-type/service/address-type.service";
+import { AddressService } from "../../address/service/address.service";
+import { City } from "../../city/model/city";
+import { CityService } from "../../city/services/city.service";
+import { Country } from "../../country/model/country";
+import { CountryService } from "../../country/services/country.service";
+import { State } from "../../state/model/state";
+import { StateService } from "../../state/services/state.service";
+import { Manufacturer } from "../model/manufacturer";
+import { ManufacturerAddressType } from "../model/manufacturer-address-type";
+import { ManufacturerService } from "../service/manufacturer.service";
+import { NgFor } from "@angular/common";
 
 @Component({
-    selector: 'app-manufacturer-edit',
-    templateUrl: './manufacturer-edit.component.html',
-    styleUrls: ['./manufacturer-edit.component.scss'],
-    standalone: true,
-    imports: [
-        NgxSpinnerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgFor,
-    ],
+  selector: "app-manufacturer-edit",
+  templateUrl: "./manufacturer-edit.component.html",
+  standalone: true,
+  imports: [NgxSpinnerModule, FormsModule, ReactiveFormsModule, NgFor],
 })
 export class ManufacturerEditComponent implements OnInit {
   manufacturer: Manufacturer;
@@ -43,24 +42,24 @@ export class ManufacturerEditComponent implements OnInit {
   cities: Array<City>;
 
   manufacturerForm = new UntypedFormGroup({
-    id: new UntypedFormControl({value: '', disabled: true}),
-    name: new UntypedFormControl(''),
-    displayName: new UntypedFormControl(''),
-    description: new UntypedFormControl(''),
+    id: new UntypedFormControl({ value: "", disabled: true }),
+    name: new UntypedFormControl(""),
+    displayName: new UntypedFormControl(""),
+    description: new UntypedFormControl(""),
     manufacturerAddress: new UntypedFormGroup({
-      manufacturerAddressType: new UntypedFormControl(''),
-      id: new UntypedFormControl(''),
-      streetName: new UntypedFormControl(''),
-      apartment: new UntypedFormControl(''),
-      city: new UntypedFormControl(''),
-      state: new UntypedFormControl(''),
-      country: new UntypedFormControl(''),
-      zipCode: new UntypedFormControl(''),
+      manufacturerAddressType: new UntypedFormControl(""),
+      id: new UntypedFormControl(""),
+      streetName: new UntypedFormControl(""),
+      apartment: new UntypedFormControl(""),
+      city: new UntypedFormControl(""),
+      state: new UntypedFormControl(""),
+      country: new UntypedFormControl(""),
+      zipCode: new UntypedFormControl(""),
     }),
-    phone: new UntypedFormControl(''),
-    contactEmail: new UntypedFormControl(''),
-    fax: new UntypedFormControl(''),
-    products: new UntypedFormControl(''),
+    phone: new UntypedFormControl(""),
+    contactEmail: new UntypedFormControl(""),
+    fax: new UntypedFormControl(""),
+    products: new UntypedFormControl(""),
   });
 
   constructor(
@@ -73,8 +72,7 @@ export class ManufacturerEditComponent implements OnInit {
     private spinnerService: NgxSpinnerService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.getManufacturer();
@@ -86,8 +84,8 @@ export class ManufacturerEditComponent implements OnInit {
     this.spinnerService.show();
 
     const manufacturerUrl =
-      environment.BASE_URL + MANUFACTURER_API_URL + '/update';
-    const id = this.route.snapshot.paramMap.get('id');
+      environment.BASE_URL + MANUFACTURER_API_URL + "/update";
+    const id = this.route.snapshot.paramMap.get("id");
 
     let manufacturer = new Manufacturer();
     manufacturer.id = Number(id);
@@ -97,18 +95,19 @@ export class ManufacturerEditComponent implements OnInit {
     manufacturer.phone = this.manufacturerForm.value.phone;
     manufacturer.contactEmail = this.manufacturerForm.value.contactEmail;
     manufacturer.fax = this.manufacturerForm.value.fax;
-    manufacturer.manufacturerAddress = this.manufacturerForm.value.manufacturerAddress;
+    manufacturer.manufacturerAddress =
+      this.manufacturerForm.value.manufacturerAddress;
 
     this.manufacturerService
       .updateManufacturer(manufacturerUrl, manufacturer)
       .subscribe(
         (data) => {
           manufacturer = data;
-          console.log('Manufacturer updated');
-          this.router.navigate(['/manufacturer/list']);
+          console.log("Manufacturer updated");
+          this.router.navigate(["/manufacturer/list"]);
         },
         (error1) => {
-          console.log('Manufacturer update failed');
+          console.log("Manufacturer update failed");
           this.spinnerService.hide();
         }
       );
@@ -117,28 +116,28 @@ export class ManufacturerEditComponent implements OnInit {
   loadStates() {
     const country = this.manufacturerForm.value.manufacturerAddress.country;
     const url =
-      environment.BASE_URL + STATE_API_URL + '/find/country/' + country.id;
+      environment.BASE_URL + STATE_API_URL + "/find/country/" + country.id;
 
     this.stateService.getStatesByCountryId(url).subscribe(
       (data) => {
         this.states = data;
       },
       (error1) => {
-        console.log('Failed to load states');
+        console.log("Failed to load states");
       }
     );
   }
 
   loadCities() {
     const state = this.manufacturerForm.value.manufacturerAddress.state;
-    const url = environment.BASE_URL + CITY_API_URL + '/find/state/' + state.id;
+    const url = environment.BASE_URL + CITY_API_URL + "/find/state/" + state.id;
 
     this.cityService.getCitiesByStateId(url).subscribe(
       (data) => {
         this.cities = data;
       },
       (error1) => {
-        console.log('Failed to load cities');
+        console.log("Failed to load cities");
       }
     );
   }
@@ -163,12 +162,12 @@ export class ManufacturerEditComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/manufacturer']);
+    this.router.navigate(["/manufacturer"]);
   }
 
   private getManufacturer() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = environment.BASE_URL + MANUFACTURER_API_URL + '/find/' + id;
+    const id = this.route.snapshot.paramMap.get("id");
+    const url = environment.BASE_URL + MANUFACTURER_API_URL + "/find/" + id;
 
     this.manufacturerService
       .getManufacturer(url)
@@ -194,36 +193,35 @@ export class ManufacturerEditComponent implements OnInit {
           console.log(error);
         },
         () => {
-          console.log('getManufacturer() success');
+          console.log("getManufacturer() success");
         }
       );
   }
 
   private loadAddressTypes() {
     const url =
-      environment.BASE_URL + MANUFACTURER_ADDRESS_TYPE_API_URL + '/list';
+      environment.BASE_URL + MANUFACTURER_ADDRESS_TYPE_API_URL + "/list";
     this.addressTypeService.getManufacturerAddressTypes(url).subscribe(
       (manufacturerAddressTypes) => {
         this.manufacturerAddressTypes = manufacturerAddressTypes;
         this.manufacturerForm.patchValue({
           addressType: manufacturerAddressTypes,
         });
-        console.log('Successfully loaded address types');
+        console.log("Successfully loaded address types");
       },
       (error1) => {
-        console.log('Failed to load address types');
+        console.log("Failed to load address types");
       }
     );
   }
 
   private loadCountries() {
-    const url = environment.BASE_URL + COUNTRY_API_URL + '/list';
+    const url = environment.BASE_URL + COUNTRY_API_URL + "/list";
     this.countryService.getCountries(url).subscribe(
       (countries) => {
         this.countries = countries;
       },
-      (error1) => {
-      }
+      (error1) => {}
     );
   }
 }

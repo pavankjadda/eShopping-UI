@@ -1,15 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
+import { Routes } from "@angular/router";
+import { UserAuthGuard } from "../../guards/user-auth.guard";
 
 @Component({
-    selector: 'app-address',
-    templateUrl: './address.component.html',
-    styleUrls: ['./address.component.scss'],
-    standalone: true,
+  selector: "app-address",
+  templateUrl: "./address.component.html",
+  standalone: true,
 })
-export class AddressComponent implements OnInit {
-  constructor() {
-  }
+export class AddressComponent {}
 
-  ngOnInit() {
-  }
-}
+export const addressRoutes: Routes = [
+  {
+    path: "",
+    component: AddressComponent,
+    canActivate: [UserAuthGuard],
+  },
+];

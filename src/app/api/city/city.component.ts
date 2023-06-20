@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {CITY_API_URL} from '../../app.constants';
-import {City} from './model/city';
-import {CityService} from './services/city.service';
-import { NgIf, NgFor } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { CITY_API_URL } from "../../app.constants";
+import { City } from "./model/city";
+import { CityService } from "./services/city.service";
+import { NgFor, NgIf } from "@angular/common";
+import { Routes } from "@angular/router";
+import { UserAuthGuard } from "../../guards/user-auth.guard";
 
 @Component({
-    selector: 'app-city',
-    templateUrl: './city.component.html',
-    styleUrls: ['./city.component.scss'],
-    standalone: true,
-    imports: [NgIf, NgFor],
+  selector: "app-city",
+  templateUrl: "./city.component.html",
+  styleUrls: ["./city.component.scss"],
+  standalone: true,
+  imports: [NgIf, NgFor],
 })
 export class CityComponent implements OnInit {
   cities: Array<City>;
@@ -18,8 +20,7 @@ export class CityComponent implements OnInit {
   pageNumber: number;
   totalPages: number;
 
-  constructor(private cityService: CityService) {
-  }
+  constructor(private cityService: CityService) {}
 
   ngOnInit() {
     this.pageNumber = 0;
@@ -31,9 +32,9 @@ export class CityComponent implements OnInit {
     const url =
       environment.BASE_URL +
       CITY_API_URL +
-      '/list?pageNumber=' +
+      "/list?pageNumber=" +
       this.pageNumber +
-      '&pageSize=' +
+      "&pageSize=" +
       this.pageSize;
 
     this.cityService.getCities(url).subscribe(
@@ -44,7 +45,7 @@ export class CityComponent implements OnInit {
         this.totalPages = data.totalPages;
       },
       (err) => console.error(err),
-      () => console.log('Cities retrieved from backend')
+      () => console.log("Cities retrieved from backend")
     );
     return this.cities;
   }
@@ -76,3 +77,11 @@ export class CityComponent implements OnInit {
     return this.cities !== undefined;
   }
 }
+
+export const cityRoutes: Routes = [
+  {
+    path: "",
+    component: CityComponent,
+    canActivate: [UserAuthGuard],
+  },
+];
