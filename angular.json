@@ -11,7 +11,7 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/eshopping-ui",
             "index": "src/index.html",
@@ -71,27 +71,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "eshopping-ui:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/assets/html"
-            ]
           }
         },
         "lint": {
@@ -196,23 +175,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "state:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/state/src/test.ts",
-            "polyfills": "projects/state/src/polyfills.ts",
-            "tsConfig": "projects/state/tsconfig.spec.json",
-            "karmaConfig": "projects/state/karma.conf.js",
-            "styles": [
-              "projects/state/src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "projects/state/src/favicon.ico",
-              "projects/state/src/assets"
-            ]
           }
         }
       }
