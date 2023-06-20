@@ -15,7 +15,6 @@ import { HealthComponent } from "../health/health.component";
 @Component({
   selector: "app-admin-home",
   templateUrl: "./admin-home.component.html",
-  styleUrls: ["./admin-home.component.scss"],
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
 })
