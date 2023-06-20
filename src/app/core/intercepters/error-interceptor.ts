@@ -20,6 +20,7 @@ export function errorInterceptor(
 
   return next(request).pipe(
     catchError((error) => {
+      console.log("error:" + error);
       if (error.status === 401) {
         //Save current URL
         if (router.url !== "/login") {

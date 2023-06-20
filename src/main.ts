@@ -8,7 +8,6 @@ import {
   provideHttpClient,
   withFetch,
   withInterceptors,
-  withInterceptorsFromDi,
 } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
@@ -54,7 +53,6 @@ bootstrapApplication(AppComponent, {
       withInterceptors([httpTokenInterceptor, errorInterceptor])
     ),
     CookieService,
-    provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
   ],
 }).catch((err) => console.error(err));
