@@ -1,14 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {PRODUCT_API_URL} from '../../../app.constants';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class ProductListComponent implements OnInit {
   products: Array<Product>;

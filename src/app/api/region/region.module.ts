@@ -5,8 +5,7 @@ import {RegionComponent} from './region.component';
 import {RegionRoutingModule} from './region-routing.module';
 
 @NgModule({
-  declarations: [RegionComponent],
-  imports: [CommonModule, ReactiveFormsModule, RegionRoutingModule],
+    imports: [CommonModule, ReactiveFormsModule, RegionRoutingModule, RegionComponent],
 })
 export class RegionModule {
 }

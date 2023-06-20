@@ -9,18 +9,16 @@ import {HealthManagementRoutes} from './health/health-routing';
 import {AdminHomeRoutes} from './admin-home/admin-home-routing';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(AdminHomeRoutes),
-    RouterModule.forChild(UserManagementRoutes),
-    RouterModule.forChild(HealthManagementRoutes),
-  ],
-  exports: [RouterModule],
-  declarations: [
-    UserManagementComponent,
-    AdminHomeComponent,
-    HealthComponent,
-    UserManagementHomeComponent,
-  ],
+    imports: [
+        RouterModule.forChild(AdminHomeRoutes),
+        RouterModule.forChild(UserManagementRoutes),
+        RouterModule.forChild(HealthManagementRoutes),
+        UserManagementComponent,
+        AdminHomeComponent,
+        HealthComponent,
+        UserManagementHomeComponent,
+    ],
+    exports: [RouterModule],
 })
 export class AdminRoutingModule {
 }

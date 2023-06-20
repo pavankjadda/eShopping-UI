@@ -3,11 +3,19 @@ import {environment} from '../../../../environments/environment';
 import {ORDER_API_URL} from '../../../app.constants';
 import {Order} from '../model/order';
 import {OrderService} from '../service/order.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.scss'],
+    selector: 'app-order-list',
+    templateUrl: './order-list.component.html',
+    styleUrls: ['./order-list.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class OrderListComponent implements OnInit {
   orders: Array<Order>;

@@ -3,11 +3,19 @@ import {environment} from '../../../environments/environment';
 import {COUNTRY_API_URL} from '../../app.constants';
 import {Country} from './model/country';
 import {CountryService} from './services/country.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-country',
-  templateUrl: './country.component.html',
-  styleUrls: ['./country.component.scss'],
+    selector: 'app-country',
+    templateUrl: './country.component.html',
+    styleUrls: ['./country.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class CountryComponent implements OnInit {
   countries: Array<Country>;

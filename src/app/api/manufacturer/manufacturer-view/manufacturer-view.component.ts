@@ -1,16 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {MANUFACTURER_API_URL} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerService} from '../service/manufacturer.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-manufacturer-view',
-  templateUrl: './manufacturer-view.component.html',
-  styleUrls: ['./manufacturer-view.component.scss'],
+    selector: 'app-manufacturer-view',
+    templateUrl: './manufacturer-view.component.html',
+    styleUrls: ['./manufacturer-view.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+    ],
 })
 export class ManufacturerViewComponent implements OnInit {
   manufacturer: Manufacturer;

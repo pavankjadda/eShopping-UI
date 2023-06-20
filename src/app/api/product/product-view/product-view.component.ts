@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../../../../environments/environment';
 import { CART_API_URL, PRODUCT_API_URL } from '../../../app.constants';
 import { AuthService } from '../../../core/auth/auth.service';
@@ -10,11 +10,20 @@ import { CartService } from '../../cart/service/cart.service';
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
 import { CartProductJson } from '../../cart/model/cart-product-json';
+import { NgIf } from '@angular/common';
 
 @Component({
-	selector: 'app-product-view',
-	templateUrl: './product-view.component.html',
-	styleUrls: ['./product-view.component.scss'],
+    selector: 'app-product-view',
+    templateUrl: './product-view.component.html',
+    styleUrls: ['./product-view.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterLink,
+    ],
 })
 export class ProductViewComponent implements OnInit {
 	product: Product;

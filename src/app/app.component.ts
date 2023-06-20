@@ -1,17 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {RouteConfigLoadEnd, RouteConfigLoadStart, Router,} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {environment} from '../environments/environment.prod';
+import { Component, OnInit } from "@angular/core";
+import {
+  RouteConfigLoadEnd,
+  RouteConfigLoadStart,
+  Router,
+  RouterLink,
+  RouterOutlet,
+} from "@angular/router";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { environment } from "../environments/environment.prod";
+import { MainComponent } from "./layouts/main/main.component";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  standalone: true,
+  imports: [RouterLink, RouterOutlet, NgxSpinnerModule, MainComponent],
 })
 export class AppComponent implements OnInit {
-  title = 'Home';
-
   constructor(private router: Router, private spinner: NgxSpinnerService) {
-    console.log('Is production environment: ' + environment.production); // Logs false for default environment
+    console.log("Is production environment: " + environment.production); // Logs false for default environment
   }
 
   ngOnInit() {

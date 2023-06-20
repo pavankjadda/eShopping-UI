@@ -8,17 +8,17 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {SpinnerModule} from 'primeng/spinner';
 
 @NgModule({
-  declarations: [CartComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    CartRoutingModule,
-    FormsModule,
-    SpinnerModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        RouterModule,
+        CartRoutingModule,
+        FormsModule,
+        SpinnerModule,
+        CartComponent,
+    ],
+    exports: [RouterModule],
 })
 export class CartModule {
 }

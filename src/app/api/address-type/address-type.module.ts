@@ -5,8 +5,7 @@ import {AddressTypeComponent} from './address-type.component';
 import {AddressTypeRoutingModule} from './address-type-routing.module';
 
 @NgModule({
-  declarations: [AddressTypeComponent],
-  imports: [CommonModule, ReactiveFormsModule, AddressTypeRoutingModule],
+    imports: [CommonModule, ReactiveFormsModule, AddressTypeRoutingModule, AddressTypeComponent],
 })
 export class AddressTypeModule {
 }

@@ -1,14 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {MANUFACTURER_API_URL} from '../../../app.constants';
 import {Manufacturer} from '../model/manufacturer';
 import {ManufacturerService} from '../service/manufacturer.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-manufacturer-list',
-  templateUrl: './manufacturer-list.component.html',
-  styleUrls: ['./manufacturer-list.component.scss'],
+    selector: 'app-manufacturer-list',
+    templateUrl: './manufacturer-list.component.html',
+    styleUrls: ['./manufacturer-list.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class ManufacturerListComponent implements OnInit {
   manufacturers: Array<Manufacturer>;

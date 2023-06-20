@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductInventory} from 'src/app/api/product/model/product-inventory';
 import {
@@ -16,11 +16,19 @@ import {Manufacturer} from '../../manufacturer/model/manufacturer';
 import {Currency} from '../model/currency';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.scss'],
+    selector: 'app-product-edit',
+    templateUrl: './product-edit.component.html',
+    styleUrls: ['./product-edit.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        FormsModule,
+        ReactiveFormsModule,
+        NgFor,
+    ],
 })
 export class ProductEditComponent implements OnInit {
   product: Product;

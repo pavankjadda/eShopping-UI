@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {AuthService} from '../../core/auth/auth.service';
 
 @Component({
-  selector: 'app-admin-home',
-  templateUrl: './admin-home.component.html',
-  styleUrls: ['./admin-home.component.scss'],
+    selector: 'app-admin-home',
+    templateUrl: './admin-home.component.html',
+    styleUrls: ['./admin-home.component.scss'],
+    standalone: true,
+    imports: [RouterLink, RouterLinkActive],
 })
 export class AdminHomeComponent implements OnInit {
   constructor(

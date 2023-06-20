@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { Router, RouterLink } from '@angular/router';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
 import {CART_API_URL, INVENTORY_API_URL} from '../../app.constants';
 import {AuthService} from '../../core/auth/auth.service';
@@ -9,11 +9,23 @@ import {Cart} from './model/cart';
 import {CartProduct} from './model/cart-product';
 import {CartService} from './service/cart.service';
 import {CartProductJson} from './model/cart-product-json';
+import { FormsModule } from '@angular/forms';
+import { SpinnerModule } from 'primeng/spinner';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+    selector: 'app-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        NgFor,
+        RouterLink,
+        SpinnerModule,
+        FormsModule,
+    ],
 })
 export class CartComponent implements OnInit {
   cart: Cart;

@@ -1,14 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../../environments/environment';
 import {CATEGORY_API_URL} from '../../../app.constants';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/category.service';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss'],
+    selector: 'app-category-list',
+    templateUrl: './category-list.component.html',
+    styleUrls: ['./category-list.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class CategoryListComponent implements OnInit {
   categories: Category[];

@@ -13,23 +13,21 @@ import {ManufacturerDeleteComponent} from './manufacturer-delete/manufacturer-de
 import {ManufacturerRoutingModule} from './manufacturer-routing.module';
 
 @NgModule({
-  declarations: [
-    ManufacturerComponent,
-    ManufacturerListComponent,
-    ManufacturerEditComponent,
-    ManufacturerHomeComponent,
-    ManufacturerNewComponent,
-    ManufacturerViewComponent,
-    ManufacturerDeleteComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    ManufacturerRoutingModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        RouterModule,
+        ManufacturerRoutingModule,
+        ManufacturerComponent,
+        ManufacturerListComponent,
+        ManufacturerEditComponent,
+        ManufacturerHomeComponent,
+        ManufacturerNewComponent,
+        ManufacturerViewComponent,
+        ManufacturerDeleteComponent,
+    ],
+    exports: [RouterModule],
 })
 export class ManufacturerModule {
 }

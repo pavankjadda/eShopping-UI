@@ -13,23 +13,21 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
-  declarations: [
-    OrderComponent,
-    OrderHomeComponent,
-    OrderListComponent,
-    OrderEditComponent,
-    OrderViewComponent,
-    OrderDeleteComponent,
-    OrderNewComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    RouterModule,
-    OrderRoutingModule,
-  ],
-  exports: [RouterModule],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        RouterModule,
+        OrderRoutingModule,
+        OrderComponent,
+        OrderHomeComponent,
+        OrderListComponent,
+        OrderEditComponent,
+        OrderViewComponent,
+        OrderDeleteComponent,
+        OrderNewComponent,
+    ],
+    exports: [RouterModule],
 })
 export class OrderModule {
 }

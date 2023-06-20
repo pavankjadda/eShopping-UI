@@ -1,8 +1,8 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
-import {NgxSpinnerService} from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import {environment} from '../../../environments/environment';
 import {UserProfileService} from '../../account/user-profile/service/user-profile.service';
 import {
@@ -32,11 +32,24 @@ import {Country} from '../country/model/country';
 import {CountryService} from '../country/services/country.service';
 import {State} from '../state/model/state';
 import {StateService} from '../state/services/state.service';
+import { DialogModule } from 'primeng/dialog';
+import { NgIf, NgFor, DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
+    selector: 'app-checkout',
+    templateUrl: './checkout.component.html',
+    styleUrls: ['./checkout.component.scss'],
+    standalone: true,
+    imports: [
+        NgxSpinnerModule,
+        NgIf,
+        NgFor,
+        RouterLink,
+        DialogModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DecimalPipe,
+    ],
 })
 export class CheckoutComponent implements OnInit {
   cart: Cart;
