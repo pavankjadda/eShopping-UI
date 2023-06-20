@@ -67,7 +67,7 @@ export class ProductViewComponent implements OnInit {
     if (cart === null) {
       const initializeCartUrl =
         environment.BASE_URL + CART_API_URL + "/initialize";
-      let userProfile = this.authService.currentUserSubject.value?.userProfile;
+      let userProfile = this.authService.currentUser().userProfile;
       await this.cartService.initializeCart(initializeCartUrl, userProfile);
     }
     cart = this.cartService.getCurrentCart;

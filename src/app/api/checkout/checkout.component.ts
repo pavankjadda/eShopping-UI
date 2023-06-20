@@ -333,8 +333,7 @@ export class CheckoutComponent implements OnInit {
   private checkAndHoldInventory() {}
 
   private getAddresses() {
-    let userProfileId =
-      this.authService.currentUserSubject.value.userProfile.id;
+    let userProfileId = this.authService.currentUser().userProfile.id;
     let userProfileUrl =
       environment.BASE_URL + USER_PROFILE_API_URL + "/" + userProfileId;
     this.userProfileService.getUserProfile(userProfileUrl).subscribe(

@@ -110,8 +110,7 @@ export class UserProfileEditComponent implements OnInit {
 
     const userProfileUrl =
       environment.BASE_URL + USER_PROFILE_API_URL + "/update";
-    let userProfileId =
-      this.authService.currentUserSubject.value.userProfile.id;
+    let userProfileId = this.authService.currentUser().userProfile.id;
     let userProfile = new UserProfile();
     userProfile.id = userProfileId;
     userProfile.firstName = this.userProfileForm.value.firstName;
@@ -212,8 +211,7 @@ export class UserProfileEditComponent implements OnInit {
   }
 
   private getUserProfile() {
-    let userProfileId =
-      this.authService.currentUserSubject.value.userProfile.id;
+    let userProfileId = this.authService.currentUser().userProfile.id;
     let userProfileUrl =
       environment.BASE_URL + USER_PROFILE_API_URL + "/" + userProfileId;
 

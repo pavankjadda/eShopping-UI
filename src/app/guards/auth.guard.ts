@@ -1,14 +1,17 @@
-import {Injectable} from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import {AuthService} from '../core/auth/auth.service';
-import {Role} from '../core/role/model/role';
+import { Injectable } from "@angular/core";
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+} from "@angular/router";
+import { AuthService } from "../core/auth/auth.service";
+import { Role } from "../core/role/model/role";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
-export class AuthGuard  {
-  constructor(private authService: AuthService, private router: Router) {
-  }
+export class AuthGuard {
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,10 +29,11 @@ export class AuthGuard  {
   }
 
   hasAdminRole() {
-    let userRoles: Array<Role> = JSON.parse(localStorage.getItem('currentUser'))
-      .roles;
+    let userRoles: Array<Role> = JSON.parse(
+      localStorage.getItem("currentUser")
+    ).roles;
     for (let role of userRoles) {
-      if (role.name === 'ROLE_ADMIN') {
+      if (role.name === "ROLE_ADMIN") {
         return true;
       }
     }
@@ -45,7 +49,7 @@ export class AuthGuard  {
     this.authService.redirectUrl = url;
 
     // Navigate to the login page with extras
-    this.router.navigate(['/403']);
+    this.router.navigate(["/403"]);
     return false;
   }
 }
