@@ -1,29 +1,21 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {AuthService} from '../auth/auth.service';
-import {CookieService} from 'ngx-cookie-service';
+import { HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
 
-@Injectable()
-export class HttpTokenInterceptor implements HttpInterceptor {
-  constructor(
-    private authService: AuthService,
-    private cookieService: CookieService
-  ) {
+/**
+ * HTTP Token Interceptor that intercepts all requests HTTP requests and adds base URL
+ *
+ * @author Pavan Kumar Jadda
+ * @since 2.0.0
+ */
+export function httpTokenInterceptor(
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) {
+  // Add base URL to all API requests
+  if (request.url.indexOf("/api") !== -1) {
+    request = request.clone({
+      url: environment.BASE_URL + `${request.url}`,
+    });
   }
-
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    let xAuthToken = this.cookieService.get('X-Auth-Token');
-    if (xAuthToken) {
-      request = request.clone({
-        setHeaders: {
-          'X-Auth-Token': xAuthToken,
-        },
-      });
-    }
-    return next.handle(request);
-  }
+  return next(request);
 }

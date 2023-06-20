@@ -6,13 +6,14 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   provideHttpClient,
+  withFetch,
+  withInterceptors,
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { bootstrapApplication, BrowserModule } from "@angular/platform-browser";
 import { CookieService } from "ngx-cookie-service";
-import { httpInterceptorProviders } from "./app/core/intercepters/httpInterceptorProviders";
 import {
   PreloadAllModules,
   provideRouter,
@@ -22,6 +23,8 @@ import {
   withRouterConfig,
 } from "@angular/router";
 import { routes } from "./app/routes";
+import { errorInterceptor } from "./app/core/intercepters/error-interceptor";
+import { httpTokenInterceptor } from "./app/core/intercepters/http-token-interceptor";
 
 if (environment.production) {
   enableProdMode();
@@ -46,7 +49,10 @@ bootstrapApplication(AppComponent, {
       withPreloading(PreloadAllModules),
       withComponentInputBinding()
     ),
-    httpInterceptorProviders,
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([httpTokenInterceptor, errorInterceptor])
+    ),
     CookieService,
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),

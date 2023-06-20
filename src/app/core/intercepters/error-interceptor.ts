@@ -1,51 +1,59 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {catchError} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { Router } from "@angular/router";
+import { throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { AuthService } from "../auth/auth.service";
 
-@Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private router: Router) {
-  }
+/**
+ * HTTP Error Interceptor that intercepts all errors from backend
+ *
+ * @author Pavan Kumar Jadda
+ * @since 2.0.0
+ */
+export function errorInterceptor(
+  request: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) {
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(
-      catchError((err) => {
-        if (err.status === 401) {
-          console.log('Inside ErrorInterceptor, Http Status: 401');
-          this.authService.logout();
-          this.router.navigate(['/login']);
-        }
-        if (err.status === 403) {
-          console.log('Inside ErrorInterceptor, Http Status: 403');
-          this.authService.logout();
-          this.router.navigate(['/403']);
-        }
-
-        if (err.status === 404) {
-          console.log('Inside ErrorInterceptor, Http Status: 404');
-          //this.authService.logout();
-          //this.router.navigate( ['/login'] );
-        }
-        if (err.status === 500) {
-          console.log('Inside ErrorInterceptor, Http Status: 500');
+  return next(request).pipe(
+    catchError((error) => {
+      if (error.status === 401) {
+        //Save current URL
+        if (router.url !== "/login") {
+          authService.redirectUrl = router.url;
         }
 
-        if (err.status === 0 || err.statusText === 'Unknown Error') {
-          console.log('Inside ErrorInterceptor, Http Status: Unknown Error');
-          alert(
-            'Unknown Error occurred, failed to reach backend server, Please try again'
-          );
-        }
+        //Delete all cookies
+        router.navigate(["/login"]);
+      } else if (error.status === 403) {
+        error.error.message =
+          "You are not authorized to access the resource. Please check the URL";
+        router.navigate(["/unauthorized"]);
+      } else if (error.status === 404) {
+        error.error.message =
+          error.error.message ??
+          "The requested resource is not found. Please try again";
+      } else if (
+        error.status === 500 ||
+        error.status === 502 ||
+        error.status === 503 ||
+        error.status === 504
+      ) {
+        error.error.message =
+          error.error.message ??
+          "Unable to process the request. Please try again";
+      } else if (error.status === 0 || error.statusText === "Unknown Error") {
+        router.navigate(["/error"]);
+      } else {
+        error.error.message =
+          error.error.message ??
+          "Unable to process the request. Please try again";
+      }
 
-        let error = err.error.message || err.error;
-        return throwError(error);
-      })
-    );
-  }
+      return throwError(error.error);
+    })
+  );
 }
