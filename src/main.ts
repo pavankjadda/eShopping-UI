@@ -3,7 +3,6 @@ import { environment } from "./environments/environment";
 import { AppComponent } from "./app/app.component";
 import { StoreModule } from "@ngrx/store";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { AdminModule } from "./app/admin/admin.module";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   provideHttpClient,
@@ -35,7 +34,6 @@ bootstrapApplication(AppComponent, {
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
-      AdminModule,
       NgxSpinnerModule,
       StoreModule.forRoot({}, {})
     ),

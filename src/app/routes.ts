@@ -87,4 +87,11 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./api/country/country.component").then((m) => m.countryRoutes),
   },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin-home/admin-home.component").then(
+        (m) => m.adminRoutes
+      ),
+  },
 ];

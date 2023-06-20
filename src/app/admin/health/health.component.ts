@@ -1,15 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-health',
-    templateUrl: './health.component.html',
-    styleUrls: ['./health.component.scss'],
-    standalone: true,
+  selector: "app-health",
+  templateUrl: "./health.component.html",
+  standalone: true,
 })
-export class HealthComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-}
+export class HealthComponent {}

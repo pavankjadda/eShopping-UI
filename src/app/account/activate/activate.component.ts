@@ -1,15 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-activate',
-    templateUrl: './activate.component.html',
-    styleUrls: ['./activate.component.scss'],
-    standalone: true,
+  selector: "app-activate",
+  templateUrl: "./activate.component.html",
+  standalone: true,
 })
-export class ActivateComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-}
+export class ActivateComponent {}
