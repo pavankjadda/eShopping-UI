@@ -1,4 +1,4 @@
 export class AddressType {
-  id: number;
-  type: string;
+	id: number;
+	type: string;
 }

@@ -1,18 +1,18 @@
-import { Component } from "@angular/core";
-import { Routes } from "@angular/router";
-import { UserAuthGuard } from "../../guards/user-auth.guard";
+import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+import { UserAuthGuard } from '../../guards/user-auth.guard';
 
 @Component({
-  selector: "app-address-type",
-  templateUrl: "./address-type.component.html",
-  standalone: true,
+	selector: 'app-address-type',
+	templateUrl: './address-type.component.html',
+	standalone: true,
 })
 export class AddressTypeComponent {}
 
 export const addressTypeRoutes: Routes = [
-  {
-    path: "",
-    component: AddressTypeComponent,
-    canActivate: [UserAuthGuard],
-  },
+	{
+		path: '',
+		component: AddressTypeComponent,
+		canActivate: [UserAuthGuard],
+	},
 ];

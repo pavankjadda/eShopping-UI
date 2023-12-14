@@ -1,12 +1,12 @@
-import { Currency } from "./currency";
+import { Currency } from './currency';
 
 export class Price {
-  id: number;
-  currency: Currency;
-  amount: number;
+	id: number;
+	currency: Currency;
+	amount: number;
 
-  constructor(currency: Currency, amount: number) {
-    this.currency = currency;
-    this.amount = amount;
-  }
+	constructor(currency: Currency, amount: number) {
+		this.currency = currency;
+		this.amount = amount;
+	}
 }

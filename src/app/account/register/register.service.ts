@@ -1,18 +1,14 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { RegisterUser } from "./register-user";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterUser } from './register-user';
 
 @Injectable({
-  providedIn: "root",
+	providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient) {}
 
-  registerUser(
-    url: string,
-    registerUser: RegisterUser,
-    httpOptions: { headers: HttpHeaders },
-  ) {
-    return this.httpClient.post<any>(url, registerUser, httpOptions);
-  }
+	registerUser(url: string, registerUser: RegisterUser, httpOptions: { headers: HttpHeaders }) {
+		return this.httpClient.post<any>(url, registerUser, httpOptions);
+	}
 }

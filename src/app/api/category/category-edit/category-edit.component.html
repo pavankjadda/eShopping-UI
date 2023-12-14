@@ -1,49 +1,22 @@
-<div style="margin-top: 30px;">
-  <h2>Update Category</h2>
-  <br/>
-  <form [formGroup]="categoryForm">
-    <div class="form-group">
-      <label for="id">Category Id</label>
-      <input
-        class="form-control"
-        formControlName="id"
-        id="id"
-        required
-        type="text"
-      />
-    </div>
-    <div class="form-group">
-      <label for="name">Category Name</label>
-      <input
-        class="form-control"
-        formControlName="name"
-        id="name"
-        placeholder="Enter New Category Name"
-        required
-        type="text"
-      />
-    </div>
-    <div class="form-group">
-      <label for="description">Category Description</label>
-      <textarea
-        class="form-control"
-        formControlName="description"
-        id="description"
-        placeholder="Enter New Category Description"
-        required
-      >
-      </textarea>
-    </div>
-  </form>
+<div style="margin-top: 30px">
+	<h2>Update Category</h2>
+	<br />
+	<form [formGroup]="categoryForm">
+		<div class="form-group">
+			<label for="id">Category Id</label>
+			<input class="form-control" formControlName="id" id="id" required type="text" />
+		</div>
+		<div class="form-group">
+			<label for="name">Category Name</label>
+			<input class="form-control" formControlName="name" id="name" placeholder="Enter New Category Name" required type="text" />
+		</div>
+		<div class="form-group">
+			<label for="description">Category Description</label>
+			<textarea class="form-control" formControlName="description" id="description" placeholder="Enter New Category Description" required>
+			</textarea>
+		</div>
+	</form>
 
-  <button
-    (click)="goBack()"
-    class="btn btn-outline-danger"
-    style="margin-right: 30px;"
-  >
-    Back
-  </button>
-  <button (click)="updateCategory()" class="btn btn-primary" type="submit">
-    Update
-  </button>
+	<button (click)="goBack()" class="btn btn-outline-danger" style="margin-right: 30px">Back</button>
+	<button (click)="updateCategory()" class="btn btn-primary" type="submit">Update</button>
 </div>

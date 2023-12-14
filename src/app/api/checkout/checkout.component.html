@@ -1,347 +1,223 @@
-<ngx-spinner
-  bdColor="rgba(51, 51, 51, 0.8)"
-  color="#fff"
-  size="large"
-  type="ball-elastic-dots"
-></ngx-spinner>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner>
 
 <div class="container container-fluid">
-  <h1 style="text-align: center;">Checkout</h1>
-  <br/>
+	<h1 style="text-align: center">Checkout</h1>
+	<br />
 
-  <div class="card border-info">
-    <div class="card-header"><h4>Review Items</h4></div>
-    <div class="card-body">
-      <div
-        *ngIf="cartDataAvailable()"
-        class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg"
-      >
-        <table class="table">
-          <thead style="text-align: center;">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Cost</th>
-            <th scope="col"></th>
-          </tr>
-          </thead>
-          <tbody style="text-align: center;">
-          <tr *ngFor="let cartProduct of cart.cartProducts; index as i">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>
-              <a [routerLink]="['/product', cartProduct.product.id]">{{
-                cartProduct.product.name
-                }}</a>
-            </td>
-            <td>{{ cartProduct.quantity }}</td>
-            <td>
-              {{ cartProduct.product.price.currency.symbol }}
-              {{ cartProduct.quantity * cartProduct.product.price.amount }}
-            </td>
-          </tr>
-          </tbody>
-          <tfoot style="text-align: center;">
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <th>Tax = ${{ taxAmount | number: "1.2-2" }}</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <th>
-              <h5>Total Cost = ${{ totalCost.toPrecision(6) }}</h5>
-            </th>
-          </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-  </div>
-  <br/>
+	<div class="card border-info">
+		<div class="card-header"><h4>Review Items</h4></div>
+		<div class="card-body">
+			<div *ngIf="cartDataAvailable()" class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+				<table class="table">
+					<thead style="text-align: center">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Product</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Cost</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center">
+						<tr *ngFor="let cartProduct of cart.cartProducts; index as i">
+							<th scope="row">{{ i + 1 }}</th>
+							<td>
+								<a [routerLink]="['/product', cartProduct.product.id]">{{ cartProduct.product.name }}</a>
+							</td>
+							<td>{{ cartProduct.quantity }}</td>
+							<td>
+								{{ cartProduct.product.price.currency.symbol }}
+								{{ cartProduct.quantity * cartProduct.product.price.amount }}
+							</td>
+						</tr>
+					</tbody>
+					<tfoot style="text-align: center">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<th>Tax = ${{ taxAmount | number: '1.2-2' }}</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<th>
+								<h5>Total Cost = ${{ totalCost.toPrecision(6) }}</h5>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br />
 
-  <!-- Shipping Address -->
-  <div class="card border-info">
-    <div class="card-header"><h4>Shipping Address</h4></div>
-    <div class="card-body">
-      <div
-        class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg"
-      >
-        <div *ngIf="addressesAvailable()">
-          <div *ngFor="let address of addresses" class="row">
-            <div class="col-6">
-              <div class="form-check" style="margin: 10px;">
-                <label class="form-check-label" style="font-weight: bold;">
-                  <input
-                    (change)="changeShippingAddress(address)"
-                    class="form-check-input"
-                    name="shippingAddress"
-                    type="radio"
-                    value="{{ address }}"
-                  />{{ address.addressType.type }}
-                </label>
-              </div>
-              <address style="margin-left: 20px;">
-                {{ address.streetName }}<br/>
-                Apt {{ address.apartment }}<br/>
-                {{ address.city.name }}, {{ address.state.name }} -
-                {{ address.zipCode }}<br/>
-              </address>
-              <br/>
-            </div>
-            <div class="col-6">
-              <button
-                (click)="openModal( address)"
-                class="btn btn-primary"
-                type="button"
-              >
-                Edit
-              </button>
-              <input
-                (click)="deleteAddress(address)"
-                class="btn btn-danger"
-                style="margin: 10px;"
-                type="button"
-                value="Delete"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button
-            (click)="openModal( null)"
-            class="btn btn-primary"
-            type="button"
-          >
-            Create New
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br/>
+	<!-- Shipping Address -->
+	<div class="card border-info">
+		<div class="card-header"><h4>Shipping Address</h4></div>
+		<div class="card-body">
+			<div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+				<div *ngIf="addressesAvailable()">
+					<div *ngFor="let address of addresses" class="row">
+						<div class="col-6">
+							<div class="form-check" style="margin: 10px">
+								<label class="form-check-label" style="font-weight: bold">
+									<input
+										(change)="changeShippingAddress(address)"
+										class="form-check-input"
+										name="shippingAddress"
+										type="radio"
+										value="{{ address }}" />{{ address.addressType.type }}
+								</label>
+							</div>
+							<address style="margin-left: 20px">
+								{{ address.streetName }}<br />
+								Apt {{ address.apartment }}<br />
+								{{ address.city.name }}, {{ address.state.name }} - {{ address.zipCode }}<br />
+							</address>
+							<br />
+						</div>
+						<div class="col-6">
+							<button (click)="openModal(address)" class="btn btn-primary" type="button">Edit</button>
+							<input (click)="deleteAddress(address)" class="btn btn-danger" style="margin: 10px" type="button" value="Delete" />
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<button (click)="openModal(null)" class="btn btn-primary" type="button">Create New</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
 
-  <!-- Billing Address -->
-  <div class="card border-info">
-    <div class="card-header"><h4>Billing Address</h4></div>
-    <div class="card-body">
-      <div
-        class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg"
-      >
-        <div *ngIf="addressesAvailable()">
-          <div *ngFor="let address of addresses" class="row">
-            <div class="col-6">
-              <div class="form-check" style="margin: 10px;">
-                <label class="form-check-label" style="font-weight: bold;">
-                  <input
-                    (change)="changeBillingAddress(address)"
-                    class="form-check-input"
-                    name="billingAddress"
-                    type="radio"
-                    value="{{ address }}"
-                  />{{ address.addressType.type }}
-                </label>
-              </div>
-              <address style="margin: 10px;">
-                {{ address.streetName }}<br/>
-                Apt {{ address.apartment }}<br/>
-                {{ address.city.name }}, {{ address.state.name }} -
-                {{ address.zipCode }}<br/>
-              </address>
-            </div>
-            <div class="col-6">
-              <button
-                (click)="openModal(address)"
-                class="btn btn-primary"
-                type="button"
-              >
-                Edit
-              </button>
-              <input
-                (click)="deleteAddress(address)"
-                class="btn btn-danger"
-                style="margin: 10px;"
-                type="button"
-                value="Delete"
-              />
-            </div>
-            <br/>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button
-            (click)="openModal(null)"
-            class="btn btn-primary"
-            type="button"
-          >
-            Create New
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+	<!-- Billing Address -->
+	<div class="card border-info">
+		<div class="card-header"><h4>Billing Address</h4></div>
+		<div class="card-body">
+			<div class="table-responsive-sm table-responsive-xs table-responsive-md table-responsive-lg">
+				<div *ngIf="addressesAvailable()">
+					<div *ngFor="let address of addresses" class="row">
+						<div class="col-6">
+							<div class="form-check" style="margin: 10px">
+								<label class="form-check-label" style="font-weight: bold">
+									<input
+										(change)="changeBillingAddress(address)"
+										class="form-check-input"
+										name="billingAddress"
+										type="radio"
+										value="{{ address }}" />{{ address.addressType.type }}
+								</label>
+							</div>
+							<address style="margin: 10px">
+								{{ address.streetName }}<br />
+								Apt {{ address.apartment }}<br />
+								{{ address.city.name }}, {{ address.state.name }} - {{ address.zipCode }}<br />
+							</address>
+						</div>
+						<div class="col-6">
+							<button (click)="openModal(address)" class="btn btn-primary" type="button">Edit</button>
+							<input (click)="deleteAddress(address)" class="btn btn-danger" style="margin: 10px" type="button" value="Delete" />
+						</div>
+						<br />
+					</div>
+				</div>
+				<div class="card-footer">
+					<button (click)="openModal(null)" class="btn btn-primary" type="button">Create New</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <!-- Address Modal-->
-  <p-dialog
-    header="Header"
-    [(visible)]="display"
-    [style]="{ width: '50vw' }"
-    [baseZIndex]="10000"
-  >
-    <div (click)="display=false" class="modal-header">
-      <h3 class="modal-title">Edit Address</h3>
-      <button
-        aria-label="Close"
-        class="close"
-        data-dismiss="modal"
-        type="button"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="addressForm">
-        <div class="form-group">
-          <label
-          >Address Type
-            <select
-              [compareWith]="compareAddressTypeFn"
-              class="form-control"
-              formControlName="addressType"
-              name="addressType"
-            >
-              <option
-                *ngFor="let addressType of addressTypes"
-                [ngValue]="addressType"
-              >
-                {{ addressType.type }}
-              </option>
-            </select>
-          </label>
-        </div>
+	<!-- Address Modal-->
+	<p-dialog header="Header" [(visible)]="display" [style]="{ width: '50vw' }" [baseZIndex]="10000">
+		<div (click)="display = false" class="modal-header">
+			<h3 class="modal-title">Edit Address</h3>
+			<button aria-label="Close" class="close" data-dismiss="modal" type="button">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<form [formGroup]="addressForm">
+				<div class="form-group">
+					<label
+						>Address Type
+						<select [compareWith]="compareAddressTypeFn" class="form-control" formControlName="addressType" name="addressType">
+							<option *ngFor="let addressType of addressTypes" [ngValue]="addressType">
+								{{ addressType.type }}
+							</option>
+						</select>
+					</label>
+				</div>
 
-        <div class="form-row">
-          <div class="col-6">
-            <label for="streetName">Street Name</label>
-            <input
-              class="form-control"
-              formControlName="streetName"
-              id="streetName"
-              placeholder="Enter Street Name"
-              required
-              type="text"
-            />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-6">
-            <label for="apartment">Apartment</label>
-            <input
-              class="form-control"
-              formControlName="apartment"
-              id="apartment"
-              placeholder="Enter Apartment Number"
-              required
-              type="text"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label
-          >Country
-            <select
-              (change)="loadStates()"
-              [compareWith]="compareCountryFn"
-              class="form-control"
-              formControlName="country"
-              name="country"
-            >
-              <option *ngFor="let country of countries" [ngValue]="country">
-                {{ country.name }}
-              </option>
-            </select>
-          </label>
-        </div>
+				<div class="form-row">
+					<div class="col-6">
+						<label for="streetName">Street Name</label>
+						<input class="form-control" formControlName="streetName" id="streetName" placeholder="Enter Street Name" required type="text" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-6">
+						<label for="apartment">Apartment</label>
+						<input
+							class="form-control"
+							formControlName="apartment"
+							id="apartment"
+							placeholder="Enter Apartment Number"
+							required
+							type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label
+						>Country
+						<select (change)="loadStates()" [compareWith]="compareCountryFn" class="form-control" formControlName="country" name="country">
+							<option *ngFor="let country of countries" [ngValue]="country">
+								{{ country.name }}
+							</option>
+						</select>
+					</label>
+				</div>
 
-        <div class="form-group">
-          <label
-          >State
-            <select
-              (change)="loadCities()"
-              [compareWith]="compareStateFn"
-              class="form-control"
-              formControlName="state"
-              name="state"
-            >
-              <option *ngFor="let state of states" [ngValue]="state">
-                {{ state.name }}
-              </option>
-            </select>
-          </label>
-        </div>
+				<div class="form-group">
+					<label
+						>State
+						<select (change)="loadCities()" [compareWith]="compareStateFn" class="form-control" formControlName="state" name="state">
+							<option *ngFor="let state of states" [ngValue]="state">
+								{{ state.name }}
+							</option>
+						</select>
+					</label>
+				</div>
 
-        <div class="form-group">
-          <label
-          >City
-            <select
-              [compareWith]="compareCityFn"
-              class="form-control"
-              formControlName="city"
-              name="city"
-            >
-              <option *ngFor="let city of cities" [ngValue]="city">
-                {{ city.name }}
-              </option>
-            </select>
-          </label>
-        </div>
-        <div class="form-row">
-          <div class="col-3">
-            <label for="zipCode">Zip Code</label>
-            <input
-              class="form-control"
-              formControlName="zipCode"
-              id="zipCode"
-              placeholder="Enter Zip Code"
-              required
-              type="text"
-            />
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button
-        (click)="updateUserAddress()"
-        class="btn btn-primary"
-        type="button"
-      >
-        Update
-      </button>
-      <button (click)="display=false" class="btn btn-danger" type="button">
-        Cancel
-      </button>
-    </div>
-  </p-dialog>
+				<div class="form-group">
+					<label
+						>City
+						<select [compareWith]="compareCityFn" class="form-control" formControlName="city" name="city">
+							<option *ngFor="let city of cities" [ngValue]="city">
+								{{ city.name }}
+							</option>
+						</select>
+					</label>
+				</div>
+				<div class="form-row">
+					<div class="col-3">
+						<label for="zipCode">Zip Code</label>
+						<input class="form-control" formControlName="zipCode" id="zipCode" placeholder="Enter Zip Code" required type="text" />
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button (click)="updateUserAddress()" class="btn btn-primary" type="button">Update</button>
+			<button (click)="display = false" class="btn btn-danger" type="button">Cancel</button>
+		</div>
+	</p-dialog>
 
-  <br/>
-  <p style="text-align: center;">
-    <input
-      (click)="backToCart()"
-      class="btn btn-secondary"
-      style="margin: 40px;"
-      type="button"
-      value="Back to Cart"
-    />
-    <input
-      (click)="placeOrder()"
-      class="btn btn-primary"
-      style="margin: 20px;"
-      type="button"
-      value="Place Order"
-    />
-  </p>
+	<br />
+	<p style="text-align: center">
+		<input (click)="backToCart()" class="btn btn-secondary" style="margin: 40px" type="button" value="Back to Cart" />
+		<input (click)="placeOrder()" class="btn btn-primary" style="margin: 20px" type="button" value="Place Order" />
+	</p>
 </div>

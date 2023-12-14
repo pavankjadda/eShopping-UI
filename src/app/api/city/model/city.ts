@@ -1,7 +1,7 @@
-import { State } from "../../state/model/state";
+import { State } from '../../state/model/state';
 
 export class City {
-  id: number;
-  name: string;
-  state: State;
+	id: number;
+	name: string;
+	state: State;
 }

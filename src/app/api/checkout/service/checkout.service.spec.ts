@@ -1,12 +1,12 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 
-import { CheckoutService } from "./checkout.service";
+import { CheckoutService } from './checkout.service';
 
-describe("CheckoutService", () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('CheckoutService', () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it("should be created", () => {
-    const service: CheckoutService = TestBed.get(CheckoutService);
-    expect(service).toBeTruthy();
-  });
+	it('should be created', () => {
+		const service: CheckoutService = TestBed.get(CheckoutService);
+		expect(service).toBeTruthy();
+	});
 });

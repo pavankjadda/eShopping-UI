@@ -1,33 +1,28 @@
 <nav class="navbar fixed-top navbar-dark mat-toolbar custom-header">
-  <div>
-    <a class="navbar-brand headerTitle" routerLink="/">eShopping</a>
-  </div>
-  <div class="navbar-expand mr-auto">
-    <div *ngIf="isLoggedIn()" class="navbar-nav">
-      <!--<a class="nav-item nav-link" routerLink="/customer">Customer</a>-->
-      <a class="nav-item nav-link" routerLink="/order">Orders</a>
-      <a class="nav-item nav-link" routerLink="/category">Categories</a>
-      <a class="nav-item nav-link" routerLink="/product">Products</a>
-      <a class="nav-item nav-link" routerLink="/manufacturer">Manufacturers</a>
-      <a class="nav-item nav-link" routerLink="/cart">Cart</a>
-    </div>
-  </div>
-  <div *ngIf="authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu">
-    <button [matMenuTriggerFor]="menu" mat-button>
-      {{ authService.currentUserValue.username }}
-      <mat-icon aria-hidden="false" aria-label="Example home icon"
-      >arrow_drop_down
-      </mat-icon
-      >
-    </button>
-    <mat-menu #menu="matMenu">
-      <button (click)="logout()" mat-menu-item>Logout</button>
-    </mat-menu>
-  </div>
+	<div>
+		<a class="navbar-brand headerTitle" routerLink="/">eShopping</a>
+	</div>
+	<div class="navbar-expand mr-auto">
+		<div *ngIf="isLoggedIn()" class="navbar-nav">
+			<!--<a class="nav-item nav-link" routerLink="/customer">Customer</a>-->
+			<a class="nav-item nav-link" routerLink="/order">Orders</a>
+			<a class="nav-item nav-link" routerLink="/category">Categories</a>
+			<a class="nav-item nav-link" routerLink="/product">Products</a>
+			<a class="nav-item nav-link" routerLink="/manufacturer">Manufacturers</a>
+			<a class="nav-item nav-link" routerLink="/cart">Cart</a>
+		</div>
+	</div>
+	<div *ngIf="authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu">
+		<button [matMenuTriggerFor]="menu" mat-button>
+			{{ authService.currentUserValue.username }}
+			<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_drop_down </mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button (click)="logout()" mat-menu-item>Logout</button>
+		</mat-menu>
+	</div>
 
-  <div *ngIf="!authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu">
-    <button mat-button routerLink="/login">
-      Login
-    </button>
-  </div>
+	<div *ngIf="!authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu">
+		<button mat-button routerLink="/login">Login</button>
+	</div>
 </nav>
