@@ -1,98 +1,52 @@
 <div *ngIf="productDataAvailable()">
-  <h2>Update Product</h2>
-  <br/>
-  <form [formGroup]="productForm">
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="id">Product Id</label>
-      <input
-        class="form-control"
-        formControlName="id"
-        id="id"
-        name="id"
-        type="text"
-      />
-      <small class="form-text text-muted" id="emailHelp"></small>
-    </div>
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="name">Name</label>
-      <input
-        class="form-control"
-        formControlName="name"
-        id="name"
-        type="text"
-      />
-    </div>
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="description">Description</label>
-      <textarea
-        class="form-control"
-        formControlName="description"
-        id="description"
-        required
-      >
-      </textarea>
-    </div>
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="quantity">Quantity</label>
-      <input
-        class="form-control"
-        formControlName="quantity"
-        id="quantity"
-        placeholder="Enter quantity"
-        required
-        type="text"
-      />
-    </div>
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label for="amount">Price (In $)</label> <br/>
-      <input formControlName="amount" id="amount" required type="text"/>
-    </div>
+	<h2>Update Product</h2>
+	<br />
+	<form [formGroup]="productForm">
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label for="id">Product Id</label>
+			<input class="form-control" formControlName="id" id="id" name="id" type="text" />
+			<small class="form-text text-muted" id="emailHelp"></small>
+		</div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label for="name">Name</label>
+			<input class="form-control" formControlName="name" id="name" type="text" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label for="description">Description</label>
+			<textarea class="form-control" formControlName="description" id="description" required> </textarea>
+		</div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label for="quantity">Quantity</label>
+			<input class="form-control" formControlName="quantity" id="quantity" placeholder="Enter quantity" required type="text" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label for="amount">Price (In $)</label> <br />
+			<input formControlName="amount" id="amount" required type="text" />
+		</div>
 
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label
-      >Category:
-        <select
-          [compareWith]="compareCategoryFn"
-          class="form-control"
-          formControlName="categoryControl"
-          name="categoryControl"
-        >
-          <option *ngFor="let category of categories" [ngValue]="category">
-            {{ category.name }}
-          </option>
-        </select>
-      </label>
-    </div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label
+				>Category:
+				<select [compareWith]="compareCategoryFn" class="form-control" formControlName="categoryControl" name="categoryControl">
+					<option *ngFor="let category of categories" [ngValue]="category">
+						{{ category.name }}
+					</option>
+				</select>
+			</label>
+		</div>
 
-    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <label
-      >Manufacturer:
-        <select
-          [compareWith]="compareManufacturerFn"
-          class="form-control"
-          formControlName="manufacturerControl"
-          name="manufacturerControl"
-        >
-          <option
-            *ngFor="let manufacturer of manufacturers"
-            [ngValue]="manufacturer"
-          >
-            {{ manufacturer.name }}
-          </option>
-        </select>
-      </label>
-    </div>
+		<div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+			<label
+				>Manufacturer:
+				<select [compareWith]="compareManufacturerFn" class="form-control" formControlName="manufacturerControl" name="manufacturerControl">
+					<option *ngFor="let manufacturer of manufacturers" [ngValue]="manufacturer">
+						{{ manufacturer.name }}
+					</option>
+				</select>
+			</label>
+		</div>
 
-    <button (click)="updateProduct()" class="btn btn-primary" type="submit">
-      Update
-    </button>
-    <button
-      (click)="goBack()"
-      class="btn btn-primary"
-      style="margin-left: 30px;"
-      type="button"
-    >
-      Cancel
-    </button>
-  </form>
+		<button (click)="updateProduct()" class="btn btn-primary" type="submit">Update</button>
+		<button (click)="goBack()" class="btn btn-primary" style="margin-left: 30px" type="button">Cancel</button>
+	</form>
 </div>

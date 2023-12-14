@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-password",
-  templateUrl: "./password.component.html",
-  standalone: true,
+	selector: 'app-password',
+	templateUrl: './password.component.html',
+	standalone: true,
 })
 export class PasswordComponent {}

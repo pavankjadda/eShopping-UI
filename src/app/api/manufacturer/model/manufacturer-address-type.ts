@@ -1,4 +1,4 @@
 export class ManufacturerAddressType {
-  id: number;
-  type: string;
+	id: number;
+	type: string;
 }

@@ -1,13 +1,13 @@
 export class Category {
-  id: number;
-  name: string;
-  description: string;
-  createdBy: string;
-  createdDate: string;
-  lastModifiedBy: string;
-  lastModifiedDate: string;
+	id: number;
+	name: string;
+	description: string;
+	createdBy: string;
+	createdDate: string;
+	lastModifiedBy: string;
+	lastModifiedDate: string;
 
-  constructor(id: number) {
-    this.id = id;
-  }
+	constructor(id: number) {
+		this.id = id;
+	}
 }

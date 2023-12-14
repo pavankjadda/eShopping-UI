@@ -1,10 +1,10 @@
 export class Currency {
-  id: number;
-  name: string;
-  symbol: string;
-  isoCode: string;
+	id: number;
+	name: string;
+	symbol: string;
+	isoCode: string;
 
-  constructor(id: number) {
-    this.id = id;
-  }
+	constructor(id: number) {
+		this.id = id;
+	}
 }
