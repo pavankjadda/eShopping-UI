@@ -3,8 +3,8 @@
 <div class="container-fluid">
 	<div class="mx-auto col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
 		<h2>Login</h2>
-		<form [formGroup]="loginForm" style="margin-top: 30px" (submit)="login()">
-			<div class="mx-auto">
+		<form (submit)="login()" [formGroup]="loginForm" style="margin-top: 30px">
+			<div class="mx-auto m-2">
 				<label for="username">Username</label>
 				<input
 					[ngClass]="{ 'is-invalid': submitted && f.username.errors }"
@@ -16,7 +16,7 @@
 					<div *ngIf="f.username.errors.required">Username is required</div>
 				</div>
 			</div>
-			<div class="mx-auto">
+			<div class="mx-auto m-2">
 				<label for="password">Password</label>
 				<input
 					[ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="mx-auto">
-				<button type="submit" class="btn btn-primary" style="margin: 20px">Login</button>
+				<button class="btn btn-primary" style="margin: 20px" type="submit">Login</button>
 			</div>
 
 			<div class="mx-auto">

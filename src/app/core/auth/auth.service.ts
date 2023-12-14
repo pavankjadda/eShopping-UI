@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { User } from '../user/model/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { LOGIN_API_URL } from '../../app.constants';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -29,10 +28,10 @@ export class AuthService {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type': 'application/json',
-				authorization: 'Basic ' + btoa(username + ':' + password),
+				authorization: `Basic ${btoa(`${username}:${password}`)}`,
 			}),
 		};
-		return this.httpClient.get<any>(environment.BASE_URL + LOGIN_API_URL + '/login', httpOptions).pipe(
+		return this.httpClient.get<any>(`${LOGIN_API_URL}/login`, httpOptions).pipe(
 			map((user) => {
 				// login successful if there's a Spring Session token in the response
 				if (user && user.token) {
