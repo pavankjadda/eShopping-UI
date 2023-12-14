@@ -71,7 +71,7 @@ export class ManufacturerEditComponent implements OnInit {
     private addressService: AddressService,
     private spinnerService: NgxSpinnerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -109,7 +109,7 @@ export class ManufacturerEditComponent implements OnInit {
         (error1) => {
           console.log("Manufacturer update failed");
           this.spinnerService.hide();
-        }
+        },
       );
   }
 
@@ -124,7 +124,7 @@ export class ManufacturerEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load states");
-      }
+      },
     );
   }
 
@@ -138,13 +138,13 @@ export class ManufacturerEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load cities");
-      }
+      },
     );
   }
 
   compareAddressTypeFn(
     c1: ManufacturerAddressType,
-    c2: ManufacturerAddressType
+    c2: ManufacturerAddressType,
   ): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
@@ -194,7 +194,7 @@ export class ManufacturerEditComponent implements OnInit {
         },
         () => {
           console.log("getManufacturer() success");
-        }
+        },
       );
   }
 
@@ -211,7 +211,7 @@ export class ManufacturerEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load address types");
-      }
+      },
     );
   }
 
@@ -221,7 +221,7 @@ export class ManufacturerEditComponent implements OnInit {
       (countries) => {
         this.countries = countries;
       },
-      (error1) => {}
+      (error1) => {},
     );
   }
 }

@@ -30,7 +30,7 @@ export class CountryComponent implements OnInit {
         this.countries = data;
       },
       (err) => console.error(err),
-      () => console.log("Countries retrieved from backend")
+      () => console.log("Countries retrieved from backend"),
     );
     return this.countries;
   }

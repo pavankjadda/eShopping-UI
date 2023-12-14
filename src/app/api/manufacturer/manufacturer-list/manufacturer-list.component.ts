@@ -18,7 +18,7 @@ export class ManufacturerListComponent implements OnInit {
 
   constructor(
     private manufacturerService: ManufacturerService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class ManufacturerListComponent implements OnInit {
       (error1) => {
         console.log("Failed to load manufacturers. Error message: " + error1);
         this.spinner.hide();
-      }
+      },
     );
     this.spinner.hide();
   }

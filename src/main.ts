@@ -37,7 +37,7 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       ReactiveFormsModule,
       NgxSpinnerModule,
-      StoreModule.forRoot({}, {})
+      StoreModule.forRoot({}, {}),
     ),
     provideRouter(
       routes,
@@ -46,11 +46,11 @@ bootstrapApplication(AppComponent, {
       }),
       withInMemoryScrolling(),
       withPreloading(PreloadAllModules),
-      withComponentInputBinding()
+      withComponentInputBinding(),
     ),
     provideHttpClient(
       withFetch(),
-      withInterceptors([httpTokenInterceptor, errorInterceptor])
+      withInterceptors([httpTokenInterceptor, errorInterceptor]),
     ),
     CookieService,
     provideAnimations(),

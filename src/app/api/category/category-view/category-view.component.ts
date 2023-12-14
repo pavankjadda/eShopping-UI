@@ -29,7 +29,7 @@ export class CategoryViewComponent implements OnInit {
   categoryForm = new UntypedFormGroup({
     id: new UntypedFormControl(
       { value: "", disabled: true },
-      Validators.minLength(2)
+      Validators.minLength(2),
     ),
     name: new UntypedFormControl({ value: "", disabled: true }),
     description: new UntypedFormControl({ value: "", disabled: true }),
@@ -38,7 +38,7 @@ export class CategoryViewComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class CategoryViewComponent implements OnInit {
       (error) => {
         console.log(error);
       },
-      () => console.log("getCategoryDetails() success")
+      () => console.log("getCategoryDetails() success"),
     );
   }
 }

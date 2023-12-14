@@ -9,7 +9,7 @@ import { environment } from "../../../environments/environment";
  */
 export function httpTokenInterceptor(
   request: HttpRequest<unknown>,
-  next: HttpHandlerFn
+  next: HttpHandlerFn,
 ) {
   // Add base URL to all API requests
   if (request.url.indexOf("/api") !== -1) {

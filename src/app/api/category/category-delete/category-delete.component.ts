@@ -21,7 +21,7 @@ export class CategoryDeleteComponent implements OnInit {
   categoryForm = new UntypedFormGroup({
     id: new UntypedFormControl(
       { value: "", disabled: true },
-      Validators.minLength(2)
+      Validators.minLength(2),
     ),
     name: new UntypedFormControl({ value: "", disabled: true }),
   });
@@ -29,7 +29,7 @@ export class CategoryDeleteComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class CategoryDeleteComponent implements OnInit {
         (error1) => {},
         () => {
           this.router.navigate(["/category/list"]);
-        }
+        },
       );
     }
   }

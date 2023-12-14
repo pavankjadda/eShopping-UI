@@ -30,7 +30,7 @@ export class StateComponent implements OnInit {
         this.states = data;
       },
       (err) => console.error(err),
-      () => console.log("States retrieved from backend")
+      () => console.log("States retrieved from backend"),
     );
     return this.states;
   }

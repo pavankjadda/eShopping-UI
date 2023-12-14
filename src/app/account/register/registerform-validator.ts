@@ -1,4 +1,4 @@
-import {AbstractControl, UntypedFormGroup, ValidatorFn} from '@angular/forms';
+import { AbstractControl, UntypedFormGroup, ValidatorFn } from "@angular/forms";
 
 export function usernameValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
@@ -8,7 +8,7 @@ export function usernameValidator(): ValidatorFn {
       isNaN(control.value) &&
       !usernamePattern.test(control.value)
     ) {
-      return {usernameInvalidCharacters: true};
+      return { usernameInvalidCharacters: true };
     }
 
     if (
@@ -16,7 +16,7 @@ export function usernameValidator(): ValidatorFn {
       isNaN(control.value) &&
       control.value.length <= 6
     ) {
-      return {minLength: true};
+      return { minLength: true };
     }
     return null;
   };
@@ -30,14 +30,14 @@ export function passwordValidator(): ValidatorFn {
       isNaN(control.value) &&
       !passwordPattern.test(control.value)
     ) {
-      return {passwordInvalidCharacters: true};
+      return { passwordInvalidCharacters: true };
     }
     if (
       control.value !== undefined &&
       isNaN(control.value) &&
       control.value.length <= 6
     ) {
-      return {minLength: true};
+      return { minLength: true };
     }
     return null;
   };
@@ -51,27 +51,29 @@ export function confirmPasswordValidator(): ValidatorFn {
       isNaN(control.value) &&
       !confirmPasswordPattern.test(control.value)
     ) {
-      return {passwordConfirmInvalidCharacters: true};
+      return { passwordConfirmInvalidCharacters: true };
     }
     if (
       control.value !== undefined &&
       isNaN(control.value) &&
       control.value.length <= 6
     ) {
-      return {minLength: true};
+      return { minLength: true };
     }
     return null;
   };
 }
 
-export function matchPasswordValidator(formGroup: UntypedFormGroup): ValidatorFn {
+export function matchPasswordValidator(
+  formGroup: UntypedFormGroup,
+): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
     if (
       control.value !== undefined &&
       isNaN(control.value) &&
       formGroup.controls.username.value === control.value
     ) {
-      return {passwordsMatched: true};
+      return { passwordsMatched: true };
     }
     return null;
   };

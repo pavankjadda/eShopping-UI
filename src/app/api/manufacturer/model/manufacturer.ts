@@ -1,5 +1,5 @@
-import {Product} from '../../product/model/product';
-import {ManufacturerAddress} from './manufacturer-address';
+import { Product } from "../../product/model/product";
+import { ManufacturerAddress } from "./manufacturer-address";
 
 export class Manufacturer {
   id: number;

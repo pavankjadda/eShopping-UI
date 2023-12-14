@@ -38,7 +38,7 @@ export class ManufacturerViewComponent implements OnInit {
     private manufacturerService: ManufacturerService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class ManufacturerViewComponent implements OnInit {
         },
         (error1) => {
           console.log("Failed to delete Manufacturer with id: " + id);
-        }
+        },
       );
     }
   }
@@ -104,7 +104,7 @@ export class ManufacturerViewComponent implements OnInit {
         (error) => {
           console.log(error);
           this.spinner.hide();
-        }
+        },
       );
   }
 }

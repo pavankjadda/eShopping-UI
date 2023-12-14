@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'fileExistingValue',
-    standalone: true,
+  name: "fileExistingValue",
+  standalone: true,
 })
 export class FileExistingValuePipe implements PipeTransform {
   transform(value: any, args?: any): any {

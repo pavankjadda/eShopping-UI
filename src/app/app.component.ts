@@ -17,7 +17,10 @@ import { MainComponent } from "./layouts/main/main.component";
   imports: [RouterLink, RouterOutlet, NgxSpinnerModule, MainComponent],
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private spinner: NgxSpinnerService) {
+  constructor(
+    private router: Router,
+    private spinner: NgxSpinnerService,
+  ) {
     console.log("Is production environment: " + environment.production); // Logs false for default environment
   }
 

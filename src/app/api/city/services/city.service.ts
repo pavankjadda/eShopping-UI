@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {City} from '../model/city';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { City } from "../model/city";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CityService {
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getCities(url) {
     return this.httpClient.get<City[]>(url);

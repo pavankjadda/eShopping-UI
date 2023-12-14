@@ -1,46 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'bootstrap/scss/bootstrap.scss';
+@import "bootstrap/scss/bootstrap.scss";
 
-$fa-font-path: '~font-awesome/fonts';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+$fa-font-path: "~font-awesome/fonts";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 //@import "~@ng-select/ng-select/themes/material.theme.css";
 
 html,
 body {
-	word-wrap: break-word;
-	height: 100%;
+  word-wrap: break-word;
+  height: 100%;
 }
 
 body {
-	margin: 0;
-	//font-family: Roboto, "Helvetica Neue", sans-serif;
-	font-family: 'Open Sans', sans-serif;
-	background-color: #f7f6f3;
-	//background-color:  #F8F8F8;
+  margin: 0;
+  //font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f7f6f3;
+  //background-color:  #F8F8F8;
 }
 
 /* Mat Autocomplete on Modal Fixes */
 .cdk-overlay-container {
-	z-index: 999999 !important;
+  z-index: 999999 !important;
 }
 
 // Removes extra padding when using ng-select
 .ng-select-container.ng-has-value {
-	min-height: 45px !important;
+  min-height: 45px !important;
 }
 
 // Currently there is a bug in ng-select loading icon, Please https://stackoverflow.com/questions/60325229/ng-select-server-side-loading-icon-incorrect-placement for more information
 .ng-select .ng-spinner-loader {
-	bottom: -18px;
+  bottom: -18px;
 }
 
 .ng-select-multiple .ng-spinner-loader {
-	bottom: 0;
+  bottom: 0;
 }
 
 .ng-option {
-	white-space: normal !important;
-	line-height: 200% !important;
-	padding-bottom: 10px !important;
+  white-space: normal !important;
+  line-height: 200% !important;
+  padding-bottom: 10px !important;
 }

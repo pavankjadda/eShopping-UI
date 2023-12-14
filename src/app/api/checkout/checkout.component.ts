@@ -95,7 +95,7 @@ export class CheckoutComponent implements OnInit {
     private countryService: CountryService,
     private addressTypeService: AddressTypeService,
     private addressService: AddressService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -141,7 +141,7 @@ export class CheckoutComponent implements OnInit {
 
     await this.cartService.changeShippingAddress(
       cartShippingAddressUrl,
-      cartShippingAddress
+      cartShippingAddress,
     );
     await this.getTaxRate(address.state.id);
     this.calculateTotalCost(this.cartProducts);
@@ -173,7 +173,7 @@ export class CheckoutComponent implements OnInit {
 
     await this.cartService.changeBillingAddress(
       cartBillingAddressUrl,
-      cartBillingAddress
+      cartBillingAddress,
     );
     this.ngxSpinnerService.hide();
   }
@@ -193,7 +193,7 @@ export class CheckoutComponent implements OnInit {
         },
         (error1) => {
           console.log("Failed to updated address. Error: " + error1);
-        }
+        },
       );
   }
 
@@ -209,7 +209,7 @@ export class CheckoutComponent implements OnInit {
         },
         (error1) => {
           console.log("Error occurred: " + error1);
-        }
+        },
       );
     }
   }
@@ -226,7 +226,7 @@ export class CheckoutComponent implements OnInit {
       (error1) => {
         console.log("Failed to create order. Error: " + error1);
         this.ngxSpinnerService.hide();
-      }
+      },
     );
   }
 
@@ -241,7 +241,7 @@ export class CheckoutComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load states");
-      }
+      },
     );
   }
 
@@ -255,7 +255,7 @@ export class CheckoutComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load cities");
-      }
+      },
     );
   }
 
@@ -342,7 +342,7 @@ export class CheckoutComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to get User Profile information. Error: " + error1);
-      }
+      },
     );
   }
 
@@ -358,7 +358,7 @@ export class CheckoutComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load mAddress types");
-      }
+      },
     );
   }
 
@@ -368,7 +368,7 @@ export class CheckoutComponent implements OnInit {
       (countries) => {
         this.countries = countries;
       },
-      (error1) => {}
+      (error1) => {},
     );
   }
 }

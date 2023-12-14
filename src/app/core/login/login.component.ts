@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   // convenience getter for easy access to form fields
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         },
         () => {
           this.spinner.hide();
-        }
+        },
       );
   }
 

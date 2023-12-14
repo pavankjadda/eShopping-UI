@@ -15,7 +15,7 @@ export class OrderNewComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class OrderNewComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load products");
-      }
+      },
     );
   }
 }

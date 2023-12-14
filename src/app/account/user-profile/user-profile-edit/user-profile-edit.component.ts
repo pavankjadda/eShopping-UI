@@ -84,7 +84,7 @@ export class UserProfileEditComponent implements OnInit {
     private countryService: CountryService,
     private addressTypeService: AddressTypeService,
     private addressService: AddressService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -130,7 +130,7 @@ export class UserProfileEditComponent implements OnInit {
         (error1) => {
           console.log("UserProfile update failed");
           this.spinnerService.hide();
-        }
+        },
       );
   }
 
@@ -145,7 +145,7 @@ export class UserProfileEditComponent implements OnInit {
         },
         (error1) => {
           console.log("Failed to updated address. Error: " + error1);
-        }
+        },
       );
   }
 
@@ -156,7 +156,7 @@ export class UserProfileEditComponent implements OnInit {
       (data) => {
         this.getUserProfile();
       },
-      (error1) => {}
+      (error1) => {},
     );
   }
 
@@ -171,7 +171,7 @@ export class UserProfileEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load states");
-      }
+      },
     );
   }
 
@@ -186,7 +186,7 @@ export class UserProfileEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load cities");
-      }
+      },
     );
   }
 
@@ -231,7 +231,7 @@ export class UserProfileEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to get User Profile information");
-      }
+      },
     );
   }
 
@@ -247,7 +247,7 @@ export class UserProfileEditComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load address types");
-      }
+      },
     );
   }
 
@@ -257,7 +257,7 @@ export class UserProfileEditComponent implements OnInit {
       (countries) => {
         this.countries = countries;
       },
-      (error1) => {}
+      (error1) => {},
     );
   }
 }

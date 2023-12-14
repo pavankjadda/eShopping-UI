@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private ngxSpinnerService: NgxSpinnerService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class CartComponent implements OnInit {
       },
       (error1) => {
         this.ngxSpinnerService.hide();
-      }
+      },
     );
   }
 
@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
       confirm(
         "Are you sure you want to delete " +
           cartProduct.product.name +
-          " from Cart?"
+          " from Cart?",
       )
     ) {
       this.ngxSpinnerService.show();
@@ -86,7 +86,7 @@ export class CartComponent implements OnInit {
         },
         (error1) => {
           this.ngxSpinnerService.hide();
-        }
+        },
       );
     }
   }
@@ -114,7 +114,7 @@ export class CartComponent implements OnInit {
         },
         (error1) => {
           this.ngxSpinnerService.hide();
-        }
+        },
       );
     }
   }
@@ -180,7 +180,7 @@ export class CartComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-        }
+        },
       );
   }
 }

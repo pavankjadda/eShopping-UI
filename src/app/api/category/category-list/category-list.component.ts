@@ -18,7 +18,7 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class CategoryListComponent implements OnInit {
       },
       () => {
         this.spinner.hide();
-      }
+      },
     );
 
     return this.categories;

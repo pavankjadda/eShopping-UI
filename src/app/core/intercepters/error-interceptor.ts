@@ -13,7 +13,7 @@ import { AuthService } from "../auth/auth.service";
  */
 export function errorInterceptor(
   request: HttpRequest<unknown>,
-  next: HttpHandlerFn
+  next: HttpHandlerFn,
 ) {
   const authService = inject(AuthService);
   const router = inject(Router);
@@ -55,6 +55,6 @@ export function errorInterceptor(
       }
 
       return throwError(error.error);
-    })
+    }),
   );
 }

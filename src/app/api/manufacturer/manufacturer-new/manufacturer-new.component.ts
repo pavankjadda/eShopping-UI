@@ -69,7 +69,7 @@ export class ManufacturerNewComponent implements OnInit {
     private addressTypeService: AddressTypeService,
     private addressService: AddressService,
     private spinnerService: NgxSpinnerService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -118,7 +118,7 @@ export class ManufacturerNewComponent implements OnInit {
         (error1) => {
           console.log("Manufacturer creation failed");
           this.spinnerService.hide();
-        }
+        },
       );
   }
 
@@ -133,7 +133,7 @@ export class ManufacturerNewComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load states");
-      }
+      },
     );
   }
 
@@ -147,7 +147,7 @@ export class ManufacturerNewComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load cities");
-      }
+      },
     );
   }
 
@@ -168,7 +168,7 @@ export class ManufacturerNewComponent implements OnInit {
       },
       (error1) => {
         console.log("Failed to load manufacturerAddress types");
-      }
+      },
     );
   }
 
@@ -178,7 +178,7 @@ export class ManufacturerNewComponent implements OnInit {
       (countries) => {
         this.countries = countries;
       },
-      (error1) => {}
+      (error1) => {},
     );
   }
 }

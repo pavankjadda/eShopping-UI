@@ -37,7 +37,7 @@ export const routes: Routes = [
     path: "manufacturer",
     loadChildren: () =>
       import("./api/manufacturer/manufacturer.component").then(
-        (m) => m.manufacturerRoutes
+        (m) => m.manufacturerRoutes,
       ),
   },
   {
@@ -69,7 +69,7 @@ export const routes: Routes = [
     path: "address_type",
     loadChildren: () =>
       import("./api/address-type/address-type.component").then(
-        (m) => m.addressTypeRoutes
+        (m) => m.addressTypeRoutes,
       ),
   },
   {
@@ -91,7 +91,7 @@ export const routes: Routes = [
     path: "admin",
     loadChildren: () =>
       import("./admin/admin-home/admin-home.component").then(
-        (m) => m.adminRoutes
+        (m) => m.adminRoutes,
       ),
   },
 ];

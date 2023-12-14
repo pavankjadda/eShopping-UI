@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private registerService: RegisterService
+    private registerService: RegisterService,
   ) {
     this.authService.logout();
   }
@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
       },
       {
         validator: this.checkIfMatchingPasswords("password", "confirmPassword"),
-      }
+      },
     );
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
@@ -111,7 +111,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(["/home"]);
       },
       (error) => console.log("error: " + error),
-      () => console.log("User Registration Completed ")
+      () => console.log("User Registration Completed "),
     );
   }
 

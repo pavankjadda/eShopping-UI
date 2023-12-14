@@ -39,7 +39,7 @@ export class ProductNewComponent implements OnInit {
   productForm = new UntypedFormGroup({
     id: new UntypedFormControl(
       { value: "", disabled: true },
-      Validators.minLength(2)
+      Validators.minLength(2),
     ),
     name: new UntypedFormControl(""),
     description: new UntypedFormControl(""),
@@ -54,7 +54,7 @@ export class ProductNewComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -69,7 +69,7 @@ export class ProductNewComponent implements OnInit {
     product.description = this.productForm.value.description;
     product.price = new Price(
       this.getCurrency(),
-      this.productForm.value.amount
+      this.productForm.value.amount,
     );
     product.category = this.productForm.value.categoryControl;
     product.manufacturer = this.productForm.value.manufacturerControl;
@@ -88,7 +88,7 @@ export class ProductNewComponent implements OnInit {
       },
       () => {
         this.router.navigate(["/product/list"]);
-      }
+      },
     );
   }
 
@@ -125,7 +125,7 @@ export class ProductNewComponent implements OnInit {
       },
       () => {
         this.router.navigate(["/product/list"]);
-      }
+      },
     );
   }
 
@@ -146,7 +146,7 @@ export class ProductNewComponent implements OnInit {
         this.categories = categories;
       },
       (error1) => {},
-      () => {}
+      () => {},
     );
   }
 
@@ -158,7 +158,7 @@ export class ProductNewComponent implements OnInit {
         this.currencies = currencies;
       },
       (error1) => {},
-      () => {}
+      () => {},
     );
   }
 
@@ -170,7 +170,7 @@ export class ProductNewComponent implements OnInit {
         this.manufacturers = manufacturers;
       },
       (error1) => {},
-      () => {}
+      () => {},
     );
   }
 }

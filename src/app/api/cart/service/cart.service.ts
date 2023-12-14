@@ -1,28 +1,49 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Cart} from '../model/cart';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {CART_STATUS_API_URL} from '../../../app.constants';
-import {CartStatus} from '../model/cart-status';
-import {UserProfile} from '../../../account/user-profile/model/user-profile';
-import {ProductInventory} from '../../product/model/product-inventory';
-import {TaxRate} from '../../checkout/model/taxrate';
-import {CartShippingAddress} from '../model/cart-shipping-address';
-import {CartBillingAddress} from '../model/cart-billing-address';
-import {environment} from '../../../../environments/environment';
-import {CartProductJson} from '../model/cart-product-json';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Cart } from "../model/cart";
+import { BehaviorSubject, Observable } from "rxjs";
+import { CART_STATUS_API_URL } from "../../../app.constants";
+import { CartStatus } from "../model/cart-status";
+import { UserProfile } from "../../../account/user-profile/model/user-profile";
+import { ProductInventory } from "../../product/model/product-inventory";
+import { TaxRate } from "../../checkout/model/taxrate";
+import { CartShippingAddress } from "../model/cart-shipping-address";
+import { CartBillingAddress } from "../model/cart-billing-address";
+import { environment } from "../../../../environments/environment";
+import { CartProductJson } from "../model/cart-product-json";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CartService {
   public currentCartSubject: BehaviorSubject<Cart>;
   public currentCart: Observable<Cart>;
   public cartStatuses: Array<CartStatus>;
 
+  constructor(private httpClient: HttpClient) {
+    if (
+      localStorage.getItem("currentCart") === "undefined" ||
+      localStorage.getItem("currentCart") === null
+    ) {
+      this.currentCartSubject = new BehaviorSubject<Cart>(null);
+      this.currentCart = this.currentCartSubject.asObservable();
+    } else {
+      this.currentCartSubject = new BehaviorSubject<Cart>(
+        JSON.parse(localStorage.getItem("currentCart")),
+      );
+      this.currentCart = this.currentCartSubject.asObservable();
+    }
+
+    this.getDraftCartStatusFromBackend();
+  }
+
+  public get getCurrentCart(): Cart {
+    return this.currentCartSubject.value;
+  }
+
   static doesProductExistInCart(
     cart: Cart,
-    newCartProductDtoSlim: CartProductJson
+    newCartProductDtoSlim: CartProductJson,
   ) {
     if (
       cart.cartProducts === null ||
@@ -41,33 +62,12 @@ export class CartService {
     return newCartProductDtoSlim;
   }
 
-  constructor(private httpClient: HttpClient) {
-    if (
-      localStorage.getItem('currentCart') === 'undefined' ||
-      localStorage.getItem('currentCart') === null
-    ) {
-      this.currentCartSubject = new BehaviorSubject<Cart>(null);
-      this.currentCart = this.currentCartSubject.asObservable();
-    } else {
-      this.currentCartSubject = new BehaviorSubject<Cart>(
-        JSON.parse(localStorage.getItem('currentCart'))
-      );
-      this.currentCart = this.currentCartSubject.asObservable();
-    }
-
-    this.getDraftCartStatusFromBackend();
-  }
-
   async initializeCart(initializeCartUrl: string, userProfile: UserProfile) {
     let response = await this.httpClient
       .post<any>(initializeCartUrl, userProfile)
       .toPromise();
-    localStorage.setItem('currentCart', JSON.stringify(response));
+    localStorage.setItem("currentCart", JSON.stringify(response));
     this.currentCartSubject.next(response);
-  }
-
-  public get getCurrentCart(): Cart {
-    return this.currentCartSubject.value;
   }
 
   getMyCart(url: string) {
@@ -84,7 +84,7 @@ export class CartService {
 
   async changeShippingAddress(
     url: string,
-    cartShippingAddress: CartShippingAddress
+    cartShippingAddress: CartShippingAddress,
   ) {
     return await this.httpClient
       .post<CartShippingAddress>(url, cartShippingAddress)
@@ -93,7 +93,7 @@ export class CartService {
 
   async changeBillingAddress(
     url: string,
-    cartBillingAddress: CartBillingAddress
+    cartBillingAddress: CartBillingAddress,
   ) {
     return await this.httpClient
       .post<CartShippingAddress>(url, cartBillingAddress)
@@ -103,7 +103,7 @@ export class CartService {
   getDraftCartStatus(): CartStatus {
     let statusLength = this.cartStatuses.length;
     for (let i = 0; i < statusLength; i++) {
-      if (this.cartStatuses[i].status === 'Draft') {
+      if (this.cartStatuses[i].status === "Draft") {
         return this.cartStatuses[i];
       }
     }
@@ -111,14 +111,14 @@ export class CartService {
   }
 
   getDraftCartStatusFromBackend() {
-    const url = environment.BASE_URL + CART_STATUS_API_URL + '/list';
+    const url = environment.BASE_URL + CART_STATUS_API_URL + "/list";
     this.httpClient.get<CartStatus[]>(url).subscribe(
       (data) => {
         this.cartStatuses = data;
       },
       (error1) => {
-        console.log('Failed to load Cart Status');
-      }
+        console.log("Failed to load Cart Status");
+      },
     );
   }
 
@@ -137,7 +137,7 @@ export class CartService {
   getProductInventory(inventoryUrl: string, productIdList: any[]) {
     return this.httpClient.post<ProductInventory[]>(
       inventoryUrl,
-      productIdList
+      productIdList,
     );
   }
 

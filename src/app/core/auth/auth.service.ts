@@ -44,7 +44,7 @@ export class AuthService {
             this.cookieService.set("isLoggedIn", "true");
           }
           return user;
-        })
+        }),
       );
   }
 

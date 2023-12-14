@@ -40,7 +40,7 @@ export class UserProfileComponent implements OnInit {
     private authService: AuthService,
     private userProfileService: UserProfileService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -83,7 +83,7 @@ export class UserProfileComponent implements OnInit {
       (error1) => {
         console.log("Failed to get User Profile information. Error: " + error1);
         this.spinner.hide();
-      }
+      },
     );
   }
 }

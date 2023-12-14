@@ -23,7 +23,7 @@ export class CategoryEditComponent implements OnInit {
   categoryForm = new UntypedFormGroup({
     id: new UntypedFormControl(
       { value: "", disabled: true },
-      Validators.minLength(2)
+      Validators.minLength(2),
     ),
     name: new UntypedFormControl(""),
     description: new UntypedFormControl(""),
@@ -32,7 +32,7 @@ export class CategoryEditComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class CategoryEditComponent implements OnInit {
       },
       () => {
         console.log("getCategoryDetails() success");
-      }
+      },
     );
   }
 
@@ -66,7 +66,7 @@ export class CategoryEditComponent implements OnInit {
       (error1) => {},
       () => {
         this.router.navigate(["/category/list"]);
-      }
+      },
     );
   }
 

@@ -36,7 +36,7 @@ export class OrderListComponent implements OnInit {
       },
       () => {
         console.log("getOrders success");
-      }
+      },
     );
   }
 }

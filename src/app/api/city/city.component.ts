@@ -45,7 +45,7 @@ export class CityComponent implements OnInit {
         this.totalPages = data.totalPages;
       },
       (err) => console.error(err),
-      () => console.log("Cities retrieved from backend")
+      () => console.log("Cities retrieved from backend"),
     );
     return this.cities;
   }

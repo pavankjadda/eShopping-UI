@@ -51,7 +51,7 @@ export class ProductEditComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -103,7 +103,7 @@ export class ProductEditComponent implements OnInit {
         (error) => {
           console.log(error);
         },
-        () => console.log("getProduct() success")
+        () => console.log("getProduct() success"),
       );
   }
 
@@ -120,7 +120,7 @@ export class ProductEditComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-        }
+        },
       );
   }
 
@@ -150,7 +150,7 @@ export class ProductEditComponent implements OnInit {
       },
       () => {
         this.router.navigate(["/product/list"]);
-      }
+      },
     );
   }
 
@@ -165,7 +165,7 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log("Failed to load categories");
       },
-      () => {}
+      () => {},
     );
   }
 
@@ -179,7 +179,7 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log("Failed to load currencies");
       },
-      () => {}
+      () => {},
     );
   }
 
@@ -194,7 +194,7 @@ export class ProductEditComponent implements OnInit {
       (error1) => {
         console.log("Failed to load manufacturers");
       },
-      () => {}
+      () => {},
     );
   }
 }

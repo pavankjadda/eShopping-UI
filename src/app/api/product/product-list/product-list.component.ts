@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class ProductListComponent implements OnInit {
       },
       () => {
         this.spinner.hide();
-      }
+      },
     );
 
     return this.products;

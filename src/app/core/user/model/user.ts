@@ -1,5 +1,5 @@
-import {Role} from '../../role/model/role';
-import {UserProfile} from '../../../account/user-profile/model/user-profile';
+import { Role } from "../../role/model/role";
+import { UserProfile } from "../../../account/user-profile/model/user-profile";
 
 export class User {
   id: number;

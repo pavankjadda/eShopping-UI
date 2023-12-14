@@ -22,7 +22,7 @@ export class CategoryNewComponent implements OnInit {
   categoryForm = new UntypedFormGroup({
     id: new UntypedFormControl(
       { value: "", disabled: true },
-      Validators.minLength(2)
+      Validators.minLength(2),
     ),
     name: new UntypedFormControl(""),
     description: new UntypedFormControl(""),
@@ -30,7 +30,7 @@ export class CategoryNewComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {}
@@ -46,7 +46,7 @@ export class CategoryNewComponent implements OnInit {
       (error1) => {},
       () => {
         this.router.navigate(["/category/list"]);
-      }
+      },
     );
   }
 

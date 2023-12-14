@@ -50,7 +50,7 @@ export class ProductViewComponent implements OnInit {
     private authService: AuthService,
     private httpClient: HttpClient,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class ProductViewComponent implements OnInit {
         },
         () => {
           this.router.navigate(["/cart"]);
-        }
+        },
       );
   }
 
@@ -126,7 +126,7 @@ export class ProductViewComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-        }
+        },
       );
   }
 }
