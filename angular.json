@@ -58,19 +58,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eshopping-ui:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json",
+            "buildTarget": "eshopping-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eshopping-ui:build:production"
+              "buildTarget": "eshopping-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eshopping-ui:build"
+            "buildTarget": "eshopping-ui:build"
           }
         },
         "lint": {
@@ -80,25 +80,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "eshopping-ui-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "eshopping-ui:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "eshopping-ui:serve:production"
-            }
           }
         }
       }
@@ -163,37 +144,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "state:build"
+            "buildTarget": "state:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "state:build:production"
+              "buildTarget": "state:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "state:build"
-          }
-        }
-      }
-    },
-    "state-e2e": {
-      "root": "projects/state-e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/state-e2e/protractor.conf.js",
-            "devServerTarget": "state:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "state:serve:production"
-            }
+            "buildTarget": "state:build"
           }
         }
       }
