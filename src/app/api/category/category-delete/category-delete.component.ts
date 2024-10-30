@@ -31,7 +31,7 @@ export class CategoryDeleteComponent implements OnInit {
 	deleteCategory() {
 		const id = this.categoryForm.get('id').value;
 		if (confirm('Do you want to delete this Category with Id:' + id + '?')) {
-			const url = environment.BASE_URL + 'api/v1/category/delete/' + id;
+			const url = 'api/v1/category/delete/' + id;
 			this.categoryService.deleteCategory(url).subscribe(
 				(value) => {},
 				(error1) => {},

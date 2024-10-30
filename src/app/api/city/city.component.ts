@@ -29,7 +29,7 @@ export class CityComponent implements OnInit {
 	}
 
 	getCities() {
-		const url = environment.BASE_URL + CITY_API_URL + '/list?pageNumber=' + this.pageNumber + '&pageSize=' + this.pageSize;
+		const url = CITY_API_URL + '/list?pageNumber=' + this.pageNumber + '&pageSize=' + this.pageSize;
 
 		this.cityService.getCities(url).subscribe(
 			(data) => {

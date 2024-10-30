@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
 	//Takes care of the update and deletes cart product if quantity is zero
 	updateCartProductQuantity(cartProduct: CartProduct) {
 		this.ngxSpinnerService.show();
-		const cartUrl = environment.BASE_URL + CART_API_URL + '/product/update';
+		const cartUrl = CART_API_URL + '/product/update';
 		let cartProductSlim = new CartProductJson();
 		cartProductSlim.cartId = cartProduct.cart.id;
 		cartProductSlim.cartProductId = cartProduct.id;
@@ -61,7 +61,7 @@ export class CartComponent implements OnInit {
 	deleteProductFromCart(cartProduct: CartProduct) {
 		if (confirm('Are you sure you want to delete ' + cartProduct.product.name + ' from Cart?')) {
 			this.ngxSpinnerService.show();
-			const cartUrl = environment.BASE_URL + CART_API_URL + '/product/delete/' + cartProduct.id;
+			const cartUrl = CART_API_URL + '/product/delete/' + cartProduct.id;
 			this.cartService.deleteCartProduct(cartUrl).subscribe(
 				(data) => {
 					this.getMyCart();
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit {
 	deleteCart() {
 		if (confirm('Are you sure you wanna delete the cart?')) {
 			this.ngxSpinnerService.show();
-			const cartUrl = environment.BASE_URL + CART_API_URL + '/delete/' + this.cartService.getCurrentCart.id;
+			const cartUrl = CART_API_URL + '/delete/' + this.cartService.getCurrentCart.id;
 			this.cartService.deleteMyCart(cartUrl).subscribe(
 				(data) => {
 					this.getMyCart();
@@ -115,7 +115,7 @@ export class CartComponent implements OnInit {
 
 	private getMyCart() {
 		this.ngxSpinnerService.show();
-		const cartUrl = environment.BASE_URL + CART_API_URL + '/find/user/' + this.authService.currentUserValue.id;
+		const cartUrl = CART_API_URL + '/find/user/' + this.authService.currentUserValue.id;
 		this.cartService.getMyCart(cartUrl).subscribe((data) => {
 			localStorage.setItem('currentCart', JSON.stringify(data));
 			this.cartService.currentCartSubject.next(data);
@@ -137,7 +137,7 @@ export class CartComponent implements OnInit {
 		this.cart.cartProducts.forEach(function (cartProduct) {
 			productIdList.push(cartProduct.product.id);
 		});
-		const inventoryUrl = environment.BASE_URL + INVENTORY_API_URL + '/product/ids';
+		const inventoryUrl = INVENTORY_API_URL + '/product/ids';
 		this.cartService
 			.getProductInventory(inventoryUrl, productIdList)
 			.pipe()

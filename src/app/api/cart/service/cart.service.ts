@@ -87,7 +87,7 @@ export class CartService {
 	}
 
 	getDraftCartStatusFromBackend() {
-		const url = environment.BASE_URL + CART_STATUS_API_URL + '/list';
+		const url = CART_STATUS_API_URL + '/list';
 		this.httpClient.get<CartStatus[]>(url).subscribe(
 			(data) => {
 				this.cartStatuses = data;

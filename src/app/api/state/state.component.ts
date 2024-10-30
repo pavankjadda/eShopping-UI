@@ -24,7 +24,7 @@ export class StateComponent implements OnInit {
 	}
 
 	getStates() {
-		const url = environment.BASE_URL + STATE_API_URL + '/list';
+		const url = STATE_API_URL + '/list';
 		this.stateService.getStates(url).subscribe(
 			(data) => {
 				this.states = data;

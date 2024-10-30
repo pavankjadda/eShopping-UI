@@ -11,22 +11,25 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/eshopping-ui",
+            "outputPath": {
+              "base": "dist/eshopping-ui"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": [],
             "aot": false,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -42,7 +45,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -54,7 +56,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "proxyConfig": "src/proxy.conf.json",
             "buildTarget": "eshopping-ui:build"
@@ -66,7 +68,7 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "eshopping-ui:build"
           }
@@ -90,12 +92,15 @@
       "schematics": {},
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/state",
+            "outputPath": {
+              "base": "dist/state"
+            },
             "index": "projects/state/src/index.html",
-            "main": "projects/state/src/main.ts",
-            "polyfills": "projects/state/src/polyfills.ts",
+            "polyfills": [
+              "projects/state/src/polyfills.ts"
+            ],
             "tsConfig": "projects/state/tsconfig.app.json",
             "assets": [
               "projects/state/src/favicon.ico",
@@ -107,10 +112,10 @@
             "scripts": [],
             "aot": false,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "projects/state/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -126,7 +131,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -138,7 +142,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "state:build"
           },
@@ -149,7 +153,7 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "state:build"
           }

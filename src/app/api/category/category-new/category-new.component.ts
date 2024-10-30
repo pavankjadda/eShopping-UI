@@ -31,7 +31,7 @@ export class CategoryNewComponent implements OnInit {
 		category.name = this.categoryForm.get('name').value;
 		category.description = this.categoryForm.get('description').value;
 
-		const url = environment.BASE_URL + CATEGORY_API_URL + '/create';
+		const url = CATEGORY_API_URL + '/create';
 		this.categoryService.createCategory(url, category).subscribe(
 			(value) => {},
 			(error1) => {},

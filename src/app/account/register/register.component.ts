@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
 		registerUser.email = this.formControls.email.value;
 		registerUser.password = this.formControls.password.value;
 
-		let url = environment.BASE_URL + 'register';
+		let url = 'register';
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type': 'application/json',

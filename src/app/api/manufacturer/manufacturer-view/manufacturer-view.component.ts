@@ -47,7 +47,7 @@ export class ManufacturerViewComponent implements OnInit {
 	deleteManufacturer() {
 		if (confirm('Are you sure you wanna delete Manufacturer?')) {
 			const id = this.route.snapshot.paramMap.get('id');
-			const url = environment.BASE_URL + MANUFACTURER_API_URL + '/delete/' + id;
+			const url = MANUFACTURER_API_URL + '/delete/' + id;
 
 			this.manufacturerService.deleteManufacturer(url).subscribe(
 				(data) => {
@@ -63,7 +63,7 @@ export class ManufacturerViewComponent implements OnInit {
 
 	private getManufacturer() {
 		const id = this.route.snapshot.paramMap.get('id');
-		const url = environment.BASE_URL + MANUFACTURER_API_URL + '/find/' + id;
+		const url = MANUFACTURER_API_URL + '/find/' + id;
 
 		this.spinner.show();
 		this.manufacturerService

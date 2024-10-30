@@ -54,12 +54,12 @@ export class ProductViewComponent implements OnInit {
 		await this.spinner.show();
 		let cart = this.cartService.getCurrentCart;
 		if (cart === null) {
-			const initializeCartUrl = environment.BASE_URL + CART_API_URL + '/initialize';
+			const initializeCartUrl = CART_API_URL + '/initialize';
 			let userProfile = this.authService.currentUser().userProfile;
 			await this.cartService.initializeCart(initializeCartUrl, userProfile);
 		}
 		cart = this.cartService.getCurrentCart;
-		const addProductToCartUrl = environment.BASE_URL + CART_API_URL + '/product/add';
+		const addProductToCartUrl = CART_API_URL + '/product/add';
 		let cartProductJson = new CartProductJson();
 		cartProductJson.cartId = cart.id;
 		cartProductJson.productId = this.product.id;
@@ -87,7 +87,7 @@ export class ProductViewComponent implements OnInit {
 
 	private getProduct() {
 		const id = this.route.snapshot.paramMap.get('id');
-		const url = environment.BASE_URL + PRODUCT_API_URL + '/find/' + id;
+		const url = PRODUCT_API_URL + '/find/' + id;
 		this.productService
 			.getProductDetails(url)
 			.pipe()

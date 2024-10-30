@@ -13,9 +13,9 @@
 		</div>
 	</div>
 	<div *ngIf="authService.isUserLoggedIn()" class="mr-sm-3 custom-header-menu">
-		<button [matMenuTriggerFor]="menu" mat-button>
-			{{ authService.currentUserValue.username }}
+		<button [matMenuTriggerFor]="menu"  mat-button style="color: white">
 			<mat-icon aria-hidden="false" aria-label="Example home icon">arrow_drop_down </mat-icon>
+			{{ authService.currentUserValue.username }}
 		</button>
 		<mat-menu #menu="matMenu">
 			<button (click)="logout()" mat-menu-item>Logout</button>

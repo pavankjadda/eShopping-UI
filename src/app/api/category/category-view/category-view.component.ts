@@ -37,7 +37,7 @@ export class CategoryViewComponent implements OnInit {
 
 	private getCategory() {
 		const id = this.route.snapshot.paramMap.get('id');
-		const url = environment.BASE_URL + CATEGORY_API_URL + '/' + id;
+		const url = CATEGORY_API_URL + '/' + id;
 		this.categoryService.getCategoryDetails(url).subscribe(
 			(data) => {
 				this.categoryForm.patchValue({

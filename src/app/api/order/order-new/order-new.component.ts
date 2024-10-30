@@ -23,7 +23,7 @@ export class OrderNewComponent implements OnInit {
 	}
 
 	private getProducts() {
-		const productsUrl = environment.BASE_URL + PRODUCT_API_URL + '/list';
+		const productsUrl = PRODUCT_API_URL + '/list';
 		this.productService.getProducts(productsUrl).subscribe(
 			(data) => {
 				this.products = data;

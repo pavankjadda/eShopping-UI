@@ -4,17 +4,17 @@
     "baseUrl": "./",
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "module": "es2020",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "target": "ESNext",
     "paths": {
       "core-js/es7/reflect": ["node_modules/core-js/proposals/reflect-metadata"]
     },
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    "lib": ["ESNext", "dom"]
   }
 }
