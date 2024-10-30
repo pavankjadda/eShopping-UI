@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
 	}
 
 	private getProducts() {
-		let url = environment.BASE_URL + PRODUCT_API_URL + '/list';
+		let url = PRODUCT_API_URL + '/list';
 		this.spinner.show();
 		this.productService.getProducts(url).subscribe(
 			(data) => {

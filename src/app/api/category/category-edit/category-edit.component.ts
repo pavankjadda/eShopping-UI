@@ -28,7 +28,7 @@ export class CategoryEditComponent implements OnInit {
 
 	ngOnInit() {
 		const id = this.route.snapshot.paramMap.get('id');
-		const url = environment.BASE_URL + CATEGORY_API_URL + '/' + id;
+		const url = CATEGORY_API_URL + '/' + id;
 		this.categoryService.getCategoryDetails(url).subscribe(
 			(data) => {
 				this.categoryForm.patchValue({
@@ -50,7 +50,7 @@ export class CategoryEditComponent implements OnInit {
 		const category = new Category(this.categoryForm.get('id').value);
 		category.name = this.categoryForm.get('name').value;
 		category.description = this.categoryForm.get('description').value;
-		const url = environment.BASE_URL + CATEGORY_API_URL + '/update';
+		const url = CATEGORY_API_URL + '/update';
 
 		this.categoryService.updateCategory(url, category).subscribe(
 			(value) => {},

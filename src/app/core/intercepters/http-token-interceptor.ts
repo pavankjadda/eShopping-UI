@@ -11,7 +11,7 @@ export function httpTokenInterceptor(request: HttpRequest<unknown>, next: HttpHa
 	// Add base URL to all API requests
 	if (request.url.indexOf('/api') !== -1) {
 		request = request.clone({
-			url: environment.BASE_URL + `${request.url}`,
+			url: `${request.url}`,
 		});
 	}
 	return next(request);
